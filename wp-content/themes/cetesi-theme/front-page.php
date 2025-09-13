@@ -529,8 +529,8 @@ get_header(); ?>
                     </div>
                 </div>
                 <?php endif; ?>
-            </div>
-            
+                    </div>
+                    
             <!-- Cursos 100% Online -->
             <div class="categoria-cursos">
                 <h3 class="categoria-titulo">
