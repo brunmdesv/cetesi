@@ -1,0 +1,143 @@
+[13-Sep-2025 11:48:55 UTC] Automatic updates starting...
+[13-Sep-2025 11:48:56 UTC] Automatic updates complete.
+[13-Sep-2025 12:04:07 UTC] CETESI Debug - Carregando template para página: cursos, Template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-cursos.php
+[13-Sep-2025 12:04:56 UTC] CETESI Debug - Carregando template para página: cursos, Template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-cursos.php
+[13-Sep-2025 12:20:23 UTC] CETESI Debug - Request URI: /cetesi/index.php/contato/
+[13-Sep-2025 12:20:41 UTC] CETESI Debug - Request URI: /cetesi/index.php/equipe/
+[13-Sep-2025 12:20:55 UTC] CETESI Debug - Request URI: /cetesi/index.php/equipe/
+[13-Sep-2025 12:20:59 UTC] CETESI Debug - Request URI: /cetesi/index.php/equipe/?customize_changeset_uuid=aff3589a-801f-4d0a-9b95-ee38a546a5ed&customize_theme=cetesi-theme&customize_messenger_channel=preview-0
+[13-Sep-2025 12:21:07 UTC] CETESI Debug - Request URI: /cetesi/index.php/equipe/?customize_changeset_uuid=aff3589a-801f-4d0a-9b95-ee38a546a5ed&customize_theme=cetesi-theme&customize_messenger_channel=preview-1&customize_autosaved=on
+[13-Sep-2025 12:21:09 UTC] CETESI Debug - Request URI: /cetesi/index.php/equipe/?customize_changeset_uuid=aff3589a-801f-4d0a-9b95-ee38a546a5ed&customize_theme=cetesi-theme&customize_messenger_channel=preview-2&customize_autosaved=on
+[13-Sep-2025 12:21:11 UTC] CETESI Debug - Request URI: /cetesi/index.php/equipe/?customize_changeset_uuid=aff3589a-801f-4d0a-9b95-ee38a546a5ed&customize_theme=cetesi-theme&customize_messenger_channel=preview-3&customize_autosaved=on
+[13-Sep-2025 12:21:17 UTC] CETESI Debug - Request URI: /cetesi/index.php/equipe/?customize_changeset_uuid=aff3589a-801f-4d0a-9b95-ee38a546a5ed&customize_theme=cetesi-theme&customize_messenger_channel=preview-4&customize_autosaved=on
+[13-Sep-2025 12:21:18 UTC] CETESI Debug - Request URI: /cetesi/index.php/equipe/?customize_changeset_uuid=5612cc3e-036b-4e64-ba1a-05002e9683d6&customize_theme=cetesi-theme&customize_messenger_channel=preview-5&customize_autosaved=on
+[13-Sep-2025 12:21:39 UTC] CETESI Debug - Request URI: /cetesi/
+[13-Sep-2025 12:21:57 UTC] CETESI Debug - Request URI: /cetesi/
+[13-Sep-2025 12:21:58 UTC] CETESI Debug - Request URI: /cetesi/cursos/
+[13-Sep-2025 12:21:58 UTC] CETESI Debug - URL match found for: cursos
+[13-Sep-2025 12:21:58 UTC] CETESI Debug - Page found: Cursos
+[13-Sep-2025 12:21:58 UTC] CETESI Debug - Loading template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-cursos.php
+[13-Sep-2025 12:21:59 UTC] CETESI Debug - Request URI: /cetesi/equipe/
+[13-Sep-2025 12:21:59 UTC] CETESI Debug - URL match found for: equipe
+[13-Sep-2025 12:21:59 UTC] CETESI Debug - Page found: Equipe
+[13-Sep-2025 12:21:59 UTC] CETESI Debug - Loading template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-equipe.php
+[13-Sep-2025 12:22:00 UTC] CETESI Debug - Request URI: /cetesi/sobre/
+[13-Sep-2025 12:22:00 UTC] CETESI Debug - URL match found for: sobre
+[13-Sep-2025 12:22:00 UTC] CETESI Debug - Page found: Sobre
+[13-Sep-2025 12:22:00 UTC] CETESI Debug - Loading template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-sobre.php
+[13-Sep-2025 12:22:00 UTC] CETESI Debug - Request URI: /cetesi/contato/
+[13-Sep-2025 12:22:00 UTC] CETESI Debug - URL match found for: contato
+[13-Sep-2025 12:22:00 UTC] CETESI Debug - Page found: Contato
+[13-Sep-2025 12:22:00 UTC] CETESI Debug - Loading template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-contato.php
+[13-Sep-2025 12:22:53 UTC] CETESI Debug - Request URI: /cetesi/
+[13-Sep-2025 12:22:54 UTC] CETESI Debug - Request URI: /cetesi/cursos/
+[13-Sep-2025 12:22:54 UTC] CETESI Debug - URL match found for: cursos
+[13-Sep-2025 12:22:54 UTC] CETESI Debug - Page found: Cursos
+[13-Sep-2025 12:22:54 UTC] CETESI Debug - Loading template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-cursos.php
+[13-Sep-2025 12:22:55 UTC] CETESI Debug - Request URI: /cetesi/equipe/
+[13-Sep-2025 12:22:55 UTC] CETESI Debug - URL match found for: equipe
+[13-Sep-2025 12:22:55 UTC] CETESI Debug - Page found: Equipe
+[13-Sep-2025 12:22:55 UTC] CETESI Debug - Loading template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-equipe.php
+[13-Sep-2025 12:22:55 UTC] CETESI Debug - Request URI: /cetesi/sobre/
+[13-Sep-2025 12:22:55 UTC] CETESI Debug - URL match found for: sobre
+[13-Sep-2025 12:22:55 UTC] CETESI Debug - Page found: Sobre
+[13-Sep-2025 12:22:55 UTC] CETESI Debug - Loading template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-sobre.php
+[13-Sep-2025 12:22:56 UTC] CETESI Debug - Request URI: /cetesi/contato/
+[13-Sep-2025 12:22:56 UTC] CETESI Debug - URL match found for: contato
+[13-Sep-2025 12:22:56 UTC] CETESI Debug - Page found: Contato
+[13-Sep-2025 12:22:56 UTC] CETESI Debug - Loading template: C:\wamp64\www\cetesi/wp-content/themes/cetesi-theme/page-contato.php
+[13-Sep-2025 14:48:28 UTC] PHP Deprecated:  O arquivo wp-db.php está <strong>obsoleto</strong> desde a versão 6.1.0! Em vez disso, use wp-includes/class-wpdb.php. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 14:48:28 UTC] PHP Stack trace:
+[13-Sep-2025 14:48:28 UTC] PHP   1. {main}() Command line code:0
+[13-Sep-2025 14:48:28 UTC] PHP   2. {main}() Command line code:0
+[13-Sep-2025 14:48:28 UTC] PHP   3. _deprecated_file($file = 'wp-db.php', $version = '6.1.0', $replacement = 'wp-includes/class-wpdb.php', $message = *uninitialized*) C:\wamp64\www\cetesi\wp-includes\wp-db.php:13
+[13-Sep-2025 14:48:28 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'O arquivo wp-db.php está <strong>obsoleto</strong> desde a versão 6.1.0! Em vez disso, use wp-includes/class-wpdb.php.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5831
+[13-Sep-2025 14:48:28 UTC] PHP   5. trigger_error($message = 'O arquivo wp-db.php está <strong>obsoleto</strong> desde a versão 6.1.0! Em vez disso, use wp-includes/class-wpdb.php.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 14:48:28 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 14:48:28 UTC] PHP Stack trace:
+[13-Sep-2025 14:48:28 UTC] PHP   1. {main}() Command line code:0
+[13-Sep-2025 14:48:28 UTC] PHP   2. cetesi_create_real_courses() Command line code:1
+[13-Sep-2025 14:48:28 UTC] PHP   3. get_page_by_title($page_title = 'Técnico em Radiologia', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\wp-content\themes\cetesi-theme\functions.php:2923
+[13-Sep-2025 14:48:28 UTC] PHP   4. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 14:48:28 UTC] PHP   5. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 14:48:28 UTC] PHP   6. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 14:48:28 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 14:48:28 UTC] PHP Stack trace:
+[13-Sep-2025 14:48:28 UTC] PHP   1. {main}() Command line code:0
+[13-Sep-2025 14:48:28 UTC] PHP   2. cetesi_create_real_courses() Command line code:1
+[13-Sep-2025 14:48:28 UTC] PHP   3. get_page_by_title($page_title = 'Técnico em Enfermagem', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\wp-content\themes\cetesi-theme\functions.php:2923
+[13-Sep-2025 14:48:28 UTC] PHP   4. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 14:48:28 UTC] PHP   5. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 14:48:28 UTC] PHP   6. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 14:48:28 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 14:48:28 UTC] PHP Stack trace:
+[13-Sep-2025 14:48:28 UTC] PHP   1. {main}() Command line code:0
+[13-Sep-2025 14:48:28 UTC] PHP   2. cetesi_create_real_courses() Command line code:1
+[13-Sep-2025 14:48:28 UTC] PHP   3. get_page_by_title($page_title = 'Técnico em Nutrição e Dietética', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\wp-content\themes\cetesi-theme\functions.php:2923
+[13-Sep-2025 14:48:28 UTC] PHP   4. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 14:48:28 UTC] PHP   5. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 14:48:28 UTC] PHP   6. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 14:48:28 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 14:48:28 UTC] PHP Stack trace:
+[13-Sep-2025 14:48:28 UTC] PHP   1. {main}() Command line code:0
+[13-Sep-2025 14:48:28 UTC] PHP   2. cetesi_create_real_courses() Command line code:1
+[13-Sep-2025 14:48:28 UTC] PHP   3. get_page_by_title($page_title = 'Técnico em Segurança do Trabalho', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\wp-content\themes\cetesi-theme\functions.php:2923
+[13-Sep-2025 14:48:28 UTC] PHP   4. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 14:48:28 UTC] PHP   5. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 14:48:28 UTC] PHP   6. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 16:12:26 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 16:12:26 UTC] PHP Stack trace:
+[13-Sep-2025 16:12:26 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\fix_course_names.php:0
+[13-Sep-2025 16:12:26 UTC] PHP   2. get_page_by_title($page_title = 'Técnico em Enfermagem', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\fix_course_names.php:22
+[13-Sep-2025 16:12:26 UTC] PHP   3. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 16:12:26 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 16:12:26 UTC] PHP   5. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 16:12:26 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 16:12:26 UTC] PHP Stack trace:
+[13-Sep-2025 16:12:26 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\fix_course_names.php:0
+[13-Sep-2025 16:12:26 UTC] PHP   2. get_page_by_title($page_title = 'Técnico em Nutrição e Dietética', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\fix_course_names.php:22
+[13-Sep-2025 16:12:26 UTC] PHP   3. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 16:12:26 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 16:12:26 UTC] PHP   5. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 16:12:26 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 16:12:26 UTC] PHP Stack trace:
+[13-Sep-2025 16:12:26 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\fix_course_names.php:0
+[13-Sep-2025 16:12:26 UTC] PHP   2. get_page_by_title($page_title = 'Técnico em Segurança do Trabalho', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\fix_course_names.php:22
+[13-Sep-2025 16:12:26 UTC] PHP   3. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 16:12:26 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 16:12:26 UTC] PHP   5. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 16:12:26 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 16:12:26 UTC] PHP Stack trace:
+[13-Sep-2025 16:12:26 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\fix_course_names.php:0
+[13-Sep-2025 16:12:26 UTC] PHP   2. get_page_by_title($page_title = 'APH &#8211; Atendimento Pré-Hospitalar', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\fix_course_names.php:22
+[13-Sep-2025 16:12:26 UTC] PHP   3. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 16:12:26 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 16:12:26 UTC] PHP   5. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 16:12:26 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 16:12:26 UTC] PHP Stack trace:
+[13-Sep-2025 16:12:26 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\fix_course_names.php:0
+[13-Sep-2025 16:12:26 UTC] PHP   2. get_page_by_title($page_title = 'UTI &#8211; Emergência e Urgência', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\fix_course_names.php:22
+[13-Sep-2025 16:12:26 UTC] PHP   3. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 16:12:26 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 16:12:26 UTC] PHP   5. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 16:12:26 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 16:12:26 UTC] PHP Stack trace:
+[13-Sep-2025 16:12:26 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\fix_course_names.php:0
+[13-Sep-2025 16:12:26 UTC] PHP   2. get_page_by_title($page_title = 'EJA &#8211; 1ª Série', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\fix_course_names.php:22
+[13-Sep-2025 16:12:26 UTC] PHP   3. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 16:12:26 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 16:12:26 UTC] PHP   5. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 16:12:26 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 16:12:26 UTC] PHP Stack trace:
+[13-Sep-2025 16:12:26 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\fix_course_names.php:0
+[13-Sep-2025 16:12:26 UTC] PHP   2. get_page_by_title($page_title = 'EJA &#8211; 2ª Série', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\fix_course_names.php:22
+[13-Sep-2025 16:12:26 UTC] PHP   3. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 16:12:26 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 16:12:26 UTC] PHP   5. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[13-Sep-2025 16:12:26 UTC] PHP Deprecated:  A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[13-Sep-2025 16:12:26 UTC] PHP Stack trace:
+[13-Sep-2025 16:12:26 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\fix_course_names.php:0
+[13-Sep-2025 16:12:26 UTC] PHP   2. get_page_by_title($page_title = 'EJA &#8211; 3ª Série', $output = 'OBJECT', $post_type = 'curso') C:\wamp64\www\cetesi\fix_course_names.php:22
+[13-Sep-2025 16:12:26 UTC] PHP   3. _deprecated_function($function_name = 'get_page_by_title', $version = '6.2.0', $replacement = 'WP_Query') C:\wamp64\www\cetesi\wp-includes\deprecated.php:4575
+[13-Sep-2025 16:12:26 UTC] PHP   4. wp_trigger_error($function_name = '', $message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5586
+[13-Sep-2025 16:12:26 UTC] PHP   5. trigger_error($message = 'A função get_page_by_title está <strong>obsoleta</strong> desde a versão 6.2.0! Em vez disso, use WP_Query.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
