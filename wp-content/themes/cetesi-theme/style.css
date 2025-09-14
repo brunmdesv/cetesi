@@ -745,6 +745,7 @@ body {
     flex-wrap: wrap;
 }
 
+/* Botões Hero - Mantidos para compatibilidade */
 .btn-hero {
     padding: var(--space-lg) var(--space-2xl);
     border-radius: var(--radius-full);
@@ -969,46 +970,11 @@ body {
     gap: var(--space-lg);
 }
 
-.diferencial-card {
-    background: white;
-    padding: var(--space-xl);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
-    text-align: center;
-    transition: all 0.3s ease;
-}
+/* Cards diferenciais removidos - usando .card-unified */
 
-.diferencial-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
-}
-
-.diferencial-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: white;
-    margin: 0 auto var(--space-md);
-}
-
-.diferencial-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--gray-800);
-    margin-bottom: var(--space-sm);
-}
-
-.diferencial-card p {
-    color: var(--gray-600);
-    line-height: 1.6;
-    font-size: 0.9rem;
-}
+/* ========================================
+   CLASSES UNIFICADAS - OTIMIZAÇÃO COMPLETA
+======================================== */
 
 /* Hero Section Unificada - Para todos os templates */
 .hero-section {
@@ -1063,6 +1029,125 @@ body {
     margin: 0 auto;
 }
 
+/* Botões Unificados */
+.btn-unified {
+    padding: var(--space-lg) var(--space-2xl);
+    border-radius: var(--radius-full);
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-lg);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-unified:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-2xl);
+}
+
+.btn-unified-primary {
+    background: var(--gradient-accent);
+    color: white;
+}
+
+.btn-unified-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+}
+
+.btn-unified-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-unified-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Cards Unificados */
+.card-unified {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-100);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card-unified:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-unified-content {
+    padding: var(--space-xl);
+}
+
+.card-unified-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+    color: white;
+    font-size: 1.5rem;
+}
+
+.card-unified h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.card-unified p {
+    color: var(--gray-600);
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Stats Unificados */
+.stat-unified {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.stat-unified-number {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: var(--space-xs);
+    color: white;
+}
+
+.stat-unified-label {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+}
+
 /* Estatísticas Section */
 .stats-section {
     padding: var(--space-3xl) 0;
@@ -1077,28 +1162,7 @@ body {
     gap: var(--space-xl);
 }
 
-.stat-item {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    padding: var(--space-xl);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.stat-number {
-    font-family: var(--font-heading);
-    font-size: 2.2rem;
-    font-weight: 800;
-    display: block;
-    margin-bottom: var(--space-xs);
-}
-
-.stat-label {
-    font-size: 0.85rem;
-    opacity: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+/* Stats antigos removidos - usando .stat-unified */
 
 /* Depoimentos Section */
 .depoimentos-section {
@@ -4403,54 +4467,7 @@ body {
    PÁGINA CONTATO
 ======================================== */
 
-/* Hero Section */
-.contato-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    padding: var(--space-4xl) 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.contato-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
-}
-
-.contato-hero-content {
-    text-align: center;
-    color: white;
-    position: relative;
-    z-index: 2;
-}
-
-
-.contato-hero .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    margin-bottom: var(--space-lg);
-    line-height: 1.1;
-}
-
-.contato-hero .hero-title .highlight {
-    background: linear-gradient(135deg, #10b981, #059669);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.contato-hero .hero-description {
-    font-size: 1.125rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
+/* Hero Section - Usando classe unificada .hero-section */
 
 /* Informações de Contato */
 .contato-info-section {
@@ -4834,71 +4851,7 @@ body {
    PÁGINA CURSOS
 ======================================== */
 
-/* Hero Section */
-.cursos-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    padding: var(--space-4xl) 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.cursos-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
-}
-
-.cursos-hero-content {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.cursos-hero .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--secondary-color);
-    padding: var(--space-sm) var(--space-lg);
-    border-radius: var(--radius-full);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: var(--space-xl);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.cursos-hero .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    color: white;
-    margin-bottom: var(--space-lg);
-    line-height: 1.2;
-}
-
-.cursos-hero .hero-title .highlight {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.cursos-hero .hero-description {
-    font-size: 1.2rem;
-    color: var(--gray-300);
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto;
-}
+/* Hero Section - Usando classe unificada .hero-section */
 
 /* Filtros Section */
 .cursos-filters-section {
@@ -5443,71 +5396,7 @@ body {
    PÁGINA SOBRE
 ======================================== */
 
-/* Hero Section */
-.sobre-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    padding: var(--space-4xl) 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.sobre-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
-}
-
-.sobre-hero-content {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.sobre-hero .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--secondary-color);
-    padding: var(--space-sm) var(--space-lg);
-    border-radius: var(--radius-full);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: var(--space-xl);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.sobre-hero .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    color: white;
-    margin-bottom: var(--space-lg);
-    line-height: 1.2;
-}
-
-.sobre-hero .hero-title .highlight {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.sobre-hero .hero-description {
-    font-size: 1.2rem;
-    color: var(--gray-300);
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto;
-}
+/* Hero Section - Usando classe unificada .hero-section */
 
 /* MVV Section */
 .sobre-mvv-section {
@@ -5957,72 +5846,7 @@ body {
    PÁGINA DE EQUIPE
 ======================================== */
 
-/* Hero Section Equipe */
-.equipe-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    padding: var(--space-4xl) 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.equipe-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
-}
-
-.equipe-hero-content {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--secondary-color);
-    padding: var(--space-sm) var(--space-lg);
-    border-radius: var(--radius-full);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: var(--space-xl);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    color: white;
-    margin-bottom: var(--space-lg);
-    line-height: 1.2;
-}
-
-.hero-title .highlight {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero-description {
-    font-size: 1.2rem;
-    color: var(--gray-300);
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto;
-}
+/* Hero Section - Usando classe unificada .hero-section */
 
 /* Grid de Professores */
 .equipe-grid-section {
