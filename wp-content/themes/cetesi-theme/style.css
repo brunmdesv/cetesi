@@ -777,10 +777,16 @@ body {
     box-shadow: var(--shadow-2xl);
 }
 
-/* Cursos Section */
+/* Cursos Section - Para página de cursos */
 .cursos-section {
     padding: 0;
     background: #f8f9fa;
+}
+
+/* Cursos Section - Para tela inicial */
+.homepage .cursos-section {
+    padding: var(--space-3xl) 0;
+    background: white;
 }
 
 .section-header {
@@ -823,6 +829,154 @@ body {
 .categoria-titulo i {
     color: var(--primary-color);
     font-size: 1.5rem;
+}
+
+/* Grid de Cursos - Para tela inicial (3 por linha) */
+.homepage .cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+/* Cards de Cursos - EXATAMENTE igual ao Template de Cursos */
+.homepage .curso-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.homepage .curso-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.homepage .curso-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.homepage .curso-card.online::before {
+    background: var(--gradient-accent);
+}
+
+.homepage .curso-card.tecnico::before {
+    background: var(--gradient-primary);
+}
+
+.homepage .curso-card.livre::before {
+    background: var(--gradient-secondary);
+}
+
+.homepage .curso-card.qualificacao::before {
+    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
+}
+
+.homepage .curso-image {
+    height: 220px;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.homepage .curso-image i {
+    font-size: 3rem;
+    color: white;
+}
+
+.homepage .curso-content {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.homepage .curso-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-md);
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.homepage .curso-content p {
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    flex: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    overflow: hidden;
+}
+
+.homepage .curso-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-lg);
+    overflow: hidden;
+}
+
+.homepage .curso-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    margin-bottom: var(--space-xs);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.homepage .curso-features li::before {
+    content: '✓';
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.homepage .curso-btn {
+    background: var(--gradient-primary);
+    color: white;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    flex-shrink: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.homepage .curso-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Estilos antigos removidos - usando os novos estilos iguais ao template equipe */
@@ -994,7 +1148,7 @@ body {
     color: var(--gray-300);
     line-height: 1.7;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto var(--space-2xl) auto;
 }
 
 /* Botões Unificados */
@@ -2995,6 +3149,16 @@ body {
         padding: 0;
     }
     
+    /* Tela inicial - cursos responsivos */
+    .homepage .cursos-section {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .homepage .cursos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+    }
+    
     .section-header h2 {
         font-size: 1.5rem;
         margin-bottom: var(--space-sm);
@@ -4078,6 +4242,16 @@ body {
         width: 100%;
         max-width: 100%;
         padding: 0;
+    }
+    
+    /* Tela inicial - cursos mobile */
+    .homepage .cursos-section {
+        padding: var(--space-xl) 0;
+    }
+    
+    .homepage .cursos-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
     }
     
     .cursos-section .container {
@@ -6743,7 +6917,7 @@ body {
     color: var(--gray-300);
     line-height: 1.7;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto var(--space-2xl) auto;
 }
 
 /* Section Headers */
