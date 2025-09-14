@@ -13,9 +13,9 @@ get_header();
     <main id="main" class="site-main">
 
         <!-- Hero Section -->
-        <section class="contato-hero">
+        <section class="hero-section">
             <div class="container">
-                <div class="contato-hero-content">
+                <div class="hero-content">
                     <h1 class="hero-title">Entre em <span class="highlight">Contato</span></h1>
                     <p class="hero-description">
                         Estamos aqui para ajudar você a dar o próximo passo em sua carreira profissional. Entre em contato conosco e descubra como podemos transformar seu futuro.

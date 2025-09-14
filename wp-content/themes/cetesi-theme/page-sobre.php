@@ -13,9 +13,9 @@ get_header();
     <main id="main" class="site-main">
 
         <!-- Hero Section -->
-        <section class="sobre-hero">
+        <section class="hero-section">
             <div class="container">
-                <div class="sobre-hero-content">
+                <div class="hero-content">
                     <h1 class="hero-title">Conheça o <span class="highlight">CETESI</span></h1>
                     <p class="hero-description">
                         Uma instituição de ensino comprometida com a excelência educacional e a formação de profissionais qualificados para o mercado de trabalho.

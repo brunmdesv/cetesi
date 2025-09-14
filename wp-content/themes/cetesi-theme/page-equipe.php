@@ -13,9 +13,9 @@ get_header();
     <main id="main" class="site-main">
 
         <!-- Hero Section -->
-        <section class="equipe-hero">
+        <section class="hero-section">
             <div class="container">
-                <div class="equipe-hero-content">
+                <div class="hero-content">
                     <h1 class="hero-title">Conheça nossa <span class="highlight">Equipe</span></h1>
                     <p class="hero-description">
                         Profissionais qualificados e experientes, comprometidos com a excelência educacional e o sucesso de nossos alunos.
@@ -27,11 +27,6 @@ get_header();
         <!-- Equipe Completa - Layout Moderno -->
         <section class="equipe-completa-section">
             <div class="container">
-                <div class="equipe-section-header">
-                    <h2>Nossa Equipe Completa</h2>
-                    <p>Conheça todos os profissionais que fazem do CETESI uma referência em educação</p>
-                </div>
-                
                 <!-- Filtros de Equipe -->
                 <div class="equipe-filters">
                     <button class="equipe-filter-btn active" data-filter="todos">
@@ -55,7 +50,7 @@ get_header();
                         Administrativo
                     </button>
                 </div>
-
+                
                 <!-- Grid de Equipe -->
                 <div class="equipe-grid-moderno">
                     <?php
@@ -116,7 +111,7 @@ get_header();
                                 <div class="membro-header">
                                     <h3 class="membro-nome"><?php the_title(); ?></h3>
                                     <span class="membro-categoria-badge"><?php echo esc_html(ucfirst($categoria)); ?></span>
-                                </div>
+                        </div>
                             <?php if ($cargo) : ?>
                                     <p class="membro-cargo-moderno"><?php echo esc_html($cargo); ?></p>
                             <?php endif; ?>
@@ -128,14 +123,14 @@ get_header();
                                 <?php endif; ?>
                                 <?php if ($bio) : ?>
                                     <p class="membro-bio-moderno"><?php echo esc_html(wp_trim_words($bio, 15)); ?></p>
-                                <?php endif; ?>
+                            <?php endif; ?>
                                 <div class="membro-experiencia-moderno">
-                                    <?php if ($experiencia) : ?>
+                            <?php if ($experiencia) : ?>
                                         <span class="experiencia-text">
                                             <i class="fas fa-clock"></i>
                                             <?php echo esc_html($experiencia); ?>
                                         </span>
-                                    <?php endif; ?>
+                                <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +165,7 @@ get_header();
                                 'categoria' => 'coordenacao',
                                 'bio' => 'Coordenador experiente com ampla vivência clínica e acadêmica na área de enfermagem.'
                             ),
-                            array(
+                                array(
                                 'nome' => 'Prof. Ana Costa',
                                 'cargo' => 'Coordenadora de Radiologia',
                                 'formacao' => 'Especialista em Radiologia',
@@ -207,19 +202,19 @@ get_header();
                                 <div class="membro-overlay">
                                     <div class="membro-social-moderno">
                                         <a href="#" class="social-link-moderno" title="LinkedIn">
-                                            <i class="fab fa-linkedin"></i>
-                                        </a>
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
                                         <a href="#" class="social-link-moderno" title="Email">
-                                            <i class="fas fa-envelope"></i>
-                                        </a>
-                                    </div>
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
                                 </div>
                             </div>
+                        </div>
                             <div class="membro-content-moderno">
                                 <div class="membro-header">
                                     <h3 class="membro-nome"><?php echo esc_html($membro['nome']); ?></h3>
                                     <span class="membro-categoria-badge"><?php echo esc_html(ucfirst($membro['categoria'])); ?></span>
-                                </div>
+                </div>
                                 <p class="membro-cargo-moderno"><?php echo esc_html($membro['cargo']); ?></p>
                                 <p class="membro-formacao-moderno">
                                     <i class="fas fa-graduation-cap"></i>
@@ -231,7 +226,7 @@ get_header();
                                         <i class="fas fa-clock"></i>
                                         <?php echo esc_html($membro['experiencia']); ?>
                                     </span>
-                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -241,44 +236,24 @@ get_header();
         </section>
 
         <!-- Estatísticas da Equipe -->
-        <section class="equipe-stats-section">
+        <section class="stats-section">
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>50+</h3>
-                            <p>Profissionais Qualificados</p>
-                        </div>
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Profissionais Qualificados</span>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>80%</h3>
-                            <p>Mestres e Doutores</p>
-                        </div>
+                        <span class="stat-number">80%</span>
+                        <span class="stat-label">Mestres e Doutores</span>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>15+</h3>
-                            <p>Anos de Experiência Média</p>
-                        </div>
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Anos de Experiência Média</span>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>100%</h3>
-                            <p>Comprometimento com a Qualidade</p>
-                        </div>
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Comprometimento com a Qualidade</span>
                     </div>
                 </div>
             </div>
@@ -510,43 +485,6 @@ get_header();
     color: #f59e0b;
 }
 
-.equipe-stats-section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #2563eb, #10b981);
-    color: white;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-}
-
-.stat-item {
-    text-align: center;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
-
-.stat-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    opacity: 0.9;
-}
-
-.stat-content h3 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.stat-content p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    margin: 0;
-}
 
 /* Responsivo */
 @media (max-width: 768px) {

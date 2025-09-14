@@ -13,9 +13,9 @@ get_header();
     <main id="main" class="site-main">
 
         <!-- Hero Section -->
-        <section class="cursos-hero">
+        <section class="hero-section">
             <div class="container">
-                <div class="cursos-hero-content">
+                <div class="hero-content">
                     <h1 class="hero-title">Conheça nossos <span class="highlight">Cursos</span></h1>
                     <p class="hero-description">
                         Oferecemos uma ampla gama de cursos técnicos, de qualificação, livres e online, reconhecidos pelo MEC e alinhados com as demandas do mercado de trabalho.
