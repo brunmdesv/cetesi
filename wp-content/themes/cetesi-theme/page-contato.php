@@ -16,10 +16,6 @@ get_header();
         <section class="contato-hero">
             <div class="container">
                 <div class="contato-hero-content">
-                    <div class="hero-badge">
-                        <i class="fas fa-phone"></i>
-                        Fale Conosco
-                    </div>
                     <h1 class="hero-title">Entre em <span class="highlight">Contato</span></h1>
                     <p class="hero-description">
                         Estamos aqui para ajudar você a dar o próximo passo em sua carreira profissional. Entre em contato conosco e descubra como podemos transformar seu futuro.

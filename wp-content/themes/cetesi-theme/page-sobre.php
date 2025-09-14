@@ -16,10 +16,6 @@ get_header();
         <section class="sobre-hero">
             <div class="container">
                 <div class="sobre-hero-content">
-                    <div class="hero-badge">
-                        <i class="fas fa-info-circle"></i>
-                        Sobre Nós
-                    </div>
                     <h1 class="hero-title">Conheça o <span class="highlight">CETESI</span></h1>
                     <p class="hero-description">
                         Uma instituição de ensino comprometida com a excelência educacional e a formação de profissionais qualificados para o mercado de trabalho.

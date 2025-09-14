@@ -16,10 +16,6 @@ get_header();
         <section class="cursos-hero">
             <div class="container">
                 <div class="cursos-hero-content">
-                    <div class="hero-badge">
-                        <i class="fas fa-graduation-cap"></i>
-                        Nossos Cursos
-                    </div>
                     <h1 class="hero-title">Conheça nossos <span class="highlight">Cursos</span></h1>
                     <p class="hero-description">
                         Oferecemos uma ampla gama de cursos técnicos, de qualificação, livres e online, reconhecidos pelo MEC e alinhados com as demandas do mercado de trabalho.
@@ -32,7 +28,6 @@ get_header();
         <section class="cursos-filters-section">
             <div class="container">
                 <div class="cursos-filters-content">
-                    <h2>Filtrar por Categoria</h2>
                     <div class="filter-buttons">
                         <button class="filter-btn active" data-filter="todos">
                             <i class="fas fa-th"></i>

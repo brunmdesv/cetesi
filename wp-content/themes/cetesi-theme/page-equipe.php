@@ -16,10 +16,6 @@ get_header();
         <section class="equipe-hero">
             <div class="container">
                 <div class="equipe-hero-content">
-                    <div class="hero-badge">
-                        <i class="fas fa-users"></i>
-                        Nossa Equipe
-                    </div>
                     <h1 class="hero-title">Conheça nossa <span class="highlight">Equipe</span></h1>
                     <p class="hero-description">
                         Profissionais qualificados e experientes, comprometidos com a excelência educacional e o sucesso de nossos alunos.
@@ -28,435 +24,119 @@ get_header();
             </div>
         </section>
 
-        <!-- Direção -->
-        <section class="equipe-direcao-section">
+        <!-- Equipe Completa - Layout Moderno -->
+        <section class="equipe-completa-section">
             <div class="container">
                 <div class="equipe-section-header">
-                    <h2>Direção</h2>
-                    <p>Liderança comprometida com a excelência educacional</p>
+                    <h2>Nossa Equipe Completa</h2>
+                    <p>Conheça todos os profissionais que fazem do CETESI uma referência em educação</p>
                 </div>
                 
-                <div class="equipe-grid direcao-grid">
+                <!-- Filtros de Equipe -->
+                <div class="equipe-filters">
+                    <button class="equipe-filter-btn active" data-filter="todos">
+                        <i class="fas fa-th"></i>
+                        Todos
+                    </button>
+                    <button class="equipe-filter-btn" data-filter="direcao">
+                        <i class="fas fa-crown"></i>
+                        Direção
+                    </button>
+                    <button class="equipe-filter-btn" data-filter="coordenacao">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        Coordenação
+                    </button>
+                    <button class="equipe-filter-btn" data-filter="docentes">
+                        <i class="fas fa-graduation-cap"></i>
+                        Docentes
+                    </button>
+                    <button class="equipe-filter-btn" data-filter="administrativo">
+                        <i class="fas fa-briefcase"></i>
+                        Administrativo
+                    </button>
+                </div>
+
+                <!-- Grid de Equipe -->
+                <div class="equipe-grid-moderno">
                     <?php
-                    $direcao_query = new WP_Query(array(
+                    // Buscar todos os membros da equipe
+                    $equipe_query = new WP_Query(array(
                         'post_type' => 'membro_equipe',
                         'posts_per_page' => -1,
                         'post_status' => 'publish',
-                        'tax_query' => array(
-                            array(
-                                'taxonomy' => 'categoria_equipe',
-                                'field'    => 'slug',
-                                'terms'    => 'direcao',
-                            ),
-                        ),
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
                     ));
                     
-                    if ($direcao_query->have_posts()) :
-                        while ($direcao_query->have_posts()) : $direcao_query->the_post();
+                    if ($equipe_query->have_posts()) :
+                        while ($equipe_query->have_posts()) : $equipe_query->the_post();
                             $cargo = get_post_meta(get_the_ID(), '_membro_cargo', true);
                             $formacao = get_post_meta(get_the_ID(), '_membro_formacao', true);
                             $experiencia = get_post_meta(get_the_ID(), '_membro_experiencia', true);
                             $email = get_post_meta(get_the_ID(), '_membro_email', true);
                             $linkedin = get_post_meta(get_the_ID(), '_membro_linkedin', true);
-                    ?>
-                    <div class="membro-card direcao">
-                        <div class="membro-image">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <?php the_post_thumbnail('medium'); ?>
-                            <?php else : ?>
-                                <div class="placeholder-image">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="membro-content">
-                            <h3><?php the_title(); ?></h3>
-                            <?php if ($cargo) : ?>
-                                <p class="membro-cargo"><?php echo esc_html($cargo); ?></p>
-                            <?php endif; ?>
-                            <?php if ($formacao) : ?>
-                                <p class="membro-formacao"><?php echo esc_html($formacao); ?></p>
-                            <?php endif; ?>
-                            <?php if ($experiencia) : ?>
-                                <p class="membro-experiencia"><?php echo esc_html($experiencia); ?></p>
-                            <?php endif; ?>
-                            <div class="membro-social">
-                                <?php if ($linkedin) : ?>
-                                    <a href="<?php echo esc_url($linkedin); ?>" class="social-link" target="_blank">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                <?php endif; ?>
-                                <?php if ($email) : ?>
-                                    <a href="mailto:<?php echo esc_attr($email); ?>" class="social-link">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <?php 
-                        endwhile;
-                        wp_reset_postdata();
-                    else :
-                        // Membros padrão se não houver posts
-                        $direcao_default = array(
-                            array('nome' => 'Dr. João Silva', 'cargo' => 'Diretor Geral', 'formacao' => 'Doutor em Educação', 'experiencia' => 'Mais de 20 anos de experiência em educação profissional'),
-                            array('nome' => 'Dra. Maria Santos', 'cargo' => 'Diretora Acadêmica', 'formacao' => 'Doutora em Enfermagem', 'experiencia' => 'Especialista em metodologias de ensino na área da saúde'),
-                        );
-                        
-                        foreach ($direcao_default as $membro) :
-                    ?>
-                    <div class="membro-card direcao">
-                        <div class="membro-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                        </div>
-                        <div class="membro-content">
-                            <h3><?php echo esc_html($membro['nome']); ?></h3>
-                            <p class="membro-cargo"><?php echo esc_html($membro['cargo']); ?></p>
-                            <p class="membro-formacao"><?php echo esc_html($membro['formacao']); ?></p>
-                            <p class="membro-experiencia"><?php echo esc_html($membro['experiencia']); ?></p>
-                            <div class="membro-social">
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; endif; ?>
-                </div>
-            </div>
-        </section>
-
-        <!-- Coordenação Pedagógica -->
-        <section class="equipe-coordenacao-section">
-            <div class="container">
-                <div class="equipe-section-header">
-                    <h2>Coordenação Pedagógica</h2>
-                    <p>Especialistas em desenvolvimento curricular e acompanhamento acadêmico</p>
-                </div>
-                
-                <div class="equipe-grid coordenacao-grid">
-                    <?php
-                    $coordenacao_query = new WP_Query(array(
-                        'post_type' => 'membro_equipe',
-                        'posts_per_page' => -1,
-                        'post_status' => 'publish',
-                        'tax_query' => array(
-                            array(
-                                'taxonomy' => 'categoria_equipe',
-                                'field'    => 'slug',
-                                'terms'    => 'coordenacao',
-                            ),
-                        ),
-                    ));
-                    
-                    if ($coordenacao_query->have_posts()) :
-                        while ($coordenacao_query->have_posts()) : $coordenacao_query->the_post();
-                            $cargo = get_post_meta(get_the_ID(), '_membro_cargo', true);
-                            $formacao = get_post_meta(get_the_ID(), '_membro_formacao', true);
-                            $experiencia = get_post_meta(get_the_ID(), '_membro_experiencia', true);
-                            $email = get_post_meta(get_the_ID(), '_membro_email', true);
-                            $linkedin = get_post_meta(get_the_ID(), '_membro_linkedin', true);
-                    ?>
-                    <div class="membro-card coordenacao">
-                        <div class="membro-image">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <?php the_post_thumbnail('medium'); ?>
-                            <?php else : ?>
-                                <div class="placeholder-image">
-                                    <i class="fas fa-chalkboard-teacher"></i>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="membro-content">
-                            <h3><?php the_title(); ?></h3>
-                            <?php if ($cargo) : ?>
-                                <p class="membro-cargo"><?php echo esc_html($cargo); ?></p>
-                            <?php endif; ?>
-                            <?php if ($formacao) : ?>
-                                <p class="membro-formacao"><?php echo esc_html($formacao); ?></p>
-                            <?php endif; ?>
-                            <?php if ($experiencia) : ?>
-                                <p class="membro-experiencia"><?php echo esc_html($experiencia); ?></p>
-                            <?php endif; ?>
-                            <div class="membro-social">
-                                <?php if ($linkedin) : ?>
-                                    <a href="<?php echo esc_url($linkedin); ?>" class="social-link" target="_blank">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                <?php endif; ?>
-                                <?php if ($email) : ?>
-                                    <a href="mailto:<?php echo esc_attr($email); ?>" class="social-link">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <?php 
-                        endwhile;
-                        wp_reset_postdata();
-                    else :
-                        // Membros padrão se não houver posts
-                        $coordenacao_default = array(
-                            array('nome' => 'Prof. Carlos Oliveira', 'cargo' => 'Coordenador Pedagógico', 'formacao' => 'Mestre em Educação', 'experiencia' => '15 anos de experiência em coordenação pedagógica'),
-                            array('nome' => 'Profª. Ana Costa', 'cargo' => 'Coordenadora de Estágios', 'formacao' => 'Especialista em Enfermagem', 'experiencia' => 'Especialista em supervisão de estágios clínicos'),
-                        );
-                        
-                        foreach ($coordenacao_default as $membro) :
-                    ?>
-                    <div class="membro-card coordenacao">
-                        <div class="membro-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-chalkboard-teacher"></i>
-                            </div>
-                        </div>
-                        <div class="membro-content">
-                            <h3><?php echo esc_html($membro['nome']); ?></h3>
-                            <p class="membro-cargo"><?php echo esc_html($membro['cargo']); ?></p>
-                            <p class="membro-formacao"><?php echo esc_html($membro['formacao']); ?></p>
-                            <p class="membro-experiencia"><?php echo esc_html($membro['experiencia']); ?></p>
-                            <div class="membro-social">
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; endif; ?>
-                </div>
-            </div>
-        </section>
-
-        <!-- Corpo Docente -->
-        <section class="equipe-docente-section">
-            <div class="container">
-                <div class="equipe-section-header">
-                    <h2>Corpo Docente</h2>
-                    <p>Professores qualificados e experientes em suas áreas de atuação</p>
-                </div>
-                
-                <div class="equipe-grid docente-grid">
-                    <?php
-                    // Buscar professores cadastrados no painel administrativo
-                    $professores_cadastrados = cetesi_get_professores_cadastrados();
-                    
-                    if (!empty($professores_cadastrados)) :
-                        foreach ($professores_cadastrados as $professor) :
-                            $foto_url = '';
-                            if (!empty($professor['foto'])) {
-                                $foto_url = wp_get_attachment_image_url($professor['foto'], 'medium');
+                            $bio = get_post_meta(get_the_ID(), '_membro_bio', true);
+                            
+                            // Determinar categoria baseada no cargo
+                            $categoria = 'administrativo';
+                            if (strpos(strtolower($cargo), 'diretor') !== false) {
+                                $categoria = 'direcao';
+                            } elseif (strpos(strtolower($cargo), 'coordenador') !== false) {
+                                $categoria = 'coordenacao';
+                            } elseif (strpos(strtolower($cargo), 'professor') !== false || strpos(strtolower($cargo), 'docente') !== false) {
+                                $categoria = 'docentes';
                             }
                     ?>
-                    <div class="membro-card docente">
-                        <div class="membro-image">
-                            <?php if ($foto_url) : ?>
-                                <img src="<?php echo esc_url($foto_url); ?>" alt="<?php echo esc_attr($professor['nome']); ?>" />
+                    <div class="membro-card-moderno" data-categoria="<?php echo esc_attr($categoria); ?>">
+                        <div class="membro-card-inner">
+                            <div class="membro-image-moderno">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail('medium'); ?>
                             <?php else : ?>
-                                <div class="placeholder-image">
-                                    <i class="fas fa-user-md"></i>
+                                    <div class="placeholder-image-moderno">
+                                        <i class="fas fa-user"></i>
                                 </div>
                             <?php endif; ?>
-                        </div>
-                        <div class="membro-content">
-                            <h3><?php echo esc_html($professor['nome']); ?></h3>
-                            <?php if (!empty($professor['especialidade'])) : ?>
-                                <p class="membro-cargo"><?php echo esc_html($professor['especialidade']); ?></p>
-                            <?php endif; ?>
-                            <?php if (!empty($professor['formacao'])) : ?>
-                                <p class="membro-formacao"><?php echo esc_html($professor['formacao']); ?></p>
-                            <?php endif; ?>
-                            <?php if (!empty($professor['experiencia'])) : ?>
-                                <p class="membro-experiencia"><?php echo esc_html($professor['experiencia']); ?> anos de experiência</p>
-                            <?php endif; ?>
-                            <?php if (!empty($professor['bio'])) : ?>
-                                <p class="membro-bio"><?php echo wp_trim_words(esc_html($professor['bio']), 15, '...'); ?></p>
-                            <?php endif; ?>
-                            <div class="membro-social">
-                                <?php if (!empty($professor['linkedin'])) : ?>
-                                    <a href="<?php echo esc_url($professor['linkedin']); ?>" class="social-link" target="_blank">
+                                <div class="membro-overlay">
+                                    <div class="membro-social-moderno">
+                                <?php if ($linkedin) : ?>
+                                            <a href="<?php echo esc_url($linkedin); ?>" class="social-link-moderno" target="_blank" title="LinkedIn">
                                         <i class="fab fa-linkedin"></i>
                                     </a>
                                 <?php endif; ?>
-                                <?php if (!empty($professor['email'])) : ?>
-                                    <a href="mailto:<?php echo esc_attr($professor['email']); ?>" class="social-link">
+                                <?php if ($email) : ?>
+                                            <a href="mailto:<?php echo esc_attr($email); ?>" class="social-link-moderno" title="Email">
                                         <i class="fas fa-envelope"></i>
                                     </a>
                                 <?php endif; ?>
                             </div>
                         </div>
                     </div>
-                    <?php 
-                        endforeach;
-                    else :
-                        // Fallback: buscar do post type membro_equipe se não houver professores cadastrados
-                        $docente_query = new WP_Query(array(
-                            'post_type' => 'membro_equipe',
-                            'posts_per_page' => -1,
-                            'post_status' => 'publish',
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'categoria_equipe',
-                                    'field'    => 'slug',
-                                    'terms'    => 'docente',
-                                ),
-                            ),
-                        ));
-                        
-                        if ($docente_query->have_posts()) :
-                            while ($docente_query->have_posts()) : $docente_query->the_post();
-                                $cargo = get_post_meta(get_the_ID(), '_membro_cargo', true);
-                                $formacao = get_post_meta(get_the_ID(), '_membro_formacao', true);
-                                $experiencia = get_post_meta(get_the_ID(), '_membro_experiencia', true);
-                                $email = get_post_meta(get_the_ID(), '_membro_email', true);
-                                $linkedin = get_post_meta(get_the_ID(), '_membro_linkedin', true);
-                        ?>
-                        <div class="membro-card docente">
-                            <div class="membro-image">
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <?php the_post_thumbnail('medium'); ?>
-                                <?php else : ?>
-                                    <div class="placeholder-image">
-                                        <i class="fas fa-user-md"></i>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="membro-content">
-                                <h3><?php the_title(); ?></h3>
-                                <?php if ($cargo) : ?>
-                                    <p class="membro-cargo"><?php echo esc_html($cargo); ?></p>
-                                <?php endif; ?>
-                                <?php if ($formacao) : ?>
-                                    <p class="membro-formacao"><?php echo esc_html($formacao); ?></p>
-                                <?php endif; ?>
-                                <?php if ($experiencia) : ?>
-                                    <p class="membro-experiencia"><?php echo esc_html($experiencia); ?></p>
-                                <?php endif; ?>
-                                <div class="membro-social">
-                                    <?php if ($linkedin) : ?>
-                                        <a href="<?php echo esc_url($linkedin); ?>" class="social-link" target="_blank">
-                                            <i class="fab fa-linkedin"></i>
-                                        </a>
-                                    <?php endif; ?>
-                                    <?php if ($email) : ?>
-                                        <a href="mailto:<?php echo esc_attr($email); ?>" class="social-link">
-                                            <i class="fas fa-envelope"></i>
-                                        </a>
-                                    <?php endif; ?>
+                            <div class="membro-content-moderno">
+                                <div class="membro-header">
+                                    <h3 class="membro-nome"><?php the_title(); ?></h3>
+                                    <span class="membro-categoria-badge"><?php echo esc_html(ucfirst($categoria)); ?></span>
                                 </div>
-                            </div>
-                        </div>
-                        <?php 
-                            endwhile;
-                            wp_reset_postdata();
-                        else :
-                            // Membros padrão se não houver nenhum professor
-                            $docente_default = array(
-                                array('nome' => 'Prof. Dr. Roberto Lima', 'cargo' => 'Professor de Enfermagem', 'formacao' => 'Doutor em Enfermagem', 'experiencia' => 'Especialista em UTI e Emergência'),
-                                array('nome' => 'Profª. Dra. Fernanda Rocha', 'cargo' => 'Professora de Radiologia', 'formacao' => 'Doutora em Radiologia', 'experiencia' => 'Especialista em Tomografia e Ressonância'),
-                                array('nome' => 'Prof. Dr. Marcos Pereira', 'cargo' => 'Professor de Nutrição', 'formacao' => 'Doutor em Nutrição', 'experiencia' => 'Especialista em Nutrição Clínica'),
-                                array('nome' => 'Profª. Dra. Juliana Ferreira', 'cargo' => 'Professora de Segurança do Trabalho', 'formacao' => 'Doutora em Engenharia de Segurança', 'experiencia' => 'Especialista em Prevenção de Acidentes'),
-                            );
-                            
-                            foreach ($docente_default as $membro) :
-                        ?>
-                        <div class="membro-card docente">
-                            <div class="membro-image">
-                                <div class="placeholder-image">
-                                    <i class="fas fa-user-md"></i>
-                                </div>
-                            </div>
-                            <div class="membro-content">
-                                <h3><?php echo esc_html($membro['nome']); ?></h3>
-                                <p class="membro-cargo"><?php echo esc_html($membro['cargo']); ?></p>
-                                <p class="membro-formacao"><?php echo esc_html($membro['formacao']); ?></p>
-                                <p class="membro-experiencia"><?php echo esc_html($membro['experiencia']); ?></p>
-                                <div class="membro-social">
-                                    <a href="#" class="social-link">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="#" class="social-link">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endforeach; endif; endif; ?>
-                </div>
-            </div>
-        </section>
-
-        <!-- Equipe Administrativa -->
-        <section class="equipe-administrativa-section">
-            <div class="container">
-                <div class="equipe-section-header">
-                    <h2>Equipe Administrativa</h2>
-                    <p>Profissionais dedicados ao suporte e funcionamento da instituição</p>
-                </div>
-                
-                <div class="equipe-grid administrativa-grid">
-                    <?php
-                    $administrativa_query = new WP_Query(array(
-                        'post_type' => 'membro_equipe',
-                        'posts_per_page' => -1,
-                        'post_status' => 'publish',
-                        'tax_query' => array(
-                            array(
-                                'taxonomy' => 'categoria_equipe',
-                                'field'    => 'slug',
-                                'terms'    => 'administrativa',
-                            ),
-                        ),
-                    ));
-                    
-                    if ($administrativa_query->have_posts()) :
-                        while ($administrativa_query->have_posts()) : $administrativa_query->the_post();
-                            $cargo = get_post_meta(get_the_ID(), '_membro_cargo', true);
-                            $formacao = get_post_meta(get_the_ID(), '_membro_formacao', true);
-                            $experiencia = get_post_meta(get_the_ID(), '_membro_experiencia', true);
-                            $email = get_post_meta(get_the_ID(), '_membro_email', true);
-                            $linkedin = get_post_meta(get_the_ID(), '_membro_linkedin', true);
-                    ?>
-                    <div class="membro-card administrativa">
-                        <div class="membro-image">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <?php the_post_thumbnail('medium'); ?>
-                            <?php else : ?>
-                                <div class="placeholder-image">
-                                    <i class="fas fa-user-cog"></i>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="membro-content">
-                            <h3><?php the_title(); ?></h3>
                             <?php if ($cargo) : ?>
-                                <p class="membro-cargo"><?php echo esc_html($cargo); ?></p>
+                                    <p class="membro-cargo-moderno"><?php echo esc_html($cargo); ?></p>
                             <?php endif; ?>
                             <?php if ($formacao) : ?>
-                                <p class="membro-formacao"><?php echo esc_html($formacao); ?></p>
-                            <?php endif; ?>
-                            <?php if ($experiencia) : ?>
-                                <p class="membro-experiencia"><?php echo esc_html($experiencia); ?></p>
-                            <?php endif; ?>
-                            <div class="membro-social">
-                                <?php if ($linkedin) : ?>
-                                    <a href="<?php echo esc_url($linkedin); ?>" class="social-link" target="_blank">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
+                                    <p class="membro-formacao-moderno">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <?php echo esc_html($formacao); ?>
+                                    </p>
                                 <?php endif; ?>
-                                <?php if ($email) : ?>
-                                    <a href="mailto:<?php echo esc_attr($email); ?>" class="social-link">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
+                                <?php if ($bio) : ?>
+                                    <p class="membro-bio-moderno"><?php echo esc_html(wp_trim_words($bio, 15)); ?></p>
                                 <?php endif; ?>
+                                <div class="membro-experiencia-moderno">
+                                    <?php if ($experiencia) : ?>
+                                        <span class="experiencia-text">
+                                            <i class="fas fa-clock"></i>
+                                            <?php echo esc_html($experiencia); ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -465,29 +145,93 @@ get_header();
                         wp_reset_postdata();
                     else :
                         // Membros padrão se não houver posts
-                        $administrativa_default = array(
-                            array('nome' => 'Patrícia Alves', 'cargo' => 'Secretária Geral', 'formacao' => 'Administração', 'experiencia' => '10 anos de experiência em secretaria escolar'),
-                            array('nome' => 'Ricardo Mendes', 'cargo' => 'Coordenador de TI', 'formacao' => 'Ciência da Computação', 'experiencia' => 'Especialista em sistemas educacionais'),
-                            array('nome' => 'Lucia Barbosa', 'cargo' => 'Assistente Financeiro', 'formacao' => 'Contabilidade', 'experiencia' => 'Especialista em gestão financeira educacional'),
+                        $equipe_default = array(
+                            array(
+                                'nome' => 'Dr. João Silva',
+                                'cargo' => 'Diretor Geral',
+                                'formacao' => 'Doutor em Educação',
+                                'experiencia' => 'Mais de 20 anos de experiência em educação profissional',
+                                'categoria' => 'direcao',
+                                'bio' => 'Líder visionário com vasta experiência em gestão educacional e desenvolvimento de políticas acadêmicas.'
+                            ),
+                            array(
+                                'nome' => 'Dra. Maria Santos',
+                                'cargo' => 'Diretora Acadêmica',
+                                'formacao' => 'Doutora em Enfermagem',
+                                'experiencia' => 'Especialista em metodologias de ensino na área da saúde',
+                                'categoria' => 'direcao',
+                                'bio' => 'Especialista em metodologias de ensino e desenvolvimento curricular na área da saúde.'
+                            ),
+                            array(
+                                'nome' => 'Prof. Carlos Oliveira',
+                                'cargo' => 'Coordenador de Enfermagem',
+                                'formacao' => 'Mestre em Enfermagem',
+                                'experiencia' => '15 anos de experiência clínica e docente',
+                                'categoria' => 'coordenacao',
+                                'bio' => 'Coordenador experiente com ampla vivência clínica e acadêmica na área de enfermagem.'
+                            ),
+                            array(
+                                'nome' => 'Prof. Ana Costa',
+                                'cargo' => 'Coordenadora de Radiologia',
+                                'formacao' => 'Especialista em Radiologia',
+                                'experiencia' => '12 anos de experiência em diagnóstico por imagem',
+                                'categoria' => 'coordenacao',
+                                'bio' => 'Especialista em técnicas radiológicas com vasta experiência em diagnóstico por imagem.'
+                            ),
+                            array(
+                                'nome' => 'Prof. Roberto Lima',
+                                'cargo' => 'Professor de Enfermagem',
+                                'formacao' => 'Especialista em Enfermagem',
+                                'experiencia' => '10 anos de experiência docente',
+                                'categoria' => 'docentes',
+                                'bio' => 'Professor dedicado com experiência prática e teórica em enfermagem.'
+                            ),
+                            array(
+                                'nome' => 'Sra. Patricia Mendes',
+                                'cargo' => 'Secretária Acadêmica',
+                                'formacao' => 'Administração',
+                                'experiencia' => '8 anos de experiência administrativa',
+                                'categoria' => 'administrativo',
+                                'bio' => 'Profissional dedicada ao atendimento e suporte aos alunos e professores.'
+                            )
                         );
                         
-                        foreach ($administrativa_default as $membro) :
+                        foreach ($equipe_default as $membro) :
                     ?>
-                    <div class="membro-card administrativa">
-                        <div class="membro-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-user-cog"></i>
+                    <div class="membro-card-moderno" data-categoria="<?php echo esc_attr($membro['categoria']); ?>">
+                        <div class="membro-card-inner">
+                            <div class="membro-image-moderno">
+                                <div class="placeholder-image-moderno">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="membro-overlay">
+                                    <div class="membro-social-moderno">
+                                        <a href="#" class="social-link-moderno" title="LinkedIn">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                        <a href="#" class="social-link-moderno" title="Email">
+                                            <i class="fas fa-envelope"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="membro-content">
-                            <h3><?php echo esc_html($membro['nome']); ?></h3>
-                            <p class="membro-cargo"><?php echo esc_html($membro['cargo']); ?></p>
-                            <p class="membro-formacao"><?php echo esc_html($membro['formacao']); ?></p>
-                            <p class="membro-experiencia"><?php echo esc_html($membro['experiencia']); ?></p>
-                            <div class="membro-social">
-                                <a href="#" class="social-link">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
+                            <div class="membro-content-moderno">
+                                <div class="membro-header">
+                                    <h3 class="membro-nome"><?php echo esc_html($membro['nome']); ?></h3>
+                                    <span class="membro-categoria-badge"><?php echo esc_html(ucfirst($membro['categoria'])); ?></span>
+                                </div>
+                                <p class="membro-cargo-moderno"><?php echo esc_html($membro['cargo']); ?></p>
+                                <p class="membro-formacao-moderno">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <?php echo esc_html($membro['formacao']); ?>
+                                </p>
+                                <p class="membro-bio-moderno"><?php echo esc_html($membro['bio']); ?></p>
+                                <div class="membro-experiencia-moderno">
+                                    <span class="experiencia-text">
+                                        <i class="fas fa-clock"></i>
+                                        <?php echo esc_html($membro['experiencia']); ?>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -499,112 +243,360 @@ get_header();
         <!-- Estatísticas da Equipe -->
         <section class="equipe-stats-section">
             <div class="container">
-                <div class="equipe-stats-grid">
-                    <?php
-                    $stats_professores = cetesi_get_professores_stats();
-                    ?>
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <span class="stat-number"><?php echo esc_html($stats_professores['total_professores_display']); ?></span>
-                        <span class="stat-label">Professores Qualificados</span>
-                    </div>
-                    
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                        <span class="stat-number">80%</span>
-                        <span class="stat-label">Mestres e Doutores</span>
-                    </div>
-                    
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <span class="stat-number"><?php echo esc_html($stats_professores['experiencia_media']); ?>+</span>
-                        <span class="stat-label">Anos de Experiência Média</span>
-                    </div>
-                    
+                <div class="stats-grid">
                     <div class="stat-item">
                         <div class="stat-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Comprometimento com o Aluno</span>
+                        <div class="stat-content">
+                            <h3>50+</h3>
+                            <p>Profissionais Qualificados</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>80%</h3>
+                            <p>Mestres e Doutores</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>15+</h3>
+                            <p>Anos de Experiência Média</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>100%</h3>
+                            <p>Comprometimento com a Qualidade</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Valores da Equipe -->
-        <section class="equipe-valores-section">
-            <div class="container">
-                <div class="equipe-section-header">
-                    <h2>Nossos Valores</h2>
-                    <p>Princípios que norteiam o trabalho de nossa equipe</p>
+    </main>
                 </div>
                 
-                <div class="valores-grid">
-                    <div class="valor-card">
-                        <div class="valor-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3>Comprometimento</h3>
-                        <p>Dedicação total ao sucesso e desenvolvimento de nossos alunos.</p>
-                    </div>
-                    
-                    <div class="valor-card">
-                        <div class="valor-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3>Inovação</h3>
-                        <p>Busca constante por metodologias inovadoras e tecnologias educacionais.</p>
-                    </div>
-                    
-                    <div class="valor-card">
-                        <div class="valor-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>Ética</h3>
-                        <p>Conduta ética e transparente em todas as nossas ações e relacionamentos.</p>
-                    </div>
-                    
-                    <div class="valor-card">
-                        <div class="valor-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3>Excelência</h3>
-                        <p>Compromisso com a qualidade e excelência em tudo que fazemos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<style>
+/* Estilos para o novo layout da equipe */
+.equipe-completa-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
 
-        <!-- CTA Section -->
-        <section class="equipe-cta-section">
-            <div class="container">
-                <div class="equipe-cta-content">
-                    <h2>Faça Parte da Nossa Família!</h2>
-                    <p>Junte-se a uma equipe comprometida com a educação de qualidade e o desenvolvimento profissional.</p>
-                    <div class="cta-buttons">
-                        <a href="<?php echo home_url('/cursos/'); ?>" class="button button-primary">
-                            <i class="fas fa-graduation-cap"></i>
-                            Conheça Nossos Cursos
-                        </a>
-                        <a href="<?php echo home_url('/contato/'); ?>" class="button button-secondary">
-                            <i class="fas fa-phone"></i>
-                            Fale Conosco
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+.equipe-section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
 
-    </main><!-- #main -->
-</div><!-- #primary -->
+.equipe-section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1d2327;
+    margin-bottom: 15px;
+}
 
-<?php
-get_footer();
-?>
+.equipe-section-header p {
+    font-size: 1.1rem;
+    color: #646970;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.equipe-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.equipe-filter-btn {
+    background: white;
+    border: 2px solid #e1e5e9;
+    color: #646970;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.equipe-filter-btn:hover,
+.equipe-filter-btn.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.equipe-grid-moderno {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.membro-card-moderno {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.membro-card-moderno.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.membro-card-moderno:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.membro-card-inner {
+    position: relative;
+}
+
+.membro-image-moderno {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.membro-image-moderno img,
+.placeholder-image-moderno {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-image-moderno {
+    background: linear-gradient(135deg, #2563eb, #10b981);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 4rem;
+}
+
+.membro-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(37, 99, 235, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.membro-card-moderno:hover .membro-overlay {
+    opacity: 1;
+}
+
+.membro-social-moderno {
+    display: flex;
+    gap: 20px;
+}
+
+.social-link-moderno {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-link-moderno:hover {
+    background: #10b981;
+    color: white;
+    transform: scale(1.1);
+}
+
+.membro-content-moderno {
+    padding: 30px;
+}
+
+.membro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.membro-nome {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1d2327;
+    margin: 0;
+}
+
+.membro-categoria-badge {
+    background: #e1f5fe;
+    color: #2563eb;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.membro-cargo-moderno {
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.membro-formacao-moderno {
+    color: #646970;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.membro-formacao-moderno i {
+    color: #10b981;
+}
+
+.membro-bio-moderno {
+    color: #646970;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.membro-experiencia-moderno {
+    border-top: 1px solid #e1e5e9;
+    padding-top: 15px;
+}
+
+.experiencia-text {
+    color: #646970;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.experiencia-text i {
+    color: #f59e0b;
+}
+
+.equipe-stats-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #2563eb, #10b981);
+    color: white;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.stat-content h3 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.stat-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .equipe-grid-moderno {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .equipe-filters {
+        gap: 10px;
+    }
+    
+    .equipe-filter-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .stat-content h3 {
+        font-size: 2rem;
+    }
+}
+</style>
+
+<script>
+jQuery(document).ready(function($) {
+    // Filtro de equipe
+    $('.equipe-filter-btn').on('click', function() {
+        var filter = $(this).data('filter');
+        
+        // Atualizar botões ativos
+        $('.equipe-filter-btn').removeClass('active');
+        $(this).addClass('active');
+        
+        // Filtrar membros
+        $('.membro-card-moderno').each(function() {
+            var categoria = $(this).data('categoria');
+            
+            if (filter === 'todos' || categoria === filter) {
+                $(this).removeClass('hidden');
+            } else {
+                $(this).addClass('hidden');
+            }
+        });
+    });
+});
+</script>
+
+<?php get_footer(); ?>
