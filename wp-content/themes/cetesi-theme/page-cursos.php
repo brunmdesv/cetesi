@@ -28,28 +28,28 @@ get_header();
         <section class="cursos-filters-section">
             <div class="container">
                 <div class="cursos-filters-content">
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="todos">
+                    <div class="cursos-filters">
+                        <button class="cursos-filter-btn active" data-filter="todos">
                             <i class="fas fa-th"></i>
                             Todos
                         </button>
-                        <button class="filter-btn" data-filter="tecnicos">
+                        <button class="cursos-filter-btn" data-filter="tecnicos">
                             <i class="fas fa-graduation-cap"></i>
-                            Cursos Técnicos
+                            Técnicos
                         </button>
-                        <button class="filter-btn" data-filter="qualificacao">
+                        <button class="cursos-filter-btn" data-filter="qualificacao">
                             <i class="fas fa-award"></i>
-                            Cursos de Qualificação
+                            Qualificação
                         </button>
-                        <button class="filter-btn" data-filter="livres">
+                        <button class="cursos-filter-btn" data-filter="livres">
                             <i class="fas fa-certificate"></i>
-                            Cursos Livres
+                            Livres
                         </button>
-                        <button class="filter-btn" data-filter="online">
+                        <button class="cursos-filter-btn" data-filter="online">
                             <i class="fas fa-laptop"></i>
-                            Cursos 100% Online
+                            Online
                         </button>
-                        <button class="filter-btn" data-filter="educacao-basica">
+                        <button class="cursos-filter-btn" data-filter="educacao-basica">
                             <i class="fas fa-book-open"></i>
                             Educação Básica
                         </button>
@@ -61,13 +61,9 @@ get_header();
         <!-- Cursos Técnicos -->
         <section class="cursos-section" id="tecnicos">
             <div class="container">
-                <div class="section-header">
-                    <h2>Cursos Técnicos</h2>
-                    <p>Formação técnica completa reconhecida pelo MEC</p>
-                </div>
                 
-                <div class="cursos-grid">
-                    <div class="curso-card tecnico">
+                <div class="cursos-grid-moderno" id="cursos-grid">
+                    <div class="curso-card-moderno tecnico" data-categoria="tecnicos">
                         <div class="curso-image">
                             <i class="fas fa-user-md"></i>
                         </div>
@@ -84,7 +80,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card tecnico">
+                        <div class="curso-card-moderno tecnico" data-categoria="tecnicos">
                         <div class="curso-image">
                             <i class="fas fa-x-ray"></i>
                         </div>
@@ -101,7 +97,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card tecnico">
+                    <div class="curso-card-moderno tecnico" data-categoria="tecnicos">
                         <div class="curso-image">
                             <i class="fas fa-apple-alt"></i>
                         </div>
@@ -118,7 +114,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card tecnico">
+                    <div class="curso-card-moderno tecnico" data-categoria="tecnicos">
                         <div class="curso-image">
                             <i class="fas fa-hard-hat"></i>
                         </div>
@@ -141,13 +137,9 @@ get_header();
         <!-- Cursos de Qualificação -->
         <section class="cursos-section" id="qualificacao">
             <div class="container">
-                <div class="section-header">
-                    <h2>Cursos de Qualificação</h2>
-                    <p>Especialização profissional com foco no mercado de trabalho</p>
-                </div>
                 
-                <div class="cursos-grid">
-                    <div class="curso-card qualificacao">
+                <div class="cursos-grid-moderno">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-bone"></i>
                         </div>
@@ -164,7 +156,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-tint"></i>
                         </div>
@@ -181,7 +173,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-cut"></i>
                         </div>
@@ -198,7 +190,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-briefcase"></i>
                         </div>
@@ -215,7 +207,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-search"></i>
                         </div>
@@ -232,7 +224,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-ambulance"></i>
                         </div>
@@ -249,7 +241,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-tooth"></i>
                         </div>
@@ -266,7 +258,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-heart"></i>
                         </div>
@@ -283,7 +275,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-pills"></i>
                         </div>
@@ -300,7 +292,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-microscope"></i>
                         </div>
@@ -317,7 +309,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-building"></i>
                         </div>
@@ -334,7 +326,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-syringe"></i>
                         </div>
@@ -351,7 +343,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-wheelchair"></i>
                         </div>
@@ -368,7 +360,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-x-ray"></i>
                         </div>
@@ -385,7 +377,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-home"></i>
                         </div>
@@ -402,7 +394,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-tint"></i>
                         </div>
@@ -419,7 +411,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card qualificacao">
+                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
                         <div class="curso-image">
                             <i class="fas fa-brain"></i>
                         </div>
@@ -442,13 +434,9 @@ get_header();
         <!-- Cursos Livres -->
         <section class="cursos-section" id="livres">
             <div class="container">
-                <div class="section-header">
-                    <h2>Cursos Livres</h2>
-                    <p>Especializações de curta duração com foco prático</p>
-                </div>
                 
-                <div class="cursos-grid">
-                    <div class="curso-card livre">
+                <div class="cursos-grid-moderno">
+                    <div class="curso-card-moderno livre" data-categoria="livres">
                         <div class="curso-image">
                             <i class="fas fa-band-aid"></i>
                         </div>
@@ -465,7 +453,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card livre">
+                    <div class="curso-card-moderno livre" data-categoria="livres">
                         <div class="curso-image">
                             <i class="fas fa-calculator"></i>
                         </div>
@@ -482,7 +470,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card livre">
+                    <div class="curso-card-moderno livre" data-categoria="livres">
                         <div class="curso-image">
                             <i class="fas fa-tint"></i>
                         </div>
@@ -505,13 +493,9 @@ get_header();
         <!-- Cursos 100% Online -->
         <section class="cursos-section" id="online">
             <div class="container">
-                <div class="section-header">
-                    <h2>Cursos 100% Online</h2>
-                    <p>Flexibilidade total com qualidade garantida</p>
-                </div>
                 
-                <div class="cursos-grid">
-                    <div class="curso-card online">
+                <div class="cursos-grid-moderno">
+                    <div class="curso-card-moderno online" data-categoria="online">
                         <div class="curso-image">
                             <i class="fas fa-home"></i>
                         </div>
@@ -528,7 +512,7 @@ get_header();
                         </div>
                     </div>
                     
-                    <div class="curso-card online">
+                    <div class="curso-card-moderno online" data-categoria="online">
                         <div class="curso-image">
                             <i class="fas fa-ambulance"></i>
                         </div>
@@ -551,13 +535,9 @@ get_header();
         <!-- Educação Básica -->
         <section class="cursos-section" id="educacao-basica">
             <div class="container">
-                <div class="section-header">
-                    <h2>Educação Básica</h2>
-                    <p>Formação fundamental com metodologia adaptada</p>
-                </div>
                 
-                <div class="cursos-grid">
-                    <div class="curso-card educacao-basica">
+                <div class="cursos-grid-moderno">
+                    <div class="curso-card-moderno educacao-basica" data-categoria="educacao-basica">
                         <div class="curso-image">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
@@ -605,48 +585,54 @@ get_footer();
 ?>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const cursoSections = document.querySelectorAll('.cursos-section');
+
+// Sistema de Filtros - Adaptado para seções organizadas
+jQuery(document).ready(function($) {
+    console.log('Sistema de filtros carregado');
+    console.log('Botões encontrados:', $('.cursos-filter-btn').length);
+    console.log('Seções encontradas:', $('.cursos-section').length);
     
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
+    // Filtro de cursos - Adaptado para seções
+    $('.cursos-filter-btn').on('click', function() {
+        var filter = $(this).data('filter');
+        console.log('Filtro selecionado:', filter);
+        
+        // Atualizar botões ativos
+        $('.cursos-filter-btn').removeClass('active');
+        $(this).addClass('active');
+        
+        // Filtrar seções de cursos com efeito de transição
+        $('.cursos-section').each(function() {
+            var sectionId = $(this).attr('id');
+            var $section = $(this);
+            console.log('Seção:', sectionId, 'Filtro:', filter);
             
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Filter sections
-            cursoSections.forEach(section => {
-                if (filter === 'todos') {
-                    section.style.display = 'block';
-                    section.classList.add('fade-in');
-                } else {
-                    const sectionId = section.getAttribute('id');
-                    if (sectionId === filter) {
-                        section.style.display = 'block';
-                        section.classList.add('fade-in');
-                    } else {
-                        section.style.display = 'none';
-                        section.classList.remove('fade-in');
-                    }
-                }
-            });
-            
-            // Smooth scroll to first visible section
-            setTimeout(() => {
-                const firstVisible = document.querySelector('.cursos-section[style*="block"]');
-                if (firstVisible && filter !== 'todos') {
-                    firstVisible.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }, 100);
+            if (filter === 'todos') {
+                $section.show();
+                // Mostrar cards
+                $section.find('.curso-card-moderno').removeClass('hidden');
+                console.log('Seção mostrada:', sectionId);
+            } else if (sectionId === filter) {
+                $section.show();
+                // Mostrar cards
+                $section.find('.curso-card-moderno').removeClass('hidden');
+                console.log('Seção mostrada:', sectionId);
+            } else {
+                // Ocultar cards
+                $section.find('.curso-card-moderno').addClass('hidden');
+                // Depois ocultar seção
+                setTimeout(function() {
+                    $section.hide();
+                }, 300);
+                console.log('Seção ocultada:', sectionId);
+            }
         });
+        
+        // Não fazer scroll automático - manter posição atual
     });
+    
+    // Garantir que todas as seções e cards estejam visíveis inicialmente
+    $('.cursos-section').show();
+    $('.curso-card-moderno').removeClass('hidden');
 });
 </script>
