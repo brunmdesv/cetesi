@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="<?php bloginfo('name'); ?>">
-    <meta name="generator" content="WordPress <?php get_bloginfo('version'); ?>">
+    <meta name="generator" content="WordPress">
     <link rel="profile" href="https://gmpg.org/xfn/11">
     
     <?php

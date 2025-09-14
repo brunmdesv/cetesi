@@ -11,6 +11,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Incluir arquivo de segurança
+require_once get_template_directory() . '/security.php';
+
 // Configurações do tema
 define('CETESI_VERSION', '1.0.0');
 define('CETESI_THEME_DIR', get_template_directory());
@@ -95,15 +98,6 @@ function cetesi_advanced_settings() {
         'cetesi_customization_page'
     );
     
-    // Submenu - Segurança
-    add_submenu_page(
-        'cetesi-settings',
-        'Segurança',
-        'Segurança',
-        'manage_options',
-        'cetesi-security',
-        'cetesi_security_page'
-    );
     
     // Submenu - Otimização
     add_submenu_page(
@@ -1806,8 +1800,11 @@ function cetesi_scripts() {
     // JavaScript principal
     wp_enqueue_script('cetesi-main', CETESI_THEME_URL . '/assets/js/main.js', array('jquery'), CETESI_VERSION, true);
     
+    // Script seguro para formulário de contato
+    wp_enqueue_script('cetesi-contact-form', CETESI_THEME_URL . '/assets/js/contact-form.js', array('jquery'), CETESI_VERSION, true);
+    
     // Localizar script para AJAX
-    wp_localize_script('cetesi-main', 'cetesi_ajax', array(
+    wp_localize_script('cetesi-contact-form', 'cetesi_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce'    => wp_create_nonce('cetesi_nonce'),
     ));
@@ -2545,15 +2542,27 @@ function cetesi_curso_career_callback($post) {
  * Salvar campos personalizados do curso
  */
 function cetesi_save_curso_meta($post_id) {
+    // Verificar nonce
     if (!isset($_POST['cetesi_curso_meta_nonce']) || !wp_verify_nonce($_POST['cetesi_curso_meta_nonce'], 'cetesi_curso_meta')) {
+        cetesi_log_security_event('CURSO_META_ERROR', 'Invalid nonce', 'WARNING');
         return;
     }
     
+    // Verificar autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return;
     }
     
-    if (!current_user_can('edit_post', $post_id)) {
+    // Verificar capabilities específicas
+    if (!cetesi_check_specific_capability('edit_curso', $post_id)) {
+        cetesi_log_security_event('CURSO_META_ERROR', 'Insufficient permissions', 'WARNING');
+        return;
+    }
+    
+    // Verificar rate limiting para edições
+    $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown';
+    if (!cetesi_check_rate_limit('curso_edit', $ip, 10, 300)) { // 10 edições em 5 minutos
+        cetesi_log_security_event('CURSO_META_RATE_LIMIT', 'Rate limit exceeded', 'WARNING');
         return;
     }
     
@@ -2602,12 +2611,25 @@ function cetesi_save_curso_meta($post_id) {
     
     foreach ($all_fields as $field) {
         if (isset($_POST[$field])) {
-            if (in_array($field, array('curso_prerequisitos', 'curso_documentos', 'curso_disciplinas', 'curso_objetivos', 'curso_metodologia', 'curso_mercado_trabalho', 'curso_areas_atuacao'))) {
-                // Campos de texto longo
-                update_post_meta($post_id, '_' . $field, sanitize_textarea_field($_POST[$field]));
+            $field_value = $_POST[$field];
+            
+            // Validar campo específico
+            $max_length = in_array($field, array('curso_prerequisitos', 'curso_documentos', 'curso_disciplinas', 'curso_objetivos', 'curso_metodologia', 'curso_mercado_trabalho', 'curso_areas_atuacao')) ? 2000 : 255;
+            
+            $validation = cetesi_validate_input($field_value, 'text', $max_length, false);
+            
+            if ($validation['success']) {
+                if (in_array($field, array('curso_prerequisitos', 'curso_documentos', 'curso_disciplinas', 'curso_objetivos', 'curso_metodologia', 'curso_mercado_trabalho', 'curso_areas_atuacao'))) {
+                    // Campos de texto longo
+                    update_post_meta($post_id, '_' . $field, sanitize_textarea_field($validation['data']));
+                } else {
+                    // Campos de texto simples
+                    update_post_meta($post_id, '_' . $field, sanitize_text_field($validation['data']));
+                }
+                
+                cetesi_log_security_event('CURSO_META_UPDATE', 'Field updated: ' . $field, 'INFO');
             } else {
-                // Campos de texto simples
-            update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
+                cetesi_log_security_event('CURSO_META_VALIDATION_ERROR', 'Invalid field ' . $field . ': ' . $validation['error'], 'WARNING');
             }
         }
     }
@@ -3598,40 +3620,93 @@ function cetesi_widgets_init() {
 add_action('widgets_init', 'cetesi_widgets_init');
 
 /**
- * AJAX para formulário de contato
+ * AJAX para formulário de contato - VERSÃO SEGURA
  */
 function cetesi_handle_contact_form() {
-    check_ajax_referer('cetesi_nonce', 'nonce');
-    
-    $nome = sanitize_text_field($_POST['nome']);
-    $email = sanitize_email($_POST['email']);
-    $telefone = sanitize_text_field($_POST['telefone']);
-    $curso = sanitize_text_field($_POST['curso']);
-    $mensagem = sanitize_textarea_field($_POST['mensagem']);
-    
-    // Validação básica
-    if (empty($nome) || empty($email) || empty($telefone)) {
-        wp_send_json_error('Por favor, preencha todos os campos obrigatórios.');
+    // Verificar nonce
+    if (!check_ajax_referer('cetesi_nonce', 'nonce', false)) {
+        cetesi_log_security_event('CONTACT_FORM_ERROR', 'Invalid nonce', 'WARNING');
+        wp_send_json_error('Requisição inválida. Tente novamente.');
     }
     
-    if (!is_email($email)) {
-        wp_send_json_error('Por favor, insira um e-mail válido.');
+    // Verificar rate limiting
+    $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown';
+    if (!cetesi_check_rate_limit('contact_form', $ip, 3, 300)) { // 3 tentativas em 5 minutos
+        wp_send_json_error('Muitas tentativas. Aguarde 5 minutos antes de tentar novamente.');
     }
     
-    // Enviar e-mail
+    // Verificar IP malicioso
+    if (!cetesi_check_malicious_ip($ip)) {
+        wp_send_json_error('Acesso negado.');
+    }
+    
+    // Validar e sanitizar dados com validação rigorosa
+    $nome_validation = cetesi_validate_input($_POST['nome'] ?? '', 'text', 100, true);
+    if (!$nome_validation['success']) {
+        cetesi_log_security_event('CONTACT_FORM_ERROR', 'Invalid name: ' . $nome_validation['error'], 'WARNING');
+        wp_send_json_error($nome_validation['error']);
+    }
+    $nome = sanitize_text_field($nome_validation['data']);
+    
+    $email_validation = cetesi_validate_input($_POST['email'] ?? '', 'email', 100, true);
+    if (!$email_validation['success']) {
+        cetesi_log_security_event('CONTACT_FORM_ERROR', 'Invalid email: ' . $email_validation['error'], 'WARNING');
+        wp_send_json_error($email_validation['error']);
+    }
+    $email = sanitize_email($email_validation['data']);
+    
+    $telefone_validation = cetesi_validate_input($_POST['telefone'] ?? '', 'phone', 20, true);
+    if (!$telefone_validation['success']) {
+        cetesi_log_security_event('CONTACT_FORM_ERROR', 'Invalid phone: ' . $telefone_validation['error'], 'WARNING');
+        wp_send_json_error($telefone_validation['error']);
+    }
+    $telefone = sanitize_text_field($telefone_validation['data']);
+    
+    $curso_validation = cetesi_validate_input($_POST['curso'] ?? '', 'text', 100, false);
+    if (!$curso_validation['success']) {
+        cetesi_log_security_event('CONTACT_FORM_ERROR', 'Invalid course: ' . $curso_validation['error'], 'WARNING');
+        wp_send_json_error($curso_validation['error']);
+    }
+    $curso = sanitize_text_field($curso_validation['data']);
+    
+    $mensagem_validation = cetesi_validate_input($_POST['mensagem'] ?? '', 'text', 1000, false);
+    if (!$mensagem_validation['success']) {
+        cetesi_log_security_event('CONTACT_FORM_ERROR', 'Invalid message: ' . $mensagem_validation['error'], 'WARNING');
+        wp_send_json_error($mensagem_validation['error']);
+    }
+    $mensagem = sanitize_textarea_field($mensagem_validation['data']);
+    
+    // Verificar honeypot (campo oculto para detectar bots)
+    if (!empty($_POST['website'])) {
+        cetesi_log_security_event('CONTACT_FORM_BOT_DETECTED', 'Honeypot triggered', 'WARNING');
+        wp_send_json_error('Acesso negado.');
+    }
+    
+    // Preparar dados para envio
     $to = get_option('admin_email');
-    $subject = 'Novo contato do site CETESI - ' . $curso;
-    $message = "Nome: $nome\n";
-    $message .= "E-mail: $email\n";
-    $message .= "Telefone: $telefone\n";
-    $message .= "Curso de interesse: $curso\n";
-    $message .= "Mensagem: $mensagem\n";
+    $subject = 'Novo contato do site CETESI - ' . cetesi_safe_output($curso, 'html');
+    $message_body = "Nome: " . cetesi_safe_output($nome, 'html') . "\n";
+    $message_body .= "E-mail: " . cetesi_safe_output($email, 'html') . "\n";
+    $message_body .= "Telefone: " . cetesi_safe_output($telefone, 'html') . "\n";
+    $message_body .= "Curso de interesse: " . cetesi_safe_output($curso, 'html') . "\n";
+    $message_body .= "Mensagem: " . cetesi_safe_output($mensagem, 'html') . "\n";
+    $message_body .= "IP: " . $ip . "\n";
+    $message_body .= "Data: " . date('Y-m-d H:i:s') . "\n";
     
-    $headers = array('Content-Type: text/plain; charset=UTF-8');
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>',
+        'Reply-To: ' . $email
+    );
     
-    if (wp_mail($to, $subject, $message, $headers)) {
+    // Log da tentativa de envio
+    cetesi_log_security_event('CONTACT_FORM_SUBMISSION', 'Attempting to send email', 'INFO');
+    
+    if (wp_mail($to, $subject, $message_body, $headers)) {
+        cetesi_log_security_event('CONTACT_FORM_SUCCESS', 'Email sent successfully', 'INFO');
         wp_send_json_success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
     } else {
+        cetesi_log_security_event('CONTACT_FORM_ERROR', 'Failed to send email', 'ERROR');
         wp_send_json_error('Erro ao enviar mensagem. Tente novamente.');
     }
 }
@@ -4526,12 +4601,37 @@ function cetesi_add_professor_page() {
     if (isset($_POST['submit_professor']) && wp_verify_nonce($_POST['professor_nonce'], 'add_professor')) {
         $professores = get_option('cetesi_professores', array());
         
-        // Processar upload da foto
+        // Processar upload da foto com validação rigorosa
         $foto_id = 0;
         if (!empty($_FILES['foto_professor']['name'])) {
+            // Validar arquivo antes do upload
+            $file_validation = cetesi_validate_file_upload($_FILES['foto_professor']);
+            
+            if (!$file_validation['success']) {
+                cetesi_log_security_event('PROFESSOR_UPLOAD_ERROR', $file_validation['error'], 'WARNING');
+                echo '<div class="notice notice-error"><p>Erro no upload: ' . $file_validation['error'] . '</p></div>';
+                return;
+            }
+            
+            // Verificar rate limiting para uploads
+            $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown';
+            if (!cetesi_check_rate_limit('file_upload', $ip, 5, 600)) { // 5 uploads em 10 minutos
+                cetesi_log_security_event('PROFESSOR_UPLOAD_RATE_LIMIT', 'Rate limit exceeded', 'WARNING');
+                echo '<div class="notice notice-error"><p>Muitos uploads. Aguarde 10 minutos.</p></div>';
+                return;
+            }
+            
             $upload = wp_handle_upload($_FILES['foto_professor'], array('test_form' => false));
             
             if (!isset($upload['error'])) {
+                // Verificar integridade do arquivo após upload
+                if (!cetesi_check_file_integrity($upload['file'])) {
+                    cetesi_log_security_event('PROFESSOR_UPLOAD_INTEGRITY', 'File integrity check failed', 'WARNING');
+                    unlink($upload['file']); // Remover arquivo suspeito
+                    echo '<div class="notice notice-error"><p>Arquivo corrompido detectado.</p></div>';
+                    return;
+                }
+                
                 $attachment = array(
                     'post_mime_type' => $upload['type'],
                     'post_title' => sanitize_file_name(basename($upload['file'])),
@@ -4545,20 +4645,59 @@ function cetesi_add_professor_page() {
                     require_once(ABSPATH . 'wp-admin/includes/image.php');
                     $attach_data = wp_generate_attachment_metadata($foto_id, $upload['file']);
                     wp_update_attachment_metadata($foto_id, $attach_data);
+                    
+                    cetesi_log_security_event('PROFESSOR_UPLOAD_SUCCESS', 'File uploaded successfully: ' . $upload['file'], 'INFO');
+                } else {
+                    cetesi_log_security_event('PROFESSOR_UPLOAD_ERROR', 'Failed to create attachment', 'ERROR');
                 }
+            } else {
+                cetesi_log_security_event('PROFESSOR_UPLOAD_ERROR', 'Upload error: ' . $upload['error'], 'ERROR');
+                echo '<div class="notice notice-error"><p>Erro no upload: ' . $upload['error'] . '</p></div>';
+                return;
             }
         }
         
+        // Validar dados do professor com validação rigorosa
+        $nome_validation = cetesi_validate_input($_POST['nome'] ?? '', 'text', 100, true);
+        if (!$nome_validation['success']) {
+            cetesi_log_security_event('PROFESSOR_VALIDATION_ERROR', 'Invalid name: ' . $nome_validation['error'], 'WARNING');
+            echo '<div class="notice notice-error"><p>' . $nome_validation['error'] . '</p></div>';
+            return;
+        }
+        
+        $email_validation = cetesi_validate_input($_POST['email'] ?? '', 'email', 100, true);
+        if (!$email_validation['success']) {
+            cetesi_log_security_event('PROFESSOR_VALIDATION_ERROR', 'Invalid email: ' . $email_validation['error'], 'WARNING');
+            echo '<div class="notice notice-error"><p>' . $email_validation['error'] . '</p></div>';
+            return;
+        }
+        
+        $experiencia_validation = cetesi_validate_input($_POST['experiencia'] ?? '', 'int', 2, true);
+        if (!$experiencia_validation['success']) {
+            cetesi_log_security_event('PROFESSOR_VALIDATION_ERROR', 'Invalid experience: ' . $experiencia_validation['error'], 'WARNING');
+            echo '<div class="notice notice-error"><p>' . $experiencia_validation['error'] . '</p></div>';
+            return;
+        }
+        
+        $linkedin_validation = cetesi_validate_input($_POST['linkedin'] ?? '', 'url', 200, false);
+        if (!$linkedin_validation['success'] && !empty($_POST['linkedin'])) {
+            cetesi_log_security_event('PROFESSOR_VALIDATION_ERROR', 'Invalid LinkedIn: ' . $linkedin_validation['error'], 'WARNING');
+            echo '<div class="notice notice-error"><p>' . $linkedin_validation['error'] . '</p></div>';
+            return;
+        }
+        
         $novo_professor = array(
-            'nome' => sanitize_text_field($_POST['nome']),
-            'especialidade' => sanitize_text_field($_POST['especialidade']),
-            'formacao' => sanitize_text_field($_POST['formacao']),
-            'experiencia' => intval($_POST['experiencia']),
-            'email' => sanitize_email($_POST['email']),
-            'linkedin' => esc_url_raw($_POST['linkedin']),
-            'bio' => sanitize_textarea_field($_POST['bio']),
-            'certificacoes' => sanitize_text_field($_POST['certificacoes']),
-            'foto' => $foto_id
+            'nome' => sanitize_text_field($nome_validation['data']),
+            'especialidade' => sanitize_text_field($_POST['especialidade'] ?? ''),
+            'formacao' => sanitize_text_field($_POST['formacao'] ?? ''),
+            'experiencia' => intval($experiencia_validation['data']),
+            'email' => sanitize_email($email_validation['data']),
+            'linkedin' => !empty($_POST['linkedin']) ? esc_url_raw($linkedin_validation['data']) : '',
+            'bio' => sanitize_textarea_field($_POST['bio'] ?? ''),
+            'certificacoes' => sanitize_text_field($_POST['certificacoes'] ?? ''),
+            'foto' => $foto_id,
+            'created_at' => current_time('mysql'),
+            'created_by' => get_current_user_id()
         );
         
         $professores[] = $novo_professor;
@@ -5956,7 +6095,7 @@ function cetesi_manage_professors_page() {
 
 // Interceptar URLs limpas para páginas específicas
 function cetesi_intercept_clean_urls() {
-    $request_uri = $_SERVER['REQUEST_URI'];
+    $request_uri = sanitize_text_field($_SERVER['REQUEST_URI'] ?? '');
     
     // Lista de páginas que devem ter URLs limpas
     $paginas_limpas = ['sobre', 'contato', 'equipe', 'cursos'];

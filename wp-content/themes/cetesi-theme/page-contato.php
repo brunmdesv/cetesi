@@ -93,21 +93,27 @@ get_header();
                     <form class="contato-form" id="contatoForm">
                         <?php wp_nonce_field('contact_form', 'contact_nonce'); ?>
                         
+                        <!-- Honeypot para detectar bots -->
+                        <div style="display: none;">
+                            <label for="website">Website (deixe em branco):</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="nome">Nome Completo *</label>
-                                <input type="text" id="nome" name="nome" required>
+                                <input type="text" id="nome" name="nome" required maxlength="100">
                             </div>
                             <div class="form-group">
                                 <label for="email">E-mail *</label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email" name="email" required maxlength="100">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="telefone">Telefone</label>
-                                <input type="tel" id="telefone" name="telefone">
+                                <input type="tel" id="telefone" name="telefone" maxlength="20" pattern="[0-9+\-\(\)\s]+">
                             </div>
                             <div class="form-group">
                                 <label for="assunto">Assunto *</label>
@@ -124,7 +130,7 @@ get_header();
 
                         <div class="form-group">
                             <label for="mensagem">Mensagem *</label>
-                            <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Descreva sua dúvida ou solicitação..."></textarea>
+                            <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Descreva sua dúvida ou solicitação..." maxlength="1000"></textarea>
                         </div>
 
                         <div class="form-group checkbox-group">
