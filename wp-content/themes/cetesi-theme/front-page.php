@@ -10,11 +10,11 @@ get_header(); ?>
 
 <main id="main" class="site-main homepage">
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-section">
         <div class="container">
             <div class="hero-content">
-                <h1>Transforme sua <span class="highlight">Carreira</span> com o CETESI</h1>
-                <p>Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 15 anos com excelência acadêmica e infraestrutura moderna.</p>
+                <h1 class="hero-title">Transforme sua <span class="highlight">Carreira</span> com o CETESI</h1>
+                <p class="hero-description">Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 15 anos com excelência acadêmica e infraestrutura moderna.</p>
                 
                 <div class="hero-badges">
                     <span class="badge"><i class="fas fa-certificate"></i> Reconhecido pelo MEC</span>
