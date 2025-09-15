@@ -61,499 +61,155 @@ get_header();
         <!-- Cursos Técnicos -->
         <section class="cursos-section" id="tecnicos">
             <div class="container">
+                <div class="section-header">
+                    <h2><?php _e('Cursos Técnicos', 'cetesi'); ?></h2>
+                    <p><?php _e('Formação técnica completa reconhecida pelo MEC para atuação profissional qualificada.', 'cetesi'); ?></p>
+                </div>
                 
+                <?php
+                // Buscar cursos técnicos criados via página personalizada
+                $cursos_tecnico_dinamicos = cetesi_get_dynamic_courses('tecnico', 20);
+                
+                if (!empty($cursos_tecnico_dinamicos)) :
+                ?>
                 <div class="cursos-grid-moderno" id="cursos-grid">
-                    <div class="curso-card-moderno tecnico" data-categoria="tecnicos">
-                        <div class="curso-image">
-                            <i class="fas fa-user-md"></i>
+                    <?php foreach ($cursos_tecnico_dinamicos as $curso) : ?>
+                        <?php echo cetesi_render_dynamic_course($curso, 'tecnico'); ?>
+                    <?php endforeach; ?>
                         </div>
-                        <div class="curso-content">
-                            <h3>Técnico em Enfermagem</h3>
-                            <p>Formação completa para atuar na área da saúde com competência técnica e ética profissional.</p>
-                            <ul class="curso-features">
-                                <li>18 meses de duração</li>
-                                <li>1.200 horas de carga horária</li>
-                                <li>300 horas de estágio</li>
-                                <li>Reconhecido pelo MEC</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/tecnico-em-enfermagem'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                        <div class="curso-card-moderno tecnico" data-categoria="tecnicos">
-                        <div class="curso-image">
-                            <i class="fas fa-x-ray"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Técnico em Radiologia</h3>
-                            <p>Especialização em técnicas radiológicas e diagnóstico por imagem.</p>
-                            <ul class="curso-features">
-                                <li>18 meses de duração</li>
-                                <li>1.200 horas de carga horária</li>
-                                <li>300 horas de estágio</li>
-                                <li>Reconhecido pelo MEC</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/tecnico-em-radiologia'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno tecnico" data-categoria="tecnicos">
-                        <div class="curso-image">
-                            <i class="fas fa-apple-alt"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Técnico em Nutrição e Dietética</h3>
-                            <p>Formação em nutrição clínica e dietética hospitalar.</p>
-                            <ul class="curso-features">
-                                <li>18 meses de duração</li>
-                                <li>1.200 horas de carga horária</li>
-                                <li>300 horas de estágio</li>
-                                <li>Reconhecido pelo MEC</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/tecnico-em-nutricao-e-dietetica'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno tecnico" data-categoria="tecnicos">
-                        <div class="curso-image">
-                            <i class="fas fa-hard-hat"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Técnico em Segurança do Trabalho</h3>
-                            <p>Especialização em prevenção de acidentes e saúde ocupacional.</p>
-                            <ul class="curso-features">
-                                <li>18 meses de duração</li>
-                                <li>1.200 horas de carga horária</li>
-                                <li>300 horas de estágio</li>
-                                <li>Reconhecido pelo MEC</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/tecnico-em-seguranca-do-trabalho'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4><?php _e('Nenhum curso técnico disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos técnicos. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </section>
 
         <!-- Cursos de Qualificação -->
         <section class="cursos-section" id="qualificacao">
             <div class="container">
+                <div class="section-header">
+                    <h2><?php _e('Cursos de Qualificação', 'cetesi'); ?></h2>
+                    <p><?php _e('Especializações técnicas com foco em áreas específicas da saúde para aprimoramento profissional.', 'cetesi'); ?></p>
+                </div>
                 
+                <?php
+                // Buscar cursos de qualificação criados via página personalizada
+                $cursos_qualificacao_dinamicos = cetesi_get_dynamic_courses('qualificacao', 20);
+                
+                if (!empty($cursos_qualificacao_dinamicos)) :
+                ?>
                 <div class="cursos-grid-moderno">
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-bone"></i>
+                    <?php foreach ($cursos_qualificacao_dinamicos as $curso) : ?>
+                        <?php echo cetesi_render_dynamic_course($curso, 'qualificacao'); ?>
+                    <?php endforeach; ?>
                         </div>
-                        <div class="curso-content">
-                            <h3>Qualificação em Gesso Ortopédico</h3>
-                            <p>Especialização em técnicas de imobilização e gesso ortopédico.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/qualificacao-em-gesso-ortopedico'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Hemodiálise</h3>
-                            <p>Especialização em técnicas de diálise e cuidados renais.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/hemodialise'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-cut"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Instrumentação Cirúrgica</h3>
-                            <p>Especialização avançada com foco em técnicas específicas e aplicação prática.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/instrumentacao-cirurgica'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Qualificação em Enfermagem do Trabalho</h3>
-                            <p>Especialização em saúde ocupacional e medicina do trabalho.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/qualificacao-em-enfermagem-do-trabalho'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Qualificação em Necropsia</h3>
-                            <p>Formação especializada em técnicas de necropsia e patologia.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/qualificacao-em-necropsia'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-ambulance"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>APH - Atendimento Pré-Hospitalar</h3>
-                            <p>Formação em técnicas de socorro e atendimento de emergências.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/aph-atendimento-pre-hospitalar'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-tooth"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Saúde Bucal</h3>
-                            <p>Formação em cuidados odontológicos e higiene bucal.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/saude-bucal'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Cuidador de Idosos</h3>
-                            <p>Formação especializada em cuidados geriátricos e bem-estar do idoso.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/cuidador-de-idosos'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-pills"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Atendente de Farmácia</h3>
-                            <p>Formação em atendimento farmacêutico e dispensação de medicamentos.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/atendente-de-farmacia'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-microscope"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Análise Clínicas</h3>
-                            <p>Formação em técnicas laboratoriais e análise de exames clínicos.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/analise-clinicas'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Administração de Serviço Hospitalar</h3>
-                            <p>Formação em gestão hospitalar e administração de serviços de saúde.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/administracao-de-servico-hospitalar'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-syringe"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Sala de Vacina</h3>
-                            <p>Formação em técnicas de vacinação e imunização.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/sala-de-vacina'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-wheelchair"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Maqueiro</h3>
-                            <p>Formação em transporte e movimentação de pacientes.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/maqueiro'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-x-ray"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Estudo da Radiologia e Tórax</h3>
-                            <p>Formação em técnicas radiológicas específicas para tórax.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/estudo-da-radiologia-e-torax'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-home"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Agente Comunitário</h3>
-                            <p>Formação em saúde comunitária e atenção primária.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/agente-comunitario'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Flebotomia</h3>
-                            <p>Formação em técnicas de coleta de sangue e flebotomia.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/flebotomia'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno qualificacao" data-categoria="qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Saúde Mental</h3>
-                            <p>Formação em cuidados de saúde mental e psiquiatria.</p>
-                            <ul class="curso-features">
-                                <li>6 meses de duração</li>
-                                <li>400 horas de carga horária</li>
-                                <li>100 horas de estágio</li>
-                                <li>Certificação especializada</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/saude-mental'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-award"></i>
+                        <h4><?php _e('Nenhum curso de qualificação disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos de qualificação. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </section>
 
         <!-- Cursos Livres -->
         <section class="cursos-section" id="livres">
             <div class="container">
+                <div class="section-header">
+                    <h2><?php _e('Cursos Livres', 'cetesi'); ?></h2>
+                    <p><?php _e('Cursos de capacitação profissional com certificação reconhecida pelo mercado.', 'cetesi'); ?></p>
+                </div>
                 
+                <?php
+                // Buscar cursos livres criados via página personalizada
+                $cursos_livre_dinamicos = cetesi_get_dynamic_courses('livre', 20);
+                
+                if (!empty($cursos_livre_dinamicos)) :
+                ?>
                 <div class="cursos-grid-moderno">
-                    <div class="curso-card-moderno livre" data-categoria="livres">
-                        <div class="curso-image">
-                            <i class="fas fa-band-aid"></i>
+                    <?php foreach ($cursos_livre_dinamicos as $curso) : ?>
+                        <?php echo cetesi_render_dynamic_course($curso, 'livre'); ?>
+                    <?php endforeach; ?>
                         </div>
-                        <div class="curso-content">
-                            <h3>Feridas e Curativos</h3>
-                            <p>Especialização em técnicas de tratamento de feridas e aplicação de curativos.</p>
-                            <ul class="curso-features">
-                                <li>3 meses de duração</li>
-                                <li>200 horas de carga horária</li>
-                                <li>50 horas de estágio</li>
-                                <li>Certificação reconhecida</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/feridas-e-curativos'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno livre" data-categoria="livres">
-                        <div class="curso-image">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Cálculo de Medicação</h3>
-                            <p>Formação em cálculos farmacológicos e dosagem de medicamentos.</p>
-                            <ul class="curso-features">
-                                <li>3 meses de duração</li>
-                                <li>200 horas de carga horária</li>
-                                <li>50 horas de estágio</li>
-                                <li>Certificação reconhecida</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/calculo-de-medicacao'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno livre" data-categoria="livres">
-                        <div class="curso-image">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Punção Venosa</h3>
-                            <p>Especialização em técnicas de punção venosa e coleta de sangue.</p>
-                            <ul class="curso-features">
-                                <li>3 meses de duração</li>
-                                <li>200 horas de carga horária</li>
-                                <li>50 horas de estágio</li>
-                                <li>Certificação reconhecida</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/puncao-venosa'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-certificate"></i>
+                        <h4><?php _e('Nenhum curso livre disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos livres. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </section>
 
         <!-- Cursos 100% Online -->
         <section class="cursos-section" id="online">
             <div class="container">
+                <div class="section-header">
+                    <h2><?php _e('Cursos 100% Online', 'cetesi'); ?></h2>
+                    <p><?php _e('Formação profissional com flexibilidade total de horários e certificação reconhecida.', 'cetesi'); ?></p>
+                </div>
                 
+                <?php
+                // Buscar cursos online criados via página personalizada
+                $cursos_online_dinamicos = cetesi_get_dynamic_courses('online', 20);
+                
+                if (!empty($cursos_online_dinamicos)) :
+                ?>
                 <div class="cursos-grid-moderno">
-                    <div class="curso-card-moderno online" data-categoria="online">
-                        <div class="curso-image">
-                            <i class="fas fa-home"></i>
+                    <?php foreach ($cursos_online_dinamicos as $curso) : ?>
+                        <?php echo cetesi_render_dynamic_course($curso, 'online'); ?>
+                    <?php endforeach; ?>
                         </div>
-                        <div class="curso-content">
-                            <h3>Home Care</h3>
-                            <p>Especialização em técnicas modernas com flexibilidade total de horários.</p>
-                            <ul class="curso-features">
-                                <li>Modalidade 100% Online</li>
-                                <li>Flexibilidade total</li>
-                                <li>Certificação reconhecida</li>
-                                <li>Suporte especializado</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/home-care'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card-moderno online" data-categoria="online">
-                        <div class="curso-image">
-                            <i class="fas fa-ambulance"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>UTI - Emergência e Urgência</h3>
-                            <p>Formação especializada em atendimento de emergências médicas.</p>
-                            <ul class="curso-features">
-                                <li>Modalidade 100% Online</li>
-                                <li>Flexibilidade total</li>
-                                <li>Certificação reconhecida</li>
-                                <li>Suporte especializado</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/uti-emergencia-e-urgencia'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-laptop"></i>
+                        <h4><?php _e('Nenhum curso online disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos online. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </section>
 
         <!-- Educação Básica -->
         <section class="cursos-section" id="educacao-basica">
             <div class="container">
+                <div class="section-header">
+                    <h2><?php _e('Educação Básica • EJÁ - 3º segmento', 'cetesi'); ?></h2>
+                    <p><?php _e('Educação de Jovens e Adultos com metodologia adaptada para diferentes níveis de ensino.', 'cetesi'); ?></p>
+                </div>
                 
+                <?php
+                // Buscar cursos de educação básica criados via página personalizada
+                $cursos_educacao_dinamicos = cetesi_get_dynamic_courses('educacao-basica', 20);
+                
+                if (!empty($cursos_educacao_dinamicos)) :
+                ?>
                 <div class="cursos-grid-moderno">
-                    <div class="curso-card-moderno educacao-basica" data-categoria="educacao-basica">
-                        <div class="curso-image">
-                            <i class="fas fa-graduation-cap"></i>
+                    <?php foreach ($cursos_educacao_dinamicos as $curso) : ?>
+                        <?php echo cetesi_render_dynamic_course($curso, 'educacao-basica'); ?>
+                    <?php endforeach; ?>
                         </div>
-                        <div class="curso-content">
-                            <h3>EJA - 1ª, 2ª, 3ª Série</h3>
-                            <p>Educação de Jovens e Adultos com metodologia adaptada para diferentes níveis.</p>
-                            <ul class="curso-features">
-                                <li>Flexibilidade de horários</li>
-                                <li>Metodologia adaptada</li>
-                                <li>Certificação reconhecida</li>
-                                <li>Suporte pedagógico</li>
-                            </ul>
-                            <a href="<?php echo home_url('/cursos/eja-1a-2a-3a-serie'); ?>" class="curso-btn">Saiba Mais</a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-book-open"></i>
+                        <h4><?php _e('Nenhum curso de educação básica disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos de educação básica. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </section>
 
@@ -586,13 +242,13 @@ get_footer();
 
 <script>
 
-// Sistema de Filtros - Adaptado para seções organizadas
+// Sistema de Filtros - Adaptado para seções organizadas com cursos dinâmicos
 jQuery(document).ready(function($) {
     console.log('Sistema de filtros carregado');
     console.log('Botões encontrados:', $('.cursos-filter-btn').length);
     console.log('Seções encontradas:', $('.cursos-section').length);
     
-    // Filtro de cursos - Adaptado para seções
+    // Filtro de cursos - Adaptado para seções com cursos dinâmicos
     $('.cursos-filter-btn').on('click', function() {
         var filter = $(this).data('filter');
         console.log('Filtro selecionado:', filter);
@@ -609,17 +265,17 @@ jQuery(document).ready(function($) {
             
             if (filter === 'todos') {
                 $section.show();
-                // Mostrar cards
-                $section.find('.curso-card-moderno').removeClass('hidden');
+                // Mostrar cards dinâmicos
+                $section.find('.curso-card').removeClass('hidden');
                 console.log('Seção mostrada:', sectionId);
             } else if (sectionId === filter) {
                 $section.show();
-                // Mostrar cards
-                $section.find('.curso-card-moderno').removeClass('hidden');
+                // Mostrar cards dinâmicos
+                $section.find('.curso-card').removeClass('hidden');
                 console.log('Seção mostrada:', sectionId);
             } else {
-                // Ocultar cards
-                $section.find('.curso-card-moderno').addClass('hidden');
+                // Ocultar cards dinâmicos
+                $section.find('.curso-card').addClass('hidden');
                 // Depois ocultar seção
                 setTimeout(function() {
                     $section.hide();
@@ -633,6 +289,22 @@ jQuery(document).ready(function($) {
     
     // Garantir que todas as seções e cards estejam visíveis inicialmente
     $('.cursos-section').show();
-    $('.curso-card-moderno').removeClass('hidden');
+    $('.curso-card').removeClass('hidden');
+    
+    // Adicionar animações de entrada para os cards dinâmicos
+    $('.curso-card').each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'translateY(30px)',
+            'transition': 'all 0.6s ease-out'
+        });
+        
+        setTimeout(() => {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'translateY(0)'
+            });
+        }, index * 100);
+    });
 });
 </script>

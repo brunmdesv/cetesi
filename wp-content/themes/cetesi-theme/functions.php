@@ -1903,8 +1903,13 @@ function cetesi_scripts() {
         wp_enqueue_style('cetesi-page-equipe', CETESI_THEME_URL . '/assets/css/page-equipe.css', array('cetesi-style'), CETESI_VERSION);
     }
     
-    // Carregar CSS das páginas (exceto homepage e equipe)
-    if (is_page() && !is_front_page() && !is_page('equipe')) {
+    // Carregar CSS específico da página de cursos
+    if (is_page('cursos')) {
+        wp_enqueue_style('cetesi-page-cursos', CETESI_THEME_URL . '/assets/css/page-cursos.css', array('cetesi-style'), CETESI_VERSION);
+    }
+    
+    // Carregar CSS das páginas (exceto homepage, equipe e cursos)
+    if (is_page() && !is_front_page() && !is_page('equipe') && !is_page('cursos')) {
         wp_enqueue_style('cetesi-page', CETESI_THEME_URL . '/assets/css/page.css', array('cetesi-style'), CETESI_VERSION);
     }
     
