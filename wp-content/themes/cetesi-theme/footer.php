@@ -16,7 +16,7 @@
                         if ($description) {
                             echo esc_html($description);
                         } else {
-                            echo 'Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 15 anos com excelência acadêmica e infraestrutura moderna.';
+                            echo 'Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 26 anos com excelência acadêmica e infraestrutura moderna.';
                         }
                         ?>
                     </p>

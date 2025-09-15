@@ -71,7 +71,7 @@ get_header();
                             <div class="stat-label">Alunos Formados</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">15+</div>
+                            <div class="stat-number">26+</div>
                             <div class="stat-label">Anos de Experiência</div>
                         </div>
                         <div class="stat-item">

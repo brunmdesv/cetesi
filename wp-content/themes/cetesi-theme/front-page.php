@@ -18,7 +18,7 @@ get_header(); ?>
                     <!-- Título e Descrição Ultra Modernos -->
                     <div class="hero-header-ultra" data-aos="fade-up" data-aos-delay="100">
                         <h1 class="hero-titulo-ultra">Transforme sua <span class="highlight-ultra">Carreira</span> com o CETESI</h1>
-                        <p class="hero-descricao-ultra">Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 15 anos com excelência acadêmica e infraestrutura moderna.</p>
+                        <p class="hero-descricao-ultra">Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 26 anos com excelência acadêmica e infraestrutura moderna.</p>
                     </div>
                     
                     <!-- Badges Ultra Modernos -->
@@ -105,6 +105,35 @@ get_header(); ?>
                         <i class="fas fa-graduation-cap"></i>
                         <h4><?php _e('Nenhum curso técnico disponível no momento', 'cetesi'); ?></h4>
                         <p><?php _e('Estamos trabalhando para disponibilizar novos cursos técnicos. Em breve teremos novidades!', 'cetesi'); ?></p>
+                        </div>
+                                </div>
+                <?php endif; ?>
+                    </div>
+                    
+            <!-- Cursos de Qualificação -->
+            <div class="categoria-cursos">
+                <h3 class="categoria-titulo">
+                    <i class="fas fa-award"></i>
+                    <?php _e('Cursos de Qualificação', 'cetesi'); ?>
+                </h3>
+                
+                <?php
+                // Buscar cursos de qualificação criados via página personalizada
+                $cursos_qualificacao_dinamicos = cetesi_get_dynamic_courses('qualificacao', 20);
+                
+                if (!empty($cursos_qualificacao_dinamicos)) :
+                ?>
+                <div class="cursos-grid qualificacao">
+                    <?php foreach ($cursos_qualificacao_dinamicos as $curso) : ?>
+                        <?php echo cetesi_render_dynamic_course($curso, 'qualificacao'); ?>
+                    <?php endforeach; ?>
+                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-award"></i>
+                        <h4><?php _e('Nenhum curso de qualificação disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos de qualificação. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -131,13 +160,13 @@ get_header(); ?>
                 <?php else : ?>
                 <div class="no-courses-message">
                     <div class="no-courses-content">
-                        <i class="fas fa-certificate"></i>
+                                    <i class="fas fa-certificate"></i>
                         <h4><?php _e('Nenhum curso livre disponível no momento', 'cetesi'); ?></h4>
                         <p><?php _e('Estamos trabalhando para disponibilizar novos cursos livres. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
                 <?php endif; ?>
-            </div>
+                    </div>
                     
             <!-- Cursos 100% Online -->
             <div class="categoria-cursos">
@@ -160,7 +189,7 @@ get_header(); ?>
                 <?php else : ?>
                 <div class="no-courses-message">
                     <div class="no-courses-content">
-                        <i class="fas fa-laptop"></i>
+                                        <i class="fas fa-laptop"></i>
                         <h4><?php _e('Nenhum curso online disponível no momento', 'cetesi'); ?></h4>
                         <p><?php _e('Estamos trabalhando para disponibilizar novos cursos online. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
@@ -172,7 +201,7 @@ get_header(); ?>
             <div class="categoria-cursos">
                 <h3 class="categoria-titulo">
                     <i class="fas fa-book-open"></i>
-                    <?php _e('Educação Básica', 'cetesi'); ?>
+                    <?php _e('Educação Básica • EJÁ - 3º segmento', 'cetesi'); ?>
                 </h3>
                 
                 <?php
@@ -192,35 +221,6 @@ get_header(); ?>
                         <i class="fas fa-book-open"></i>
                         <h4><?php _e('Nenhum curso de educação básica disponível no momento', 'cetesi'); ?></h4>
                         <p><?php _e('Estamos trabalhando para disponibilizar novos cursos de educação básica. Em breve teremos novidades!', 'cetesi'); ?></p>
-                    </div>
-                </div>
-                <?php endif; ?>
-            </div>
-            
-            <!-- Cursos de Qualificação -->
-            <div class="categoria-cursos">
-                <h3 class="categoria-titulo">
-                    <i class="fas fa-award"></i>
-                    <?php _e('Cursos de Qualificação', 'cetesi'); ?>
-                </h3>
-                
-                <?php
-                // Buscar cursos de qualificação criados via página personalizada
-                $cursos_qualificacao_dinamicos = cetesi_get_dynamic_courses('qualificacao', 20);
-                
-                if (!empty($cursos_qualificacao_dinamicos)) :
-                ?>
-                <div class="cursos-grid qualificacao">
-                    <?php foreach ($cursos_qualificacao_dinamicos as $curso) : ?>
-                        <?php echo cetesi_render_dynamic_course($curso, 'qualificacao'); ?>
-                    <?php endforeach; ?>
-                </div>
-                <?php else : ?>
-                <div class="no-courses-message">
-                    <div class="no-courses-content">
-                        <i class="fas fa-award"></i>
-                        <h4><?php _e('Nenhum curso de qualificação disponível no momento', 'cetesi'); ?></h4>
-                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos de qualificação. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -356,22 +356,22 @@ get_header(); ?>
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="stat-number">5000+</span>
+                    <span class="stat-number">60.000+</span>
                     <span class="stat-label"><?php _e('Alunos Formados', 'cetesi'); ?></span>
                 </div>
                 
                 <div class="stat-item">
-                    <span class="stat-number">95%</span>
+                    <span class="stat-number">98%</span>
                     <span class="stat-label"><?php _e('Taxa de Aprovação', 'cetesi'); ?></span>
                 </div>
                 
                 <div class="stat-item">
-                    <span class="stat-number">15</span>
+                    <span class="stat-number">25</span>
                     <span class="stat-label"><?php _e('Anos de Experiência', 'cetesi'); ?></span>
                 </div>
                 
                 <div class="stat-item">
-                    <span class="stat-number">24</span>
+                    <span class="stat-number">30+</span>
                     <span class="stat-label"><?php _e('Cursos Disponíveis', 'cetesi'); ?></span>
                 </div>
             </div>
@@ -456,83 +456,6 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- Galeria de Certificações Section -->
-    <section class="certificacoes-section">
-        <div class="container">
-            <div class="section-header">
-                <h2><?php _e('Certificações e Reconhecimentos', 'cetesi'); ?></h2>
-                <p><?php _e('Nossa excelência é reconhecida por órgãos competentes e parceiros estratégicos', 'cetesi'); ?></p>
-            </div>
-            
-            <div class="certificacoes-grid">
-                <div class="certificacao-card">
-                    <div class="certificacao-logo">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3><?php _e('MEC - Ministério da Educação', 'cetesi'); ?></h3>
-                    <p><?php _e('Reconhecimento oficial para todos os nossos cursos técnicos e superiores', 'cetesi'); ?></p>
-                    <div class="certificacao-badge">
-                        <span><?php _e('Reconhecido', 'cetesi'); ?></span>
-                    </div>
-                </div>
-                
-                <div class="certificacao-card">
-                    <div class="certificacao-logo">
-                        <i class="fas fa-hospital"></i>
-                    </div>
-                    <h3><?php _e('COREN - Conselho Regional de Enfermagem', 'cetesi'); ?></h3>
-                    <p><?php _e('Cursos de Enfermagem aprovados e reconhecidos pelo conselho profissional', 'cetesi'); ?></p>
-                    <div class="certificacao-badge">
-                        <span><?php _e('Aprovado', 'cetesi'); ?></span>
-                    </div>
-                </div>
-                
-                <div class="certificacao-card">
-                    <div class="certificacao-logo">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3><?php _e('ISO 9001:2015', 'cetesi'); ?></h3>
-                    <p><?php _e('Certificação internacional de qualidade em gestão educacional', 'cetesi'); ?></p>
-                    <div class="certificacao-badge">
-                        <span><?php _e('Certificado', 'cetesi'); ?></span>
-                    </div>
-                </div>
-                
-                <div class="certificacao-card">
-                    <div class="certificacao-logo">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3><?php _e('ABEN - Associação Brasileira de Enfermagem', 'cetesi'); ?></h3>
-                    <p><?php _e('Parceria estratégica para desenvolvimento profissional dos estudantes', 'cetesi'); ?></p>
-                    <div class="certificacao-badge">
-                        <span><?php _e('Parceiro', 'cetesi'); ?></span>
-                    </div>
-                </div>
-                
-                <div class="certificacao-card">
-                    <div class="certificacao-logo">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3><?php _e('Hospital São Paulo', 'cetesi'); ?></h3>
-                    <p><?php _e('Convênio para estágios práticos e inserção no mercado de trabalho', 'cetesi'); ?></p>
-                    <div class="certificacao-badge">
-                        <span><?php _e('Conveniado', 'cetesi'); ?></span>
-                    </div>
-                </div>
-                
-                <div class="certificacao-card">
-                    <div class="certificacao-logo">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3><?php _e('Prêmio Excelência Educacional', 'cetesi'); ?></h3>
-                    <p><?php _e('Reconhecimento pela qualidade do ensino e resultados dos alunos', 'cetesi'); ?></p>
-                    <div class="certificacao-badge">
-                        <span><?php _e('Premiado', 'cetesi'); ?></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Notícias/Blog Section -->
     <section class="noticias-section">

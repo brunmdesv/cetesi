@@ -150,7 +150,7 @@ get_header();
                                 'nome' => 'Prof. Carlos Oliveira',
                                 'cargo' => 'Coordenador de Enfermagem',
                                 'formacao' => 'Mestre em Enfermagem',
-                                'experiencia' => '15 anos de experiência clínica e docente',
+                                'experiencia' => '26 anos de experiência clínica e docente',
                                 'categoria' => 'coordenacao',
                                 'bio' => 'Coordenador experiente com ampla vivência clínica e acadêmica na área de enfermagem.'
                             ),
@@ -237,7 +237,7 @@ get_header();
                         <span class="stat-label">Mestres e Doutores</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">15+</span>
+                        <span class="stat-number">26+</span>
                         <span class="stat-label">Anos de Experiência Média</span>
                     </div>
                     <div class="stat-item">

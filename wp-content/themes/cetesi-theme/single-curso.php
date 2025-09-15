@@ -285,10 +285,13 @@ get_header(); ?>
                             <h3 class="card-titulo-ultra">Certificação</h3>
                             <?php
                             $certificacao = get_post_meta(get_the_ID(), '_curso_certificacao', true);
+                            $certificacao_detalhada = get_post_meta(get_the_ID(), '_curso_certificacao_detalhada', true);
                             $reconhecimento = get_post_meta(get_the_ID(), '_curso_reconhecimento', true);
                             ?>
                             <p class="card-descricao-ultra">
-                                <?php if ($certificacao) : ?>
+                                <?php if ($certificacao_detalhada) : ?>
+                                    <?php echo esc_html($certificacao_detalhada); ?>
+                                <?php elseif ($certificacao) : ?>
                                     <?php echo esc_html($certificacao); ?>
                                 <?php else : ?>
                                     Certificado de conclusão válido em todo território nacional
@@ -317,9 +320,58 @@ get_header(); ?>
                         </div>
                             <h3 class="card-titulo-ultra">Grade Curricular</h3>
                             <?php
+                            $modulo_1 = get_post_meta(get_the_ID(), '_curso_modulo_1', true);
+                            $modulo_2 = get_post_meta(get_the_ID(), '_curso_modulo_2', true);
+                            $modulo_3 = get_post_meta(get_the_ID(), '_curso_modulo_3', true);
                             $disciplinas = get_post_meta(get_the_ID(), '_curso_disciplinas', true);
-                            if ($disciplinas) :
+                            
+                            // Se há módulos definidos, exibir os cards dos módulos
+                            if ($modulo_1 || $modulo_2 || $modulo_3) :
                             ?>
+                                <div class="modulos-grid-ultra">
+                                    <?php if ($modulo_1) : ?>
+                                    <div class="modulo-card-ultra" data-aos="zoom-in" data-aos-delay="500">
+                                        <div class="modulo-header-ultra">
+                                            <div class="modulo-icon-ultra">
+                                                <i class="fas fa-book"></i>
+                                            </div>
+                                            <h4 class="modulo-titulo-ultra">Módulo 1</h4>
+                                        </div>
+                                        <div class="modulo-conteudo-ultra">
+                                            <?php echo wpautop(esc_html($modulo_1)); ?>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if ($modulo_2) : ?>
+                                    <div class="modulo-card-ultra" data-aos="zoom-in" data-aos-delay="600">
+                                        <div class="modulo-header-ultra">
+                                            <div class="modulo-icon-ultra">
+                                                <i class="fas fa-book-open"></i>
+                                            </div>
+                                            <h4 class="modulo-titulo-ultra">Módulo 2</h4>
+                                        </div>
+                                        <div class="modulo-conteudo-ultra">
+                                            <?php echo wpautop(esc_html($modulo_2)); ?>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if ($modulo_3) : ?>
+                                    <div class="modulo-card-ultra" data-aos="zoom-in" data-aos-delay="700">
+                                        <div class="modulo-header-ultra">
+                                            <div class="modulo-icon-ultra">
+                                                <i class="fas fa-graduation-cap"></i>
+                                            </div>
+                                            <h4 class="modulo-titulo-ultra">Módulo 3</h4>
+                                        </div>
+                                        <div class="modulo-conteudo-ultra">
+                                            <?php echo wpautop(esc_html($modulo_3)); ?>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php elseif ($disciplinas) : ?>
                                 <div class="disciplinas-lista-ultra">
                                     <?php 
                                     // Substituir | por - na grade curricular
@@ -329,12 +381,20 @@ get_header(); ?>
                                 </div>
                             <?php else : ?>
                                 <p class="card-descricao-ultra">Grade curricular completa com disciplinas teóricas e práticas, incluindo estágio supervisionado e atividades complementares.</p>
-                        <?php endif; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <?php
+            // Verificar se o curso é da categoria técnica usando o meta field _curso_tipo
+            $curso_tipo = get_post_meta(get_the_ID(), '_curso_tipo', true);
+            $is_tecnico = ($curso_tipo === 'tecnico');
+            
+            // Mostrar seção de Mercado de Trabalho apenas para cursos técnicos
+            if ($is_tecnico) :
+            ?>
             <!-- Seção de Mercado de Trabalho Ultra Moderna -->
             <section class="mercado-trabalho-section-ultra">
                 <div class="container">
@@ -355,21 +415,27 @@ get_header(); ?>
                             $oportunidades = get_post_meta(get_the_ID(), '_curso_oportunidades', true);
                             ?>
                             
+                            <?php
+                            $taxa_empregabilidade = get_post_meta(get_the_ID(), '_curso_taxa_empregabilidade', true);
+                            ?>
                             <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="stat-icon-ultra">
                                     <i class="fas fa-chart-line"></i>
                                 </div>
-                                <div class="stat-number-ultra">95%</div>
+                                <div class="stat-number-ultra"><?php echo !empty($taxa_empregabilidade) ? esc_html($taxa_empregabilidade) : '95%'; ?></div>
                                 <div class="stat-label-ultra">Taxa de Empregabilidade</div>
                             </div>
                             
-                            <?php if ($salario_medio) : ?>
+                            <?php
+                            $salario_inicial = get_post_meta(get_the_ID(), '_curso_salario_inicial', true);
+                            ?>
+                            <?php if ($salario_inicial || $salario_medio) : ?>
                             <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="200">
                                 <div class="stat-icon-ultra">
                                     <i class="fas fa-dollar-sign"></i>
                                 </div>
-                                <div class="stat-number-ultra"><?php echo esc_html($salario_medio); ?></div>
-                                <div class="stat-label-ultra">Salário Médio</div>
+                                <div class="stat-number-ultra"><?php echo esc_html($salario_inicial ?: $salario_medio); ?></div>
+                                <div class="stat-label-ultra"><?php echo $salario_inicial ? 'Salário Inicial' : 'Salário Médio'; ?></div>
                                 </div>
                             <?php else : ?>
                             <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="200">
@@ -381,13 +447,16 @@ get_header(); ?>
                                     </div>
                                     <?php endif; ?>
                                     
-                            <?php if ($oportunidades) : ?>
+                            <?php
+                            $crescimento_anual = get_post_meta(get_the_ID(), '_curso_crescimento_anual', true);
+                            ?>
+                            <?php if ($crescimento_anual || $oportunidades) : ?>
                             <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="300">
                                 <div class="stat-icon-ultra">
                                     <i class="fas fa-briefcase"></i>
                                 </div>
-                                <div class="stat-number-ultra"><?php echo esc_html($oportunidades); ?></div>
-                                <div class="stat-label-ultra">Oportunidades</div>
+                                <div class="stat-number-ultra"><?php echo esc_html($crescimento_anual ?: $oportunidades); ?></div>
+                                <div class="stat-label-ultra"><?php echo $crescimento_anual ? 'Crescimento Anual' : 'Oportunidades'; ?></div>
                                         </div>
                             <?php else : ?>
                             <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="300">
@@ -423,10 +492,10 @@ get_header(); ?>
                                 <h3>Principais Áreas de Atuação</h3>
                                 <div class="areas-lista-moderna">
                                     <?php 
-                                    // Dividir por "|" em vez de quebras de linha
-                                    $areas_array = explode("|", $areas_atuacao);
+                                    // Dividir por vírgula e limpar espaços
+                                    $areas_array = array_map('trim', explode(',', $areas_atuacao));
+                                    $areas_array = array_filter($areas_array); // Remove itens vazios
                                     foreach ($areas_array as $area) {
-                                        $area = trim($area);
                                         if (!empty($area)) {
                                             echo '<div class="area-item-moderno">';
                                             echo '<i class="fas fa-check-circle"></i>';
@@ -472,6 +541,7 @@ get_header(); ?>
                             </div>
                 </div>
             </section>
+            <?php endif; ?>
 
             <!-- Seção de Pré-requisitos Ultra Moderna -->
             <section class="prerequisitos-section-ultra">
@@ -1540,6 +1610,84 @@ get_header(); ?>
     border-left: 4px solid var(--primary-color);
 }
 
+/* ===== CARDS DE MÓDULOS ULTRA MODERNOS ===== */
+.modulos-grid-ultra {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+}
+
+.modulo-card-ultra {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.modulo-card-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.modulo-card-ultra:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.modulo-header-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--border-light);
+}
+
+.modulo-icon-ultra {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-secondary);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    box-shadow: var(--shadow-md);
+}
+
+.modulo-titulo-ultra {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.modulo-conteudo-ultra {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.modulo-conteudo-ultra p {
+    margin-bottom: var(--space-sm);
+}
+
+.modulo-conteudo-ultra p:last-child {
+    margin-bottom: 0;
+}
+
 /* Seção de Mercado de Trabalho Ultra Moderna */
 .mercado-trabalho-section-ultra {
     padding: var(--space-5xl) 0;
@@ -2294,6 +2442,11 @@ get_header(); ?>
     
     .detalhes-card-full-ultra {
         grid-column: 1;
+    }
+    
+    .modulos-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
     }
     
     .mercado-stats-ultra {

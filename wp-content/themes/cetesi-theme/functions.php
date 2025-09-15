@@ -5004,6 +5004,154 @@ function cetesi_custom_course_page_callback() {
                     </div>
                 </div>
                 
+                <!-- Grade Curricular -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-book-alt"></span> Grade Curricular</h2>
+                        <p>Defina o conteúdo e estrutura curricular do curso por módulos</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_modulo_1">Módulo 1</label>
+                            <textarea id="curso_modulo_1" name="curso_modulo_1" rows="4" 
+                                      placeholder="Descreva as disciplinas e conteúdo do primeiro módulo..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_modulo_2">Módulo 2</label>
+                            <textarea id="curso_modulo_2" name="curso_modulo_2" rows="4" 
+                                      placeholder="Descreva as disciplinas e conteúdo do segundo módulo..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_modulo_3">Módulo 3</label>
+                            <textarea id="curso_modulo_3" name="curso_modulo_3" rows="4" 
+                                      placeholder="Descreva as disciplinas e conteúdo do terceiro módulo..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_disciplinas">Grade Curricular Completa (Opcional)</label>
+                            <textarea id="curso_disciplinas" name="curso_disciplinas" rows="3" 
+                                      placeholder="Se preferir, pode descrever toda a grade curricular aqui (será usado como fallback)..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Objetivos e Metodologia -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-target"></span> Objetivos e Metodologia</h2>
+                        <p>Defina os objetivos do curso e metodologia de ensino</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_objetivos">Objetivos do Curso</label>
+                            <textarea id="curso_objetivos" name="curso_objetivos" rows="4" 
+                                      placeholder="Descreva os objetivos gerais e específicos do curso..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_metodologia">Metodologia de Ensino</label>
+                            <textarea id="curso_metodologia" name="curso_metodologia" rows="4" 
+                                      placeholder="Descreva a metodologia, recursos e estratégias de ensino..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificação -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-awards"></span> Certificação</h2>
+                        <p>Informações sobre certificação e reconhecimento</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_certificacao_detalhada">Detalhes da Certificação</label>
+                            <textarea id="curso_certificacao_detalhada" name="curso_certificacao_detalhada" rows="3" 
+                                      placeholder="Descreva detalhadamente o certificado emitido, validade e reconhecimento..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mercado de Trabalho -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-chart-line"></span> Mercado de Trabalho</h2>
+                        <p>Informações sobre oportunidades e mercado profissional</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_taxa_empregabilidade">Taxa de Empregabilidade</label>
+                            <input type="text" id="curso_taxa_empregabilidade" name="curso_taxa_empregabilidade" 
+                                   placeholder="Ex: 95%" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_salario_inicial">Salário Inicial</label>
+                            <input type="text" id="curso_salario_inicial" name="curso_salario_inicial" 
+                                   placeholder="Ex: R$ 2.500,00" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_crescimento_anual">Crescimento Anual</label>
+                            <input type="text" id="curso_crescimento_anual" name="curso_crescimento_anual" 
+                                   placeholder="Ex: 8% ao ano" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_mercado_expansao">Mercado em Expansão</label>
+                            <select id="curso_mercado_expansao" name="curso_mercado_expansao">
+                                <option value="">Selecione</option>
+                                <option value="sim">Sim</option>
+                                <option value="nao">Não</option>
+                                <option value="estavel">Estável</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_areas_atuacao">Principais Áreas de Atuação</label>
+                            <textarea id="curso_areas_atuacao" name="curso_areas_atuacao" rows="3" 
+                                      placeholder="Liste as principais áreas onde o profissional pode atuar separadas por vírgula (Ex: Hospitais públicos, Clínicas especializadas, Home Care, Laboratórios)"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_mercado_trabalho">Mercado de Trabalho</label>
+                            <textarea id="curso_mercado_trabalho" name="curso_mercado_trabalho" rows="4" 
+                                      placeholder="Descreva o cenário atual do mercado de trabalho para esta profissão..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Documentos Necessários -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-media-document"></span> Documentos Necessários</h2>
+                        <p>Lista de documentos obrigatórios para matrícula</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_documentos">Documentos para Matrícula</label>
+                            <textarea id="curso_documentos" name="curso_documentos" rows="6" 
+                                      placeholder="Liste todos os documentos necessários para matrícula..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Botões de Ação -->
                 <div class="form-actions">
                     <button type="submit" name="criar_curso" class="cetesi-btn-primary">
@@ -5337,6 +5485,11 @@ function cetesi_edit_course_page_callback() {
     $curso_areas_atuacao = get_post_meta($course_id, '_curso_areas_atuacao', true);
     $curso_forma_pagamento = get_post_meta($course_id, '_curso_forma_pagamento', true);
     $curso_parcelamento = get_post_meta($course_id, '_curso_parcelamento', true);
+    $curso_certificacao_detalhada = get_post_meta($course_id, '_curso_certificacao_detalhada', true);
+    $curso_taxa_empregabilidade = get_post_meta($course_id, '_curso_taxa_empregabilidade', true);
+    $curso_salario_inicial = get_post_meta($course_id, '_curso_salario_inicial', true);
+    $curso_crescimento_anual = get_post_meta($course_id, '_curso_crescimento_anual', true);
+    $curso_mercado_expansao = get_post_meta($course_id, '_curso_mercado_expansao', true);
     
     ?>
     <div class="wrap cetesi-team-management">
@@ -5564,6 +5717,157 @@ function cetesi_edit_course_page_callback() {
                             <label for="curso_prerequisitos">Pré-requisitos Específicos</label>
                             <textarea id="curso_prerequisitos" name="curso_prerequisitos" rows="3" 
                                       placeholder="Liste os pré-requisitos específicos do curso..."><?php echo esc_textarea($curso_prerequisitos); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grade Curricular -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-book-alt"></span> Grade Curricular</h2>
+                        <p>Defina o conteúdo e estrutura curricular do curso por módulos</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_modulo_1">Módulo 1</label>
+                            <textarea id="curso_modulo_1" name="curso_modulo_1" rows="4" 
+                                      placeholder="Descreva as disciplinas e conteúdo do primeiro módulo..."><?php echo esc_textarea(get_post_meta($course_id, '_curso_modulo_1', true)); ?></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_modulo_2">Módulo 2</label>
+                            <textarea id="curso_modulo_2" name="curso_modulo_2" rows="4" 
+                                      placeholder="Descreva as disciplinas e conteúdo do segundo módulo..."><?php echo esc_textarea(get_post_meta($course_id, '_curso_modulo_2', true)); ?></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_modulo_3">Módulo 3</label>
+                            <textarea id="curso_modulo_3" name="curso_modulo_3" rows="4" 
+                                      placeholder="Descreva as disciplinas e conteúdo do terceiro módulo..."><?php echo esc_textarea(get_post_meta($course_id, '_curso_modulo_3', true)); ?></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_disciplinas">Grade Curricular Completa (Opcional)</label>
+                            <textarea id="curso_disciplinas" name="curso_disciplinas" rows="3" 
+                                      placeholder="Se preferir, pode descrever toda a grade curricular aqui (será usado como fallback)..."><?php echo esc_textarea($curso_disciplinas); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Objetivos e Metodologia -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-target"></span> Objetivos e Metodologia</h2>
+                        <p>Defina os objetivos do curso e metodologia de ensino</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_objetivos">Objetivos do Curso</label>
+                            <textarea id="curso_objetivos" name="curso_objetivos" rows="4" 
+                                      placeholder="Descreva os objetivos gerais e específicos do curso..."><?php echo esc_textarea($curso_objetivos); ?></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_metodologia">Metodologia de Ensino</label>
+                            <textarea id="curso_metodologia" name="curso_metodologia" rows="4" 
+                                      placeholder="Descreva a metodologia, recursos e estratégias de ensino..."><?php echo esc_textarea($curso_metodologia); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificação -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-awards"></span> Certificação</h2>
+                        <p>Informações sobre certificação e reconhecimento</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_certificacao_detalhada">Detalhes da Certificação</label>
+                            <textarea id="curso_certificacao_detalhada" name="curso_certificacao_detalhada" rows="3" 
+                                      placeholder="Descreva detalhadamente o certificado emitido, validade e reconhecimento..."><?php echo esc_textarea($curso_certificacao_detalhada); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mercado de Trabalho -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-chart-line"></span> Mercado de Trabalho</h2>
+                        <p>Informações sobre oportunidades e mercado profissional</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_taxa_empregabilidade">Taxa de Empregabilidade</label>
+                            <input type="text" id="curso_taxa_empregabilidade" name="curso_taxa_empregabilidade" 
+                                   value="<?php echo esc_attr($curso_taxa_empregabilidade); ?>"
+                                   placeholder="Ex: 95%" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_salario_inicial">Salário Inicial</label>
+                            <input type="text" id="curso_salario_inicial" name="curso_salario_inicial" 
+                                   value="<?php echo esc_attr($curso_salario_inicial); ?>"
+                                   placeholder="Ex: R$ 2.500,00" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_crescimento_anual">Crescimento Anual</label>
+                            <input type="text" id="curso_crescimento_anual" name="curso_crescimento_anual" 
+                                   value="<?php echo esc_attr($curso_crescimento_anual); ?>"
+                                   placeholder="Ex: 8% ao ano" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_mercado_expansao">Mercado em Expansão</label>
+                            <select id="curso_mercado_expansao" name="curso_mercado_expansao">
+                                <option value="">Selecione</option>
+                                <option value="sim" <?php selected($curso_mercado_expansao, 'sim'); ?>>Sim</option>
+                                <option value="nao" <?php selected($curso_mercado_expansao, 'nao'); ?>>Não</option>
+                                <option value="estavel" <?php selected($curso_mercado_expansao, 'estavel'); ?>>Estável</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_areas_atuacao">Principais Áreas de Atuação</label>
+                            <textarea id="curso_areas_atuacao" name="curso_areas_atuacao" rows="3" 
+                                      placeholder="Liste as principais áreas onde o profissional pode atuar separadas por vírgula (Ex: Hospitais públicos, Clínicas especializadas, Home Care, Laboratórios)"><?php echo esc_textarea($curso_areas_atuacao); ?></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_mercado_trabalho">Mercado de Trabalho</label>
+                            <textarea id="curso_mercado_trabalho" name="curso_mercado_trabalho" rows="4" 
+                                      placeholder="Descreva o cenário atual do mercado de trabalho para esta profissão..."><?php echo esc_textarea($curso_mercado_trabalho); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Documentos Necessários -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-media-document"></span> Documentos Necessários</h2>
+                        <p>Lista de documentos obrigatórios para matrícula</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_documentos">Documentos para Matrícula</label>
+                            <textarea id="curso_documentos" name="curso_documentos" rows="6" 
+                                      placeholder="Liste todos os documentos necessários para matrícula..."><?php echo esc_textarea($curso_documentos); ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -5860,13 +6164,21 @@ function cetesi_process_custom_course_creation() {
         'curso_mercado_trabalho' => '_curso_mercado_trabalho',
         'curso_areas_atuacao' => '_curso_areas_atuacao',
         'curso_forma_pagamento' => '_curso_forma_pagamento',
-        'curso_parcelamento' => '_curso_parcelamento'
+        'curso_parcelamento' => '_curso_parcelamento',
+        'curso_certificacao_detalhada' => '_curso_certificacao_detalhada',
+        'curso_taxa_empregabilidade' => '_curso_taxa_empregabilidade',
+        'curso_salario_inicial' => '_curso_salario_inicial',
+        'curso_crescimento_anual' => '_curso_crescimento_anual',
+        'curso_mercado_expansao' => '_curso_mercado_expansao',
+        'curso_modulo_1' => '_curso_modulo_1',
+        'curso_modulo_2' => '_curso_modulo_2',
+        'curso_modulo_3' => '_curso_modulo_3'
     );
     
     foreach ($meta_fields as $form_field => $meta_key) {
         if (isset($_POST[$form_field]) && !empty($_POST[$form_field])) {
             $value = sanitize_text_field($_POST[$form_field]);
-            if ($form_field === 'curso_descricao' || $form_field === 'curso_prerequisitos') {
+            if (in_array($form_field, array('curso_descricao', 'curso_prerequisitos', 'curso_disciplinas', 'curso_objetivos', 'curso_metodologia', 'curso_certificacao_detalhada', 'curso_areas_atuacao', 'curso_mercado_trabalho', 'curso_documentos', 'curso_modulo_1', 'curso_modulo_2', 'curso_modulo_3'))) {
                 $value = sanitize_textarea_field($_POST[$form_field]);
             }
             update_post_meta($post_id, $meta_key, $value);
@@ -5974,13 +6286,24 @@ function cetesi_process_course_update($course_id) {
         '_curso_mercado_trabalho' => 'curso_mercado_trabalho',
         '_curso_areas_atuacao' => 'curso_areas_atuacao',
         '_curso_forma_pagamento' => 'curso_forma_pagamento',
-        '_curso_parcelamento' => 'curso_parcelamento'
+        '_curso_parcelamento' => 'curso_parcelamento',
+        '_curso_certificacao_detalhada' => 'curso_certificacao_detalhada',
+        '_curso_taxa_empregabilidade' => 'curso_taxa_empregabilidade',
+        '_curso_salario_inicial' => 'curso_salario_inicial',
+        '_curso_crescimento_anual' => 'curso_crescimento_anual',
+        '_curso_mercado_expansao' => 'curso_mercado_expansao',
+        '_curso_modulo_1' => 'curso_modulo_1',
+        '_curso_modulo_2' => 'curso_modulo_2',
+        '_curso_modulo_3' => 'curso_modulo_3'
     );
     
     // Atualizar campos de meta
     foreach ($meta_fields as $meta_key => $post_key) {
         if (isset($_POST[$post_key])) {
             $value = sanitize_text_field($_POST[$post_key]);
+            if (in_array($post_key, array('curso_prerequisitos', 'curso_documentos', 'curso_disciplinas', 'curso_objetivos', 'curso_metodologia', 'curso_certificacao_detalhada', 'curso_areas_atuacao', 'curso_mercado_trabalho', 'curso_modulo_1', 'curso_modulo_2', 'curso_modulo_3'))) {
+                $value = sanitize_textarea_field($_POST[$post_key]);
+            }
             update_post_meta($course_id, $meta_key, $value);
         }
     }
