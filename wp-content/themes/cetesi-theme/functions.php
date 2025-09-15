@@ -113,7 +113,7 @@ function cetesi_advanced_settings() {
     add_submenu_page(
         'cetesi-courses-management',
         'Criar Novo Curso',
-        'Novo Curso',
+        'Novo curso',
         'manage_options',
         'criar-curso-personalizado',
         'cetesi_custom_course_page_callback'
@@ -127,7 +127,17 @@ function cetesi_advanced_settings() {
         'cetesi-team-management',
         'cetesi_team_management_page',
         'dashicons-groups',
-        5
+        3
+    );
+    
+    // Submenu - Ver Equipe
+    add_submenu_page(
+        'cetesi-team-management',
+        'Ver Equipe',
+        'Ver equipe',
+        'manage_options',
+        'cetesi-team-management',
+        'cetesi_team_management_page'
     );
     
     // Submenu - Novo Membro
@@ -140,15 +150,6 @@ function cetesi_advanced_settings() {
         'cetesi_add_member_page'
     );
     
-    // Submenu - Ver Equipe
-    add_submenu_page(
-        'cetesi-team-management',
-        'Ver Equipe',
-        'Ver equipe',
-        'manage_options',
-        'cetesi-view-team',
-        'cetesi_view_team_page'
-    );
     
     // Submenu - Personalização
     add_submenu_page(
@@ -2822,36 +2823,6 @@ function cetesi_team_management_page() {
             </div>
         <?php endif; ?>
         
-        <!-- Estatísticas -->
-        <div class="cetesi-stats-overview">
-            <div class="stat-item">
-                <div class="stat-icon cursos">
-                    <span class="dashicons dashicons-groups"></span>
-                </div>
-                <div class="stat-content">
-                    <h3><?php echo $total_equipe; ?> Pessoas</h3>
-                    <p>Total na equipe</p>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon sucesso">
-                    <span class="dashicons dashicons-admin-users"></span>
-                </div>
-                <div class="stat-content">
-                    <h3><?php echo $membros_publicados; ?> Membros</h3>
-                    <p>Membros da equipe</p>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon config">
-                    <span class="dashicons dashicons-welcome-learn-more"></span>
-                </div>
-                <div class="stat-content">
-                    <h3><?php echo $professores_publicados; ?> Professores</h3>
-                    <p>Professores cadastrados</p>
-                </div>
-            </div>
-        </div>
         
         <!-- Barra de Ações -->
         <div class="cetesi-actions-bar">
@@ -2873,9 +2844,9 @@ function cetesi_team_management_page() {
                     <span class="btn-label">Excluir Selecionados</span>
                 </button>
             </div>
-            <div class="search-container">
-                <input type="text" id="team-search" placeholder="Buscar membros..." class="search-input">
-                <span class="dashicons dashicons-search search-icon"></span>
+            <div class="search-box">
+                <input type="text" id="team-search" placeholder="Buscar membros..." />
+                <span class="dashicons dashicons-search"></span>
             </div>
         </div>
         
@@ -2899,30 +2870,26 @@ function cetesi_team_management_page() {
                     <div class="member-checkbox">
                         <input type="checkbox" class="member-select" value="<?php echo $membro->ID; ?>">
                     </div>
-                    <div class="member-status">
-                        <span class="status-indicator <?php echo $status === 'publish' ? 'published' : 'draft'; ?>"></span>
-                    </div>
                     <div class="member-info">
                         <h3 class="member-name"><?php echo esc_html($membro->post_title); ?></h3>
                         <div class="member-details">
                             <?php if ($cargo) : ?>
                                 <span class="member-role"><?php echo esc_html($cargo); ?></span>
                             <?php endif; ?>
-                            <?php if ($email) : ?>
-                                <span class="member-contact"><?php echo esc_html($email); ?></span>
-                            <?php endif; ?>
                         </div>
                     </div>
-                    <div class="member-actions">
-                        <a href="<?php echo admin_url('post.php?post=' . $membro->ID . '&action=edit'); ?>" class="action-btn edit-btn" title="Editar membro">
-                            <span class="dashicons dashicons-edit"></span>
-                        </a>
-                        <a href="<?php echo get_permalink($membro->ID); ?>" class="action-btn view-btn" title="Ver no site" target="_blank">
-                            <span class="dashicons dashicons-visibility"></span>
-                        </a>
-                        <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=cetesi-team-management&action=delete&member_id=' . $membro->ID), 'delete_member_' . $membro->ID); ?>" class="action-btn delete-btn" title="Excluir membro" onclick="return confirm('Tem certeza que deseja excluir este membro? Esta ação não pode ser desfeita.');">
-                            <span class="dashicons dashicons-trash"></span>
-                        </a>
+                    <div class="member-actions-container">
+                        <div class="member-actions">
+                            <a href="<?php echo admin_url('post.php?post=' . $membro->ID . '&action=edit'); ?>" class="action-btn edit-btn" title="Editar membro">
+                                <span class="dashicons dashicons-edit"></span>
+                            </a>
+                            <a href="<?php echo get_permalink($membro->ID); ?>" class="action-btn view-btn" title="Ver no site" target="_blank">
+                                <span class="dashicons dashicons-visibility"></span>
+                            </a>
+                            <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=cetesi-team-management&action=delete&member_id=' . $membro->ID), 'delete_member_' . $membro->ID); ?>" class="action-btn delete-btn" title="Excluir membro" onclick="return confirm('Tem certeza que deseja excluir este membro? Esta ação não pode ser desfeita.');">
+                                <span class="dashicons dashicons-trash"></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -2947,66 +2914,6 @@ function cetesi_team_management_page() {
         max-width: 1400px;
     }
     
-    .cetesi-stats-overview {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        margin-bottom: 30px;
-    }
-    
-    .stat-item {
-        background: white;
-        border: 1px solid #e1e5e9;
-        border-radius: 12px;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .stat-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-    
-    .stat-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        color: white;
-    }
-    
-    .stat-icon.cursos {
-        background: linear-gradient(135deg, #10b981, #059669);
-    }
-    
-    .stat-icon.sucesso {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-    }
-    
-    .stat-icon.config {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-    }
-    
-    .stat-content h3 {
-        margin: 0 0 5px 0;
-        font-size: 24px;
-        font-weight: 700;
-        color: #1e293b;
-    }
-    
-    .stat-content p {
-        margin: 0;
-        font-size: 14px;
-        font-weight: 600;
-        color: #475569;
-    }
     
     .cetesi-actions-bar {
         display: flex;
@@ -3098,14 +3005,14 @@ function cetesi_team_management_page() {
         font-size: 14px;
     }
     
-    .search-container {
+    .search-box {
         position: relative;
         display: flex;
         align-items: center;
         margin-left: auto;
     }
     
-    .search-input {
+    .search-box input {
         padding: 12px 40px 12px 15px;
         border: 1px solid #ddd;
         border-radius: 8px;
@@ -3114,13 +3021,13 @@ function cetesi_team_management_page() {
         transition: border-color 0.3s ease;
     }
     
-    .search-input:focus {
+    .search-box input:focus {
         outline: none;
         border-color: #2563eb;
         box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
     
-    .search-icon {
+    .search-box .dashicons {
         position: absolute;
         right: 12px;
         color: #64748b;
@@ -3228,23 +3135,6 @@ function cetesi_team_management_page() {
         border-left: none !important;
     }
     
-    .member-status {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        margin-right: 24px;
-        flex-shrink: 0;
-    }
-    
-    .status-indicator.published {
-        background: #10b981;
-        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-    }
-    
-    .status-indicator.draft {
-        background: #f59e0b;
-        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
-    }
     
     .member-info {
         flex: 1;
@@ -3274,9 +3164,10 @@ function cetesi_team_management_page() {
         font-size: 14px;
     }
     
-    .member-contact {
-        color: #64748b;
-        font-size: 13px;
+    
+    .member-actions-container {
+        margin-left: 20px;
+        flex-shrink: 0;
     }
     
     .member-actions {
@@ -3377,20 +3268,16 @@ function cetesi_team_management_page() {
     
     /* Responsividade */
     @media (max-width: 768px) {
-        .cetesi-stats-overview {
-            grid-template-columns: 1fr;
-        }
-        
         .cetesi-actions-bar {
             flex-direction: column;
             align-items: stretch;
         }
         
-        .search-container {
+        .search-box {
             margin-left: 0;
         }
         
-        .search-input {
+        .search-box input {
             width: 100%;
         }
         
@@ -3403,8 +3290,13 @@ function cetesi_team_management_page() {
             flex-basis: 100%;
         }
         
-        .member-actions {
+        .member-actions-container {
             flex-basis: 100%;
+            margin-left: 0;
+            margin-top: 15px;
+        }
+        
+        .member-actions {
             justify-content: center;
         }
     }
@@ -3418,9 +3310,8 @@ function cetesi_team_management_page() {
             $('.member-list-item').each(function() {
                 var memberName = $(this).find('.member-name').text().toLowerCase();
                 var memberRole = $(this).find('.member-role').text().toLowerCase();
-                var memberContact = $(this).find('.member-contact').text().toLowerCase();
                 
-                if (memberName.includes(searchTerm) || memberRole.includes(searchTerm) || memberContact.includes(searchTerm)) {
+                if (memberName.includes(searchTerm) || memberRole.includes(searchTerm)) {
                     $(this).show();
                 } else {
                     $(this).hide();
@@ -3500,36 +3391,6 @@ function cetesi_add_member_page() {
     
     ?>
     <div class="wrap cetesi-custom-member-page">
-        <!-- Estatísticas -->
-        <div class="cetesi-stats-overview">
-            <div class="stat-item">
-                <div class="stat-icon cursos">
-                    <span class="dashicons dashicons-groups"></span>
-                </div>
-                <div class="stat-content">
-                    <h3>Novo Membro</h3>
-                    <p>Adicionar novo membro à equipe</p>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon sucesso">
-                    <span class="dashicons dashicons-yes-alt"></span>
-                </div>
-                <div class="stat-content">
-                    <h3>Formulário Completo</h3>
-                    <p>Todas as informações necessárias</p>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon config">
-                    <span class="dashicons dashicons-admin-settings"></span>
-                </div>
-                <div class="stat-content">
-                    <h3>Configuração Rápida</h3>
-                    <p>Interface intuitiva e organizada</p>
-                </div>
-            </div>
-        </div>
         
         <div class="cetesi-member-form-container">
             <form method="post" action="" class="cetesi-member-form" enctype="multipart/form-data">

@@ -95,49 +95,32 @@ get_header();
                             <?php endif; ?>
                                 <div class="membro-overlay">
                                     <div class="membro-social-moderno">
-                                <?php if ($linkedin) : ?>
-                                            <a href="<?php echo esc_url($linkedin); ?>" class="social-link-moderno" target="_blank" title="LinkedIn">
+                                        <a href="<?php echo $linkedin ? esc_url($linkedin) : '#'; ?>" class="social-link-moderno" target="_blank" title="LinkedIn">
                                         <i class="fab fa-linkedin"></i>
                                     </a>
-                                <?php endif; ?>
-                                <?php if ($email) : ?>
-                                            <a href="mailto:<?php echo esc_attr($email); ?>" class="social-link-moderno" title="Email">
+                                        <a href="<?php echo $email ? 'mailto:' . esc_attr($email) : '#'; ?>" class="social-link-moderno" title="Email">
                                         <i class="fas fa-envelope"></i>
                                     </a>
-                                <?php endif; ?>
-                                <?php if ($telefone) : ?>
-                                            <a href="tel:<?php echo esc_attr($telefone); ?>" class="social-link-moderno" title="Telefone">
-                                        <i class="fas fa-phone"></i>
-                                    </a>
-                                <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
                             <div class="membro-content-moderno">
                                 <div class="membro-header">
                                     <h3 class="membro-nome"><?php the_title(); ?></h3>
                                     <span class="membro-categoria-badge"><?php echo esc_html(ucfirst($categoria)); ?></span>
-                        </div>
-                            <?php if ($cargo) : ?>
-                                    <p class="membro-cargo-moderno"><?php echo esc_html($cargo); ?></p>
-                            <?php endif; ?>
-                            <?php if ($formacao) : ?>
-                                    <p class="membro-formacao-moderno">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <?php echo esc_html($formacao); ?>
-                                    </p>
-                                <?php endif; ?>
-                                <?php if ($bio) : ?>
-                                    <p class="membro-bio-moderno"><?php echo esc_html(wp_trim_words($bio, 15)); ?></p>
-                            <?php endif; ?>
+                </div>
+                                <p class="membro-cargo-moderno"><?php echo esc_html($cargo ?: 'Cargo não informado'); ?></p>
+                                <p class="membro-formacao-moderno">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <?php echo esc_html($formacao ?: 'Formação não informada'); ?>
+                                </p>
+                                <p class="membro-bio-moderno"><?php echo esc_html($bio ? wp_trim_words($bio, 15) : 'Biografia não informada'); ?></p>
                                 <div class="membro-experiencia-moderno">
-                            <?php if ($experiencia) : ?>
-                                        <span class="experiencia-text">
-                                            <i class="fas fa-clock"></i>
-                                            <?php echo esc_html($experiencia); ?>
-                                        </span>
-                                <?php endif; ?>
-                                </div>
+                                    <span class="experiencia-text">
+                                        <i class="fas fa-clock"></i>
+                                        <?php echo esc_html($experiencia ?: 'Experiência não informada'); ?>
+                                    </span>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -212,9 +195,6 @@ get_header();
                                     </a>
                                         <a href="#" class="social-link-moderno" title="Email">
                                         <i class="fas fa-envelope"></i>
-                                    </a>
-                                        <a href="#" class="social-link-moderno" title="Telefone">
-                                        <i class="fas fa-phone"></i>
                                     </a>
                                 </div>
                             </div>
