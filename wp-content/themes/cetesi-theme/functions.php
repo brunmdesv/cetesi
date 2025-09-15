@@ -267,17 +267,6 @@ function cetesi_settings_page() {
                     <a href="<?php echo admin_url('admin.php?page=cetesi-optimization'); ?>" class="button button-primary">Configurar</a>
                 </div>
                 
-                <div class="cetesi-admin-card">
-                    <h2><span class="dashicons dashicons-admin-post"></span> Conteúdo</h2>
-                    <p>Gerencie professores, cursos e conteúdo do site.</p>
-                    <a href="<?php echo admin_url('admin.php?page=cetesi-content'); ?>" class="button button-primary">Configurar</a>
-                </div>
-                
-                <div class="cetesi-admin-card">
-                    <h2><span class="dashicons dashicons-book-alt"></span> Cursos</h2>
-                    <p>Gerencie todos os cursos, crie novos e organize o catálogo.</p>
-                    <a href="<?php echo admin_url('admin.php?page=cetesi-courses-management'); ?>" class="button button-primary">Gerenciar</a>
-                </div>
             </div>
         </div>
     </div>
