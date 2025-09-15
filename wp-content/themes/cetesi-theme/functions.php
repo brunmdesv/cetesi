@@ -119,6 +119,16 @@ function cetesi_advanced_settings() {
         'cetesi_content_page'
     );
     
+    // Submenu - Cursos
+    add_submenu_page(
+        'cetesi-settings',
+        'Gerenciar Cursos',
+        'Cursos',
+        'manage_options',
+        'cetesi-courses-management',
+        'cetesi_courses_management_page'
+    );
+    
     // Submenu - Adicionar Professor (oculto no menu)
     add_submenu_page(
         'cetesi-settings',
@@ -172,6 +182,12 @@ function cetesi_settings_page() {
                     <h2><span class="dashicons dashicons-admin-post"></span> Conteúdo</h2>
                     <p>Gerencie professores, cursos e conteúdo do site.</p>
                     <a href="<?php echo admin_url('admin.php?page=cetesi-content'); ?>" class="button button-primary">Configurar</a>
+                </div>
+                
+                <div class="cetesi-admin-card">
+                    <h2><span class="dashicons dashicons-book-alt"></span> Cursos</h2>
+                    <p>Gerencie todos os cursos, crie novos e organize o catálogo.</p>
+                    <a href="<?php echo admin_url('admin.php?page=cetesi-courses-management'); ?>" class="button button-primary">Gerenciar</a>
                 </div>
             </div>
         </div>
@@ -1720,7 +1736,7 @@ function cetesi_get_dynamic_courses($categoria, $limit = 4) {
 }
 
 /**
- * Função para renderizar um curso dinâmico
+* Função para renderizar um curso dinâmico
  */
 function cetesi_render_dynamic_course($curso, $categoria_class = '') {
     $curso_id = $curso->ID;
@@ -1728,6 +1744,8 @@ function cetesi_render_dynamic_course($curso, $categoria_class = '') {
     $carga_horaria = get_post_meta($curso_id, '_curso_carga_horaria', true);
     $estagio = get_post_meta($curso_id, '_curso_estagio', true);
     $modalidade = get_post_meta($curso_id, '_curso_modalidade', true);
+    $turno = get_post_meta($curso_id, '_curso_turno', true);
+    $reconhecimento = get_post_meta($curso_id, '_curso_reconhecimento', true);
     $preco = get_post_meta($curso_id, '_curso_preco', true);
     
     // Determinar ícone baseado no título ou categoria
@@ -1748,9 +1766,52 @@ function cetesi_render_dynamic_course($curso, $categoria_class = '') {
     elseif (strpos($title_lower, 'saúde mental') !== false) $icon = 'fas fa-brain';
     elseif (strpos($title_lower, 'trabalho') !== false) $icon = 'fas fa-briefcase';
     
+    // Determinar texto de reconhecimento baseado no campo
+    $reconhecimento_text = '';
+    switch ($reconhecimento) {
+        case 'mec':
+            $reconhecimento_text = __('Reconhecido pelo MEC', 'cetesi');
+            break;
+        case 'conselho':
+            $reconhecimento_text = __('Reconhecido pelo Conselho', 'cetesi');
+            break;
+        case 'ministerio':
+            $reconhecimento_text = __('Reconhecido pelo Ministério', 'cetesi');
+            break;
+        case 'certificacao':
+            $reconhecimento_text = __('Certificação Profissional', 'cetesi');
+            break;
+        default:
+            $reconhecimento_text = __('Reconhecimento Oficial', 'cetesi');
+            break;
+    }
+    
+    // Determinar texto do turno
+    $turno_text = '';
+    switch ($turno) {
+        case 'matutino':
+            $turno_text = __('Matutino (6h às 12h)', 'cetesi');
+            break;
+        case 'vespertino':
+            $turno_text = __('Vespertino (13h às 18h)', 'cetesi');
+            break;
+        case 'noturno':
+            $turno_text = __('Noturno (19h às 22h)', 'cetesi');
+            break;
+        case 'integral':
+            $turno_text = __('Integral (manhã e tarde)', 'cetesi');
+            break;
+        case 'flexivel':
+            $turno_text = __('Flexível (horários variados)', 'cetesi');
+            break;
+        default:
+            $turno_text = $turno ? $turno : __('Turno a definir', 'cetesi');
+            break;
+    }
+    
     ob_start();
     ?>
-    <div class="curso-card <?php echo esc_attr($categoria_class); ?>">
+    <div class="curso-card <?php echo esc_attr($categoria_class); ?> fade-in-up">
         <div class="curso-image">
             <?php if (has_post_thumbnail($curso_id)) : ?>
                 <?php echo get_the_post_thumbnail($curso_id, 'medium'); ?>
@@ -1763,21 +1824,26 @@ function cetesi_render_dynamic_course($curso, $categoria_class = '') {
             <p><?php echo get_the_excerpt($curso_id); ?></p>
             <ul class="curso-features">
                 <?php if ($duracao) : ?>
-                <li><?php echo esc_html($duracao); ?></li>
+                <li><i class="fas fa-calendar-alt"></i> <?php echo esc_html($duracao); ?></li>
                 <?php endif; ?>
                 <?php if ($carga_horaria) : ?>
-                <li><?php echo esc_html($carga_horaria); ?></li>
+                <li><i class="fas fa-clock"></i> <?php echo esc_html($carga_horaria); ?></li>
                 <?php endif; ?>
-                <?php if ($estagio) : ?>
-                <li><?php echo esc_html($estagio); ?></li>
+                <?php if ($turno) : ?>
+                <li><i class="fas fa-calendar"></i> <?php echo esc_html($turno_text); ?></li>
                 <?php endif; ?>
-                <?php if ($modalidade === 'online') : ?>
-                <li><?php _e('Modalidade 100% Online', 'cetesi'); ?></li>
+                <?php if ($reconhecimento) : ?>
+                <li><i class="fas fa-certificate"></i> <?php echo esc_html($reconhecimento_text); ?></li>
+                <?php elseif ($modalidade === 'online') : ?>
+                <li><i class="fas fa-laptop"></i> <?php _e('Modalidade 100% Online', 'cetesi'); ?></li>
                 <?php else : ?>
-                <li><?php _e('Reconhecido pelo MEC', 'cetesi'); ?></li>
+                <li><i class="fas fa-certificate"></i> <?php _e('Reconhecido pelo MEC', 'cetesi'); ?></li>
                 <?php endif; ?>
             </ul>
-            <a href="<?php echo get_permalink($curso_id); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
+            <a href="<?php echo get_permalink($curso_id); ?>" class="curso-btn">
+                <i class="fas fa-arrow-right"></i>
+                <?php _e('Saiba Mais', 'cetesi'); ?>
+            </a>
         </div>
     </div>
     <?php
@@ -2635,6 +2701,1411 @@ function cetesi_save_curso_meta($post_id) {
     }
 }
 add_action('save_post', 'cetesi_save_curso_meta');
+
+/**
+ * Adicionar página personalizada para criação de cursos
+ */
+function cetesi_add_custom_course_page() {
+    add_submenu_page(
+        'edit.php?post_type=curso',
+        'Criar Curso Personalizado',
+        'Criar Curso',
+        'manage_options',
+        'criar-curso-personalizado',
+        'cetesi_custom_course_page_callback'
+    );
+}
+add_action('admin_menu', 'cetesi_add_custom_course_page');
+
+/**
+ * Callback para a página personalizada de criação de cursos
+ */
+function cetesi_custom_course_page_callback() {
+    // Verificar se o formulário foi enviado
+    if (isset($_POST['criar_curso']) && wp_verify_nonce($_POST['cetesi_course_nonce'], 'criar_curso_action')) {
+        cetesi_process_custom_course_creation();
+    }
+    
+    ?>
+    <div class="wrap cetesi-custom-course-page">
+        <h1 class="wp-heading-inline">
+            <span class="dashicons dashicons-plus-alt"></span>
+            Criar Novo Curso
+        </h1>
+        
+        <div class="cetesi-course-form-container">
+            <form method="post" action="" class="cetesi-course-form">
+                <?php wp_nonce_field('criar_curso_action', 'cetesi_course_nonce'); ?>
+                
+                <!-- Informações Básicas -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-info"></span> Informações Básicas</h2>
+                        <p>Preencha as informações principais do curso</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_titulo" class="required">Nome do Curso</label>
+                            <input type="text" id="curso_titulo" name="curso_titulo" required 
+                                   placeholder="Ex: Técnico em Enfermagem" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_codigo">Código do Curso</label>
+                            <input type="text" id="curso_codigo" name="curso_codigo" 
+                                   placeholder="Ex: TE-001" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_descricao">Descrição do Curso</label>
+                            <textarea id="curso_descricao" name="curso_descricao" rows="4" 
+                                      placeholder="Descreva o curso, seus objetivos e principais características..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_nivel">Nível de Ensino</label>
+                            <select id="curso_nivel" name="curso_nivel">
+                                <option value="">Selecione o nível</option>
+                                <option value="tecnico">Técnico</option>
+                                <option value="superior">Superior</option>
+                                <option value="pos-graduacao">Pós-Graduação</option>
+                                <option value="livre">Curso Livre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_area">Área de Conhecimento</label>
+                            <select id="curso_area" name="curso_area">
+                                <option value="">Selecione a área</option>
+                                <option value="saude">Saúde</option>
+                                <option value="tecnologia">Tecnologia</option>
+                                <option value="gestao">Gestão</option>
+                                <option value="educacao">Educação</option>
+                                <option value="seguranca">Segurança</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Duração e Carga Horária -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-calendar-alt"></span> Duração e Carga Horária</h2>
+                        <p>Configure o tempo total e distribuição de horas do curso</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_duracao" class="required">Duração do Curso</label>
+                            <input type="text" id="curso_duracao" name="curso_duracao" required 
+                                   placeholder="Ex: 18 meses" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_carga_horaria" class="required">Carga Horária Total</label>
+                            <input type="text" id="curso_carga_horaria" name="curso_carga_horaria" required 
+                                   placeholder="Ex: 1.200 horas" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_estagio">Carga Horária de Estágio</label>
+                            <input type="text" id="curso_estagio" name="curso_estagio" 
+                                   placeholder="Ex: 300 horas" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_turno">Turno de Funcionamento</label>
+                            <select id="curso_turno" name="curso_turno">
+                                <option value="">Selecione o turno</option>
+                                <option value="matutino">Matutino (6h às 12h)</option>
+                                <option value="vespertino">Vespertino (13h às 18h)</option>
+                                <option value="noturno">Noturno (19h às 22h)</option>
+                                <option value="integral">Integral (manhã e tarde)</option>
+                                <option value="flexivel">Flexível (horários variados)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modalidade e Tipo -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-laptop"></span> Modalidade e Tipo</h2>
+                        <p>Defina como o curso será ministrado e seu tipo</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_modalidade" class="required">Modalidade de Ensino</label>
+                            <select id="curso_modalidade" name="curso_modalidade" required>
+                                <option value="">Selecione a modalidade</option>
+                                <option value="presencial">Presencial</option>
+                                <option value="online">100% Online</option>
+                                <option value="hibrido">Híbrido (Presencial + Online)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_tipo" class="required">Tipo de Curso</label>
+                            <select id="curso_tipo" name="curso_tipo" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="tecnico">Técnico</option>
+                                <option value="livre">Curso Livre</option>
+                                <option value="qualificacao">Qualificação Profissional</option>
+                                <option value="capacitacao">Capacitação</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_reconhecimento">Reconhecimento Oficial</label>
+                            <select id="curso_reconhecimento" name="curso_reconhecimento">
+                                <option value="">Selecione o reconhecimento</option>
+                                <option value="mec">Reconhecido pelo MEC</option>
+                                <option value="conselho">Reconhecido pelo Conselho</option>
+                                <option value="ministerio">Reconhecido pelo Ministério</option>
+                                <option value="certificacao">Certificação Profissional</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_certificacao">Tipo de Certificação</label>
+                            <input type="text" id="curso_certificacao" name="curso_certificacao" 
+                                   placeholder="Ex: Certificado de Técnico em Enfermagem" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preços e Pagamento -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-money-alt"></span> Preços e Pagamento</h2>
+                        <p>Configure os valores e formas de pagamento</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_preco">Preço Normal</label>
+                            <input type="text" id="curso_preco" name="curso_preco" 
+                                   placeholder="Ex: R$ 1.200,00" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_preco_promocional">Preço Promocional</label>
+                            <input type="text" id="curso_preco_promocional" name="curso_preco_promocional" 
+                                   placeholder="Ex: R$ 999,00" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_desconto">Desconto Disponível</label>
+                            <input type="text" id="curso_desconto" name="curso_desconto" 
+                                   placeholder="Ex: 20% de desconto" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_link_inscricao">Link de Inscrição</label>
+                            <input type="url" id="curso_link_inscricao" name="curso_link_inscricao" 
+                                   placeholder="https://..." />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pré-requisitos -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-clipboard"></span> Pré-requisitos</h2>
+                        <p>Defina os requisitos para participar do curso</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_escolaridade">Escolaridade Mínima</label>
+                            <select id="curso_escolaridade" name="curso_escolaridade">
+                                <option value="">Selecione a escolaridade</option>
+                                <option value="fundamental">Ensino Fundamental</option>
+                                <option value="medio">Ensino Médio</option>
+                                <option value="superior">Ensino Superior</option>
+                                <option value="qualquer">Qualquer Escolaridade</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_idade_minima">Idade Mínima</label>
+                            <input type="number" id="curso_idade_minima" name="curso_idade_minima" 
+                                   placeholder="Ex: 18" min="0" max="100" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_prerequisitos">Pré-requisitos Específicos</label>
+                            <textarea id="curso_prerequisitos" name="curso_prerequisitos" rows="3" 
+                                      placeholder="Liste os pré-requisitos específicos do curso..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Botões de Ação -->
+                <div class="form-actions">
+                    <button type="submit" name="criar_curso" class="button button-primary button-large">
+                        <span class="dashicons dashicons-plus-alt"></span>
+                        Criar Curso
+                    </button>
+                    <a href="<?php echo admin_url('edit.php?post_type=curso'); ?>" class="button button-secondary">
+                        <span class="dashicons dashicons-arrow-left-alt"></span>
+                        Voltar para Lista
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <style>
+    .cetesi-custom-course-page {
+        max-width: 1200px;
+    }
+    
+    .cetesi-course-form-container {
+        background: #fff;
+        border: 1px solid #ccd0d4;
+        border-radius: 8px;
+        padding: 0;
+        margin-top: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .cetesi-form-section {
+        border-bottom: 1px solid #e1e1e1;
+        padding: 30px;
+    }
+    
+    .cetesi-form-section:last-child {
+        border-bottom: none;
+    }
+    
+    .section-header {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .section-header h2 {
+        margin: 0 0 8px 0;
+        font-size: 18px;
+        color: #23282d;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .section-header p {
+        margin: 0;
+        color: #666;
+        font-style: italic;
+    }
+    
+    .form-row {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-group.full-width {
+        flex: 100%;
+    }
+    
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #23282d;
+    }
+    
+    .form-group label.required::after {
+        content: " *";
+        color: #d63638;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #0073aa;
+        box-shadow: 0 0 0 1px #0073aa;
+        outline: none;
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+    
+    .form-actions {
+        padding: 30px;
+        background: #f9f9f9;
+        border-top: 1px solid #e1e1e1;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .form-actions .button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .form-actions .button-primary {
+        background: #0073aa;
+        border-color: #0073aa;
+    }
+    
+    .form-actions .button-primary:hover {
+        background: #005a87;
+        border-color: #005a87;
+    }
+    
+    @media (max-width: 768px) {
+        .form-row {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .form-actions .button {
+            justify-content: center;
+        }
+    }
+    </style>
+    <?php
+}
+
+/**
+ * Processar criação de curso personalizado
+ */
+function cetesi_process_custom_course_creation() {
+    // Verificar permissões
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para realizar esta ação.');
+    }
+    
+    // Validar campos obrigatórios
+    $required_fields = array('curso_titulo', 'curso_duracao', 'curso_carga_horaria', 'curso_modalidade', 'curso_tipo');
+    $errors = array();
+    
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            $errors[] = "O campo " . ucfirst(str_replace('curso_', '', $field)) . " é obrigatório.";
+        }
+    }
+    
+    if (!empty($errors)) {
+        echo '<div class="notice notice-error"><p><strong>Erro:</strong> ' . implode('<br>', $errors) . '</p></div>';
+        return;
+    }
+    
+    // Preparar dados do post
+    $post_data = array(
+        'post_title' => sanitize_text_field($_POST['curso_titulo']),
+        'post_content' => sanitize_textarea_field($_POST['curso_descricao']),
+        'post_excerpt' => wp_trim_words(sanitize_textarea_field($_POST['curso_descricao']), 20),
+        'post_status' => 'publish',
+        'post_type' => 'curso',
+        'post_author' => get_current_user_id()
+    );
+    
+    // Criar o post
+    $post_id = wp_insert_post($post_data);
+    
+    if (is_wp_error($post_id)) {
+        echo '<div class="notice notice-error"><p><strong>Erro:</strong> Não foi possível criar o curso. Tente novamente.</p></div>';
+        return;
+    }
+    
+    // Salvar campos personalizados
+    $meta_fields = array(
+        'curso_codigo' => '_curso_codigo',
+        'curso_nivel' => '_curso_nivel_ensino',
+        'curso_area' => '_curso_area_conhecimento',
+        'curso_duracao' => '_curso_duracao',
+        'curso_carga_horaria' => '_curso_carga_horaria',
+        'curso_estagio' => '_curso_estagio',
+        'curso_turno' => '_curso_turno',
+        'curso_modalidade' => '_curso_modalidade',
+        'curso_tipo' => '_curso_tipo',
+        'curso_reconhecimento' => '_curso_reconhecimento',
+        'curso_certificacao' => '_curso_certificacao',
+        'curso_preco' => '_curso_preco',
+        'curso_preco_promocional' => '_curso_preco_promocional',
+        'curso_desconto' => '_curso_desconto',
+        'curso_link_inscricao' => '_curso_link_inscricao',
+        'curso_escolaridade' => '_curso_escolaridade',
+        'curso_idade_minima' => '_curso_idade_minima',
+        'curso_prerequisitos' => '_curso_prerequisitos'
+    );
+    
+    foreach ($meta_fields as $form_field => $meta_key) {
+        if (isset($_POST[$form_field]) && !empty($_POST[$form_field])) {
+            $value = sanitize_text_field($_POST[$form_field]);
+            if ($form_field === 'curso_descricao' || $form_field === 'curso_prerequisitos') {
+                $value = sanitize_textarea_field($_POST[$form_field]);
+            }
+            update_post_meta($post_id, $meta_key, $value);
+        }
+    }
+    
+    // Definir categoria baseada no tipo de curso
+    $categoria_slug = '';
+    switch ($_POST['curso_tipo']) {
+        case 'tecnico':
+            $categoria_slug = 'tecnicos';
+            break;
+        case 'livre':
+            $categoria_slug = 'livres';
+            break;
+        case 'qualificacao':
+            $categoria_slug = 'qualificacao';
+            break;
+        case 'online':
+            $categoria_slug = 'online';
+            break;
+        case 'educacao-basica':
+            $categoria_slug = 'educacao-basica';
+            break;
+    }
+    
+    if ($categoria_slug) {
+        $term = get_term_by('slug', $categoria_slug, 'categoria_curso');
+        if ($term) {
+            wp_set_post_terms($post_id, array($term->term_id), 'categoria_curso');
+        }
+    }
+    
+    // Sucesso
+    $edit_link = admin_url('post.php?post=' . $post_id . '&action=edit');
+    $view_link = get_permalink($post_id);
+    
+    echo '<div class="notice notice-success is-dismissible">';
+    echo '<p><strong>Sucesso!</strong> O curso "' . esc_html($_POST['curso_titulo']) . '" foi criado com sucesso!</p>';
+    echo '<p>';
+    echo '<a href="' . $edit_link . '" class="button button-primary">Editar Curso</a> ';
+    echo '<a href="' . $view_link . '" class="button button-secondary" target="_blank">Ver no Site</a> ';
+    echo '<a href="' . admin_url('edit.php?post_type=curso') . '" class="button">Voltar para Lista</a>';
+    echo '</p>';
+    echo '</div>';
+    
+    // Log da ação
+    cetesi_log_security_event('CURSO_CREATED', 'Course created via custom form: ' . $_POST['curso_titulo'], 'INFO');
+}
+
+/**
+ * Página de Gerenciamento de Cursos no Painel CETESI
+ */
+function cetesi_courses_management_page() {
+    // Processar ações se necessário
+    if (isset($_GET['action']) && isset($_GET['course_id'])) {
+        cetesi_process_course_action();
+    }
+    
+    // Processar exclusão em lote
+    if (isset($_POST['bulk_action']) && $_POST['bulk_action'] === 'delete' && isset($_POST['course_ids'])) {
+        cetesi_process_bulk_delete();
+    }
+    
+    // Mostrar mensagem de sucesso se houver exclusão em lote
+    $bulk_deleted = isset($_GET['bulk_deleted']) ? intval($_GET['bulk_deleted']) : 0;
+    
+    // Buscar cursos ordenados alfabeticamente
+    $cursos = get_posts(array(
+        'post_type' => 'curso',
+        'posts_per_page' => -1,
+        'post_status' => array('publish', 'draft'),
+        'orderby' => 'title',
+        'order' => 'ASC'
+    ));
+    
+    // Estatísticas
+    $total_cursos = count($cursos);
+    $cursos_publicados = 0;
+    $cursos_rascunho = 0;
+    
+    foreach ($cursos as $curso) {
+        if ($curso->post_status === 'publish') {
+            $cursos_publicados++;
+        } else {
+            $cursos_rascunho++;
+        }
+    }
+    
+    ?>
+    <div class="wrap cetesi-courses-management">
+        <?php if ($bulk_deleted > 0) : ?>
+        <div class="notice notice-success is-dismissible">
+            <p><strong>Sucesso!</strong> <?php echo $bulk_deleted; ?> curso(s) foram excluído(s) com sucesso.</p>
+        </div>
+        <?php endif; ?>
+        
+        <!-- Estatísticas -->
+        <div class="cetesi-stats-overview">
+            <div class="stat-item">
+                <div class="stat-icon cursos">
+                    <span class="dashicons dashicons-book-alt"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo $total_cursos; ?></h3>
+                    <p>Total de Cursos</p>
+                </div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon publicados">
+                    <span class="dashicons dashicons-yes-alt"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo $cursos_publicados; ?></h3>
+                    <p>Publicados</p>
+                </div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon rascunhos">
+                    <span class="dashicons dashicons-edit"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo $cursos_rascunho; ?></h3>
+                    <p>Rascunhos</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Barra de Ações -->
+        <div class="cetesi-actions-bar">
+            <a href="<?php echo admin_url('edit.php?post_type=curso&page=criar-curso-personalizado'); ?>" class="action-header-btn novo-curso">
+                <span class="dashicons dashicons-plus-alt"></span>
+                <span class="btn-label">Novo Curso</span>
+            </a>
+            <a href="<?php echo admin_url('edit.php?post_type=curso'); ?>" class="action-header-btn tradicional">
+                <span class="dashicons dashicons-list-view"></span>
+                <span class="btn-label">Tradicional</span>
+            </a>
+            <div class="bulk-actions">
+                <button type="button" id="select-all-courses" class="action-header-btn select-all">
+                    <span class="dashicons dashicons-yes-alt"></span>
+                    <span class="btn-label">Marcar Todos</span>
+                </button>
+                <button type="button" id="bulk-delete" class="action-header-btn bulk-delete" disabled>
+                    <span class="dashicons dashicons-trash"></span>
+                    <span class="btn-label">Excluir Selecionados</span>
+                </button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="course-search" placeholder="Buscar cursos..." />
+                <span class="dashicons dashicons-search"></span>
+            </div>
+        </div>
+        
+        <!-- Lista de Cursos -->
+        <div class="cetesi-courses-list">
+            <?php if ($cursos) : ?>
+                <?php foreach ($cursos as $curso) : 
+                    $curso_id = $curso->ID;
+                    $modalidade = get_post_meta($curso_id, '_curso_modalidade', true);
+                    $tipo = get_post_meta($curso_id, '_curso_tipo', true);
+                    $status = $curso->post_status;
+                    
+                    // Determinar categoria baseada no tipo
+                    $categoria = '';
+                    switch ($tipo) {
+                        case 'tecnico':
+                            $categoria = 'Técnico';
+                            break;
+                        case 'livre':
+                            $categoria = 'Curso Livre';
+                            break;
+                        case 'qualificacao':
+                            $categoria = 'Qualificação';
+                            break;
+                        case 'online':
+                            $categoria = 'Online';
+                            break;
+                        case 'educacao-basica':
+                            $categoria = 'Educação Básica';
+                            break;
+                        default:
+                            $categoria = ucfirst($tipo);
+                            break;
+                    }
+                    
+                    $edit_link = admin_url('post.php?post=' . $curso_id . '&action=edit');
+                    $view_link = get_permalink($curso_id);
+                    $delete_link = wp_nonce_url(admin_url('admin.php?page=cetesi-courses-management&action=delete&course_id=' . $curso_id), 'delete_course_' . $curso_id);
+                ?>
+                <div class="course-list-item" data-course-id="<?php echo $curso_id; ?>">
+                    <div class="course-checkbox">
+                        <input type="checkbox" class="course-select" value="<?php echo $curso_id; ?>">
+                    </div>
+                    <div class="course-status-indicator <?php echo $status; ?>"></div>
+                    <div class="course-info">
+                        <h3 class="course-title"><?php echo get_the_title($curso_id); ?></h3>
+                    </div>
+                    <div class="course-actions">
+                        <a href="<?php echo $edit_link; ?>" class="action-btn edit" title="Editar Curso">
+                            <span class="dashicons dashicons-edit"></span>
+                        </a>
+                        <a href="<?php echo $view_link; ?>" class="action-btn view" target="_blank" title="Ver no Site">
+                            <span class="dashicons dashicons-external"></span>
+                        </a>
+                        <a href="<?php echo $delete_link; ?>" class="action-btn delete" onclick="return confirm('Tem certeza que deseja excluir este curso?')" title="Excluir Curso">
+                            <span class="dashicons dashicons-trash"></span>
+                        </a>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <div class="no-courses">
+                    <div class="no-courses-icon">
+                        <span class="dashicons dashicons-book-alt"></span>
+                    </div>
+                    <h3>Nenhum curso encontrado</h3>
+                    <p>Você ainda não criou nenhum curso. Comece criando seu primeiro curso!</p>
+                    <a href="<?php echo admin_url('edit.php?post_type=curso&page=criar-curso-personalizado'); ?>" class="button button-primary button-large">
+                        <span class="dashicons dashicons-plus-alt"></span>
+                        Criar Primeiro Curso
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    
+    <style>
+    .cetesi-courses-management {
+        max-width: 1400px;
+    }
+    
+    .cetesi-page-header {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    .cetesi-title {
+        margin: 0 0 10px 0;
+        font-size: 32px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .cetesi-page-description {
+        margin: 0;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+    
+    .cetesi-stats-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-item {
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .stat-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: white;
+    }
+    
+    .stat-icon.cursos {
+        background: linear-gradient(135deg, #10b981, #059669);
+    }
+    
+    .stat-icon.publicados {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+    
+    .stat-icon.rascunhos {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+    
+    .stat-content h3 {
+        margin: 0 0 5px 0;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1e293b;
+    }
+    
+    .stat-content p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #475569;
+    }
+    
+    .cetesi-actions-bar {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        flex-wrap: wrap;
+    }
+    
+    .bulk-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .action-header-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    
+    .action-header-btn.novo-curso {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: white;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    }
+    
+    .action-header-btn.novo-curso:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+    
+    .action-header-btn.tradicional {
+        background: white;
+        color: #475569;
+        border-color: #e1e5e9;
+    }
+    
+    .action-header-btn.tradicional:hover {
+        background: #f8fafc;
+        border-color: #2563eb;
+        color: #2563eb;
+    }
+    
+    .action-header-btn.select-all {
+        background: #f0f9ff;
+        color: #0369a1;
+        border-color: #bae6fd;
+    }
+    
+    .action-header-btn.select-all:hover {
+        background: #0369a1;
+        color: white;
+    }
+    
+    .action-header-btn.bulk-delete {
+        background: #fef2f2;
+        color: #dc2626;
+        border-color: #fecaca;
+        display: none; /* Inicialmente oculto */
+    }
+    
+    .action-header-btn.bulk-delete:hover:not(:disabled) {
+        background: #dc2626;
+        color: white;
+    }
+    
+    .action-header-btn.bulk-delete:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    .action-header-btn .dashicons {
+        font-size: 18px;
+    }
+    
+    .action-header-btn .btn-label {
+        font-size: 14px;
+    }
+    
+    .search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+    
+    .search-box input {
+        padding: 12px 40px 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        width: 300px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .search-box input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .search-box .dashicons {
+        position: absolute;
+        right: 12px;
+        color: #64748b;
+        font-size: 16px;
+    }
+    
+    /* Lista de cursos */
+    .cetesi-courses-list {
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        position: relative;
+    }
+    
+    .course-list-item {
+        display: flex;
+        align-items: center;
+        padding: 24px 30px;
+        border-bottom: 1px solid #f1f5f9;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        transition: all 0.3s ease;
+        position: relative;
+        background: white;
+    }
+    
+    .course-checkbox {
+        margin-right: 20px;
+        position: relative;
+    }
+    
+    .course-checkbox input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+        margin: 0;
+        cursor: pointer;
+        appearance: none;
+        border: 2px solid #d1d5db;
+        border-radius: 6px;
+        background: white;
+        transition: all 0.3s ease;
+    }
+    
+    .course-checkbox input[type="checkbox"]::before {
+        display: none !important;
+    }
+    
+    .course-checkbox input[type="checkbox"]:hover {
+        border-color: #2563eb;
+        background: #f0f9ff;
+        transform: scale(1.05);
+    }
+    
+    .course-checkbox input[type="checkbox"]:checked {
+        background: #2563eb;
+        border-color: #2563eb;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    }
+    
+    .course-checkbox input[type="checkbox"]:checked::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1;
+    }
+    
+    .course-checkbox input[type="checkbox"]:checked:hover {
+        background: #1d4ed8;
+        border-color: #1d4ed8;
+        transform: scale(1.05);
+    }
+    
+    .course-checkbox label {
+        display: none;
+    }
+    
+    .course-list-item:last-child {
+        border-bottom: none;
+        border-radius: 0 0 16px 16px;
+    }
+    
+    .course-list-item:hover {
+        background: #f8fafc;
+        transform: translateX(8px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        border-left: none !important;
+    }
+    
+    .course-list-item.checkbox-selected {
+        border-left: none !important;
+    }
+    
+    .course-list-item.checkbox-selected:hover {
+        background: #f8fafc;
+        transform: translateX(8px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        border-left: none !important;
+    }
+    
+    .course-status-indicator {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin-right: 24px;
+        flex-shrink: 0;
+    }
+    
+    .course-status-indicator.publish {
+        background: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+    
+    .course-status-indicator.draft {
+        background: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+    
+    .course-info {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    
+    .course-title {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 600;
+        color: #1e293b;
+        flex: 1;
+        line-height: 1.4;
+    }
+    
+    .course-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    
+    .action-btn.edit {
+        background: #dbeafe;
+        color: #2563eb;
+        border-color: #bfdbfe;
+    }
+    
+    .action-btn.edit:hover {
+        background: #2563eb;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    
+    .action-btn.view {
+        background: #dcfce7;
+        color: #16a34a;
+        border-color: #bbf7d0;
+    }
+    
+    .action-btn.view:hover {
+        background: #16a34a;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+    }
+    
+    .action-btn.delete {
+        background: #fee2e2;
+        color: #dc2626;
+        border-color: #fecaca;
+    }
+    
+    .action-btn.delete:hover {
+        background: #dc2626;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+    
+    .action-btn .dashicons {
+        font-size: 18px;
+    }
+    
+    .no-courses {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 16px;
+    }
+    
+    .no-courses-icon {
+        width: 80px;
+        height: 80px;
+        background: #f1f5f9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px auto;
+        font-size: 32px;
+        color: #64748b;
+    }
+    
+    .no-courses h3 {
+        margin: 0 0 10px 0;
+        font-size: 24px;
+        color: #1e293b;
+    }
+    
+    .no-courses p {
+        margin: 0 0 25px 0;
+        font-size: 16px;
+        color: #64748b;
+    }
+    
+    /* Melhorias de acessibilidade */
+    .course-list-item:focus-within {
+        outline: none;
+    }
+    
+    .action-btn:focus {
+        outline: none;
+    }
+    
+    @media (max-width: 768px) {
+        .cetesi-actions-bar {
+            flex-direction: column;
+            gap: 15px;
+            align-items: stretch;
+        }
+        
+        .action-header-btn {
+            justify-content: center;
+        }
+        
+        .bulk-actions {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            margin-left: 0;
+        }
+        
+        .search-box input {
+            width: 100%;
+        }
+        
+        .course-list-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px;
+        }
+        
+        .course-info {
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .course-actions {
+            width: 100%;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 50px;
+            height: 48px;
+        }
+        
+        .course-title {
+            font-size: 18px;
+        }
+        
+        .cetesi-stats-overview {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .course-list-item {
+            padding: 20px;
+        }
+        
+        .course-title {
+            font-size: 16px;
+        }
+        
+        .action-btn {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .action-btn .dashicons {
+            font-size: 18px;
+        }
+    }
+    </style>
+    
+    <script>
+    jQuery(document).ready(function($) {
+        // Inicializar estado dos botões
+        updateBulkDeleteButton();
+        
+        // Busca em tempo real
+        $('#course-search').on('keyup', function() {
+            var searchTerm = $(this).val().toLowerCase();
+            $('.course-list-item').each(function() {
+                var courseTitle = $(this).find('.course-title').text().toLowerCase();
+                
+                if (courseTitle.indexOf(searchTerm) > -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+            
+            // Atualizar botões após busca
+            updateBulkDeleteButton();
+        });
+        
+        // Marcar/desmarcar todos os cursos
+        $('#select-all-courses').on('click', function(e) {
+            e.preventDefault();
+            
+            var visibleCheckboxes = $('.course-select:visible');
+            var checkedCheckboxes = $('.course-select:visible:checked');
+            
+            if (checkedCheckboxes.length === visibleCheckboxes.length && visibleCheckboxes.length > 0) {
+                // Se todos estão marcados, desmarcar todos
+                visibleCheckboxes.prop('checked', false);
+            } else {
+                // Se nem todos estão marcados, marcar todos
+                visibleCheckboxes.prop('checked', true);
+            }
+            
+            // Trigger change event para atualizar visualmente
+            visibleCheckboxes.trigger('change');
+            updateBulkDeleteButton();
+        });
+        
+        // Atualizar botão de exclusão em lote quando checkboxes mudarem
+        $(document).on('change', '.course-select', function() {
+            var courseItem = $(this).closest('.course-list-item');
+            
+            if ($(this).is(':checked')) {
+                courseItem.addClass('checkbox-selected');
+            } else {
+                courseItem.removeClass('checkbox-selected');
+            }
+            
+            updateBulkDeleteButton();
+        });
+        
+        // Exclusão em lote
+        $('#bulk-delete').on('click', function() {
+            var selectedCourses = $('.course-select:checked').map(function() {
+                return $(this).val();
+            }).get();
+            
+            if (selectedCourses.length === 0) {
+                alert('Selecione pelo menos um curso para excluir.');
+                return;
+            }
+            
+            if (confirm('Tem certeza que deseja excluir ' + selectedCourses.length + ' curso(s) selecionado(s)?')) {
+                // Criar formulário para envio
+                var form = $('<form>', {
+                    'method': 'POST',
+                    'action': '<?php echo admin_url('admin.php?page=cetesi-courses-management'); ?>'
+                });
+                
+                // Adicionar nonce
+                form.append($('<input>', {
+                    'type': 'hidden',
+                    'name': '_wpnonce',
+                    'value': '<?php echo wp_create_nonce('bulk_delete_courses'); ?>'
+                }));
+                
+                // Adicionar ação
+                form.append($('<input>', {
+                    'type': 'hidden',
+                    'name': 'bulk_action',
+                    'value': 'delete'
+                }));
+                
+                // Adicionar IDs dos cursos
+                $.each(selectedCourses, function(index, courseId) {
+                    form.append($('<input>', {
+                        'type': 'hidden',
+                        'name': 'course_ids[]',
+                        'value': courseId
+                    }));
+                });
+                
+                // Enviar formulário
+                $('body').append(form);
+                form.submit();
+            }
+        });
+        
+        function updateBulkDeleteButton() {
+            var checkedCount = $('.course-select:checked').length;
+            var bulkDeleteBtn = $('#bulk-delete');
+            
+            if (checkedCount > 0) {
+                bulkDeleteBtn.prop('disabled', false).show();
+                bulkDeleteBtn.find('.btn-label').text('Excluir Selecionados (' + checkedCount + ')');
+            } else {
+                bulkDeleteBtn.prop('disabled', true).hide();
+                bulkDeleteBtn.find('.btn-label').text('Excluir Selecionados');
+            }
+        }
+    });
+    </script>
+    <?php
+}
+
+/**
+ * Processar exclusão em lote de cursos
+ */
+function cetesi_process_bulk_delete() {
+    // Verificar nonce
+    if (!wp_verify_nonce($_POST['_wpnonce'], 'bulk_delete_courses')) {
+        wp_die('Erro de segurança. Tente novamente.');
+    }
+    
+    // Verificar permissões
+    if (!current_user_can('delete_posts')) {
+        wp_die('Você não tem permissão para excluir cursos.');
+    }
+    
+    $course_ids = array_map('intval', $_POST['course_ids']);
+    $deleted_count = 0;
+    
+    foreach ($course_ids as $course_id) {
+        if (get_post_type($course_id) === 'curso') {
+            if (wp_delete_post($course_id, true)) {
+                $deleted_count++;
+            }
+        }
+    }
+    
+    // Redirecionar com mensagem de sucesso
+    $redirect_url = add_query_arg(array(
+        'page' => 'cetesi-courses-management',
+        'bulk_deleted' => $deleted_count
+    ), admin_url('admin.php'));
+    
+    wp_redirect($redirect_url);
+    exit;
+}
+
+/**
+ * Processar ações de curso (excluir, etc.)
+ */
+function cetesi_process_course_action() {
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para realizar esta ação.');
+    }
+    
+    $action = sanitize_text_field($_GET['action']);
+    $course_id = intval($_GET['course_id']);
+    
+    if ($action === 'delete') {
+        if (wp_verify_nonce($_GET['_wpnonce'], 'delete_course_' . $course_id)) {
+            wp_delete_post($course_id, true);
+            echo '<div class="notice notice-success is-dismissible"><p>Curso excluído com sucesso!</p></div>';
+        }
+    }
+}
 
 /**
  * Callback para informações do membro da equipe
@@ -3635,9 +5106,9 @@ function cetesi_handle_contact_form() {
         wp_send_json_error('Muitas tentativas. Aguarde 5 minutos antes de tentar novamente.');
     }
     
-    // Verificar IP malicioso
-    if (!cetesi_check_malicious_ip($ip)) {
-        wp_send_json_error('Acesso negado.');
+    // Verificação de segurança básica
+    if (empty($ip) || !filter_var($ip, FILTER_VALIDATE_IP)) {
+        wp_send_json_error('IP inválido.');
     }
     
     // Validar e sanitizar dados com validação rigorosa
@@ -4624,11 +6095,13 @@ function cetesi_add_professor_page() {
             $upload = wp_handle_upload($_FILES['foto_professor'], array('test_form' => false));
             
             if (!isset($upload['error'])) {
-                // Verificar integridade do arquivo após upload
-                if (!cetesi_check_file_integrity($upload['file'])) {
-                    cetesi_log_security_event('PROFESSOR_UPLOAD_INTEGRITY', 'File integrity check failed', 'WARNING');
-                    unlink($upload['file']); // Remover arquivo suspeito
-                    echo '<div class="notice notice-error"><p>Arquivo corrompido detectado.</p></div>';
+                // Verificação básica de arquivo
+                if (!file_exists($upload['file']) || filesize($upload['file']) === 0) {
+                    cetesi_log_security_event('PROFESSOR_UPLOAD_ERROR', 'Invalid file uploaded', 'WARNING');
+                    if (file_exists($upload['file'])) {
+                        unlink($upload['file']); // Remover arquivo inválido
+                    }
+                    echo '<div class="notice notice-error"><p>Arquivo inválido detectado.</p></div>';
                     return;
                 }
                 
