@@ -9,29 +9,65 @@
 get_header(); ?>
 
 <main id="main" class="site-main homepage">
-    <!-- Hero Section -->
-    <section class="hero-section">
+    <!-- Hero Section Ultra Moderna -->
+    <section class="hero-section-ultra-moderno">
+        
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Transforme sua <span class="highlight">Carreira</span> com o CETESI</h1>
-                <p class="hero-description">Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 15 anos com excelência acadêmica e infraestrutura moderna.</p>
-                
-                <div class="hero-badges">
-                    <span class="badge"><i class="fas fa-certificate"></i> Reconhecido pelo MEC</span>
-                    <span class="badge"><i class="fas fa-users"></i> +5.000 Alunos Formados</span>
-                    <span class="badge"><i class="fas fa-award"></i> Excelência Acadêmica</span>
-                    <span class="badge"><i class="fas fa-building"></i> Infraestrutura Moderna</span>
-                </div>
-                
-                <div class="hero-buttons">
-                    <a href="#cursos" class="btn-hero btn-hero-primary">
-                        <i class="fas fa-graduation-cap"></i>
-                        Ver Cursos
-                    </a>
-                    <a href="#contato" class="btn-hero btn-hero-secondary">
-                        <i class="fas fa-phone"></i>
-                        Fale Conosco
-                    </a>
+            <div class="hero-content-ultra">
+                <div class="hero-main-content">
+                    <!-- Título e Descrição Ultra Modernos -->
+                    <div class="hero-header-ultra" data-aos="fade-up" data-aos-delay="100">
+                        <h1 class="hero-titulo-ultra">Transforme sua <span class="highlight-ultra">Carreira</span> com o CETESI</h1>
+                        <p class="hero-descricao-ultra">Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 15 anos com excelência acadêmica e infraestrutura moderna.</p>
+                    </div>
+                    
+                    <!-- Badges Ultra Modernos -->
+                    <div class="hero-badges-ultra" data-aos="fade-up" data-aos-delay="200">
+                        <div class="badge-ultra badge-certificado-ultra" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="badge-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <span class="badge-text">Reconhecido pelo MEC</span>
+                        </div>
+                        
+                        <div class="badge-ultra badge-alunos-ultra" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="badge-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <span class="badge-text">+5.000 Alunos Formados</span>
+                        </div>
+                        
+                        <div class="badge-ultra badge-excelencia-ultra" data-aos="zoom-in" data-aos-delay="500">
+                            <div class="badge-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <span class="badge-text">Excelência Acadêmica</span>
+                        </div>
+                        
+                        <div class="badge-ultra badge-infraestrutura-ultra" data-aos="zoom-in" data-aos-delay="600">
+                            <div class="badge-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <span class="badge-text">Infraestrutura Moderna</span>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Ultra Moderno -->
+                    <div class="cta-botoes-ultra" data-aos="fade-up" data-aos-delay="700">
+                        <a href="#cursos" class="btn-hero-principal-ultra">
+                            <div class="btn-content-ultra">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Ver Cursos</span>
+                            </div>
+                            <div class="btn-shine-ultra"></div>
+                        </a>
+                        <a href="#contato" class="btn-hero-secundario-ultra">
+                            <div class="btn-content-ultra">
+                                <i class="fas fa-phone"></i>
+                                <span>Fale Conosco</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1208,6 +1244,409 @@ get_header(); ?>
 </main>
 
 <style>
+/* ===== ESTILOS ULTRA MODERNOS DA HERO SECTION HOMEPAGE ===== */
+
+/* Variáveis Ultra Modernas apenas para a Hero Section */
+.hero-section-ultra-moderno {
+    --primary-color: #3b82f6;
+    --primary-dark: #1e40af;
+    --primary-light: #60a5fa;
+    --secondary-color: #10b981;
+    --secondary-dark: #059669;
+    --secondary-light: #34d399;
+    --accent-color: #f59e0b;
+    --accent-dark: #d97706;
+    --accent-light: #fbbf24;
+    --accent-pink: #ec4899;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --success-color: #10b981;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-light: #94a3b8;
+    --text-muted: #cbd5e1;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-accent: #f1f5f9;
+    --bg-dark: #0f172a;
+    --border-color: #e2e8f0;
+    --border-light: #f1f5f9;
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --radius-xs: 0.125rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --radius-full: 9999px;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+    --space-3xl: 3rem;
+    --space-4xl: 4rem;
+    --space-5xl: 6rem;
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 300ms ease-in-out;
+    --transition-slow: 500ms ease-in-out;
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-pink) 100%);
+    --gradient-hero: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+/* ===== HERO ULTRA MODERNO HOMEPAGE ===== */
+.hero-section-ultra-moderno {
+    position: relative;
+    background: #111827;
+    padding: var(--space-3xl) 0;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.hero-content-ultra {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-main-content {
+    color: white;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* ===== BADGES ULTRA MODERNOS HOMEPAGE ===== */
+.hero-badges-ultra {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.badge-ultra {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-2xl);
+    font-size: 0.875rem;
+    font-weight: 600;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.badge-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.badge-ultra:hover::before {
+    left: 100%;
+}
+
+.badge-ultra:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: var(--shadow-lg);
+}
+
+.badge-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+}
+
+.badge-text {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+/* ===== HEADER ULTRA MODERNO HOMEPAGE ===== */
+.hero-header-ultra {
+    margin-bottom: var(--space-3xl);
+}
+
+.hero-titulo-ultra {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: var(--space-xl);
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.025em;
+}
+
+.highlight-ultra {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+.hero-descricao-ultra {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* ===== CTA ULTRA MODERNO HOMEPAGE ===== */
+
+
+.cta-botoes-ultra {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    margin: var(--space-3xl) 0;
+}
+
+.btn-hero-principal-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-2xl);
+    background: var(--gradient-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-2xl);
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-hero-principal-ultra:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-2xl);
+    color: white;
+}
+
+.btn-hero-principal-ultra .btn-shine-ultra {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn-hero-principal-ultra:hover .btn-shine-ultra {
+    left: 100%;
+}
+
+.btn-hero-secundario-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-2xl);
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-2xl);
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-hero-secundario-ultra:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-content-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    position: relative;
+    z-index: 2;
+}
+
+.btn-content-ultra i {
+    font-size: 1.25rem;
+}
+
+.btn-content-ultra span {
+    font-weight: inherit;
+}
+
+/* ===== RESPONSIVIDADE ULTRA MODERNA HOMEPAGE ===== */
+@media (max-width: 1200px) {
+    .hero-titulo-ultra {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section-ultra-moderno {
+        padding: var(--space-3xl) 0;
+        min-height: 70vh;
+    }
+    
+    .hero-titulo-ultra {
+        font-size: 2.5rem;
+    }
+    
+    .hero-descricao-ultra {
+        font-size: 1.125rem;
+    }
+    
+    
+    .hero-badges-ultra {
+        justify-content: center;
+    }
+    
+    
+    .cta-botoes-ultra {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-hero-principal-ultra,
+    .btn-hero-secundario-ultra {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section-ultra-moderno {
+        padding: var(--space-2xl) 0;
+        min-height: 60vh;
+    }
+    
+    .hero-titulo-ultra {
+        font-size: 2rem;
+    }
+    
+    .hero-descricao-ultra {
+        font-size: 1rem;
+    }
+    
+    
+    .badge-ultra {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.8rem;
+    }
+    
+    .badge-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+    
+    
+    .btn-hero-principal-ultra,
+    .btn-hero-secundario-ultra {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 1rem;
+    }
+}
+
+/* ===== ANIMAÇÕES E MICRO-INTERAÇÕES HOMEPAGE ===== */
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
+}
+
+@keyframes slide-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-scale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Aplicar animações aos elementos */
+.hero-badges-ultra .badge-ultra {
+    animation: slide-in-up 0.6s ease-out forwards;
+}
+
+.hero-header-ultra {
+    animation: fade-in-scale 0.8s ease-out forwards;
+}
+
+
+
+/* ===== MELHORIAS DE ACESSIBILIDADE HOMEPAGE ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== MELHORIAS DE PERFORMANCE HOMEPAGE ===== */
+.hero-section-ultra-moderno .badge-ultra:hover,
+.hero-section-ultra-moderno .btn-hero-principal-ultra:hover,
+.hero-section-ultra-moderno .btn-hero-secundario-ultra:hover {
+    will-change: transform;
+}
+
 /* Estilos para a seção de localização moderna */
 .localizacao-content-moderno {
     display: grid;
@@ -1472,5 +1911,123 @@ get_header(); ?>
     }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // ===== ANIMAÇÕES DE ENTRADA HOMEPAGE =====
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observar elementos com data-aos
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+    });
+
+    // ===== EFEITOS DE HOVER AVANÇADOS HOMEPAGE =====
+    const badges = document.querySelectorAll('.badge-ultra');
+    badges.forEach(badge => {
+        badge.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px) scale(1.02)';
+        });
+        
+        badge.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // ===== EFEITO RIPPLE NOS BOTÕES HOMEPAGE =====
+    const buttons = document.querySelectorAll('.btn-hero-principal-ultra, .btn-hero-secundario-ultra');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = this.querySelector('.btn-ripple');
+            if (ripple) {
+                ripple.style.width = '300px';
+                ripple.style.height = '300px';
+                ripple.style.opacity = '0';
+                
+                setTimeout(() => {
+                    ripple.style.width = '0';
+                    ripple.style.height = '0';
+                    ripple.style.opacity = '1';
+                }, 300);
+            }
+        });
+    });
+
+    // ===== SCROLL SUAVE HOMEPAGE =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ===== PARALLAX SUAVE NO HERO HOMEPAGE =====
+    const hero = document.querySelector('.hero-section-ultra-moderno');
+    if (hero) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+    }
+
+
+    // ===== PERFORMANCE: DEBOUNCE SCROLL HOMEPAGE =====
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(function() {
+            // Código de scroll aqui
+        }, 10);
+    });
+
+    // ===== MELHORIAS DE ACESSIBILIDADE HOMEPAGE =====
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+        }
+    });
+
+    document.addEventListener('mousedown', function() {
+        document.body.classList.remove('keyboard-navigation');
+    });
+
+    // ===== PRELOAD DE RECURSOS CRÍTICOS HOMEPAGE =====
+    const criticalResources = [
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap'
+    ];
+
+    criticalResources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'style';
+        link.href = resource;
+        document.head.appendChild(link);
+    });
+});
+</script>
 
 <?php get_footer(); ?>
