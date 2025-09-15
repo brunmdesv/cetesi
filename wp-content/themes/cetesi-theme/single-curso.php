@@ -1,33 +1,28 @@
 <?php
 /**
- * Template para cursos individuais - Design Moderno
+ * Template para cursos individuais - Design Ultra Moderno
  * 
  * @package CETESI
- * @version 2.0.0
+ * @version 3.0.0
  */
 
 get_header(); ?>
 
-<main id="main" class="site-main curso-moderno">
+<main id="main" class="site-main curso-ultra-moderno">
     <?php while (have_posts()) : the_post(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <!-- Breadcrumbs -->
-            <div class="curso-breadcrumbs">
-                <div class="container">
-                    <?php cetesi_breadcrumbs(); ?>
-                </div>
-            </div>
             
-            <!-- Hero Moderno -->
-            <section class="curso-hero-moderno">
-                <div class="hero-background">
-                    <div class="hero-pattern"></div>
-                    <div class="hero-gradient"></div>
+            <!-- Hero Ultra Moderno -->
+            <section class="curso-hero-ultra-moderno">
+                <div class="hero-background-ultra">
+                    <div class="hero-pattern-ultra"></div>
+                    <div class="hero-gradient-ultra"></div>
+                    <div class="hero-shapes"></div>
                 </div>
                 
                 <div class="container">
-                    <div class="hero-content">
-                        <div class="hero-left">
+                    <div class="hero-content-ultra">
+                        <div class="hero-main-content">
                                 <?php
                             // Campos dinâmicos
                             $nivel_ensino = get_post_meta(get_the_ID(), '_curso_nivel_ensino', true);
@@ -41,11 +36,14 @@ get_header(); ?>
                             $link_inscricao = get_post_meta(get_the_ID(), '_curso_link_inscricao', true);
                             ?>
                             
-                            <div class="curso-badges">
+                            <!-- Badges Ultra Modernos -->
+                            <div class="curso-badges-ultra">
                                 <?php if ($nivel_ensino) : ?>
-                                <div class="badge badge-nivel">
+                                <div class="badge-ultra badge-nivel-ultra" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="badge-icon">
                                     <i class="fas fa-award"></i>
-                                    <span><?php 
+                                    </div>
+                                    <span class="badge-text"><?php 
                                         $nivel_labels = array(
                                             'tecnico' => 'Técnico',
                                             'livre' => 'Curso Livre',
@@ -58,9 +56,11 @@ get_header(); ?>
                                 <?php endif; ?>
                                 
                                 <?php if ($modalidade) : ?>
-                                <div class="badge badge-modalidade">
+                                <div class="badge-ultra badge-modalidade-ultra" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="badge-icon">
                                     <i class="fas fa-<?php echo $modalidade === 'online' ? 'laptop' : 'building'; ?>"></i>
-                                    <span><?php 
+                                    </div>
+                                    <span class="badge-text"><?php 
                                         $modalidade_labels = array(
                                             'presencial' => 'Presencial',
                                             'online' => '100% Online',
@@ -72,9 +72,11 @@ get_header(); ?>
                                 <?php endif; ?>
                                 
                                 <?php if ($area_conhecimento) : ?>
-                                <div class="badge badge-area">
+                                <div class="badge-ultra badge-area-ultra" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="badge-icon">
                                     <i class="fas fa-category"></i>
-                                    <span><?php 
+                                    </div>
+                                    <span class="badge-text"><?php 
                                         $area_labels = array(
                                             'saude' => 'Saúde',
                                             'tecnologia' => 'Tecnologia',
@@ -88,30 +90,34 @@ get_header(); ?>
                                 <?php endif; ?>
                             </div>
                             
-                            <h1 class="curso-titulo-principal"><?php the_title(); ?></h1>
-                            <p class="curso-descricao"><?php the_excerpt(); ?></p>
+                            <!-- Título e Descrição Ultra Modernos -->
+                            <div class="curso-header-ultra" data-aos="fade-up" data-aos-delay="400">
+                                <h1 class="curso-titulo-ultra"><?php the_title(); ?></h1>
+                                <p class="curso-descricao-ultra"><?php the_excerpt(); ?></p>
+                            </div>
                             
-                            <div class="curso-info-grid">
+                            <!-- Grid de Informações Ultra Moderno -->
+                            <div class="curso-info-grid-ultra" data-aos="fade-up" data-aos-delay="500">
                                 <?php if ($duracao) : ?>
-                                <div class="info-item">
-                                    <div class="info-icon">
+                                <div class="info-item-ultra" data-aos="zoom-in" data-aos-delay="600">
+                                    <div class="info-icon-ultra">
                                     <i class="fas fa-clock"></i>
                                 </div>
-                                    <div class="info-content">
-                                        <span class="info-label">Duração</span>
-                                        <span class="info-value"><?php echo esc_html($duracao); ?></span>
+                                    <div class="info-content-ultra">
+                                        <span class="info-label-ultra">Duração</span>
+                                        <span class="info-value-ultra"><?php echo esc_html($duracao); ?></span>
                             </div>
                                 </div>
                                 <?php endif; ?>
                                 
                                 <?php if ($carga_horaria) : ?>
-                                <div class="info-item">
-                                    <div class="info-icon">
+                                <div class="info-item-ultra" data-aos="zoom-in" data-aos-delay="700">
+                                    <div class="info-icon-ultra">
                                     <i class="fas fa-book"></i>
                                     </div>
-                                    <div class="info-content">
-                                        <span class="info-label">Carga Horária</span>
-                                        <span class="info-value"><?php echo esc_html($carga_horaria); ?></span>
+                                    <div class="info-content-ultra">
+                                        <span class="info-label-ultra">Carga Horária</span>
+                                        <span class="info-value-ultra"><?php echo esc_html($carga_horaria); ?></span>
                                     </div>
                                 </div>
                                 <?php endif; ?>
@@ -120,13 +126,13 @@ get_header(); ?>
                                 $turno = get_post_meta(get_the_ID(), '_curso_turno', true);
                                 if ($turno) :
                                 ?>
-                                <div class="info-item">
-                                    <div class="info-icon">
+                                <div class="info-item-ultra" data-aos="zoom-in" data-aos-delay="800">
+                                    <div class="info-icon-ultra">
                                         <i class="fas fa-schedule"></i>
                                     </div>
-                                    <div class="info-content">
-                                        <span class="info-label">Turno</span>
-                                        <span class="info-value"><?php 
+                                    <div class="info-content-ultra">
+                                        <span class="info-label-ultra">Turno</span>
+                                        <span class="info-value-ultra"><?php 
                                             $turno_labels = array(
                                                 'matutino' => 'Matutino',
                                                 'vespertino' => 'Vespertino',
@@ -141,65 +147,63 @@ get_header(); ?>
                                 <?php endif; ?>
                             </div>
                             
-                            <div class="hero-actions">
-                                <?php if ($link_inscricao) : ?>
-                                <a href="<?php echo esc_url($link_inscricao); ?>" class="btn-inscricao-principal" target="_blank">
-                                        <i class="fas fa-graduation-cap"></i>
-                                    <span>Inscrever-se Agora</span>
-                                    <div class="btn-shine"></div>
-                                    </a>
-                                    <?php endif; ?>
-                                    
-                                <a href="#curso-detalhes" class="btn-saiba-mais">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span>Saiba Mais</span>
-                                    </a>
-                                </div>
                             </div>
                         
-                        <div class="hero-right">
-                            <div class="curso-card-preco">
-                                <div class="card-header">
-                                    <h3>Investimento</h3>
+                        <!-- Card de Preço Ultra Moderno -->
+                        <div class="hero-sidebar-ultra" data-aos="fade-left" data-aos-delay="1000">
+                            <div class="curso-card-preco-ultra">
+                                <div class="card-header-ultra">
+                                    <h3 class="card-titulo-ultra">Investimento</h3>
                                     <?php if ($desconto) : ?>
-                                    <div class="desconto-badge"><?php echo esc_html($desconto); ?></div>
+                                    <div class="desconto-badge-ultra">
+                                        <span class="desconto-texto"><?php echo esc_html($desconto); ?></span>
+                                    </div>
                                 <?php endif; ?>
                         </div>
                         
-                                <div class="card-preco">
+                                <div class="card-preco-ultra">
                                     <?php if ($preco_promocional && $preco_promocional !== $preco) : ?>
-                                        <div class="preco-promocional">
-                                            <span class="preco-valor-promocional"><?php echo esc_html($preco_promocional); ?></span>
+                                        <div class="preco-promocional-ultra">
+                                            <span class="preco-valor-promocional-ultra"><?php echo esc_html($preco_promocional); ?></span>
                                         </div>
-                                        <div class="preco-original">
-                                            <span class="preco-valor-original"><?php echo esc_html($preco); ?></span>
+                                        <div class="preco-original-ultra">
+                                            <span class="preco-valor-original-ultra"><?php echo esc_html($preco); ?></span>
                                         </div>
                                     <?php else : ?>
-                                        <div class="preco-normal">
-                                            <span class="preco-valor"><?php echo esc_html($preco); ?></span>
+                                        <div class="preco-normal-ultra">
+                                            <span class="preco-valor-ultra"><?php echo esc_html($preco); ?></span>
                         </div>
                         <?php endif; ?>
                                 </div>
                                 
-                                <div class="card-beneficios">
-                                    <div class="beneficio-item">
+                                <div class="card-beneficios-ultra">
+                                    <div class="beneficio-item-ultra">
+                                        <div class="beneficio-icon">
                                         <i class="fas fa-check-circle"></i>
-                                        <span>Material incluso</span>
                                     </div>
-                                    <div class="beneficio-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Certificado válido</span>
+                                        <span class="beneficio-texto">Material incluso</span>
                                     </div>
-                                    <div class="beneficio-item">
+                                    <div class="beneficio-item-ultra">
+                                        <div class="beneficio-icon">
                                         <i class="fas fa-check-circle"></i>
-                                        <span>Suporte completo</span>
+                                    </div>
+                                        <span class="beneficio-texto">Certificado válido</span>
+                                    </div>
+                                    <div class="beneficio-item-ultra">
+                                        <div class="beneficio-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <span class="beneficio-texto">Suporte completo</span>
                                     </div>
                                 </div>
                                 
                                 <?php if ($link_inscricao) : ?>
-                                <a href="<?php echo esc_url($link_inscricao); ?>" class="btn-inscricao-card" target="_blank">
+                                <a href="<?php echo esc_url($link_inscricao); ?>" class="btn-inscricao-card-ultra" target="_blank" rel="noopener">
+                                    <div class="btn-content">
                                     <i class="fas fa-rocket"></i>
                                     <span>Começar Agora</span>
+                                    </div>
+                                    <div class="btn-shine-ultra"></div>
                                 </a>
                                 <?php endif; ?>
                             </div>
@@ -208,59 +212,60 @@ get_header(); ?>
                 </div>
             </section>
 
-            <!-- Seção de Detalhes do Curso -->
-            <section id="curso-detalhes" class="curso-detalhes-section">
+            <!-- Seção de Detalhes do Curso Ultra Moderna -->
+            <section id="curso-detalhes" class="curso-detalhes-section-ultra">
                 <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-titulo">
-                            <span class="titulo-icon">
+                    <div class="section-header-ultra">
+                        <h2 class="section-titulo-ultra">
+                            <span class="titulo-icon-ultra">
                                 <i class="fas fa-info-circle"></i>
                             </span>
                             Detalhes do Curso
                         </h2>
+                        <p class="section-subtitulo-ultra">Conheça todos os aspectos importantes do curso</p>
                                 </div>
                     
-                    <div class="detalhes-grid-novo">
-                        <div class="detalhes-card">
-                            <div class="card-icon">
+                    <div class="detalhes-grid-ultra">
+                        <div class="detalhes-card-ultra" data-aos="fade-up" data-aos-delay="100">
+                            <div class="card-icon-ultra">
                                 <i class="fas fa-graduation-cap"></i>
                             </div>
-                            <h3>Objetivos</h3>
+                            <h3 class="card-titulo-ultra">Objetivos</h3>
                                     <?php
                             $objetivos = get_post_meta(get_the_ID(), '_curso_objetivos', true);
                             if ($objetivos) :
                             ?>
-                                <p><?php echo esc_html($objetivos); ?></p>
+                                <p class="card-descricao-ultra"><?php echo esc_html($objetivos); ?></p>
                             <?php else : ?>
-                                <p>Formar profissionais capacitados e preparados para o mercado de trabalho, desenvolvendo competências técnicas e habilidades práticas essenciais.</p>
+                                <p class="card-descricao-ultra">Formar profissionais capacitados e preparados para o mercado de trabalho, desenvolvendo competências técnicas e habilidades práticas essenciais.</p>
                                     <?php endif; ?>
                             </div>
                             
-                        <div class="detalhes-card">
-                            <div class="card-icon">
+                        <div class="detalhes-card-ultra" data-aos="fade-up" data-aos-delay="200">
+                            <div class="card-icon-ultra">
                                 <i class="fas fa-chalkboard-teacher"></i>
                                 </div>
-                            <h3>Metodologia</h3>
+                            <h3 class="card-titulo-ultra">Metodologia</h3>
                             <?php
                             $metodologia = get_post_meta(get_the_ID(), '_curso_metodologia', true);
                             if ($metodologia) :
                             ?>
-                                <p><?php echo esc_html($metodologia); ?></p>
+                                <p class="card-descricao-ultra"><?php echo esc_html($metodologia); ?></p>
                             <?php else : ?>
-                                <p>Metodologia ativa com aulas teóricas, práticas laboratoriais, estudos de caso e estágio supervisionado em ambiente real de trabalho.</p>
+                                <p class="card-descricao-ultra">Metodologia ativa com aulas teóricas, práticas laboratoriais, estudos de caso e estágio supervisionado em ambiente real de trabalho.</p>
                         <?php endif; ?>
                             </div>
                             
-                        <div class="detalhes-card">
-                            <div class="card-icon">
+                        <div class="detalhes-card-ultra" data-aos="fade-up" data-aos-delay="300">
+                            <div class="card-icon-ultra">
                                 <i class="fas fa-certificate"></i>
                                 </div>
-                            <h3>Certificação</h3>
+                            <h3 class="card-titulo-ultra">Certificação</h3>
                             <?php
                             $certificacao = get_post_meta(get_the_ID(), '_curso_certificacao', true);
                             $reconhecimento = get_post_meta(get_the_ID(), '_curso_reconhecimento', true);
                             ?>
-                            <p>
+                            <p class="card-descricao-ultra">
                                 <?php if ($certificacao) : ?>
                                     <?php echo esc_html($certificacao); ?>
                                 <?php else : ?>
@@ -268,7 +273,7 @@ get_header(); ?>
                                 <?php endif; ?>
                                 
                                 <?php if ($reconhecimento) : ?>
-                                    <br><small>
+                                    <br><small class="reconhecimento-texto">
                                         <?php 
                                         $reconhecimento_labels = array(
                                             'mec' => 'Reconhecido pelo MEC',
@@ -283,17 +288,17 @@ get_header(); ?>
                             </p>
                             </div>
                         
-                        <!-- Grade Curricular ocupando toda a largura -->
-                        <div class="detalhes-card detalhes-card-full">
-                            <div class="card-icon">
+                        <!-- Grade Curricular Ultra Moderna -->
+                        <div class="detalhes-card-ultra detalhes-card-full-ultra" data-aos="fade-up" data-aos-delay="400">
+                            <div class="card-icon-ultra">
                                 <i class="fas fa-list-ul"></i>
                         </div>
-                            <h3>Grade Curricular</h3>
+                            <h3 class="card-titulo-ultra">Grade Curricular</h3>
                             <?php
                             $disciplinas = get_post_meta(get_the_ID(), '_curso_disciplinas', true);
                             if ($disciplinas) :
                             ?>
-                                <div class="disciplinas-lista">
+                                <div class="disciplinas-lista-ultra">
                                     <?php 
                                     // Substituir | por - na grade curricular
                                     $disciplinas_formatadas = str_replace('|', '-', $disciplinas);
@@ -301,58 +306,74 @@ get_header(); ?>
                                     ?>
                                 </div>
                             <?php else : ?>
-                                <p>Grade curricular completa com disciplinas teóricas e práticas, incluindo estágio supervisionado e atividades complementares.</p>
+                                <p class="card-descricao-ultra">Grade curricular completa com disciplinas teóricas e práticas, incluindo estágio supervisionado e atividades complementares.</p>
                         <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Seção de Mercado de Trabalho -->
-            <section class="mercado-trabalho-section">
+            <!-- Seção de Mercado de Trabalho Ultra Moderna -->
+            <section class="mercado-trabalho-section-ultra">
                 <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-titulo">
-                            <span class="titulo-icon">
+                    <div class="section-header-ultra">
+                        <h2 class="section-titulo-ultra">
+                            <span class="titulo-icon-ultra">
                                 <i class="fas fa-briefcase"></i>
                             </span>
                             Mercado de Trabalho
                         </h2>
+                        <p class="section-subtitulo-ultra">Descubra as oportunidades e perspectivas profissionais</p>
                                         </div>
                     
-                    <div class="mercado-content">
-                        <div class="mercado-stats">
+                    <div class="mercado-content-ultra">
+                        <div class="mercado-stats-ultra">
                             <?php
                             $salario_medio = get_post_meta(get_the_ID(), '_curso_salario_medio', true);
                             $oportunidades = get_post_meta(get_the_ID(), '_curso_oportunidades', true);
                             ?>
                             
-                            <div class="stat-card">
-                                <div class="stat-number">95%</div>
-                                <div class="stat-label">Taxa de Empregabilidade</div>
+                            <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="100">
+                                <div class="stat-icon-ultra">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="stat-number-ultra">95%</div>
+                                <div class="stat-label-ultra">Taxa de Empregabilidade</div>
                             </div>
                             
                             <?php if ($salario_medio) : ?>
-                            <div class="stat-card">
-                                <div class="stat-number"><?php echo esc_html($salario_medio); ?></div>
-                                <div class="stat-label">Salário Médio</div>
+                            <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="200">
+                                <div class="stat-icon-ultra">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="stat-number-ultra"><?php echo esc_html($salario_medio); ?></div>
+                                <div class="stat-label-ultra">Salário Médio</div>
                                 </div>
                             <?php else : ?>
-                            <div class="stat-card">
-                                <div class="stat-number">R$ 3.500</div>
-                                <div class="stat-label">Salário Inicial</div>
+                            <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="200">
+                                <div class="stat-icon-ultra">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="stat-number-ultra">R$ 3.500</div>
+                                <div class="stat-label-ultra">Salário Inicial</div>
                                     </div>
                                     <?php endif; ?>
                                     
                             <?php if ($oportunidades) : ?>
-                            <div class="stat-card">
-                                <div class="stat-number"><?php echo esc_html($oportunidades); ?></div>
-                                <div class="stat-label">Oportunidades</div>
+                            <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="stat-icon-ultra">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="stat-number-ultra"><?php echo esc_html($oportunidades); ?></div>
+                                <div class="stat-label-ultra">Oportunidades</div>
                                         </div>
                             <?php else : ?>
-                            <div class="stat-card">
-                                <div class="stat-number">15%</div>
-                                <div class="stat-label">Crescimento Anual</div>
+                            <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="stat-icon-ultra">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="stat-number-ultra">15%</div>
+                                <div class="stat-label-ultra">Crescimento Anual</div>
                                     </div>
                                     <?php endif; ?>
                         </div>
@@ -430,19 +451,20 @@ get_header(); ?>
                 </div>
             </section>
 
-            <!-- Seção de Pré-requisitos -->
-            <section class="prerequisitos-section">
+            <!-- Seção de Pré-requisitos Ultra Moderna -->
+            <section class="prerequisitos-section-ultra">
                 <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-titulo">
-                            <span class="titulo-icon">
+                    <div class="section-header-ultra">
+                        <h2 class="section-titulo-ultra">
+                            <span class="titulo-icon-ultra">
                                 <i class="fas fa-clipboard-list"></i>
                             </span>
                             Pré-requisitos e Documentos
                         </h2>
+                        <p class="section-subtitulo-ultra">Tudo que você precisa saber para se inscrever</p>
                     </div>
                     
-                    <div class="prerequisitos-content">
+                    <div class="prerequisitos-content-ultra">
                         <?php
                         $prerequisitos = get_post_meta(get_the_ID(), '_curso_prerequisitos', true);
                         $documentos = get_post_meta(get_the_ID(), '_curso_documentos', true);
@@ -450,16 +472,16 @@ get_header(); ?>
                         $idade_minima = get_post_meta(get_the_ID(), '_curso_idade_minima', true);
                         ?>
                         
-                        <div class="prerequisitos-grid-novo">
-                            <!-- Primeira linha: Escolaridade (35%) + Pré-requisitos (65%) -->
-                            <div class="requisito-card requisito-card-small">
-                                <div class="requisito-header">
-                                    <div class="requisito-icon">
+                        <div class="prerequisitos-grid-ultra">
+                            <!-- Primeira linha: Escolaridade + Pré-requisitos -->
+                            <div class="requisito-card-ultra requisito-card-small-ultra" data-aos="fade-up" data-aos-delay="100">
+                                <div class="requisito-header-ultra">
+                                    <div class="requisito-icon-ultra">
                                         <i class="fas fa-book"></i>
                                     </div>
-                                    <h3>Escolaridade</h3>
+                                    <h3 class="requisito-titulo-ultra">Escolaridade</h3>
                                 </div>
-                                <p><?php 
+                                <p class="requisito-descricao-ultra"><?php 
                                     if ($escolaridade) {
                                         $escolaridade_labels = array(
                                             'fundamental' => 'Ensino Fundamental Completo',
@@ -474,14 +496,14 @@ get_header(); ?>
                                 ?></p>
                             </div>
                             
-                            <div class="requisito-card requisito-card-large">
-                                <div class="requisito-header">
-                                    <div class="requisito-icon">
+                            <div class="requisito-card-ultra requisito-card-large-ultra" data-aos="fade-up" data-aos-delay="200">
+                                <div class="requisito-header-ultra">
+                                    <div class="requisito-icon-ultra">
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </div>
-                                    <h3>Pré-requisitos Específicos</h3>
+                                    <h3 class="requisito-titulo-ultra">Pré-requisitos Específicos</h3>
                                 </div>
-                                <p><?php 
+                                <p class="requisito-descricao-ultra"><?php 
                                     if (!empty($prerequisitos)) {
                                         $prerequisitos_formatados = str_replace('|', ',', $prerequisitos);
                                         echo esc_html($prerequisitos_formatados);
@@ -491,25 +513,25 @@ get_header(); ?>
                                 ?></p>
                             </div>
                             
-                            <!-- Segunda linha: Idade Mínima (35%) + Documentos (65%) -->
-                            <div class="requisito-card requisito-card-small">
-                                <div class="requisito-header">
-                                    <div class="requisito-icon">
+                            <!-- Segunda linha: Idade Mínima + Documentos -->
+                            <div class="requisito-card-ultra requisito-card-small-ultra" data-aos="fade-up" data-aos-delay="300">
+                                <div class="requisito-header-ultra">
+                                    <div class="requisito-icon-ultra">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
-                                    <h3>Idade Mínima</h3>
+                                    <h3 class="requisito-titulo-ultra">Idade Mínima</h3>
                                 </div>
-                                <p><?php echo !empty($idade_minima) ? esc_html($idade_minima) . ' anos' : '18 anos'; ?></p>
+                                <p class="requisito-descricao-ultra"><?php echo !empty($idade_minima) ? esc_html($idade_minima) . ' anos' : '18 anos'; ?></p>
                             </div>
                             
-                            <div class="requisito-card requisito-card-large">
-                                <div class="requisito-header">
-                                    <div class="requisito-icon">
+                            <div class="requisito-card-ultra requisito-card-large-ultra" data-aos="fade-up" data-aos-delay="400">
+                                <div class="requisito-header-ultra">
+                                    <div class="requisito-icon-ultra">
                                         <i class="fas fa-file-alt"></i>
                                     </div>
-                                    <h3>Documentos Necessários</h3>
+                                    <h3 class="requisito-titulo-ultra">Documentos Necessários</h3>
                                 </div>
-                                <p><?php 
+                                <p class="requisito-descricao-ultra"><?php 
                                     if (!empty($documentos)) {
                                         $documentos_formatados = str_replace('|', ',', $documentos);
                                         echo esc_html($documentos_formatados);
@@ -523,72 +545,79 @@ get_header(); ?>
                 </div>
             </section>
 
-            <!-- Seção de Localização -->
-            <section class="localizacao-section">
+            <!-- Seção de Localização Ultra Moderna -->
+            <section class="localizacao-section-ultra">
                 <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-titulo">
-                            <span class="titulo-icon">
+                    <div class="section-header-ultra">
+                        <h2 class="section-titulo-ultra">
+                            <span class="titulo-icon-ultra">
                                 <i class="fas fa-map-marker-alt"></i>
                             </span>
                             Localização
                         </h2>
+                        <p class="section-subtitulo-ultra">Encontre-nos facilmente em Ceilândia, Brasília</p>
                     </div>
                     
-                    <div class="localizacao-content-moderno">
+                    <div class="localizacao-content-ultra">
                         <!-- Informações principais -->
-                        <div class="localizacao-principal">
-                            <div class="endereco-card-moderno">
-                                <div class="endereco-header">
-                                    <div class="endereco-icon">
+                        <div class="localizacao-principal-ultra">
+                            <div class="endereco-card-ultra" data-aos="fade-right" data-aos-delay="100">
+                                <div class="endereco-header-ultra">
+                                    <div class="endereco-icon-ultra">
                                         <i class="fas fa-map-marker-alt"></i>
                                     </div>
-                                    <h3>Nossa Localização</h3>
+                                    <h3 class="endereco-titulo-ultra">Nossa Localização</h3>
                                 </div>
                                 
-                                <div class="endereco-detalhes-moderno">
-                                    <div class="endereco-linha">
-                                        <i class="fas fa-building"></i>
-                                        <span><strong>QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102</strong></span>
+                                <div class="endereco-detalhes-ultra">
+                                    <div class="endereco-linha-ultra">
+                                        <div class="endereco-linha-icon">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <span class="endereco-linha-texto"><strong>QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102</strong></span>
                                     </div>
-                                    <div class="endereco-linha">
-                                        <i class="fas fa-city"></i>
-                                        <span>Ceilândia, Brasília - DF</span>
+                                    <div class="endereco-linha-ultra">
+                                        <div class="endereco-linha-icon">
+                                            <i class="fas fa-city"></i>
+                                        </div>
+                                        <span class="endereco-linha-texto">Ceilândia, Brasília - DF</span>
                                     </div>
-                                    <div class="endereco-linha">
-                                        <i class="fas fa-mail-bulk"></i>
-                                        <span>CEP: 72220-025</span>
+                                    <div class="endereco-linha-ultra">
+                                        <div class="endereco-linha-icon">
+                                            <i class="fas fa-mail-bulk"></i>
+                                        </div>
+                                        <span class="endereco-linha-texto">CEP: 72220-025</span>
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- Recursos e facilidades -->
-                            <div class="facilidades-card">
-                                <h4>Facilidades</h4>
-                                <div class="facilidades-grid">
-                                    <div class="facilidade-item">
-                                        <div class="facilidade-icon transporte">
+                            <div class="facilidades-card-ultra" data-aos="fade-right" data-aos-delay="200">
+                                <h4 class="facilidades-titulo-ultra">Facilidades</h4>
+                                <div class="facilidades-grid-ultra">
+                                    <div class="facilidade-item-ultra">
+                                        <div class="facilidade-icon-ultra transporte-ultra">
                                             <i class="fas fa-bus"></i>
                                         </div>
-                                        <div class="facilidade-texto">
+                                        <div class="facilidade-texto-ultra">
                                             <strong>Transporte Público</strong>
                                             <span>Fácil acesso por ônibus</span>
                                         </div>
                                     </div>
-                                    <div class="facilidade-item">
-                                        <div class="facilidade-icon estacionamento">
+                                    <div class="facilidade-item-ultra">
+                                        <div class="facilidade-icon-ultra estacionamento-ultra">
                                             <i class="fas fa-car"></i>
                                         </div>
-                                        <div class="facilidade-texto">
+                                        <div class="facilidade-texto-ultra">
                                             <strong>Estacionamento</strong>
                                             <span>Vagas disponíveis</span>
                                         </div>
                                     </div>
-                                    <div class="facilidade-item">
-                                        <div class="facilidade-icon metro">
+                                    <div class="facilidade-item-ultra">
+                                        <div class="facilidade-icon-ultra metro-ultra">
                                             <i class="fas fa-subway"></i>
                                         </div>
-                                        <div class="facilidade-texto">
+                                        <div class="facilidade-texto-ultra">
                                             <strong>Metrô</strong>
                                             <span>Próximo à estação</span>
                                         </div>
@@ -598,24 +627,24 @@ get_header(); ?>
                         </div>
                         
                         <!-- Ações e mapa -->
-                        <div class="localizacao-secundaria">
-                            <div class="acoes-card">
-                                <h4>Como Chegar</h4>
-                                <div class="acoes-botoes">
-                                    <a href="https://maps.app.goo.gl/BtrBP6btCBaYzEBfA" target="_blank" class="btn-acao btn-maps-moderno" rel="noopener">
-                                        <div class="btn-icon">
+                        <div class="localizacao-secundaria-ultra">
+                            <div class="acoes-card-ultra" data-aos="fade-left" data-aos-delay="300">
+                                <h4 class="acoes-titulo-ultra">Como Chegar</h4>
+                                <div class="acoes-botoes-ultra">
+                                    <a href="https://maps.app.goo.gl/BtrBP6btCBaYzEBfA" target="_blank" class="btn-acao-ultra btn-maps-ultra" rel="noopener">
+                                        <div class="btn-icon-ultra">
                                             <i class="fas fa-map-marker-alt"></i>
                                         </div>
-                                        <div class="btn-texto">
+                                        <div class="btn-texto-ultra">
                                             <strong>Ver no Maps</strong>
                                             <span>Navegação GPS</span>
                                         </div>
                                     </a>
-                                    <a href="tel:<?php echo esc_attr(get_theme_mod('cetesi_phone', '(61) 99999-9999')); ?>" class="btn-acao btn-ligar-moderno">
-                                        <div class="btn-icon">
+                                    <a href="tel:<?php echo esc_attr(get_theme_mod('cetesi_phone', '(61) 99999-9999')); ?>" class="btn-acao-ultra btn-ligar-ultra">
+                                        <div class="btn-icon-ultra">
                                             <i class="fas fa-phone"></i>
                                         </div>
-                                        <div class="btn-texto">
+                                        <div class="btn-texto-ultra">
                                             <strong>Ligar Agora</strong>
                                             <span>Fale conosco</span>
                                         </div>
@@ -623,12 +652,12 @@ get_header(); ?>
                                 </div>
                             </div>
                             
-                            <div class="mapa-container-moderno">
-                                <div class="mapa-header">
+                            <div class="mapa-container-ultra" data-aos="fade-left" data-aos-delay="400">
+                                <div class="mapa-header-ultra">
                                     <i class="fas fa-map"></i>
                                     <span>Localização no Mapa</span>
                                 </div>
-                                <div class="mapa-wrapper">
+                                <div class="mapa-wrapper-ultra">
                                     <iframe 
                                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.1234567890123!2d-48.12345678901234!3d-15.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDA3JzI0LjQiUyA0OMKwMDcrMjQuNCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
                                         width="100%" 
@@ -645,61 +674,62 @@ get_header(); ?>
                 </div>
             </section>
 
-            <!-- Seção de Formas de Pagamento -->
-            <section class="pagamento-section">
+            <!-- Seção de Formas de Pagamento Ultra Moderna -->
+            <section class="pagamento-section-ultra">
                 <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-titulo">
-                            <span class="titulo-icon">
+                    <div class="section-header-ultra">
+                        <h2 class="section-titulo-ultra">
+                            <span class="titulo-icon-ultra">
                                 <i class="fas fa-credit-card"></i>
                             </span>
                             Formas de Pagamento
                         </h2>
-                                    </div>
+                        <p class="section-subtitulo-ultra">Opções flexíveis para facilitar seu investimento</p>
+                    </div>
                     
-                    <div class="pagamento-content">
+                    <div class="pagamento-content-ultra">
                         <?php
                         $forma_pagamento = get_post_meta(get_the_ID(), '_curso_forma_pagamento', true);
                         $parcelamento = get_post_meta(get_the_ID(), '_curso_parcelamento', true);
                         ?>
                         
-                        <div class="pagamento-grid">
-                            <div class="pagamento-card">
-                                <div class="pagamento-icon">
+                        <div class="pagamento-grid-ultra">
+                            <div class="pagamento-card-ultra" data-aos="zoom-in" data-aos-delay="100">
+                                <div class="pagamento-icon-ultra">
                                     <i class="fas fa-money-bill-wave"></i>
                                 </div>
-                                <h3>Métodos Aceitos</h3>
+                                <h3 class="pagamento-titulo-ultra">Métodos Aceitos</h3>
                                 <?php if ($forma_pagamento) : ?>
-                                    <p><?php 
+                                    <p class="pagamento-descricao-ultra"><?php 
                                         $forma_pagamento_formatada = str_replace('|', ',', $forma_pagamento);
                                         echo esc_html($forma_pagamento_formatada); 
                                     ?></p>
                                 <?php else : ?>
-                                    <p>Dinheiro, cartão de crédito, débito, PIX e boleto bancário</p>
+                                    <p class="pagamento-descricao-ultra">Dinheiro, cartão de crédito, débito, PIX e boleto bancário</p>
                                 <?php endif; ?>
                             </div>
                             
-                            <div class="pagamento-card">
-                                <div class="pagamento-icon">
+                            <div class="pagamento-card-ultra" data-aos="zoom-in" data-aos-delay="200">
+                                <div class="pagamento-icon-ultra">
                                     <i class="fas fa-calendar-alt"></i>
-                        </div>
-                                <h3>Parcelamento</h3>
+                                </div>
+                                <h3 class="pagamento-titulo-ultra">Parcelamento</h3>
                                 <?php if ($parcelamento) : ?>
-                                    <p><?php 
+                                    <p class="pagamento-descricao-ultra"><?php 
                                         $parcelamento_formatado = str_replace('|', ',', $parcelamento);
                                         echo esc_html($parcelamento_formatado); 
                                     ?></p>
                                 <?php else : ?>
-                                    <p>Até 12x sem juros no cartão de crédito</p>
+                                    <p class="pagamento-descricao-ultra">Até 12x sem juros no cartão de crédito</p>
                                 <?php endif; ?>
                             </div>
                             
-                            <div class="pagamento-card">
-                                <div class="pagamento-icon">
+                            <div class="pagamento-card-ultra" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="pagamento-icon-ultra">
                                     <i class="fas fa-percentage"></i>
                                 </div>
-                                <h3>Descontos</h3>
-                                <p>Desconto especial para pagamento à vista</p>
+                                <h3 class="pagamento-titulo-ultra">Descontos</h3>
+                                <p class="pagamento-descricao-ultra">Desconto especial para pagamento à vista</p>
                             </div>
                         </div>
                     </div>
@@ -747,47 +777,1653 @@ get_header(); ?>
 </main>
 
 <style>
-/* ===== ESTILOS DA NOVA PÁGINA DE CURSO ===== */
+/* ===== ESTILOS ULTRA MODERNOS DA PÁGINA DE CURSO ===== */
 
-/* Reset e Variáveis */
-.curso-moderno {
-    --primary-color: #2563eb;
+/* Reset e Variáveis Ultra Modernas */
+.curso-ultra-moderno {
+    --primary-color: #3b82f6;
+    --primary-dark: #1e40af;
+    --primary-light: #60a5fa;
     --secondary-color: #10b981;
+    --secondary-dark: #059669;
+    --secondary-light: #34d399;
     --accent-color: #f59e0b;
+    --accent-dark: #d97706;
+    --accent-light: #fbbf24;
     --danger-color: #ef4444;
     --warning-color: #f59e0b;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
+    --success-color: #10b981;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
     --text-light: #94a3b8;
+    --text-muted: #cbd5e1;
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
-    --bg-accent: #f0f9ff;
+    --bg-accent: #f1f5f9;
+    --bg-dark: #0f172a;
     --border-color: #e2e8f0;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-    --radius-2xl: 1.5rem;
-    --space-xs: 0.5rem;
-    --space-sm: 0.75rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
+    --border-light: #f1f5f9;
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --radius-xs: 0.125rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --radius-full: 9999px;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+    --space-3xl: 3rem;
+    --space-4xl: 4rem;
+    --space-5xl: 6rem;
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 300ms ease-in-out;
+    --transition-slow: 500ms ease-in-out;
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+    --gradient-hero: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 }
 
-/* Breadcrumbs */
-.curso-breadcrumbs {
+
+/* ===== HERO ULTRA MODERNO ===== */
+.curso-hero-ultra-moderno {
+    position: relative;
+    background: var(--gradient-hero);
+    padding: var(--space-5xl) 0;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-background-ultra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.hero-pattern-ultra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    animation: float-ultra 20s ease-in-out infinite;
+}
+
+.hero-gradient-ultra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+}
+
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: shapes-move 30s linear infinite;
+}
+
+@keyframes float-ultra {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+@keyframes shapes-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(60px); }
+}
+
+.hero-content-ultra {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: var(--space-4xl);
+    align-items: start;
+}
+
+.hero-main-content {
+    color: white;
+}
+
+/* ===== BADGES ULTRA MODERNOS ===== */
+.curso-badges-ultra {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+    flex-wrap: wrap;
+}
+
+.badge-ultra {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-2xl);
+    font-size: 0.875rem;
+    font-weight: 600;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.badge-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.badge-ultra:hover::before {
+    left: 100%;
+}
+
+.badge-ultra:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: var(--shadow-lg);
+}
+
+.badge-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+}
+
+.badge-text {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+/* ===== HEADER ULTRA MODERNO ===== */
+.curso-header-ultra {
+    margin-bottom: var(--space-3xl);
+}
+
+.curso-titulo-ultra {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: var(--space-xl);
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.025em;
+}
+
+.curso-descricao-ultra {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+}
+
+/* ===== GRID DE INFORMAÇÕES ULTRA MODERNO ===== */
+.curso-info-grid-ultra {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.info-item-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-item-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.info-item-ultra:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-xl);
+}
+
+.info-icon-ultra {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+}
+
+.info-item-ultra:hover .info-icon-ultra {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.info-icon-ultra i {
+    color: white;
+    font-size: 1rem;
+}
+
+.info-content-ultra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.info-label-ultra {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.info-value-ultra {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: white;
+}
+
+
+/* ===== SIDEBAR ULTRA MODERNA ===== */
+.hero-sidebar-ultra {
+    position: sticky;
+    top: var(--space-2xl);
+}
+
+.curso-card-preco-ultra {
+    background: white;
+    border-radius: var(--radius-3xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-2xl);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.curso-card-preco-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.card-header-ultra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+}
+
+.card-titulo-ultra {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.desconto-badge-ultra {
+    background: var(--gradient-accent);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-xl);
+    font-size: 0.875rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+}
+
+.desconto-texto {
+    font-weight: 700;
+}
+
+.card-preco-ultra {
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+.preco-valor-promocional-ultra {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    display: block;
+    line-height: 1;
+}
+
+.preco-valor-original-ultra {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    text-decoration: line-through;
+    display: block;
+    margin-top: var(--space-sm);
+}
+
+.preco-valor-ultra {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    display: block;
+    line-height: 1;
+}
+
+.card-beneficios-ultra {
+    margin-bottom: var(--space-xl);
+}
+
+.beneficio-item-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-accent);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-normal);
+}
+
+.beneficio-item-ultra:hover {
     background: var(--bg-secondary);
-    padding: var(--space-md) 0;
-    border-bottom: 1px solid var(--border-color);
+    transform: translateX(4px);
 }
 
-/* Hero Moderno */
+.beneficio-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-secondary);
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.beneficio-texto {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.btn-inscricao-card-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    width: 100%;
+    padding: var(--space-lg);
+    background: var(--gradient-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-2xl);
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-inscricao-card-ultra:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+    color: white;
+}
+
+.btn-inscricao-card-ultra .btn-shine-ultra {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn-inscricao-card-ultra:hover .btn-shine-ultra {
+    left: 100%;
+}
+
+/* ===== SEÇÕES ULTRA MODERNAS ===== */
+
+/* Seção de Detalhes Ultra Moderna */
+.curso-detalhes-section-ultra {
+    padding: var(--space-5xl) 0;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.curso-detalhes-section-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(16, 185, 129, 0.02) 100%);
+    z-index: 1;
+}
+
+.section-header-ultra {
+    text-align: center;
+    margin-bottom: var(--space-4xl);
+    position: relative;
+    z-index: 2;
+}
+
+.section-titulo-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.025em;
+}
+
+.titulo-icon-ultra {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.75rem;
+    box-shadow: var(--shadow-xl);
+}
+
+.section-subtitulo-ultra {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.detalhes-grid-ultra {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    position: relative;
+    z-index: 2;
+}
+
+.detalhes-card-full-ultra {
+    grid-column: 1 / -1;
+}
+
+.detalhes-card-ultra {
+    background: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.detalhes-card-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.detalhes-card-ultra:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
+}
+
+.card-icon-ultra {
+    width: 90px;
+    height: 90px;
+    background: var(--gradient-secondary);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-xl);
+    color: white;
+    font-size: 2.25rem;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+}
+
+.detalhes-card-ultra:hover .card-icon-ultra {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.card-titulo-ultra {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.025em;
+}
+
+.card-descricao-ultra {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.reconhecimento-texto {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.disciplinas-lista-ultra {
+    text-align: left;
+    background: var(--bg-accent);
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Seção de Mercado de Trabalho Ultra Moderna */
+.mercado-trabalho-section-ultra {
+    padding: var(--space-5xl) 0;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.mercado-trabalho-section-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.02) 0%, rgba(59, 130, 246, 0.02) 100%);
+    z-index: 1;
+}
+
+.mercado-content-ultra {
+    position: relative;
+    z-index: 2;
+}
+
+.mercado-stats-ultra {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-xl);
+    margin-bottom: var(--space-4xl);
+}
+
+.stat-card-ultra {
+    background: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-3xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+}
+
+.stat-card-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0.05;
+    transition: opacity var(--transition-normal);
+}
+
+.stat-card-ultra:hover::before {
+    opacity: 0.1;
+}
+
+.stat-card-ultra:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-2xl);
+}
+
+.stat-icon-ultra {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.stat-number-ultra {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: var(--space-md);
+    position: relative;
+    z-index: 1;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.stat-label-ultra {
+    font-size: 1.125rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    color: var(--text-secondary);
+}
+
+/* Seção de Pré-requisitos Ultra Moderna */
+.prerequisitos-section-ultra {
+    padding: var(--space-5xl) 0;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.prerequisitos-section-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.02) 0%, rgba(239, 68, 68, 0.02) 100%);
+    z-index: 1;
+}
+
+.prerequisitos-content-ultra {
+    position: relative;
+    z-index: 2;
+}
+
+.prerequisitos-grid-ultra {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+}
+
+.requisito-card-ultra {
+    background: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.requisito-card-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-accent);
+}
+
+.requisito-card-ultra:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-2xl);
+}
+
+.requisito-header-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.requisito-icon-ultra {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-accent);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    box-shadow: var(--shadow-md);
+}
+
+.requisito-titulo-ultra {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.requisito-descricao-ultra {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Seção de Localização Ultra Moderna */
+.localizacao-section-ultra {
+    padding: var(--space-5xl) 0;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.localizacao-section-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(16, 185, 129, 0.02) 100%);
+    z-index: 1;
+}
+
+.localizacao-content-ultra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    margin-top: var(--space-3xl);
+    position: relative;
+    z-index: 2;
+}
+
+.localizacao-principal-ultra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.endereco-card-ultra {
+    background: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.endereco-card-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.endereco-header-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 2px solid var(--border-light);
+}
+
+.endereco-icon-ultra {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.endereco-titulo-ultra {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.endereco-detalhes-ultra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.endereco-linha-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--bg-accent);
+    border-radius: var(--radius-xl);
+    border-left: 4px solid var(--primary-color);
+    transition: all var(--transition-normal);
+}
+
+.endereco-linha-ultra:hover {
+    background: var(--bg-secondary);
+    transform: translateX(4px);
+}
+
+.endereco-linha-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.endereco-linha-texto {
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.facilidades-card-ultra {
+    background: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.facilidades-card-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-secondary);
+}
+
+.facilidades-titulo-ultra {
+    margin: 0 0 var(--space-xl) 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.facilidades-titulo-ultra::before {
+    content: '✨';
+    font-size: 1.25rem;
+}
+
+.facilidades-grid-ultra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.facilidade-item-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--bg-accent);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-normal);
+}
+
+.facilidade-item-ultra:hover {
+    background: var(--bg-secondary);
+    transform: translateY(-2px);
+}
+
+.facilidade-icon-ultra {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.facilidade-icon-ultra.transporte-ultra {
+    background: var(--gradient-primary);
+}
+
+.facilidade-icon-ultra.estacionamento-ultra {
+    background: var(--gradient-secondary);
+}
+
+.facilidade-icon-ultra.metro-ultra {
+    background: var(--gradient-accent);
+}
+
+.facilidade-texto-ultra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.facilidade-texto-ultra strong {
+    color: var(--text-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.facilidade-texto-ultra span {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.localizacao-secundaria-ultra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.acoes-card-ultra {
+    background: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.acoes-card-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-accent);
+}
+
+.acoes-titulo-ultra {
+    margin: 0 0 var(--space-xl) 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.acoes-titulo-ultra::before {
+    content: '🚀';
+    font-size: 1.25rem;
+}
+
+.acoes-botoes-ultra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.btn-acao-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    background: white;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-acao-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn-acao-ultra:hover::before {
+    left: 100%;
+}
+
+.btn-maps-ultra:hover {
+    border-color: var(--primary-color);
+    background: rgba(59, 130, 246, 0.05);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-ligar-ultra:hover {
+    border-color: var(--secondary-color);
+    background: rgba(16, 185, 129, 0.05);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-icon-ultra {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.btn-maps-ultra .btn-icon-ultra {
+    background: var(--gradient-primary);
+}
+
+.btn-ligar-ultra .btn-icon-ultra {
+    background: var(--gradient-secondary);
+}
+
+.btn-texto-ultra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.btn-texto-ultra strong {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.btn-texto-ultra span {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.mapa-container-ultra {
+    background: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.mapa-container-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.mapa-header-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 2px solid var(--border-light);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.mapa-header-ultra i {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.mapa-wrapper-ultra {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Seção de Pagamento Ultra Moderna */
+.pagamento-section-ultra {
+    padding: var(--space-5xl) 0;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.pagamento-section-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.02) 0%, rgba(245, 158, 11, 0.02) 100%);
+    z-index: 1;
+}
+
+.pagamento-content-ultra {
+    position: relative;
+    z-index: 2;
+}
+
+.pagamento-grid-ultra {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+}
+
+.pagamento-card-ultra {
+    background: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.pagamento-card-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-accent);
+}
+
+.pagamento-card-ultra:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-2xl);
+}
+
+.pagamento-icon-ultra {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-accent);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-xl);
+    color: white;
+    font-size: 2rem;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+}
+
+.pagamento-card-ultra:hover .pagamento-icon-ultra {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.pagamento-titulo-ultra {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+}
+
+.pagamento-descricao-ultra {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* ===== RESPONSIVIDADE ULTRA MODERNA ===== */
+@media (max-width: 1200px) {
+    .hero-content-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-3xl);
+    }
+    
+    .hero-sidebar-ultra {
+        position: static;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .curso-titulo-ultra {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .curso-hero-ultra-moderno {
+        padding: var(--space-3xl) 0;
+        min-height: 70vh;
+    }
+    
+    .curso-titulo-ultra {
+        font-size: 2.5rem;
+    }
+    
+    .curso-descricao-ultra {
+        font-size: 1.125rem;
+    }
+    
+    .curso-info-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .curso-badges-ultra {
+        justify-content: center;
+    }
+    
+    .curso-card-preco-ultra {
+        padding: var(--space-xl);
+    }
+    
+    .preco-valor-promocional-ultra,
+    .preco-valor-ultra {
+        font-size: 2.5rem;
+    }
+    
+    /* Seções Ultra Modernas - Mobile */
+    .section-titulo-ultra {
+        font-size: 2.5rem;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .titulo-icon-ultra {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .detalhes-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .detalhes-card-full-ultra {
+        grid-column: 1;
+    }
+    
+    .mercado-stats-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .stat-number-ultra {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .curso-hero-ultra-moderno {
+        padding: var(--space-2xl) 0;
+        min-height: 60vh;
+    }
+    
+    .curso-titulo-ultra {
+        font-size: 2rem;
+    }
+    
+    .curso-descricao-ultra {
+        font-size: 1rem;
+    }
+    
+    .info-item-ultra {
+        padding: var(--space-lg);
+        gap: var(--space-md);
+    }
+    
+    .info-icon-ultra {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .info-icon-ultra i {
+        font-size: 1rem;
+    }
+    
+    .badge-ultra {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.8rem;
+    }
+    
+    .badge-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+    
+    .curso-card-preco-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .preco-valor-promocional-ultra,
+    .preco-valor-ultra {
+        font-size: 2rem;
+    }
+    
+    .card-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    /* Seções Ultra Modernas - Mobile Pequeno */
+    .section-titulo-ultra {
+        font-size: 2rem;
+    }
+    
+    .titulo-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .section-subtitulo-ultra {
+        font-size: 1rem;
+    }
+    
+    .detalhes-card-ultra {
+        padding: var(--space-xl);
+    }
+    
+    .card-icon-ultra {
+        width: 70px;
+        height: 70px;
+        font-size: 1.75rem;
+    }
+    
+    .card-titulo-ultra {
+        font-size: 1.5rem;
+    }
+    
+    .stat-card-ultra {
+        padding: var(--space-xl);
+    }
+    
+    .stat-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .stat-number-ultra {
+        font-size: 2.5rem;
+    }
+    
+    .stat-label-ultra {
+        font-size: 1rem;
+    }
+    
+    /* Pré-requisitos Ultra Modernos - Mobile Pequeno */
+    .prerequisitos-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .requisito-card-ultra {
+        padding: var(--space-xl);
+    }
+    
+    .requisito-icon-ultra {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .requisito-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    .requisito-descricao-ultra {
+        font-size: 0.875rem;
+    }
+    
+    /* Localização Ultra Moderna - Mobile Pequeno */
+    .localizacao-content-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .endereco-card-ultra,
+    .facilidades-card-ultra,
+    .acoes-card-ultra,
+    .mapa-container-ultra {
+        padding: var(--space-xl);
+    }
+    
+    .endereco-icon-ultra {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+    
+    .endereco-titulo-ultra {
+        font-size: 1.5rem;
+    }
+    
+    .endereco-linha-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .endereco-linha-texto {
+        font-size: 0.875rem;
+    }
+    
+    .facilidade-icon-ultra {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .facilidade-texto-ultra strong {
+        font-size: 1rem;
+    }
+    
+    .facilidade-texto-ultra span {
+        font-size: 0.75rem;
+    }
+    
+    .btn-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .btn-texto-ultra strong {
+        font-size: 1rem;
+    }
+    
+    .btn-texto-ultra span {
+        font-size: 0.75rem;
+    }
+    
+    /* Pagamento Ultra Moderno - Mobile Pequeno */
+    .pagamento-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .pagamento-card-ultra {
+        padding: var(--space-xl);
+    }
+    
+    .pagamento-icon-ultra {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .pagamento-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    .pagamento-descricao-ultra {
+        font-size: 0.875rem;
+    }
+}
+
+/* ===== ANIMAÇÕES E MICRO-INTERAÇÕES ===== */
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
+}
+
+@keyframes slide-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-scale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Aplicar animações aos elementos */
+.curso-badges-ultra .badge-ultra {
+    animation: slide-in-up 0.6s ease-out forwards;
+}
+
+.curso-header-ultra {
+    animation: fade-in-scale 0.8s ease-out forwards;
+}
+
+.curso-info-grid-ultra .info-item-ultra {
+    animation: slide-in-up 0.6s ease-out forwards;
+}
+
+.curso-info-grid-ultra .info-item-ultra:nth-child(1) { animation-delay: 0.1s; }
+.curso-info-grid-ultra .info-item-ultra:nth-child(2) { animation-delay: 0.2s; }
+.curso-info-grid-ultra .info-item-ultra:nth-child(3) { animation-delay: 0.3s; }
+
+.hero-actions-ultra {
+    animation: fade-in-scale 1s ease-out forwards;
+}
+
+.curso-card-preco-ultra {
+    animation: slide-in-up 0.8s ease-out forwards;
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== MELHORIAS DE PERFORMANCE ===== */
+.curso-ultra-moderno * {
+    will-change: auto;
+}
+
+.curso-ultra-moderno .badge-ultra:hover,
+.curso-ultra-moderno .info-item-ultra:hover,
+.curso-ultra-moderno .btn-inscricao-ultra:hover,
+.curso-ultra-moderno .btn-saiba-mais-ultra:hover,
+.curso-ultra-moderno .btn-inscricao-card-ultra:hover {
+    will-change: transform;
+}
+
+/* ===== ESTILOS LEGADOS (MANTIDOS PARA COMPATIBILIDADE) ===== */
 .curso-hero-moderno {
     position: relative;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -2257,5 +3893,158 @@ get_header(); ?>
     }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // ===== ANIMAÇÕES DE ENTRADA =====
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observar elementos com data-aos
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+    });
+
+    // ===== EFEITOS DE HOVER AVANÇADOS =====
+    const badges = document.querySelectorAll('.badge-ultra');
+    badges.forEach(badge => {
+        badge.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px) scale(1.02)';
+        });
+        
+        badge.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // ===== EFEITO RIPPLE NOS BOTÕES =====
+    const buttons = document.querySelectorAll('.btn-inscricao-ultra, .btn-inscricao-card-ultra');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = this.querySelector('.btn-ripple');
+            if (ripple) {
+                ripple.style.width = '300px';
+                ripple.style.height = '300px';
+                ripple.style.opacity = '0';
+                
+                setTimeout(() => {
+                    ripple.style.width = '0';
+                    ripple.style.height = '0';
+                    ripple.style.opacity = '1';
+                }, 300);
+            }
+        });
+    });
+
+    // ===== SCROLL SUAVE =====
+    // Scroll suave para seções internas
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ===== PARALLAX SUAVE NO HERO =====
+    const hero = document.querySelector('.curso-hero-ultra-moderno');
+    if (hero) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+    }
+
+    // ===== CONTADOR ANIMADO PARA PREÇOS =====
+    const precoElements = document.querySelectorAll('.preco-valor-ultra, .preco-valor-promocional-ultra');
+    precoElements.forEach(element => {
+        const text = element.textContent;
+        const number = parseFloat(text.replace(/[^\d.,]/g, '').replace(',', '.'));
+        
+        if (!isNaN(number)) {
+            element.textContent = text; // Manter formatação original
+            element.style.opacity = '0';
+            element.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                element.style.transition = 'all 0.6s ease-out';
+                element.style.opacity = '1';
+                element.style.transform = 'scale(1)';
+            }, 500);
+        }
+    });
+
+    // ===== LAZY LOADING DE IMAGENS =====
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+
+    // ===== PERFORMANCE: DEBOUNCE SCROLL =====
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(function() {
+            // Código de scroll aqui
+        }, 10);
+    });
+
+    // ===== MELHORIAS DE ACESSIBILIDADE =====
+    // Foco visível melhorado
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+        }
+    });
+
+    document.addEventListener('mousedown', function() {
+        document.body.classList.remove('keyboard-navigation');
+    });
+
+    // ===== PRELOAD DE RECURSOS CRÍTICOS =====
+    const criticalResources = [
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap'
+    ];
+
+    criticalResources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'style';
+        link.href = resource;
+        document.head.appendChild(link);
+    });
+});
+</script>
 
 <?php get_footer(); ?>
