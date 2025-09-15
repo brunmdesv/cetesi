@@ -5377,6 +5377,7 @@ function cetesi_edit_course_page_callback() {
     $curso_descricao = $curso->post_content;
     $curso_nivel = get_post_meta($course_id, '_curso_nivel_ensino', true);
     $curso_area = get_post_meta($course_id, '_curso_area_conhecimento', true);
+    $curso_categoria = get_post_meta($course_id, '_curso_categoria', true);
     $curso_duracao = get_post_meta($course_id, '_curso_duracao', true);
     $curso_carga_horaria = get_post_meta($course_id, '_curso_carga_horaria', true);
     $curso_estagio = get_post_meta($course_id, '_curso_estagio', true);
