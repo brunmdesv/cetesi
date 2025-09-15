@@ -54,10 +54,18 @@ function cetesi_setup() {
     
     // Suporte a cores personalizadas
     add_theme_support('custom-background');
+    add_theme_support('custom-colors');
     
     // Suporte a editor de blocos
     add_theme_support('wp-block-styles');
     add_theme_support('align-wide');
+    
+    // Suporte a editor de blocos avançado
+    add_theme_support('editor-styles');
+    add_theme_support('responsive-embeds');
+    
+    // Suporte a padrões de blocos
+    add_theme_support('core-block-patterns');
     
     // Tamanhos de imagem personalizados
     add_image_size('curso-thumbnail', 400, 300, true);
@@ -119,6 +127,16 @@ function cetesi_advanced_settings() {
         'cetesi_custom_course_page_callback'
     );
     
+    // Submenu - Editar Curso
+    add_submenu_page(
+        'cetesi-courses-management',
+        'Editar Curso',
+        'Editar curso',
+        'manage_options',
+        'editar-curso-personalizado',
+        'cetesi_edit_course_page_callback'
+    );
+    
     // Menu Principal - Equipe
     add_menu_page(
         'Gerenciar Equipe',
@@ -148,6 +166,16 @@ function cetesi_advanced_settings() {
         'manage_options',
         'cetesi-add-member',
         'cetesi_add_member_page'
+    );
+    
+    // Submenu - Editar Membro
+    add_submenu_page(
+        'cetesi-team-management',
+        'Editar Membro',
+        'Editar membro',
+        'manage_options',
+        'editar-membro-personalizado',
+        'cetesi_edit_member_page_callback'
     );
     
     
@@ -2786,6 +2814,8 @@ function cetesi_team_management_page() {
     $bulk_deleted = isset($_GET['bulk_deleted']) ? intval($_GET['bulk_deleted']) : 0;
     $deleted = isset($_GET['deleted']) ? intval($_GET['deleted']) : 0;
     $member_created = isset($_GET['member_created']) ? intval($_GET['member_created']) : 0;
+    $member_updated = isset($_GET['member_updated']) ? intval($_GET['member_updated']) : 0;
+    $member_name = isset($_GET['member_name']) ? urldecode($_GET['member_name']) : '';
     
     // Buscar estatísticas
     $total_membros = wp_count_posts('membro_equipe');
@@ -2794,13 +2824,13 @@ function cetesi_team_management_page() {
     $professores_publicados = $total_professores->publish ?? 0;
     $total_equipe = $membros_publicados + $professores_publicados;
     
-    // Buscar membros recentes
+    // Buscar membros ordenados alfabeticamente
     $membros_recentes = get_posts(array(
         'post_type' => 'membro_equipe',
-        'posts_per_page' => 5,
+        'posts_per_page' => -1,
         'post_status' => 'publish',
-        'orderby' => 'date',
-        'order' => 'DESC'
+        'orderby' => 'title',
+        'order' => 'ASC'
     ));
     
     ?>
@@ -2820,6 +2850,12 @@ function cetesi_team_management_page() {
         <?php if ($member_created > 0) : ?>
             <div class="notice notice-success is-dismissible">
                 <p><strong>Sucesso!</strong> Membro criado e adicionado à equipe com sucesso.</p>
+            </div>
+        <?php endif; ?>
+        
+        <?php if ($member_updated > 0 && $member_name) : ?>
+            <div class="notice notice-success is-dismissible">
+                <p><strong>Sucesso!</strong> O membro "<?php echo esc_html($member_name); ?>" foi atualizado com sucesso!</p>
             </div>
         <?php endif; ?>
         
@@ -2880,7 +2916,7 @@ function cetesi_team_management_page() {
                     </div>
                     <div class="member-actions-container">
                         <div class="member-actions">
-                            <a href="<?php echo admin_url('post.php?post=' . $membro->ID . '&action=edit'); ?>" class="action-btn edit-btn" title="Editar membro">
+                            <a href="<?php echo admin_url('admin.php?page=editar-membro-personalizado&member_id=' . $membro->ID); ?>" class="action-btn edit-btn" title="Editar membro">
                                 <span class="dashicons dashicons-edit"></span>
                             </a>
                             <a href="<?php echo get_permalink($membro->ID); ?>" class="action-btn view-btn" title="Ver no site" target="_blank">
@@ -3390,7 +3426,7 @@ function cetesi_add_member_page() {
     }
     
     ?>
-    <div class="wrap cetesi-custom-member-page">
+    <div class="wrap cetesi-team-management">
         
         <div class="cetesi-member-form-container">
             <form method="post" action="" class="cetesi-member-form" enctype="multipart/form-data">
@@ -3518,82 +3554,25 @@ function cetesi_add_member_page() {
     
 
     <style>
-    .cetesi-custom-member-page {
-        background: #f8f9fa;
-        min-height: 100vh;
-        padding: 20px;
-    }
-    
-    
-    .cetesi-stats-overview {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-bottom: 30px;
-    }
-    
-    .stat-item {
-        background: white;
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        transition: all 0.3s ease;
-    }
-    
-    .stat-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-    
-    .stat-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-    
-    .stat-icon.cursos {
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    }
-    
-    .stat-icon.sucesso {
-        background: linear-gradient(135deg, #10b981, #059669);
-    }
-    
-    .stat-icon.config {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-    }
-    
-    .stat-icon .dashicons {
-        color: white;
-        font-size: 24px;
-    }
-    
-    .stat-content h3 {
-        margin: 0 0 5px 0;
-        font-size: 24px;
-        font-weight: 700;
-        color: #1f2937;
-    }
-    
-    .stat-content p {
-        margin: 0;
-        color: #6b7280;
-        font-size: 14px;
-    }
     
     .cetesi-member-form-container {
         background: white;
-        border-radius: 12px;
-        padding: 30px;
+        border: 1px solid #e1e5e9;
+        border-radius: 16px;
+        overflow: hidden;
         box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        margin-top: 20px;
+        position: relative;
+    }
+    
+    .cetesi-member-form-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        z-index: 1;
     }
     
     .cetesi-member-form {
@@ -3602,72 +3581,85 @@ function cetesi_add_member_page() {
     }
     
     .cetesi-form-section {
-        margin-bottom: 40px;
-        padding-bottom: 30px;
-        border-bottom: 1px solid #e9ecef;
+        border-bottom: 1px solid #f1f5f9;
+        padding: 32px;
+        position: relative;
+        background: white;
     }
     
     .cetesi-form-section:last-child {
         border-bottom: none;
-        margin-bottom: 0;
+        border-radius: 0 0 16px 16px;
     }
     
     .section-header {
-        margin-bottom: 25px;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #f1f5f9;
     }
     
     .section-header h2 {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #1e293b;
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin: 0 0 8px 0;
-        color: #2c3e50;
+        gap: 12px;
+    }
+    
+    .section-header h2 .dashicons {
         font-size: 20px;
-        font-weight: 600;
+        color: #667eea;
     }
     
     .section-header p {
         margin: 0;
-        color: #6c757d;
+        color: #64748b;
         font-size: 14px;
+        font-style: italic;
     }
     
     .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        display: flex;
+        gap: 24px;
         margin-bottom: 20px;
     }
     
-    .form-row .form-group.full-width {
-        grid-column: 1 / -1;
-    }
-    
     .form-group {
+        flex: 1;
         display: flex;
         flex-direction: column;
     }
     
+    .form-group.full-width {
+        flex: 100%;
+    }
+    
     .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         font-weight: 600;
+        color: #1d2327;
         margin-bottom: 8px;
-        color: #374151;
         font-size: 14px;
     }
     
     .form-group label.required::after {
         content: " *";
-        color: #dc3545;
+        color: #dc2626;
     }
     
     .form-group input,
     .form-group textarea,
     .form-group select {
+        width: 100%;
         padding: 12px 16px;
-        border: 2px solid #e1e5e9;
+        border: 1px solid #e1e5e9;
         border-radius: 8px;
         font-size: 14px;
-        transition: all 0.3s ease;
+        transition: border-color 0.3s ease;
         background: white;
         font-family: inherit;
     }
@@ -3705,12 +3697,12 @@ function cetesi_add_member_page() {
     
     .form-actions {
         display: flex;
-        gap: 16px;
+        gap: 20px;
         align-items: center;
-        justify-content: flex-end;
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 1px solid #e9ecef;
+        justify-content: center;
+        margin-top: 40px;
+        padding: 30px 0;
+        border-top: 1px solid #f1f5f9;
     }
     
     /* Botões personalizados */
@@ -3718,45 +3710,41 @@ function cetesi_add_member_page() {
     .cetesi-btn-secondary {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 14px 28px;
-        font-size: 15px;
-        font-weight: 600;
-        border-radius: 10px;
+        gap: 8px;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 6px;
         transition: all 0.3s ease;
         text-decoration: none;
-        border: 2px solid transparent;
+        border: 1px solid transparent;
         cursor: pointer;
-        position: relative;
-        overflow: hidden;
     }
     
     .cetesi-btn-primary {
         background: linear-gradient(135deg, #2563eb, #1d4ed8);
         color: white;
-        border-color: #1d4ed8;
-        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
     }
     
     .cetesi-btn-primary:hover {
-        background: linear-gradient(135deg, #1d4ed8, #1e40af);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
     
     .cetesi-btn-secondary {
         background: white;
         color: #374151;
         border-color: #d1d5db;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     
     .cetesi-btn-secondary:hover {
         background: #f8fafc;
         border-color: #2563eb;
         color: #2563eb;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     
     .cetesi-btn-primary .dashicons,
@@ -3823,6 +3811,416 @@ function cetesi_add_member_page() {
     }
     </style>
     
+    <?php
+}
+
+/**
+ * Callback para a página personalizada de edição de membros
+ */
+function cetesi_edit_member_page_callback() {
+    // Verificar se foi passado um ID de membro
+    $member_id = isset($_GET['member_id']) ? intval($_GET['member_id']) : 0;
+    
+    if (!$member_id) {
+        // Redirecionar para a página de gerenciamento de equipe usando JavaScript
+        ?>
+        <script>
+            window.location.href = '<?php echo admin_url('admin.php?page=cetesi-team-management'); ?>';
+        </script>
+        <noscript>
+            <meta http-equiv="refresh" content="0;url=<?php echo admin_url('admin.php?page=cetesi-team-management'); ?>">
+        </noscript>
+        <?php
+        return;
+    }
+    
+    // Verificar se o membro existe
+    $membro = get_post($member_id);
+    if (!$membro || $membro->post_type !== 'membro_equipe') {
+        wp_die('Membro não encontrado.');
+    }
+    
+    // Verificar se o formulário foi enviado
+    if (isset($_POST['atualizar_membro']) && wp_verify_nonce($_POST['cetesi_member_nonce'], 'atualizar_membro_action')) {
+        cetesi_process_member_update($member_id);
+    }
+    
+    // Obter dados atuais do membro
+    $membro_nome = $membro->post_title;
+    $membro_bio = $membro->post_content;
+    $membro_cargo = get_post_meta($member_id, '_membro_cargo', true);
+    $membro_formacao = get_post_meta($member_id, '_membro_formacao', true);
+    $membro_experiencia = get_post_meta($member_id, '_membro_experiencia', true);
+    $membro_especialidade = get_post_meta($member_id, '_membro_especialidade', true);
+    $membro_email = get_post_meta($member_id, '_membro_email', true);
+    $membro_telefone = get_post_meta($member_id, '_membro_telefone', true);
+    $membro_linkedin = get_post_meta($member_id, '_membro_linkedin', true);
+    $membro_facebook = get_post_meta($member_id, '_membro_facebook', true);
+    $membro_instagram = get_post_meta($member_id, '_membro_instagram', true);
+    $membro_twitter = get_post_meta($member_id, '_membro_twitter', true);
+    $membro_lattes = get_post_meta($member_id, '_membro_lattes', true);
+    
+    ?>
+    <div class="wrap cetesi-team-management">
+        
+        <div class="cetesi-member-form-container">
+            <form method="post" action="" class="cetesi-member-form" enctype="multipart/form-data">
+                <?php wp_nonce_field('atualizar_membro_action', 'cetesi_member_nonce'); ?>
+                <input type="hidden" name="member_id" value="<?php echo $member_id; ?>">
+                
+                <!-- Informações Pessoais -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-admin-users"></span> Informações Pessoais</h2>
+                        <p>Dados básicos do membro da equipe</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_nome" class="required">Nome Completo</label>
+                            <input type="text" id="membro_nome" name="membro_nome" required 
+                                   value="<?php echo esc_attr($membro_nome); ?>"
+                                   placeholder="Ex: João Silva" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_cargo" class="required">Cargo/Função</label>
+                            <input type="text" id="membro_cargo" name="membro_cargo" required 
+                                   value="<?php echo esc_attr($membro_cargo); ?>"
+                                   placeholder="Ex: Coordenador de Enfermagem" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_email">Email</label>
+                            <input type="email" id="membro_email" name="membro_email" 
+                                   value="<?php echo esc_attr($membro_email); ?>"
+                                   placeholder="Ex: joao@cetesi.com.br" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_telefone">Telefone</label>
+                            <input type="tel" id="membro_telefone" name="membro_telefone" 
+                                   value="<?php echo esc_attr($membro_telefone); ?>"
+                                   placeholder="Ex: (61) 99999-9999" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formação e Experiência -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-awards"></span> Formação e Experiência</h2>
+                        <p>Qualificações profissionais do membro</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_formacao">Formação Acadêmica</label>
+                            <input type="text" id="membro_formacao" name="membro_formacao" 
+                                   value="<?php echo esc_attr($membro_formacao); ?>"
+                                   placeholder="Ex: Graduação em Enfermagem - UNB" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_especialidade">Especialidade</label>
+                            <input type="text" id="membro_especialidade" name="membro_especialidade" 
+                                   value="<?php echo esc_attr($membro_especialidade); ?>"
+                                   placeholder="Ex: Enfermagem em UTI" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_experiencia">Experiência Profissional</label>
+                            <input type="text" id="membro_experiencia" name="membro_experiencia" 
+                                   value="<?php echo esc_attr($membro_experiencia); ?>"
+                                   placeholder="Ex: 10 anos de experiência" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Biografia -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-edit"></span> Biografia</h2>
+                        <p>Descrição detalhada do membro da equipe</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="membro_bio">Biografia</label>
+                            <textarea id="membro_bio" name="membro_bio" rows="6" 
+                                      placeholder="Descreva a trajetória profissional, conquistas e contribuições do membro..."><?php echo esc_textarea($membro_bio); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Redes Sociais -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-share"></span> Redes Sociais</h2>
+                        <p>Links para perfis profissionais</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_linkedin">LinkedIn</label>
+                            <input type="url" id="membro_linkedin" name="membro_linkedin" 
+                                   value="<?php echo esc_attr($membro_linkedin); ?>"
+                                   placeholder="https://linkedin.com/in/usuario" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_facebook">Facebook</label>
+                            <input type="url" id="membro_facebook" name="membro_facebook" 
+                                   value="<?php echo esc_attr($membro_facebook); ?>"
+                                   placeholder="https://facebook.com/usuario" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_instagram">Instagram</label>
+                            <input type="url" id="membro_instagram" name="membro_instagram" 
+                                   value="<?php echo esc_attr($membro_instagram); ?>"
+                                   placeholder="https://instagram.com/usuario" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_twitter">Twitter</label>
+                            <input type="url" id="membro_twitter" name="membro_twitter" 
+                                   value="<?php echo esc_attr($membro_twitter); ?>"
+                                   placeholder="https://twitter.com/usuario" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_lattes">Currículo Lattes</label>
+                            <input type="url" id="membro_lattes" name="membro_lattes" 
+                                   value="<?php echo esc_attr($membro_lattes); ?>"
+                                   placeholder="http://lattes.cnpq.br/123456789" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Botões de Ação -->
+                <div class="form-actions">
+                    <button type="submit" name="atualizar_membro" class="cetesi-btn-primary">
+                        <span class="dashicons dashicons-saved"></span>
+                        Atualizar Membro
+                    </button>
+                    <a href="<?php echo admin_url('admin.php?page=cetesi-team-management'); ?>" class="cetesi-btn-secondary">
+                        <span class="dashicons dashicons-arrow-left-alt"></span>
+                        Voltar para Lista
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <style>
+    .cetesi-member-form-container {
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        position: relative;
+    }
+    
+    .cetesi-member-form-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        z-index: 1;
+    }
+    
+    .cetesi-form-section {
+        padding: 32px;
+        border-bottom: 1px solid #f1f5f9;
+        background: white;
+    }
+    
+    .cetesi-form-section:last-child {
+        border-bottom: none;
+        border-radius: 0 0 16px 16px;
+    }
+    
+    .section-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #f1f5f9;
+    }
+    
+    .section-header h2 {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .section-header h2 .dashicons {
+        font-size: 20px;
+        color: #667eea;
+    }
+    
+    .section-header p {
+        margin: 0;
+        color: #64748b;
+        font-size: 14px;
+        font-style: italic;
+    }
+    
+    .form-row {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-group.full-width {
+        flex: 100%;
+    }
+    
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #374151;
+        font-size: 14px;
+    }
+    
+    .form-group label.required::after {
+        content: " *";
+        color: #dc2626;
+        font-weight: 700;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background: white;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        outline: none;
+        transform: translateY(-1px);
+    }
+    
+    .form-group input:hover,
+    .form-group textarea:hover {
+        border-color: #9ca3af;
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+        font-family: inherit;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+        padding: 30px 0;
+        border-top: 1px solid #f1f5f9;
+    }
+    
+    .cetesi-btn-primary,
+    .cetesi-btn-secondary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+    }
+    
+    .cetesi-btn-primary {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: white;
+        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+    }
+    
+    .cetesi-btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    
+    .cetesi-btn-secondary {
+        background: white;
+        color: #374151;
+        border-color: #d1d5db;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    
+    .cetesi-btn-secondary:hover {
+        background: #f8fafc;
+        border-color: #2563eb;
+        color: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .cetesi-btn-primary .dashicons,
+    .cetesi-btn-secondary .dashicons {
+        font-size: 16px;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .form-row {
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .cetesi-form-section {
+            padding: 24px;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+        
+        .section-header h2 {
+            font-size: 18px;
+        }
+    }
+    </style>
     <?php
 }
 
@@ -4028,6 +4426,91 @@ function cetesi_process_member_creation() {
         echo '<noscript><meta http-equiv="refresh" content="0;url=' . esc_url($success_url) . '"></noscript>';
         exit;
     }
+}
+
+/**
+ * Processar atualização de membro
+ */
+function cetesi_process_member_update($member_id) {
+    // Verificar permissões
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para realizar esta ação.');
+    }
+    
+    // Validar campos obrigatórios
+    $required_fields = array('membro_nome', 'membro_cargo');
+    
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            echo '<div class="notice notice-error"><p>Campo obrigatório não preenchido: ' . ucfirst(str_replace('_', ' ', $field)) . '</p></div>';
+            return;
+        }
+    }
+    
+    // Atualizar dados básicos do post
+    $post_data = array(
+        'ID' => $member_id,
+        'post_title' => sanitize_text_field($_POST['membro_nome']),
+        'post_content' => wp_kses_post($_POST['membro_bio'] ?? ''),
+        'post_excerpt' => wp_trim_words(wp_kses_post($_POST['membro_bio'] ?? ''), 20),
+        'post_status' => 'publish'
+    );
+    
+    $updated = wp_update_post($post_data);
+    
+    if (is_wp_error($updated)) {
+        echo '<div class="notice notice-error"><p>Erro ao atualizar o membro: ' . $updated->get_error_message() . '</p></div>';
+        return;
+    }
+    
+    // Campos de meta para atualizar
+    $meta_fields = array(
+        '_membro_cargo' => 'membro_cargo',
+        '_membro_formacao' => 'membro_formacao',
+        '_membro_experiencia' => 'membro_experiencia',
+        '_membro_especialidade' => 'membro_especialidade',
+        '_membro_email' => 'membro_email',
+        '_membro_telefone' => 'membro_telefone',
+        '_membro_linkedin' => 'membro_linkedin',
+        '_membro_facebook' => 'membro_facebook',
+        '_membro_instagram' => 'membro_instagram',
+        '_membro_twitter' => 'membro_twitter',
+        '_membro_lattes' => 'membro_lattes'
+    );
+    
+    // Atualizar campos de meta
+    foreach ($meta_fields as $meta_key => $post_key) {
+        if (isset($_POST[$post_key])) {
+            $value = sanitize_text_field($_POST[$post_key]);
+            update_post_meta($member_id, $meta_key, $value);
+        }
+    }
+    
+    // Sucesso - redirecionar para a página de gerenciamento da equipe
+    $success_url = add_query_arg(array(
+        'page' => 'cetesi-team-management',
+        'member_updated' => '1',
+        'member_name' => urlencode($_POST['membro_nome'])
+    ), admin_url('admin.php'));
+    
+    // Limpar qualquer output buffer antes do redirecionamento
+    if (ob_get_level()) {
+        ob_end_clean();
+    }
+    
+    // Tentar redirecionamento com wp_redirect
+    if (!headers_sent()) {
+        wp_redirect($success_url);
+        exit;
+    } else {
+        // Fallback: usar JavaScript se headers já foram enviados
+        echo '<script>window.location.href = "' . esc_js($success_url) . '";</script>';
+        echo '<noscript><meta http-equiv="refresh" content="0;url=' . esc_url($success_url) . '"></noscript>';
+        exit;
+    }
+    
+    // Log da ação
+    cetesi_log_security_event('MEMBER_UPDATED', 'Member updated via custom form: ' . $_POST['membro_nome'], 'INFO');
 }
 
 /**
@@ -4380,39 +4863,9 @@ function cetesi_custom_course_page_callback() {
     }
     
     ?>
-    <div class="wrap cetesi-custom-course-page">
-        <!-- Estatísticas -->
-        <div class="cetesi-stats-overview">
-            <div class="stat-item">
-                <div class="stat-icon cursos">
-                    <span class="dashicons dashicons-book-alt"></span>
-                </div>
-                <div class="stat-content">
-                    <h3>Criar Curso</h3>
-                    <p>Adicionar novo curso ao catálogo</p>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon sucesso">
-                    <span class="dashicons dashicons-yes-alt"></span>
-                </div>
-                <div class="stat-content">
-                    <h3>Formulário Completo</h3>
-                    <p>Todas as informações necessárias</p>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon config">
-                    <span class="dashicons dashicons-admin-settings"></span>
-                </div>
-                <div class="stat-content">
-                    <h3>Configuração Rápida</h3>
-                    <p>Interface intuitiva e organizada</p>
-                </div>
-            </div>
-        </div>
+    <div class="wrap cetesi-team-management">
         
-        <div class="cetesi-course-form-container">
+        <div class="cetesi-member-form-container">
             <form method="post" action="" class="cetesi-course-form">
                 <?php wp_nonce_field('criar_curso_action', 'cetesi_course_nonce'); ?>
                 
@@ -4644,79 +5097,7 @@ function cetesi_custom_course_page_callback() {
     </div>
     
     <style>
-    /* Estilo base da página */
-    .cetesi-custom-course-page {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    
-    /* Estatísticas */
-    .cetesi-stats-overview {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin-bottom: 30px;
-    }
-    
-    .stat-item {
-        background: white;
-        border: 1px solid #e1e5e9;
-        border-radius: 16px;
-        padding: 25px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-    
-    .stat-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    }
-    
-    .stat-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-    
-    .stat-icon.cursos {
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    }
-    
-    .stat-icon.sucesso {
-        background: linear-gradient(135deg, #10b981, #059669);
-    }
-    
-    .stat-icon.config {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-    }
-    
-    .stat-icon .dashicons {
-        font-size: 28px;
-        color: white;
-    }
-    
-    .stat-content h3 {
-        margin: 0 0 8px 0;
-        font-size: 18px;
-        font-weight: 600;
-        color: #1e293b;
-    }
-    
-    .stat-content p {
-        margin: 0;
-        font-size: 14px;
-        color: #64748b;
-    }
-    
-    /* Container do formulário */
-    .cetesi-course-form-container {
+    .cetesi-member-form-container {
         background: white;
         border: 1px solid #e1e5e9;
         border-radius: 16px;
@@ -4725,7 +5106,7 @@ function cetesi_custom_course_page_callback() {
         position: relative;
     }
     
-    .cetesi-course-form-container::before {
+    .cetesi-member-form-container::before {
         content: '';
         position: absolute;
         top: 0;
@@ -4736,11 +5117,9 @@ function cetesi_custom_course_page_callback() {
         z-index: 1;
     }
     
-    /* Seções do formulário */
     .cetesi-form-section {
-        border-bottom: 1px solid #f1f5f9;
         padding: 32px;
-        position: relative;
+        border-bottom: 1px solid #f1f5f9;
         background: white;
     }
     
@@ -4777,7 +5156,6 @@ function cetesi_custom_course_page_callback() {
         font-style: italic;
     }
     
-    /* Layout do formulário */
     .form-row {
         display: flex;
         gap: 24px;
@@ -4795,6 +5173,9 @@ function cetesi_custom_course_page_callback() {
     }
     
     .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         font-weight: 600;
         margin-bottom: 8px;
         color: #374151;
@@ -4810,8 +5191,9 @@ function cetesi_custom_course_page_callback() {
     .form-group input,
     .form-group select,
     .form-group textarea {
+        width: 100%;
         padding: 12px 16px;
-        border: 2px solid #e5e7eb;
+        border: 1px solid #e1e5e9;
         border-radius: 8px;
         font-size: 14px;
         transition: all 0.3s ease;
@@ -4839,15 +5221,14 @@ function cetesi_custom_course_page_callback() {
         font-family: inherit;
     }
     
-    /* Botões de ação */
     .form-actions {
-        padding: 32px;
-        background: #f8fafc;
-        border-top: 1px solid #e1e5e9;
         display: flex;
-        gap: 16px;
+        gap: 20px;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
+        margin-top: 40px;
+        padding: 30px 0;
+        border-top: 1px solid #f1f5f9;
     }
     
     /* Botões personalizados */
@@ -4855,45 +5236,41 @@ function cetesi_custom_course_page_callback() {
     .cetesi-btn-secondary {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 14px 28px;
-        font-size: 15px;
-        font-weight: 600;
-        border-radius: 10px;
+        gap: 8px;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 6px;
         transition: all 0.3s ease;
         text-decoration: none;
-        border: 2px solid transparent;
+        border: 1px solid transparent;
         cursor: pointer;
-        position: relative;
-        overflow: hidden;
     }
     
     .cetesi-btn-primary {
         background: linear-gradient(135deg, #2563eb, #1d4ed8);
         color: white;
-        border-color: #1d4ed8;
-        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
     }
     
     .cetesi-btn-primary:hover {
-        background: linear-gradient(135deg, #1d4ed8, #1e40af);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
     
     .cetesi-btn-secondary {
         background: white;
         color: #374151;
         border-color: #d1d5db;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     
     .cetesi-btn-secondary:hover {
         background: #f8fafc;
         border-color: #2563eb;
         color: #2563eb;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     
     .cetesi-btn-primary .dashicons,
@@ -4965,6 +5342,509 @@ function cetesi_custom_course_page_callback() {
         
         .cetesi-form-section {
             padding: 20px;
+        }
+        
+        .section-header h2 {
+            font-size: 18px;
+        }
+    }
+    </style>
+    <?php
+}
+
+/**
+ * Callback para a página personalizada de edição de cursos
+ */
+function cetesi_edit_course_page_callback() {
+    // Verificar se foi passado um ID de curso
+    $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
+    
+    if (!$course_id) {
+        // Redirecionar para a página de gerenciamento de cursos usando JavaScript
+        ?>
+        <script>
+            window.location.href = '<?php echo admin_url('admin.php?page=cetesi-courses-management'); ?>';
+        </script>
+        <noscript>
+            <meta http-equiv="refresh" content="0;url=<?php echo admin_url('admin.php?page=cetesi-courses-management'); ?>">
+        </noscript>
+        <?php
+        return;
+    }
+    
+    // Verificar se o curso existe
+    $curso = get_post($course_id);
+    if (!$curso || $curso->post_type !== 'curso') {
+        wp_die('Curso não encontrado.');
+    }
+    
+    // Verificar se o formulário foi enviado
+    if (isset($_POST['atualizar_curso']) && wp_verify_nonce($_POST['cetesi_course_nonce'], 'atualizar_curso_action')) {
+        cetesi_process_course_update($course_id);
+    }
+    
+    // Obter dados atuais do curso
+    $curso_titulo = $curso->post_title;
+    $curso_descricao = $curso->post_content;
+    $curso_nivel = get_post_meta($course_id, '_curso_nivel', true);
+    $curso_categoria = get_post_meta($course_id, '_curso_categoria', true);
+    $curso_duracao = get_post_meta($course_id, '_curso_duracao', true);
+    $curso_carga_horaria = get_post_meta($course_id, '_curso_carga_horaria', true);
+    $curso_estagio = get_post_meta($course_id, '_curso_estagio', true);
+    $curso_turno = get_post_meta($course_id, '_curso_turno', true);
+    $curso_modalidade = get_post_meta($course_id, '_curso_modalidade', true);
+    $curso_tipo = get_post_meta($course_id, '_curso_tipo', true);
+    $curso_reconhecimento = get_post_meta($course_id, '_curso_reconhecimento', true);
+    $curso_certificacao = get_post_meta($course_id, '_curso_certificacao', true);
+    $curso_preco = get_post_meta($course_id, '_curso_preco', true);
+    $curso_preco_promocional = get_post_meta($course_id, '_curso_preco_promocional', true);
+    $curso_desconto = get_post_meta($course_id, '_curso_desconto', true);
+    $curso_link_inscricao = get_post_meta($course_id, '_curso_link_inscricao', true);
+    $curso_escolaridade = get_post_meta($course_id, '_curso_escolaridade', true);
+    $curso_idade_minima = get_post_meta($course_id, '_curso_idade_minima', true);
+    $curso_prerequisitos = get_post_meta($course_id, '_curso_prerequisitos', true);
+    
+    ?>
+    <div class="wrap cetesi-team-management">
+        
+        <div class="cetesi-member-form-container">
+            <form method="post" action="" class="cetesi-course-form">
+                <?php wp_nonce_field('atualizar_curso_action', 'cetesi_course_nonce'); ?>
+                <input type="hidden" name="course_id" value="<?php echo $course_id; ?>">
+                
+                <!-- Informações Básicas -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-info"></span> Informações Básicas</h2>
+                        <p>Preencha as informações principais do curso</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_titulo" class="required">Nome do Curso</label>
+                            <input type="text" id="curso_titulo" name="curso_titulo" required 
+                                   value="<?php echo esc_attr($curso_titulo); ?>"
+                                   placeholder="Ex: Técnico em Enfermagem" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_descricao">Descrição do Curso</label>
+                            <textarea id="curso_descricao" name="curso_descricao" rows="4" 
+                                      placeholder="Descreva o curso, seus objetivos e principais características..."><?php echo esc_textarea($curso_descricao); ?></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_nivel">Nível de Ensino</label>
+                            <select id="curso_nivel" name="curso_nivel">
+                                <option value="">Selecione o nível</option>
+                                <option value="tecnico" <?php selected($curso_nivel, 'tecnico'); ?>>Técnico</option>
+                                <option value="superior" <?php selected($curso_nivel, 'superior'); ?>>Superior</option>
+                                <option value="pos-graduacao" <?php selected($curso_nivel, 'pos-graduacao'); ?>>Pós-Graduação</option>
+                                <option value="livre" <?php selected($curso_nivel, 'livre'); ?>>Curso Livre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_categoria" class="required">Categoria do Curso</label>
+                            <select id="curso_categoria" name="curso_categoria" required>
+                                <option value="">Selecione a categoria</option>
+                                <option value="tecnicos" <?php selected($curso_categoria, 'tecnicos'); ?>>Técnicos</option>
+                                <option value="livres" <?php selected($curso_categoria, 'livres'); ?>>Cursos Livres</option>
+                                <option value="online" <?php selected($curso_categoria, 'online'); ?>>Online</option>
+                                <option value="qualificacao" <?php selected($curso_categoria, 'qualificacao'); ?>>Qualificação Profissional</option>
+                                <option value="educacao-basica" <?php selected($curso_categoria, 'educacao-basica'); ?>>Educação Básica</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Duração e Carga Horária -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-calendar-alt"></span> Duração e Carga Horária</h2>
+                        <p>Configure o tempo total e distribuição de horas do curso</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_duracao" class="required">Duração do Curso</label>
+                            <input type="text" id="curso_duracao" name="curso_duracao" required 
+                                   value="<?php echo esc_attr($curso_duracao); ?>"
+                                   placeholder="Ex: 18 meses" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_carga_horaria" class="required">Carga Horária Total</label>
+                            <input type="text" id="curso_carga_horaria" name="curso_carga_horaria" required 
+                                   value="<?php echo esc_attr($curso_carga_horaria); ?>"
+                                   placeholder="Ex: 1.200 horas" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_estagio">Carga Horária de Estágio</label>
+                            <input type="text" id="curso_estagio" name="curso_estagio" 
+                                   value="<?php echo esc_attr($curso_estagio); ?>"
+                                   placeholder="Ex: 300 horas" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_turno">Turno de Funcionamento</label>
+                            <select id="curso_turno" name="curso_turno">
+                                <option value="">Selecione o turno</option>
+                                <option value="matutino" <?php selected($curso_turno, 'matutino'); ?>>Matutino (6h às 12h)</option>
+                                <option value="vespertino" <?php selected($curso_turno, 'vespertino'); ?>>Vespertino (13h às 18h)</option>
+                                <option value="noturno" <?php selected($curso_turno, 'noturno'); ?>>Noturno (19h às 22h)</option>
+                                <option value="integral" <?php selected($curso_turno, 'integral'); ?>>Integral (manhã e tarde)</option>
+                                <option value="flexivel" <?php selected($curso_turno, 'flexivel'); ?>>Flexível (horários variados)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modalidade e Tipo -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-laptop"></span> Modalidade e Tipo</h2>
+                        <p>Defina como o curso será ministrado e seu tipo</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_modalidade" class="required">Modalidade de Ensino</label>
+                            <select id="curso_modalidade" name="curso_modalidade" required>
+                                <option value="">Selecione a modalidade</option>
+                                <option value="presencial" <?php selected($curso_modalidade, 'presencial'); ?>>Presencial</option>
+                                <option value="online" <?php selected($curso_modalidade, 'online'); ?>>100% Online</option>
+                                <option value="hibrido" <?php selected($curso_modalidade, 'hibrido'); ?>>Híbrido (Presencial + Online)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_tipo" class="required">Tipo de Curso</label>
+                            <select id="curso_tipo" name="curso_tipo" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="tecnico" <?php selected($curso_tipo, 'tecnico'); ?>>Técnico</option>
+                                <option value="livre" <?php selected($curso_tipo, 'livre'); ?>>Curso Livre</option>
+                                <option value="qualificacao" <?php selected($curso_tipo, 'qualificacao'); ?>>Qualificação Profissional</option>
+                                <option value="capacitacao" <?php selected($curso_tipo, 'capacitacao'); ?>>Capacitação</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_reconhecimento">Reconhecimento Oficial</label>
+                            <select id="curso_reconhecimento" name="curso_reconhecimento">
+                                <option value="">Selecione o reconhecimento</option>
+                                <option value="mec" <?php selected($curso_reconhecimento, 'mec'); ?>>Reconhecido pelo MEC</option>
+                                <option value="conselho" <?php selected($curso_reconhecimento, 'conselho'); ?>>Reconhecido pelo Conselho</option>
+                                <option value="ministerio" <?php selected($curso_reconhecimento, 'ministerio'); ?>>Reconhecido pelo Ministério</option>
+                                <option value="certificacao" <?php selected($curso_reconhecimento, 'certificacao'); ?>>Certificação Profissional</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_certificacao">Tipo de Certificação</label>
+                            <input type="text" id="curso_certificacao" name="curso_certificacao" 
+                                   value="<?php echo esc_attr($curso_certificacao); ?>"
+                                   placeholder="Ex: Certificado de Técnico em Enfermagem" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preços e Pagamento -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-money-alt"></span> Preços e Pagamento</h2>
+                        <p>Configure os valores e formas de pagamento</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_preco">Preço Normal</label>
+                            <input type="text" id="curso_preco" name="curso_preco" 
+                                   value="<?php echo esc_attr($curso_preco); ?>"
+                                   placeholder="Ex: R$ 1.200,00" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_preco_promocional">Preço Promocional</label>
+                            <input type="text" id="curso_preco_promocional" name="curso_preco_promocional" 
+                                   value="<?php echo esc_attr($curso_preco_promocional); ?>"
+                                   placeholder="Ex: R$ 999,00" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_desconto">Desconto Disponível</label>
+                            <input type="text" id="curso_desconto" name="curso_desconto" 
+                                   value="<?php echo esc_attr($curso_desconto); ?>"
+                                   placeholder="Ex: 20% de desconto" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_link_inscricao">Link de Inscrição</label>
+                            <input type="url" id="curso_link_inscricao" name="curso_link_inscricao" 
+                                   value="<?php echo esc_attr($curso_link_inscricao); ?>"
+                                   placeholder="https://..." />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pré-requisitos -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-clipboard"></span> Pré-requisitos</h2>
+                        <p>Defina os requisitos para participar do curso</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="curso_escolaridade">Escolaridade Mínima</label>
+                            <select id="curso_escolaridade" name="curso_escolaridade">
+                                <option value="">Selecione a escolaridade</option>
+                                <option value="fundamental" <?php selected($curso_escolaridade, 'fundamental'); ?>>Ensino Fundamental</option>
+                                <option value="medio" <?php selected($curso_escolaridade, 'medio'); ?>>Ensino Médio</option>
+                                <option value="superior" <?php selected($curso_escolaridade, 'superior'); ?>>Ensino Superior</option>
+                                <option value="qualquer" <?php selected($curso_escolaridade, 'qualquer'); ?>>Qualquer Escolaridade</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curso_idade_minima">Idade Mínima</label>
+                            <input type="number" id="curso_idade_minima" name="curso_idade_minima" 
+                                   value="<?php echo esc_attr($curso_idade_minima); ?>"
+                                   placeholder="Ex: 18" min="0" max="100" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="curso_prerequisitos">Pré-requisitos Específicos</label>
+                            <textarea id="curso_prerequisitos" name="curso_prerequisitos" rows="3" 
+                                      placeholder="Liste os pré-requisitos específicos do curso..."><?php echo esc_textarea($curso_prerequisitos); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Botões de Ação -->
+                <div class="form-actions">
+                    <button type="submit" name="atualizar_curso" class="cetesi-btn-primary">
+                        <span class="dashicons dashicons-saved"></span>
+                        Atualizar Curso
+                    </button>
+                    <a href="<?php echo admin_url('admin.php?page=cetesi-courses-management'); ?>" class="cetesi-btn-secondary">
+                        <span class="dashicons dashicons-arrow-left-alt"></span>
+                        Voltar para Lista
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <style>
+    .cetesi-member-form-container {
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        position: relative;
+    }
+    
+    .cetesi-member-form-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        z-index: 1;
+    }
+    
+    .cetesi-form-section {
+        padding: 32px;
+        border-bottom: 1px solid #f1f5f9;
+        background: white;
+    }
+    
+    .cetesi-form-section:last-child {
+        border-bottom: none;
+        border-radius: 0 0 16px 16px;
+    }
+    
+    .section-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #f1f5f9;
+    }
+    
+    .section-header h2 {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .section-header h2 .dashicons {
+        font-size: 20px;
+        color: #667eea;
+    }
+    
+    .section-header p {
+        margin: 0;
+        color: #64748b;
+        font-size: 14px;
+        font-style: italic;
+    }
+    
+    .form-row {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-group.full-width {
+        flex: 100%;
+    }
+    
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #374151;
+        font-size: 14px;
+    }
+    
+    .form-group label.required::after {
+        content: " *";
+        color: #dc2626;
+        font-weight: 700;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background: white;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        outline: none;
+        transform: translateY(-1px);
+    }
+    
+    .form-group input:hover,
+    .form-group select:hover,
+    .form-group textarea:hover {
+        border-color: #9ca3af;
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+        font-family: inherit;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+        padding: 30px 0;
+        border-top: 1px solid #f1f5f9;
+    }
+    
+    .cetesi-btn-primary,
+    .cetesi-btn-secondary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+    }
+    
+    .cetesi-btn-primary {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: white;
+        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+    }
+    
+    .cetesi-btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    
+    .cetesi-btn-secondary {
+        background: white;
+        color: #374151;
+        border-color: #d1d5db;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    
+    .cetesi-btn-secondary:hover {
+        background: #f8fafc;
+        border-color: #2563eb;
+        color: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .cetesi-btn-primary .dashicons,
+    .cetesi-btn-secondary .dashicons {
+        font-size: 16px;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .form-row {
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .cetesi-form-section {
+            padding: 24px;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
         }
         
         .section-header h2 {
@@ -5071,7 +5951,7 @@ function cetesi_process_custom_course_creation() {
     }
     
     // Sucesso
-    $edit_link = admin_url('post.php?post=' . $post_id . '&action=edit');
+    $edit_link = admin_url('admin.php?page=editar-curso-personalizado&course_id=' . $post_id);
     $view_link = get_permalink($post_id);
     
     echo '<div class="notice notice-success is-dismissible">';
@@ -5079,12 +5959,123 @@ function cetesi_process_custom_course_creation() {
     echo '<p>';
     echo '<a href="' . $edit_link . '" class="button button-primary">Editar Curso</a> ';
     echo '<a href="' . $view_link . '" class="button button-secondary" target="_blank">Ver no Site</a> ';
-    echo '<a href="' . admin_url('edit.php?post_type=curso') . '" class="button">Voltar para Lista</a>';
+    echo '<a href="' . admin_url('admin.php?page=cetesi-courses-management') . '" class="button">Voltar para Lista</a>';
     echo '</p>';
     echo '</div>';
     
     // Log da ação
     cetesi_log_security_event('CURSO_CREATED', 'Course created via custom form: ' . $_POST['curso_titulo'], 'INFO');
+}
+
+/**
+ * Processar atualização de curso personalizado
+ */
+function cetesi_process_course_update($course_id) {
+    // Verificar permissões
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para realizar esta ação.');
+    }
+    
+    // Validar campos obrigatórios
+    $required_fields = array('curso_titulo', 'curso_categoria', 'curso_duracao', 'curso_carga_horaria', 'curso_modalidade', 'curso_tipo');
+    
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            echo '<div class="notice notice-error"><p>Campo obrigatório não preenchido: ' . ucfirst(str_replace('_', ' ', $field)) . '</p></div>';
+            return;
+        }
+    }
+    
+    // Atualizar dados básicos do post
+    $post_data = array(
+        'ID' => $course_id,
+        'post_title' => sanitize_text_field($_POST['curso_titulo']),
+        'post_content' => wp_kses_post($_POST['curso_descricao']),
+        'post_status' => 'publish'
+    );
+    
+    $updated = wp_update_post($post_data);
+    
+    if (is_wp_error($updated)) {
+        echo '<div class="notice notice-error"><p>Erro ao atualizar o curso: ' . $updated->get_error_message() . '</p></div>';
+        return;
+    }
+    
+    // Campos de meta para atualizar
+    $meta_fields = array(
+        '_curso_nivel' => 'curso_nivel',
+        '_curso_categoria' => 'curso_categoria',
+        '_curso_duracao' => 'curso_duracao',
+        '_curso_carga_horaria' => 'curso_carga_horaria',
+        '_curso_estagio' => 'curso_estagio',
+        '_curso_turno' => 'curso_turno',
+        '_curso_modalidade' => 'curso_modalidade',
+        '_curso_tipo' => 'curso_tipo',
+        '_curso_reconhecimento' => 'curso_reconhecimento',
+        '_curso_certificacao' => 'curso_certificacao',
+        '_curso_preco' => 'curso_preco',
+        '_curso_preco_promocional' => 'curso_preco_promocional',
+        '_curso_desconto' => 'curso_desconto',
+        '_curso_link_inscricao' => 'curso_link_inscricao',
+        '_curso_escolaridade' => 'curso_escolaridade',
+        '_curso_idade_minima' => 'curso_idade_minima',
+        '_curso_prerequisitos' => 'curso_prerequisitos'
+    );
+    
+    // Atualizar campos de meta
+    foreach ($meta_fields as $meta_key => $post_key) {
+        if (isset($_POST[$post_key])) {
+            $value = sanitize_text_field($_POST[$post_key]);
+            update_post_meta($course_id, $meta_key, $value);
+        }
+    }
+    
+    // Definir categoria baseada na seleção do usuário
+    $categoria_slug = sanitize_text_field($_POST['curso_categoria']);
+    
+    if ($categoria_slug) {
+        $term = get_term_by('slug', $categoria_slug, 'categoria_curso');
+        if ($term) {
+            wp_set_post_terms($course_id, array($term->term_id), 'categoria_curso');
+        } else {
+            // Se o termo não existe, criar
+            $term_result = wp_insert_term(
+                ucfirst(str_replace('-', ' ', $categoria_slug)),
+                'categoria_curso',
+                array('slug' => $categoria_slug)
+            );
+            
+            if (!is_wp_error($term_result)) {
+                wp_set_post_terms($course_id, array($term_result['term_id']), 'categoria_curso');
+            }
+        }
+    }
+    
+    // Sucesso - redirecionar para a página de gerenciamento de cursos
+    $success_url = add_query_arg(array(
+        'page' => 'cetesi-courses-management',
+        'course_updated' => '1',
+        'course_name' => urlencode($_POST['curso_titulo'])
+    ), admin_url('admin.php'));
+    
+    // Limpar qualquer output buffer antes do redirecionamento
+    if (ob_get_level()) {
+        ob_end_clean();
+    }
+    
+    // Tentar redirecionamento com wp_redirect
+    if (!headers_sent()) {
+        wp_redirect($success_url);
+        exit;
+    } else {
+        // Fallback: usar JavaScript se headers já foram enviados
+        echo '<script>window.location.href = "' . esc_js($success_url) . '";</script>';
+        echo '<noscript><meta http-equiv="refresh" content="0;url=' . esc_url($success_url) . '"></noscript>';
+        exit;
+    }
+    
+    // Log da ação
+    cetesi_log_security_event('CURSO_UPDATED', 'Course updated via custom form: ' . $_POST['curso_titulo'], 'INFO');
 }
 
 /**
@@ -5103,6 +6094,8 @@ function cetesi_courses_management_page() {
     
     // Mostrar mensagem de sucesso se houver exclusão em lote
     $bulk_deleted = isset($_GET['bulk_deleted']) ? intval($_GET['bulk_deleted']) : 0;
+    $course_updated = isset($_GET['course_updated']) ? intval($_GET['course_updated']) : 0;
+    $course_name = isset($_GET['course_name']) ? urldecode($_GET['course_name']) : '';
     
     // Buscar cursos ordenados alfabeticamente
     $cursos = get_posts(array(
@@ -5131,6 +6124,12 @@ function cetesi_courses_management_page() {
         <?php if ($bulk_deleted > 0) : ?>
         <div class="notice notice-success is-dismissible">
             <p><strong>Sucesso!</strong> <?php echo $bulk_deleted; ?> curso(s) foram excluído(s) com sucesso.</p>
+        </div>
+        <?php endif; ?>
+        
+        <?php if ($course_updated > 0 && $course_name) : ?>
+        <div class="notice notice-success is-dismissible">
+            <p><strong>Sucesso!</strong> O curso "<?php echo esc_html($course_name); ?>" foi atualizado com sucesso!</p>
         </div>
         <?php endif; ?>
         
@@ -5225,7 +6224,7 @@ function cetesi_courses_management_page() {
                             break;
                     }
                     
-                    $edit_link = admin_url('post.php?post=' . $curso_id . '&action=edit');
+                    $edit_link = admin_url('admin.php?page=editar-curso-personalizado&course_id=' . $curso_id);
                     $view_link = get_permalink($curso_id);
                     $delete_link = wp_nonce_url(admin_url('admin.php?page=cetesi-courses-management&action=delete&course_id=' . $curso_id), 'delete_course_' . $curso_id);
                 ?>
