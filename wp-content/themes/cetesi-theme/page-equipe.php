@@ -69,8 +69,9 @@ get_header();
                             $formacao = get_post_meta(get_the_ID(), '_membro_formacao', true);
                             $experiencia = get_post_meta(get_the_ID(), '_membro_experiencia', true);
                             $email = get_post_meta(get_the_ID(), '_membro_email', true);
+                            $telefone = get_post_meta(get_the_ID(), '_membro_telefone', true);
                             $linkedin = get_post_meta(get_the_ID(), '_membro_linkedin', true);
-                            $bio = get_post_meta(get_the_ID(), '_membro_bio', true);
+                            $bio = get_the_content(); // Biografia está no post_content
                             
                             // Determinar categoria baseada no cargo
                             $categoria = 'administrativo';
@@ -102,6 +103,11 @@ get_header();
                                 <?php if ($email) : ?>
                                             <a href="mailto:<?php echo esc_attr($email); ?>" class="social-link-moderno" title="Email">
                                         <i class="fas fa-envelope"></i>
+                                    </a>
+                                <?php endif; ?>
+                                <?php if ($telefone) : ?>
+                                            <a href="tel:<?php echo esc_attr($telefone); ?>" class="social-link-moderno" title="Telefone">
+                                        <i class="fas fa-phone"></i>
                                     </a>
                                 <?php endif; ?>
                             </div>
@@ -206,6 +212,9 @@ get_header();
                                     </a>
                                         <a href="#" class="social-link-moderno" title="Email">
                                         <i class="fas fa-envelope"></i>
+                                    </a>
+                                        <a href="#" class="social-link-moderno" title="Telefone">
+                                        <i class="fas fa-phone"></i>
                                     </a>
                                 </div>
                             </div>

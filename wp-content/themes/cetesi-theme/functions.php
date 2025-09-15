@@ -88,6 +88,68 @@ function cetesi_advanced_settings() {
         30
     );
     
+    // Menu Principal - Cursos
+    add_menu_page(
+        'Gerenciar Cursos',
+        'Cursos',
+        'manage_options',
+        'cetesi-courses-management',
+        'cetesi_courses_management_page',
+        'dashicons-welcome-learn-more',
+        4
+    );
+    
+    // Submenu - Cursos Criados
+    add_submenu_page(
+        'cetesi-courses-management',
+        'Gerenciar Cursos',
+        'Ver cursos',
+        'manage_options',
+        'cetesi-courses-management',
+        'cetesi_courses_management_page'
+    );
+    
+    // Submenu - Novo Curso
+    add_submenu_page(
+        'cetesi-courses-management',
+        'Criar Novo Curso',
+        'Novo Curso',
+        'manage_options',
+        'criar-curso-personalizado',
+        'cetesi_custom_course_page_callback'
+    );
+    
+    // Menu Principal - Equipe
+    add_menu_page(
+        'Gerenciar Equipe',
+        'Equipe',
+        'manage_options',
+        'cetesi-team-management',
+        'cetesi_team_management_page',
+        'dashicons-groups',
+        5
+    );
+    
+    // Submenu - Novo Membro
+    add_submenu_page(
+        'cetesi-team-management',
+        'Adicionar Novo Membro',
+        'Novo membro',
+        'manage_options',
+        'cetesi-add-member',
+        'cetesi_add_member_page'
+    );
+    
+    // Submenu - Ver Equipe
+    add_submenu_page(
+        'cetesi-team-management',
+        'Ver Equipe',
+        'Ver equipe',
+        'manage_options',
+        'cetesi-view-team',
+        'cetesi_view_team_page'
+    );
+    
     // Submenu - Personalização
     add_submenu_page(
         'cetesi-settings',
@@ -96,17 +158,6 @@ function cetesi_advanced_settings() {
         'manage_options',
         'cetesi-customization',
         'cetesi_customization_page'
-    );
-    
-    
-    // Submenu - Otimização
-    add_submenu_page(
-        'cetesi-settings',
-        'Otimização',
-        'Otimização',
-        'manage_options',
-        'cetesi-optimization',
-        'cetesi_optimization_page'
     );
     
     // Submenu - Conteúdo
@@ -119,17 +170,26 @@ function cetesi_advanced_settings() {
         'cetesi_content_page'
     );
     
-    // Submenu - Cursos
+    // Submenu - Otimização
     add_submenu_page(
         'cetesi-settings',
-        'Gerenciar Cursos',
-        'Cursos',
+        'Otimização',
+        'Otimização',
         'manage_options',
-        'cetesi-courses-management',
-        'cetesi_courses_management_page'
+        'cetesi-optimization',
+        'cetesi_optimization_page'
     );
     
-    // Submenu - Adicionar Professor (oculto no menu)
+    // Páginas de professores acessíveis apenas via URL direta
+    // Não registradas como itens de menu para manter o menu limpo
+}
+add_action('admin_menu', 'cetesi_advanced_settings');
+
+/**
+ * Registrar páginas sem menu (acessíveis apenas via URL)
+ */
+function cetesi_register_hidden_pages() {
+    // Página de adicionar professor
     add_submenu_page(
         'cetesi-settings',
         'Adicionar Professor',
@@ -139,7 +199,7 @@ function cetesi_advanced_settings() {
         'cetesi_add_professor_page'
     );
     
-    // Submenu - Gerenciar Professores (oculto no menu)
+    // Página de gerenciar professores
     add_submenu_page(
         'cetesi-settings',
         'Gerenciar Professores',
@@ -149,7 +209,7 @@ function cetesi_advanced_settings() {
         'cetesi_manage_professors_page'
     );
 }
-add_action('admin_menu', 'cetesi_advanced_settings');
+add_action('admin_menu', 'cetesi_register_hidden_pages');
 
 /**
  * Página Principal de Configurações
@@ -1898,7 +1958,7 @@ function cetesi_register_post_types() {
         'public'              => true,
         'publicly_queryable'  => true,
         'show_ui'             => true,
-        'show_in_menu'        => true,
+        'show_in_menu'        => false,
         'show_in_nav_menus'   => true,
         'show_in_admin_bar'   => true,
         'menu_position'       => 5,
@@ -1958,7 +2018,7 @@ function cetesi_register_post_types() {
         'public'              => true,
         'publicly_queryable'  => true,
         'show_ui'             => true,
-        'show_in_menu'        => true,
+        'show_in_menu'        => false,
         'show_in_nav_menus'   => false,
         'show_in_admin_bar'   => true,
         'menu_position'       => 7,
@@ -2703,19 +2763,1751 @@ function cetesi_save_curso_meta($post_id) {
 add_action('save_post', 'cetesi_save_curso_meta');
 
 /**
- * Adicionar página personalizada para criação de cursos
+ * Página de criação de curso acessível apenas via URL direta
+ * Não registrada como item de menu para manter o menu limpo
  */
-function cetesi_add_custom_course_page() {
-    add_submenu_page(
-        'edit.php?post_type=curso',
-        'Criar Curso Personalizado',
-        'Criar Curso',
-        'manage_options',
-        'criar-curso-personalizado',
-        'cetesi_custom_course_page_callback'
-    );
+
+/**
+ * Página de gerenciamento da equipe
+ */
+function cetesi_team_management_page() {
+    // Processar ações de exclusão individual
+    if (isset($_GET['action']) && isset($_GET['member_id'])) {
+        cetesi_process_member_action();
+    }
+    
+    // Processar exclusão em lote
+    if (isset($_POST['bulk_action']) && $_POST['bulk_action'] === 'delete' && isset($_POST['member_ids'])) {
+        cetesi_process_bulk_delete_members();
+    }
+    
+    // Mostrar mensagem de sucesso se houver exclusão em lote
+    $bulk_deleted = isset($_GET['bulk_deleted']) ? intval($_GET['bulk_deleted']) : 0;
+    $deleted = isset($_GET['deleted']) ? intval($_GET['deleted']) : 0;
+    $member_created = isset($_GET['member_created']) ? intval($_GET['member_created']) : 0;
+    
+    // Buscar estatísticas
+    $total_membros = wp_count_posts('membro_equipe');
+    $total_professores = wp_count_posts('professor');
+    $membros_publicados = $total_membros->publish ?? 0;
+    $professores_publicados = $total_professores->publish ?? 0;
+    $total_equipe = $membros_publicados + $professores_publicados;
+    
+    // Buscar membros recentes
+    $membros_recentes = get_posts(array(
+        'post_type' => 'membro_equipe',
+        'posts_per_page' => 5,
+        'post_status' => 'publish',
+        'orderby' => 'date',
+        'order' => 'DESC'
+    ));
+    
+    ?>
+    <div class="wrap cetesi-team-management">
+        <?php if ($bulk_deleted > 0) : ?>
+            <div class="notice notice-success is-dismissible">
+                <p><strong>Sucesso!</strong> <?php echo $bulk_deleted; ?> membro(s) excluído(s) com sucesso.</p>
+            </div>
+        <?php endif; ?>
+        
+        <?php if ($deleted > 0) : ?>
+            <div class="notice notice-success is-dismissible">
+                <p><strong>Sucesso!</strong> Membro excluído com sucesso.</p>
+            </div>
+        <?php endif; ?>
+        
+        <?php if ($member_created > 0) : ?>
+            <div class="notice notice-success is-dismissible">
+                <p><strong>Sucesso!</strong> Membro criado e adicionado à equipe com sucesso.</p>
+            </div>
+        <?php endif; ?>
+        
+        <!-- Estatísticas -->
+        <div class="cetesi-stats-overview">
+            <div class="stat-item">
+                <div class="stat-icon cursos">
+                    <span class="dashicons dashicons-groups"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo $total_equipe; ?> Pessoas</h3>
+                    <p>Total na equipe</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon sucesso">
+                    <span class="dashicons dashicons-admin-users"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo $membros_publicados; ?> Membros</h3>
+                    <p>Membros da equipe</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon config">
+                    <span class="dashicons dashicons-welcome-learn-more"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo $professores_publicados; ?> Professores</h3>
+                    <p>Professores cadastrados</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Barra de Ações -->
+        <div class="cetesi-actions-bar">
+            <a href="<?php echo admin_url('admin.php?page=cetesi-add-member'); ?>" class="action-header-btn novo-membro">
+                <span class="dashicons dashicons-plus-alt"></span>
+                <span class="btn-label">Novo Membro</span>
+            </a>
+            <a href="<?php echo admin_url('edit.php?post_type=membro_equipe'); ?>" class="action-header-btn tradicional">
+                <span class="dashicons dashicons-list-view"></span>
+                <span class="btn-label">Tradicional</span>
+            </a>
+            <div class="bulk-actions">
+                <button type="button" id="select-all-members" class="action-header-btn bulk-select">
+                    <span class="dashicons dashicons-yes-alt"></span>
+                    <span class="btn-label">Marcar Todos</span>
+                </button>
+                <button type="button" id="bulk-delete-members" class="action-header-btn bulk-delete" style="display: none;">
+                    <span class="dashicons dashicons-trash"></span>
+                    <span class="btn-label">Excluir Selecionados</span>
+                </button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="team-search" placeholder="Buscar membros..." class="search-input">
+                <span class="dashicons dashicons-search search-icon"></span>
+            </div>
+        </div>
+        
+        <!-- Formulário para exclusão em lote -->
+        <form id="bulk-delete-form" method="post" action="" style="display: none;">
+            <?php wp_nonce_field('bulk_delete_members', 'bulk_delete_nonce'); ?>
+            <input type="hidden" name="bulk_action" value="delete">
+            <input type="hidden" name="member_ids" id="selected-member-ids" value="">
+        </form>
+        
+        <!-- Lista de Membros -->
+        <div class="cetesi-members-list">
+            <?php if (!empty($membros_recentes)) : ?>
+                <?php foreach ($membros_recentes as $membro) : 
+                    $cargo = get_post_meta($membro->ID, '_membro_cargo', true);
+                    $email = get_post_meta($membro->ID, '_membro_email', true);
+                    $telefone = get_post_meta($membro->ID, '_membro_telefone', true);
+                    $status = $membro->post_status;
+                ?>
+                <div class="member-list-item" data-member-id="<?php echo $membro->ID; ?>">
+                    <div class="member-checkbox">
+                        <input type="checkbox" class="member-select" value="<?php echo $membro->ID; ?>">
+                    </div>
+                    <div class="member-status">
+                        <span class="status-indicator <?php echo $status === 'publish' ? 'published' : 'draft'; ?>"></span>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name"><?php echo esc_html($membro->post_title); ?></h3>
+                        <div class="member-details">
+                            <?php if ($cargo) : ?>
+                                <span class="member-role"><?php echo esc_html($cargo); ?></span>
+                            <?php endif; ?>
+                            <?php if ($email) : ?>
+                                <span class="member-contact"><?php echo esc_html($email); ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="member-actions">
+                        <a href="<?php echo admin_url('post.php?post=' . $membro->ID . '&action=edit'); ?>" class="action-btn edit-btn" title="Editar membro">
+                            <span class="dashicons dashicons-edit"></span>
+                        </a>
+                        <a href="<?php echo get_permalink($membro->ID); ?>" class="action-btn view-btn" title="Ver no site" target="_blank">
+                            <span class="dashicons dashicons-visibility"></span>
+                        </a>
+                        <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=cetesi-team-management&action=delete&member_id=' . $membro->ID), 'delete_member_' . $membro->ID); ?>" class="action-btn delete-btn" title="Excluir membro" onclick="return confirm('Tem certeza que deseja excluir este membro? Esta ação não pode ser desfeita.');">
+                            <span class="dashicons dashicons-trash"></span>
+                        </a>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <div class="no-members">
+                    <div class="no-members-icon">
+                        <span class="dashicons dashicons-groups"></span>
+                    </div>
+                    <h3>Nenhum membro encontrado</h3>
+                    <p>Você ainda não criou nenhum membro da equipe. Comece criando seu primeiro membro!</p>
+                    <a href="<?php echo admin_url('admin.php?page=cetesi-add-member'); ?>" class="button button-primary button-large">
+                        <span class="dashicons dashicons-plus-alt"></span>
+                        Criar Primeiro Membro
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    
+    <style>
+    .cetesi-team-management {
+        max-width: 1400px;
+    }
+    
+    .cetesi-stats-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-item {
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .stat-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: white;
+    }
+    
+    .stat-icon.cursos {
+        background: linear-gradient(135deg, #10b981, #059669);
+    }
+    
+    .stat-icon.sucesso {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+    
+    .stat-icon.config {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+    
+    .stat-content h3 {
+        margin: 0 0 5px 0;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1e293b;
+    }
+    
+    .stat-content p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #475569;
+    }
+    
+    .cetesi-actions-bar {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        flex-wrap: wrap;
+    }
+    
+    .bulk-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .action-header-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    
+    .action-header-btn.novo-membro {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: white;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    }
+    
+    .action-header-btn.novo-membro:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+    
+    .action-header-btn.tradicional {
+        background: white;
+        color: #475569;
+        border-color: #e1e5e9;
+    }
+    
+    .action-header-btn.tradicional:hover {
+        background: #f8fafc;
+        border-color: #2563eb;
+        color: #2563eb;
+    }
+    
+    .action-header-btn.bulk-select {
+        background: #f0f9ff;
+        color: #0369a1;
+        border-color: #bae6fd;
+    }
+    
+    .action-header-btn.bulk-select:hover {
+        background: #0369a1;
+        color: white;
+    }
+    
+    .action-header-btn.bulk-delete {
+        background: #fef2f2;
+        color: #dc2626;
+        border-color: #fecaca;
+        display: none; /* Inicialmente oculto */
+    }
+    
+    .action-header-btn.bulk-delete:hover:not(:disabled) {
+        background: #dc2626;
+        color: white;
+    }
+    
+    .action-header-btn.bulk-delete:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    .action-header-btn .dashicons {
+        font-size: 18px;
+    }
+    
+    .action-header-btn .btn-label {
+        font-size: 14px;
+    }
+    
+    .search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+    
+    .search-input {
+        padding: 12px 40px 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        width: 300px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .search-icon {
+        position: absolute;
+        right: 12px;
+        color: #64748b;
+        font-size: 16px;
+    }
+    
+    /* Lista de membros */
+    .cetesi-members-list {
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        position: relative;
+    }
+    
+    .member-list-item {
+        display: flex;
+        align-items: center;
+        padding: 24px 30px;
+        border-bottom: 1px solid #f1f5f9;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        transition: all 0.3s ease;
+        position: relative;
+        background: white;
+    }
+    
+    .member-checkbox {
+        margin-right: 20px;
+        position: relative;
+    }
+    
+    .member-checkbox input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+        margin: 0;
+        cursor: pointer;
+        appearance: none;
+        border: 2px solid #d1d5db;
+        border-radius: 6px;
+        background: white;
+        transition: all 0.3s ease;
+    }
+    
+    .member-checkbox input[type="checkbox"]::before {
+        display: none !important;
+    }
+    
+    .member-checkbox input[type="checkbox"]:hover {
+        border-color: #2563eb;
+        background: #f0f9ff;
+        transform: scale(1.05);
+    }
+    
+    .member-checkbox input[type="checkbox"]:checked {
+        background: #2563eb;
+        border-color: #2563eb;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    }
+    
+    .member-checkbox input[type="checkbox"]:checked::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1;
+    }
+    
+    .member-checkbox input[type="checkbox"]:checked:hover {
+        background: #1d4ed8;
+        border-color: #1d4ed8;
+        transform: scale(1.05);
+    }
+    
+    .member-checkbox label {
+        display: none;
+    }
+    
+    .member-list-item:last-child {
+        border-bottom: none;
+        border-radius: 0 0 16px 16px;
+    }
+    
+    .member-list-item:hover {
+        background: #f8fafc;
+        transform: translateX(8px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        border-left: none !important;
+    }
+    
+    .member-list-item.checkbox-selected {
+        border-left: none !important;
+    }
+    
+    .member-list-item.checkbox-selected:hover {
+        background: #f8fafc;
+        transform: translateX(8px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        border-left: none !important;
+    }
+    
+    .member-status {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin-right: 24px;
+        flex-shrink: 0;
+    }
+    
+    .status-indicator.published {
+        background: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+    
+    .status-indicator.draft {
+        background: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+    
+    .member-info {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    
+    .member-name {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 600;
+        color: #1e293b;
+        flex: 1;
+        line-height: 1.4;
+    }
+    
+    .member-details {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-left: 20px;
+    }
+    
+    .member-role {
+        color: #2563eb;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    
+    .member-contact {
+        color: #64748b;
+        font-size: 13px;
+    }
+    
+    .member-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    
+    .action-btn.edit-btn {
+        background: #f0f9ff;
+        color: #2563eb;
+        border-color: #bae6fd;
+    }
+    
+    .action-btn.edit-btn:hover {
+        background: #2563eb;
+        color: white;
+        border-color: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    
+    .action-btn.view-btn {
+        background: #f0fdf4;
+        color: #16a34a;
+        border-color: #bbf7d0;
+    }
+    
+    .action-btn.view-btn:hover {
+        background: #16a34a;
+        color: white;
+        border-color: #16a34a;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+    }
+    
+    .action-btn.delete-btn {
+        background: #fef2f2;
+        color: #dc2626;
+        border-color: #fecaca;
+    }
+    
+    .action-btn.delete-btn:hover {
+        background: #dc2626;
+        color: white;
+        border-color: #dc2626;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+    
+    .action-btn .dashicons {
+        font-size: 18px;
+    }
+    
+    .no-members {
+        text-align: center;
+        padding: 60px 20px;
+        color: #64748b;
+    }
+    
+    .no-members-icon {
+        margin-bottom: 20px;
+    }
+    
+    .no-members-icon .dashicons {
+        font-size: 64px;
+        color: #d1d5db;
+    }
+    
+    .no-members h3 {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        color: #374151;
+    }
+    
+    .no-members p {
+        margin: 0 0 30px 0;
+        font-size: 16px;
+    }
+    
+    .no-members .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .cetesi-stats-overview {
+            grid-template-columns: 1fr;
+        }
+        
+        .cetesi-actions-bar {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .search-container {
+            margin-left: 0;
+        }
+        
+        .search-input {
+            width: 100%;
+        }
+        
+        .member-list-item {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .member-info {
+            flex-basis: 100%;
+        }
+        
+        .member-actions {
+            flex-basis: 100%;
+            justify-content: center;
+        }
+    }
+    </style>
+    
+    <script>
+    jQuery(document).ready(function($) {
+        // Busca em tempo real
+        $('#team-search').on('input', function() {
+            var searchTerm = $(this).val().toLowerCase();
+            $('.member-list-item').each(function() {
+                var memberName = $(this).find('.member-name').text().toLowerCase();
+                var memberRole = $(this).find('.member-role').text().toLowerCase();
+                var memberContact = $(this).find('.member-contact').text().toLowerCase();
+                
+                if (memberName.includes(searchTerm) || memberRole.includes(searchTerm) || memberContact.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+        
+        // Marcar todos
+        $('#select-all-members').on('click', function() {
+            var visibleCheckboxes = $('.member-list-item:visible .member-select');
+            var allChecked = visibleCheckboxes.length > 0 && visibleCheckboxes.filter(':checked').length === visibleCheckboxes.length;
+            
+            visibleCheckboxes.prop('checked', !allChecked).trigger('change');
+        });
+        
+        // Atualizar botão de exclusão em lote
+        function updateBulkDeleteButton() {
+            var checkedCount = $('.member-select:checked').length;
+            if (checkedCount > 0) {
+                $('#bulk-delete-members').show();
+            } else {
+                $('#bulk-delete-members').hide();
+            }
+        }
+        
+        // Evento de mudança nos checkboxes
+        $(document).on('change', '.member-select', function() {
+            updateBulkDeleteButton();
+            
+            // Adicionar/remover classe de seleção
+            var $listItem = $(this).closest('.member-list-item');
+            if ($(this).is(':checked')) {
+                $listItem.addClass('checkbox-selected');
+            } else {
+                $listItem.removeClass('checkbox-selected');
+            }
+        });
+        
+        // Inicializar estado do botão
+        updateBulkDeleteButton();
+        
+        // Evento de clique no botão de exclusão em lote
+        $('#bulk-delete-members').on('click', function() {
+            const selectedMembers = $('.member-select:checked').map(function() {
+                return $(this).val();
+            }).get();
+            
+            if (selectedMembers.length === 0) {
+                alert('Selecione pelo menos um membro para excluir.');
+                return;
+            }
+            
+            if (confirm('Tem certeza que deseja excluir ' + selectedMembers.length + ' membro(s) selecionado(s)? Esta ação não pode ser desfeita.')) {
+                $('#selected-member-ids').val(selectedMembers.join(','));
+                $('#bulk-delete-form').submit();
+            }
+        });
+    });
+    </script>
+    <?php
 }
-add_action('admin_menu', 'cetesi_add_custom_course_page');
+
+/**
+ * Página de adicionar novo membro
+ */
+function cetesi_add_member_page() {
+    // Verificar se o formulário foi enviado ANTES de qualquer output
+    if (isset($_POST['criar_membro']) && wp_verify_nonce($_POST['cetesi_member_nonce'], 'criar_membro_action')) {
+        // Limpar qualquer output buffer
+        if (ob_get_level()) {
+            ob_end_clean();
+        }
+        
+        cetesi_process_member_creation();
+        return; // Importante: sair da função após o processamento
+    }
+    
+    ?>
+    <div class="wrap cetesi-custom-member-page">
+        <!-- Estatísticas -->
+        <div class="cetesi-stats-overview">
+            <div class="stat-item">
+                <div class="stat-icon cursos">
+                    <span class="dashicons dashicons-groups"></span>
+                </div>
+                <div class="stat-content">
+                    <h3>Novo Membro</h3>
+                    <p>Adicionar novo membro à equipe</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon sucesso">
+                    <span class="dashicons dashicons-yes-alt"></span>
+                </div>
+                <div class="stat-content">
+                    <h3>Formulário Completo</h3>
+                    <p>Todas as informações necessárias</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon config">
+                    <span class="dashicons dashicons-admin-settings"></span>
+                </div>
+                <div class="stat-content">
+                    <h3>Configuração Rápida</h3>
+                    <p>Interface intuitiva e organizada</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cetesi-member-form-container">
+            <form method="post" action="" class="cetesi-member-form" enctype="multipart/form-data">
+                <?php wp_nonce_field('criar_membro_action', 'cetesi_member_nonce'); ?>
+                
+                <!-- Informações Básicas -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-info"></span> Informações Básicas</h2>
+                        <p>Preencha as informações principais do membro</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_nome" class="required">Nome Completo</label>
+                            <input type="text" id="membro_nome" name="membro_nome" required 
+                                   placeholder="Ex: João Silva Santos" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_cargo" class="required">Cargo/Função</label>
+                            <input type="text" id="membro_cargo" name="membro_cargo" required 
+                                   placeholder="Ex: Coordenador Acadêmico" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_especialidade">Especialidade</label>
+                            <input type="text" id="membro_especialidade" name="membro_especialidade" 
+                                   placeholder="Ex: Gestão Educacional" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_formacao">Formação Acadêmica</label>
+                            <input type="text" id="membro_formacao" name="membro_formacao" 
+                                   placeholder="Ex: Graduação em Administração - UFDF" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_experiencia">Anos de Experiência</label>
+                            <input type="number" id="membro_experiencia" name="membro_experiencia" 
+                                   placeholder="Ex: 10" min="0" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_email">E-mail</label>
+                            <input type="email" id="membro_email" name="membro_email" 
+                                   placeholder="Ex: joao@cetesi.com.br" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="membro_telefone">Telefone</label>
+                            <input type="tel" id="membro_telefone" name="membro_telefone" 
+                                   placeholder="Ex: (11) 99999-9999" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="membro_linkedin">LinkedIn</label>
+                            <input type="url" id="membro_linkedin" name="membro_linkedin" 
+                                   placeholder="Ex: https://linkedin.com/in/joao-silva" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Foto do Membro -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-camera"></span> Foto do Membro</h2>
+                        <p>Adicione uma foto profissional do membro</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="membro_foto">Foto do Membro</label>
+                            <input type="file" id="membro_foto" name="membro_foto" accept="image/*" />
+                            <small>Selecione uma foto profissional (JPG, PNG, GIF - máximo 2MB)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Biografia e Certificações -->
+                <div class="cetesi-form-section">
+                    <div class="section-header">
+                        <h2><span class="dashicons dashicons-edit"></span> Informações Adicionais</h2>
+                        <p>Biografia e certificações do membro</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="membro_bio">Biografia</label>
+                            <textarea id="membro_bio" name="membro_bio" rows="4" 
+                                      placeholder="Descreva a experiência profissional, conquistas e especialidades do membro..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="membro_certificacoes">Certificações</label>
+                            <input type="text" id="membro_certificacoes" name="membro_certificacoes" 
+                                   placeholder="Ex: MBA em Gestão, Certificação PMP, Pós-graduação em Educação" />
+                            <small>Separe as certificações por vírgula</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Botões de Ação -->
+                <div class="form-actions">
+                    <button type="submit" name="criar_membro" class="cetesi-btn-primary">
+                        <span class="dashicons dashicons-plus-alt"></span>
+                        Criar Membro
+                    </button>
+                    <a href="<?php echo admin_url('admin.php?page=cetesi-team-management'); ?>" class="cetesi-btn-secondary">
+                        <span class="dashicons dashicons-arrow-left-alt"></span>
+                        Voltar para Lista
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
+    <style>
+    .cetesi-custom-member-page {
+        background: #f8f9fa;
+        min-height: 100vh;
+        padding: 20px;
+    }
+    
+    
+    .cetesi-stats-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-item {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .stat-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .stat-icon.cursos {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    }
+    
+    .stat-icon.sucesso {
+        background: linear-gradient(135deg, #10b981, #059669);
+    }
+    
+    .stat-icon.config {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+    
+    .stat-icon .dashicons {
+        color: white;
+        font-size: 24px;
+    }
+    
+    .stat-content h3 {
+        margin: 0 0 5px 0;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1f2937;
+    }
+    
+    .stat-content p {
+        margin: 0;
+        color: #6b7280;
+        font-size: 14px;
+    }
+    
+    .cetesi-member-form-container {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        margin-top: 20px;
+    }
+    
+    .cetesi-member-form {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .cetesi-form-section {
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #e9ecef;
+    }
+    
+    .cetesi-form-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    
+    .section-header {
+        margin-bottom: 25px;
+    }
+    
+    .section-header h2 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 8px 0;
+        color: #2c3e50;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    .section-header p {
+        margin: 0;
+        color: #6c757d;
+        font-size: 14px;
+    }
+    
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .form-row .form-group.full-width {
+        grid-column: 1 / -1;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #374151;
+        font-size: 14px;
+    }
+    
+    .form-group label.required::after {
+        content: " *";
+        color: #dc3545;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 12px 16px;
+        border: 2px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background: white;
+        font-family: inherit;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+    
+    .form-group small {
+        margin-top: 5px;
+        color: #6b7280;
+        font-size: 12px;
+    }
+    
+    .form-group input[type="file"] {
+        padding: 8px 12px;
+        border: 2px dashed #d1d5db;
+        background: #f9fafb;
+        cursor: pointer;
+    }
+    
+    .form-group input[type="file"]:hover {
+        border-color: #2563eb;
+        background: #f0f9ff;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e9ecef;
+    }
+    
+    /* Botões personalizados */
+    .cetesi-btn-primary,
+    .cetesi-btn-secondary {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border: 2px solid transparent;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cetesi-btn-primary {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: white;
+        border-color: #1d4ed8;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+    
+    .cetesi-btn-primary:hover {
+        background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    }
+    
+    .cetesi-btn-secondary {
+        background: white;
+        color: #374151;
+        border-color: #d1d5db;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .cetesi-btn-secondary:hover {
+        background: #f8fafc;
+        border-color: #2563eb;
+        color: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    
+    .cetesi-btn-primary .dashicons,
+    .cetesi-btn-secondary .dashicons {
+        font-size: 18px;
+    }
+    
+    /* Efeito shimmer nos botões */
+    .cetesi-btn-primary::before,
+    .cetesi-btn-secondary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.6s ease;
+    }
+    
+    .cetesi-btn-primary:hover::before,
+    .cetesi-btn-secondary:hover::before {
+        left: 100%;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .cetesi-stats-overview {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+        
+        .cetesi-btn-primary,
+        .cetesi-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .stat-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .stat-content h3 {
+            font-size: 20px;
+        }
+    }
+    </style>
+    
+    <?php
+}
+
+/**
+ * Processar ação individual de membro
+ */
+function cetesi_process_member_action() {
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para realizar esta ação.');
+    }
+    
+    $action = sanitize_text_field($_GET['action']);
+    $member_id = intval($_GET['member_id']);
+    
+    if ($action === 'delete') {
+        if (wp_verify_nonce($_GET['_wpnonce'], 'delete_member_' . $member_id)) {
+            wp_delete_post($member_id, true);
+            
+            // Redirecionar de volta para a página de gerenciamento
+            $redirect_url = add_query_arg(array(
+                'page' => 'cetesi-team-management',
+                'deleted' => '1'
+            ), admin_url('admin.php'));
+            
+            // Limpar qualquer output buffer antes do redirecionamento
+            if (ob_get_level()) {
+                ob_end_clean();
+            }
+            
+            // Tentar redirecionamento com wp_redirect
+            if (!headers_sent()) {
+                wp_redirect($redirect_url);
+                exit;
+            } else {
+                // Fallback: usar JavaScript se headers já foram enviados
+                echo '<script>window.location.href = "' . esc_js($redirect_url) . '";</script>';
+                echo '<noscript><meta http-equiv="refresh" content="0;url=' . esc_url($redirect_url) . '"></noscript>';
+                exit;
+            }
+        } else {
+            wp_die('Token de segurança inválido.');
+        }
+    }
+}
+
+/**
+ * Processar exclusão em lote de membros
+ */
+function cetesi_process_bulk_delete_members() {
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para realizar esta ação.');
+    }
+    
+    if (!wp_verify_nonce($_POST['bulk_delete_nonce'], 'bulk_delete_members')) {
+        wp_die('Token de segurança inválido.');
+    }
+    
+    $member_ids = explode(',', sanitize_text_field($_POST['member_ids']));
+    $deleted_count = 0;
+    
+    foreach ($member_ids as $member_id) {
+        $member_id = intval($member_id);
+        if ($member_id > 0) {
+            if (wp_delete_post($member_id, true)) {
+                $deleted_count++;
+            }
+        }
+    }
+    
+    // Redirecionar de volta para a página de gerenciamento
+    $redirect_url = add_query_arg(array(
+        'page' => 'cetesi-team-management',
+        'bulk_deleted' => $deleted_count
+    ), admin_url('admin.php'));
+    
+    // Limpar qualquer output buffer antes do redirecionamento
+    if (ob_get_level()) {
+        ob_end_clean();
+    }
+    
+    // Tentar redirecionamento com wp_redirect
+    if (!headers_sent()) {
+        wp_redirect($redirect_url);
+        exit;
+    } else {
+        // Fallback: usar JavaScript se headers já foram enviados
+        echo '<script>window.location.href = "' . esc_js($redirect_url) . '";</script>';
+        echo '<noscript><meta http-equiv="refresh" content="0;url=' . esc_url($redirect_url) . '"></noscript>';
+        exit;
+    }
+}
+
+/**
+ * Processar criação de membro
+ */
+function cetesi_process_member_creation() {
+    // Verificar permissões
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para realizar esta ação.');
+    }
+    
+    // Validar campos obrigatórios
+    $required_fields = array('membro_nome', 'membro_cargo');
+    $errors = array();
+    
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            $errors[] = "O campo " . ucfirst(str_replace('membro_', '', $field)) . " é obrigatório.";
+        }
+    }
+    
+    if (!empty($errors)) {
+        echo '<div class="notice notice-error"><p><strong>Erro:</strong> ' . implode('<br>', $errors) . '</p></div>';
+        return;
+    }
+    
+    // Processar upload da foto
+    $foto_id = 0;
+    if (!empty($_FILES['membro_foto']['name'])) {
+        $upload = wp_handle_upload($_FILES['membro_foto'], array('test_form' => false));
+        
+        if (!isset($upload['error'])) {
+            $attachment = array(
+                'post_mime_type' => $upload['type'],
+                'post_title' => sanitize_file_name(basename($upload['file'])),
+                'post_content' => '',
+                'post_status' => 'inherit'
+            );
+            
+            $foto_id = wp_insert_attachment($attachment, $upload['file']);
+            
+            if (!is_wp_error($foto_id)) {
+                require_once(ABSPATH . 'wp-admin/includes/image.php');
+                $attach_data = wp_generate_attachment_metadata($foto_id, $upload['file']);
+                wp_update_attachment_metadata($foto_id, $attach_data);
+            }
+        }
+    }
+    
+    // Preparar dados do post
+    $post_data = array(
+        'post_title' => sanitize_text_field($_POST['membro_nome']),
+        'post_content' => sanitize_textarea_field($_POST['membro_bio'] ?? ''),
+        'post_excerpt' => wp_trim_words(sanitize_textarea_field($_POST['membro_bio'] ?? ''), 20),
+        'post_status' => 'publish',
+        'post_type' => 'membro_equipe',
+        'post_author' => get_current_user_id()
+    );
+    
+    // Criar o post
+    $post_id = wp_insert_post($post_data);
+    
+    if (is_wp_error($post_id)) {
+        echo '<div class="notice notice-error"><p><strong>Erro:</strong> Não foi possível criar o membro. Tente novamente.</p></div>';
+        return;
+    }
+    
+    // Definir foto destacada se foi enviada
+    if ($foto_id > 0) {
+        set_post_thumbnail($post_id, $foto_id);
+    }
+    
+    // Salvar campos personalizados
+    $meta_fields = array(
+        'membro_cargo' => '_membro_cargo',
+        'membro_especialidade' => '_membro_especialidade',
+        'membro_formacao' => '_membro_formacao',
+        'membro_experiencia' => '_membro_experiencia',
+        'membro_email' => '_membro_email',
+        'membro_telefone' => '_membro_telefone',
+        'membro_linkedin' => '_membro_linkedin',
+        'membro_certificacoes' => '_membro_certificacoes'
+    );
+    
+    foreach ($meta_fields as $form_field => $meta_key) {
+        if (isset($_POST[$form_field]) && !empty($_POST[$form_field])) {
+            $value = sanitize_text_field($_POST[$form_field]);
+            if ($form_field === 'membro_certificacoes') {
+                $value = sanitize_textarea_field($_POST[$form_field]);
+            }
+            update_post_meta($post_id, $meta_key, $value);
+        }
+    }
+    
+    // Sucesso - redirecionar para a página de gerenciamento da equipe
+    $success_url = add_query_arg(array(
+        'page' => 'cetesi-team-management',
+        'member_created' => '1'
+    ), admin_url('admin.php'));
+    
+    // Limpar qualquer output buffer antes do redirecionamento
+    if (ob_get_level()) {
+        ob_end_clean();
+    }
+    
+    // Tentar redirecionamento com wp_redirect
+    if (!headers_sent()) {
+        wp_redirect($success_url);
+        exit;
+    } else {
+        // Fallback: usar JavaScript se headers já foram enviados
+        echo '<script>window.location.href = "' . esc_js($success_url) . '";</script>';
+        echo '<noscript><meta http-equiv="refresh" content="0;url=' . esc_url($success_url) . '"></noscript>';
+        exit;
+    }
+}
+
+/**
+ * Página de visualizar equipe
+ */
+function cetesi_view_team_page() {
+    // Buscar todos os membros da equipe
+    $membros = get_posts(array(
+        'post_type' => 'membro_equipe',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'orderby' => 'title',
+        'order' => 'ASC'
+    ));
+    
+    // Buscar professores
+    $professores = get_posts(array(
+        'post_type' => 'professor',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'orderby' => 'title',
+        'order' => 'ASC'
+    ));
+    
+    ?>
+    <div class="wrap">
+        <h1>Ver Equipe</h1>
+        <p>Visualize todos os membros da equipe do CETESI.</p>
+        
+        <!-- Estatísticas -->
+        <div class="cetesi-stats-overview">
+            <div class="stat-item">
+                <div class="stat-icon cursos">
+                    <span class="dashicons dashicons-groups"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo count($membros); ?> Membros</h3>
+                    <p>Membros da equipe cadastrados</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon sucesso">
+                    <span class="dashicons dashicons-welcome-learn-more"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo count($professores); ?> Professores</h3>
+                    <p>Professores cadastrados</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon config">
+                    <span class="dashicons dashicons-admin-users"></span>
+                </div>
+                <div class="stat-content">
+                    <h3><?php echo count($membros) + count($professores); ?> Total</h3>
+                    <p>Pessoas na equipe</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lista de Membros -->
+        <?php if (!empty($membros)) : ?>
+        <div class="cetesi-form-section">
+            <div class="section-header">
+                <h2><span class="dashicons dashicons-groups"></span> Membros da Equipe</h2>
+                <p>Lista de todos os membros cadastrados</p>
+            </div>
+            
+            <div class="team-grid">
+                <?php foreach ($membros as $membro) : 
+                    $cargo = get_post_meta($membro->ID, '_membro_cargo', true);
+                    $email = get_post_meta($membro->ID, '_membro_email', true);
+                    $telefone = get_post_meta($membro->ID, '_membro_telefone', true);
+                    $certificacoes = get_post_meta($membro->ID, '_membro_certificacoes', true);
+                    $foto = get_the_post_thumbnail($membro->ID, 'thumbnail');
+                ?>
+                <div class="team-member-card">
+                    <div class="member-photo-section">
+                        <?php if ($foto) : ?>
+                            <div class="member-photo">
+                                <?php echo $foto; ?>
+                            </div>
+                        <?php else : ?>
+                            <div class="member-photo no-photo">
+                                <span class="dashicons dashicons-admin-users"></span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="member-info-section">
+                        <div class="member-header">
+                            <h3 class="member-name"><?php echo esc_html($membro->post_title); ?></h3>
+                            <span class="member-badge">Membros</span>
+                        </div>
+                        <?php if ($cargo) : ?>
+                            <p class="member-role"><?php echo esc_html($cargo); ?></p>
+                        <?php endif; ?>
+                        <?php 
+                        $formacao = get_post_meta($membro->ID, '_membro_formacao', true);
+                        if ($formacao) : ?>
+                            <p class="member-education">
+                                <span class="dashicons dashicons-awards"></span>
+                                <?php echo esc_html($formacao); ?>
+                            </p>
+                        <?php endif; ?>
+                        <?php if ($membro->post_content) : ?>
+                            <p class="member-bio"><?php echo esc_html($membro->post_content); ?></p>
+                        <?php endif; ?>
+                        <?php 
+                        $experiencia = get_post_meta($membro->ID, '_membro_experiencia', true);
+                        if ($experiencia) : ?>
+                            <p class="member-experience">
+                                <span class="dashicons dashicons-clock"></span>
+                                <?php echo esc_html($experiencia); ?> anos de experiência
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+        
+        <!-- Lista de Professores -->
+        <?php if (!empty($professores)) : ?>
+        <div class="cetesi-form-section">
+            <div class="section-header">
+                <h2><span class="dashicons dashicons-welcome-learn-more"></span> Professores</h2>
+                <p>Lista de todos os professores cadastrados</p>
+            </div>
+            
+            <div class="team-grid">
+                <?php foreach ($professores as $professor) : 
+                    $especialidade = get_post_meta($professor->ID, '_professor_especialidade', true);
+                    $email = get_post_meta($professor->ID, '_professor_email', true);
+                    $telefone = get_post_meta($professor->ID, '_professor_telefone', true);
+                    $foto = get_the_post_thumbnail($professor->ID, 'thumbnail');
+                ?>
+                <div class="team-member-card">
+                    <div class="member-photo-section">
+                        <?php if ($foto) : ?>
+                            <div class="member-photo">
+                                <?php echo $foto; ?>
+                            </div>
+                        <?php else : ?>
+                            <div class="member-photo no-photo">
+                                <span class="dashicons dashicons-welcome-learn-more"></span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="member-info-section">
+                        <div class="member-header">
+                            <h3 class="member-name"><?php echo esc_html($professor->post_title); ?></h3>
+                            <span class="member-badge">Docentes</span>
+                        </div>
+                        <?php if ($especialidade) : ?>
+                            <p class="member-role"><?php echo esc_html($especialidade); ?></p>
+                        <?php endif; ?>
+                        <?php 
+                        $formacao = get_post_meta($professor->ID, '_professor_formacao', true);
+                        if ($formacao) : ?>
+                            <p class="member-education">
+                                <span class="dashicons dashicons-awards"></span>
+                                <?php echo esc_html($formacao); ?>
+                            </p>
+                        <?php endif; ?>
+                        <?php if ($professor->post_content) : ?>
+                            <p class="member-bio"><?php echo esc_html($professor->post_content); ?></p>
+                        <?php endif; ?>
+                        <?php 
+                        $experiencia = get_post_meta($professor->ID, '_professor_experiencia', true);
+                        if ($experiencia) : ?>
+                            <p class="member-experience">
+                                <span class="dashicons dashicons-clock"></span>
+                                <?php echo esc_html($experiencia); ?> anos de experiência
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+        
+        <!-- Ações -->
+        <div class="form-actions">
+            <a href="<?php echo admin_url('admin.php?page=cetesi-add-member'); ?>" class="cetesi-btn-primary">
+                <span class="dashicons dashicons-plus-alt"></span>
+                Adicionar Novo Membro
+            </a>
+            <a href="<?php echo admin_url('admin.php?page=cetesi-team-management'); ?>" class="cetesi-btn-secondary">
+                <span class="dashicons dashicons-arrow-left-alt"></span>
+                Voltar ao Gerenciamento
+            </a>
+        </div>
+    </div>
+    
+    <style>
+    .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .team-member-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        width: 300px;
+        flex: 0 0 300px;
+        overflow: hidden;
+    }
+    
+    .team-member-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    
+    .member-photo-section {
+        height: 200px;
+        background: linear-gradient(135deg, #2563eb, #10b981);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    
+    .member-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid white;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .member-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .member-photo.no-photo {
+        background: rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .member-photo.no-photo .dashicons {
+        font-size: 48px;
+        color: white;
+    }
+    
+    .member-info-section {
+        padding: 20px;
+    }
+    
+    .member-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+    
+    .member-name {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+        color: #1f2937;
+        flex: 1;
+    }
+    
+    .member-badge {
+        background: #e0f2fe;
+        color: #0277bd;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+    
+    .member-role {
+        color: #2563eb;
+        font-weight: 600;
+        font-size: 16px;
+        margin: 0 0 12px 0;
+    }
+    
+    .member-education {
+        margin: 8px 0;
+        font-size: 14px;
+        color: #6b7280;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .member-education .dashicons {
+        color: #10b981;
+        font-size: 16px;
+    }
+    
+    .member-bio {
+        margin: 12px 0;
+        font-size: 14px;
+        color: #4b5563;
+        line-height: 1.5;
+    }
+    
+    .member-experience {
+        margin: 8px 0 0 0;
+        font-size: 14px;
+        color: #6b7280;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .member-experience .dashicons {
+        color: #f59e0b;
+        font-size: 16px;
+    }
+    
+    
+    .member-actions .button {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .member-actions .dashicons {
+        font-size: 14px;
+    }
+    </style>
+    <?php
+}
 
 /**
  * Callback para a página personalizada de criação de cursos
@@ -2728,10 +4520,36 @@ function cetesi_custom_course_page_callback() {
     
     ?>
     <div class="wrap cetesi-custom-course-page">
-        <h1 class="wp-heading-inline">
-            <span class="dashicons dashicons-plus-alt"></span>
-            Criar Novo Curso
-        </h1>
+        <!-- Estatísticas -->
+        <div class="cetesi-stats-overview">
+            <div class="stat-item">
+                <div class="stat-icon cursos">
+                    <span class="dashicons dashicons-book-alt"></span>
+                </div>
+                <div class="stat-content">
+                    <h3>Criar Curso</h3>
+                    <p>Adicionar novo curso ao catálogo</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon sucesso">
+                    <span class="dashicons dashicons-yes-alt"></span>
+                </div>
+                <div class="stat-content">
+                    <h3>Formulário Completo</h3>
+                    <p>Todas as informações necessárias</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon config">
+                    <span class="dashicons dashicons-admin-settings"></span>
+                </div>
+                <div class="stat-content">
+                    <h3>Configuração Rápida</h3>
+                    <p>Interface intuitiva e organizada</p>
+                </div>
+            </div>
+        </div>
         
         <div class="cetesi-course-form-container">
             <form method="post" action="" class="cetesi-course-form">
@@ -2745,16 +4563,10 @@ function cetesi_custom_course_page_callback() {
                     </div>
                     
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group full-width">
                             <label for="curso_titulo" class="required">Nome do Curso</label>
                             <input type="text" id="curso_titulo" name="curso_titulo" required 
                                    placeholder="Ex: Técnico em Enfermagem" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="curso_codigo">Código do Curso</label>
-                            <input type="text" id="curso_codigo" name="curso_codigo" 
-                                   placeholder="Ex: TE-001" />
                         </div>
                     </div>
                     
@@ -2779,14 +4591,14 @@ function cetesi_custom_course_page_callback() {
                         </div>
                         
                         <div class="form-group">
-                            <label for="curso_area">Área de Conhecimento</label>
-                            <select id="curso_area" name="curso_area">
-                                <option value="">Selecione a área</option>
-                                <option value="saude">Saúde</option>
-                                <option value="tecnologia">Tecnologia</option>
-                                <option value="gestao">Gestão</option>
-                                <option value="educacao">Educação</option>
-                                <option value="seguranca">Segurança</option>
+                            <label for="curso_categoria" class="required">Categoria do Curso</label>
+                            <select id="curso_categoria" name="curso_categoria" required>
+                                <option value="">Selecione a categoria</option>
+                                <option value="tecnicos">Técnicos</option>
+                                <option value="livres">Cursos Livres</option>
+                                <option value="online">Online</option>
+                                <option value="qualificacao">Qualificação Profissional</option>
+                                <option value="educacao-basica">Educação Básica</option>
                             </select>
                         </div>
                     </div>
@@ -2957,11 +4769,11 @@ function cetesi_custom_course_page_callback() {
                 
                 <!-- Botões de Ação -->
                 <div class="form-actions">
-                    <button type="submit" name="criar_curso" class="button button-primary button-large">
+                    <button type="submit" name="criar_curso" class="cetesi-btn-primary">
                         <span class="dashicons dashicons-plus-alt"></span>
                         Criar Curso
                     </button>
-                    <a href="<?php echo admin_url('edit.php?post_type=curso'); ?>" class="button button-secondary">
+                    <a href="<?php echo admin_url('admin.php?page=cetesi-courses-management'); ?>" class="cetesi-btn-secondary">
                         <span class="dashicons dashicons-arrow-left-alt"></span>
                         Voltar para Lista
                     </a>
@@ -2971,52 +4783,143 @@ function cetesi_custom_course_page_callback() {
     </div>
     
     <style>
+    /* Estilo base da página */
     .cetesi-custom-course-page {
         max-width: 1200px;
+        margin: 0 auto;
     }
     
+    /* Estatísticas */
+    .cetesi-stats-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-item {
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .stat-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .stat-icon.cursos {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    }
+    
+    .stat-icon.sucesso {
+        background: linear-gradient(135deg, #10b981, #059669);
+    }
+    
+    .stat-icon.config {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+    
+    .stat-icon .dashicons {
+        font-size: 28px;
+        color: white;
+    }
+    
+    .stat-content h3 {
+        margin: 0 0 8px 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+    }
+    
+    .stat-content p {
+        margin: 0;
+        font-size: 14px;
+        color: #64748b;
+    }
+    
+    /* Container do formulário */
     .cetesi-course-form-container {
-        background: #fff;
-        border: 1px solid #ccd0d4;
-        border-radius: 8px;
-        padding: 0;
-        margin-top: 20px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        position: relative;
     }
     
+    .cetesi-course-form-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        z-index: 1;
+    }
+    
+    /* Seções do formulário */
     .cetesi-form-section {
-        border-bottom: 1px solid #e1e1e1;
-        padding: 30px;
+        border-bottom: 1px solid #f1f5f9;
+        padding: 32px;
+        position: relative;
+        background: white;
     }
     
     .cetesi-form-section:last-child {
         border-bottom: none;
+        border-radius: 0 0 16px 16px;
     }
     
     .section-header {
-        margin-bottom: 25px;
-        padding-bottom: 15px;
-        border-bottom: 2px solid #f0f0f0;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #f1f5f9;
     }
     
     .section-header h2 {
-        margin: 0 0 8px 0;
-        font-size: 18px;
-        color: #23282d;
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #1e293b;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
+    }
+    
+    .section-header h2 .dashicons {
+        font-size: 20px;
+        color: #667eea;
     }
     
     .section-header p {
         margin: 0;
-        color: #666;
+        color: #64748b;
+        font-size: 14px;
         font-style: italic;
     }
     
+    /* Layout do formulário */
     .form-row {
         display: flex;
-        gap: 20px;
+        gap: 24px;
         margin-bottom: 20px;
     }
     
@@ -3032,79 +4935,179 @@ function cetesi_custom_course_page_callback() {
     
     .form-group label {
         font-weight: 600;
-        margin-bottom: 5px;
-        color: #23282d;
+        margin-bottom: 8px;
+        color: #374151;
+        font-size: 14px;
     }
     
     .form-group label.required::after {
         content: " *";
-        color: #d63638;
+        color: #dc2626;
+        font-weight: 700;
     }
     
     .form-group input,
     .form-group select,
     .form-group textarea {
-        padding: 10px 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+        padding: 12px 16px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
         font-size: 14px;
-        transition: border-color 0.3s ease;
+        transition: all 0.3s ease;
+        background: white;
     }
     
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-        border-color: #0073aa;
-        box-shadow: 0 0 0 1px #0073aa;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         outline: none;
+        transform: translateY(-1px);
+    }
+    
+    .form-group input:hover,
+    .form-group select:hover,
+    .form-group textarea:hover {
+        border-color: #9ca3af;
     }
     
     .form-group textarea {
         resize: vertical;
-        min-height: 80px;
+        min-height: 100px;
+        font-family: inherit;
     }
     
+    /* Botões de ação */
     .form-actions {
-        padding: 30px;
-        background: #f9f9f9;
-        border-top: 1px solid #e1e1e1;
+        padding: 32px;
+        background: #f8fafc;
+        border-top: 1px solid #e1e5e9;
         display: flex;
-        gap: 15px;
+        gap: 16px;
         align-items: center;
+        justify-content: flex-end;
     }
     
-    .form-actions .button {
+    /* Botões personalizados */
+    .cetesi-btn-primary,
+    .cetesi-btn-secondary {
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 10px 20px;
-        font-size: 14px;
+        gap: 10px;
+        padding: 14px 28px;
+        font-size: 15px;
         font-weight: 600;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border: 2px solid transparent;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
     }
     
-    .form-actions .button-primary {
-        background: #0073aa;
-        border-color: #0073aa;
+    .cetesi-btn-primary {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: white;
+        border-color: #1d4ed8;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
     }
     
-    .form-actions .button-primary:hover {
-        background: #005a87;
-        border-color: #005a87;
+    .cetesi-btn-primary:hover {
+        background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
     }
     
+    .cetesi-btn-secondary {
+        background: white;
+        color: #374151;
+        border-color: #d1d5db;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .cetesi-btn-secondary:hover {
+        background: #f8fafc;
+        border-color: #2563eb;
+        color: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    
+    .cetesi-btn-primary .dashicons,
+    .cetesi-btn-secondary .dashicons {
+        font-size: 18px;
+    }
+    
+    /* Efeito shimmer nos botões */
+    .cetesi-btn-primary::before,
+    .cetesi-btn-secondary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.6s ease;
+    }
+    
+    .cetesi-btn-primary:hover::before,
+    .cetesi-btn-secondary:hover::before {
+        left: 100%;
+    }
+    
+    /* Responsividade */
     @media (max-width: 768px) {
+        .cetesi-stats-overview {
+            grid-template-columns: 1fr;
+        }
+        
         .form-row {
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
+        }
+        
+        .cetesi-form-section {
+            padding: 24px;
         }
         
         .form-actions {
             flex-direction: column;
             align-items: stretch;
+            gap: 12px;
         }
         
-        .form-actions .button {
+        .cetesi-btn-primary,
+        .cetesi-btn-secondary {
             justify-content: center;
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .stat-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .stat-icon .dashicons {
+            font-size: 24px;
+        }
+        
+        .cetesi-form-section {
+            padding: 20px;
+        }
+        
+        .section-header h2 {
+            font-size: 18px;
         }
     }
     </style>
@@ -3121,7 +5124,7 @@ function cetesi_process_custom_course_creation() {
     }
     
     // Validar campos obrigatórios
-    $required_fields = array('curso_titulo', 'curso_duracao', 'curso_carga_horaria', 'curso_modalidade', 'curso_tipo');
+    $required_fields = array('curso_titulo', 'curso_categoria', 'curso_duracao', 'curso_carga_horaria', 'curso_modalidade', 'curso_tipo');
     $errors = array();
     
     foreach ($required_fields as $field) {
@@ -3185,30 +5188,24 @@ function cetesi_process_custom_course_creation() {
         }
     }
     
-    // Definir categoria baseada no tipo de curso
-    $categoria_slug = '';
-    switch ($_POST['curso_tipo']) {
-        case 'tecnico':
-            $categoria_slug = 'tecnicos';
-            break;
-        case 'livre':
-            $categoria_slug = 'livres';
-            break;
-        case 'qualificacao':
-            $categoria_slug = 'qualificacao';
-            break;
-        case 'online':
-            $categoria_slug = 'online';
-            break;
-        case 'educacao-basica':
-            $categoria_slug = 'educacao-basica';
-            break;
-    }
+    // Definir categoria baseada na seleção do usuário
+    $categoria_slug = sanitize_text_field($_POST['curso_categoria']);
     
     if ($categoria_slug) {
         $term = get_term_by('slug', $categoria_slug, 'categoria_curso');
         if ($term) {
             wp_set_post_terms($post_id, array($term->term_id), 'categoria_curso');
+        } else {
+            // Se o termo não existe, criar
+            $term_result = wp_insert_term(
+                ucfirst(str_replace('-', ' ', $categoria_slug)),
+                'categoria_curso',
+                array('slug' => $categoria_slug)
+            );
+            
+            if (!is_wp_error($term_result)) {
+                wp_set_post_terms($post_id, array($term_result['term_id']), 'categoria_curso');
+            }
         }
     }
     
@@ -3311,7 +5308,7 @@ function cetesi_courses_management_page() {
         
         <!-- Barra de Ações -->
         <div class="cetesi-actions-bar">
-            <a href="<?php echo admin_url('edit.php?post_type=curso&page=criar-curso-personalizado'); ?>" class="action-header-btn novo-curso">
+            <a href="<?php echo admin_url('admin.php?page=criar-curso-personalizado'); ?>" class="action-header-btn novo-curso">
                 <span class="dashicons dashicons-plus-alt"></span>
                 <span class="btn-label">Novo Curso</span>
             </a>
