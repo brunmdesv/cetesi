@@ -5375,8 +5375,8 @@ function cetesi_edit_course_page_callback() {
     // Obter dados atuais do curso
     $curso_titulo = $curso->post_title;
     $curso_descricao = $curso->post_content;
-    $curso_nivel = get_post_meta($course_id, '_curso_nivel', true);
-    $curso_categoria = get_post_meta($course_id, '_curso_categoria', true);
+    $curso_nivel = get_post_meta($course_id, '_curso_nivel_ensino', true);
+    $curso_area = get_post_meta($course_id, '_curso_area_conhecimento', true);
     $curso_duracao = get_post_meta($course_id, '_curso_duracao', true);
     $curso_carga_horaria = get_post_meta($course_id, '_curso_carga_horaria', true);
     $curso_estagio = get_post_meta($course_id, '_curso_estagio', true);
@@ -5392,6 +5392,16 @@ function cetesi_edit_course_page_callback() {
     $curso_escolaridade = get_post_meta($course_id, '_curso_escolaridade', true);
     $curso_idade_minima = get_post_meta($course_id, '_curso_idade_minima', true);
     $curso_prerequisitos = get_post_meta($course_id, '_curso_prerequisitos', true);
+    $curso_documentos = get_post_meta($course_id, '_curso_documentos', true);
+    $curso_objetivos = get_post_meta($course_id, '_curso_objetivos', true);
+    $curso_metodologia = get_post_meta($course_id, '_curso_metodologia', true);
+    $curso_disciplinas = get_post_meta($course_id, '_curso_disciplinas', true);
+    $curso_salario_medio = get_post_meta($course_id, '_curso_salario_medio', true);
+    $curso_oportunidades = get_post_meta($course_id, '_curso_oportunidades', true);
+    $curso_mercado_trabalho = get_post_meta($course_id, '_curso_mercado_trabalho', true);
+    $curso_areas_atuacao = get_post_meta($course_id, '_curso_areas_atuacao', true);
+    $curso_forma_pagamento = get_post_meta($course_id, '_curso_forma_pagamento', true);
+    $curso_parcelamento = get_post_meta($course_id, '_curso_parcelamento', true);
     
     ?>
     <div class="wrap cetesi-team-management">
@@ -5905,7 +5915,17 @@ function cetesi_process_custom_course_creation() {
         'curso_link_inscricao' => '_curso_link_inscricao',
         'curso_escolaridade' => '_curso_escolaridade',
         'curso_idade_minima' => '_curso_idade_minima',
-        'curso_prerequisitos' => '_curso_prerequisitos'
+        'curso_prerequisitos' => '_curso_prerequisitos',
+        'curso_documentos' => '_curso_documentos',
+        'curso_objetivos' => '_curso_objetivos',
+        'curso_metodologia' => '_curso_metodologia',
+        'curso_disciplinas' => '_curso_disciplinas',
+        'curso_salario_medio' => '_curso_salario_medio',
+        'curso_oportunidades' => '_curso_oportunidades',
+        'curso_mercado_trabalho' => '_curso_mercado_trabalho',
+        'curso_areas_atuacao' => '_curso_areas_atuacao',
+        'curso_forma_pagamento' => '_curso_forma_pagamento',
+        'curso_parcelamento' => '_curso_parcelamento'
     );
     
     foreach ($meta_fields as $form_field => $meta_key) {
@@ -5992,8 +6012,8 @@ function cetesi_process_course_update($course_id) {
     
     // Campos de meta para atualizar
     $meta_fields = array(
-        '_curso_nivel' => 'curso_nivel',
-        '_curso_categoria' => 'curso_categoria',
+        '_curso_nivel_ensino' => 'curso_nivel',
+        '_curso_area_conhecimento' => 'curso_area',
         '_curso_duracao' => 'curso_duracao',
         '_curso_carga_horaria' => 'curso_carga_horaria',
         '_curso_estagio' => 'curso_estagio',
@@ -6008,7 +6028,17 @@ function cetesi_process_course_update($course_id) {
         '_curso_link_inscricao' => 'curso_link_inscricao',
         '_curso_escolaridade' => 'curso_escolaridade',
         '_curso_idade_minima' => 'curso_idade_minima',
-        '_curso_prerequisitos' => 'curso_prerequisitos'
+        '_curso_prerequisitos' => 'curso_prerequisitos',
+        '_curso_documentos' => 'curso_documentos',
+        '_curso_objetivos' => 'curso_objetivos',
+        '_curso_metodologia' => 'curso_metodologia',
+        '_curso_disciplinas' => 'curso_disciplinas',
+        '_curso_salario_medio' => 'curso_salario_medio',
+        '_curso_oportunidades' => 'curso_oportunidades',
+        '_curso_mercado_trabalho' => 'curso_mercado_trabalho',
+        '_curso_areas_atuacao' => 'curso_areas_atuacao',
+        '_curso_forma_pagamento' => 'curso_forma_pagamento',
+        '_curso_parcelamento' => 'curso_parcelamento'
     );
     
     // Atualizar campos de meta

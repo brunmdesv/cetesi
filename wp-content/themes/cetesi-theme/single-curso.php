@@ -93,7 +93,7 @@ get_header(); ?>
                             <!-- Título e Descrição Ultra Modernos -->
                             <div class="curso-header-ultra" data-aos="fade-up" data-aos-delay="400">
                                 <h1 class="curso-titulo-ultra"><?php the_title(); ?></h1>
-                                <p class="curso-descricao-ultra"><?php the_excerpt(); ?></p>
+                                <p class="curso-descricao-ultra"><?php the_content(); ?></p>
                             </div>
                             
                             <!-- Grid de Informações Ultra Moderno -->
@@ -147,6 +147,28 @@ get_header(); ?>
                                 <?php endif; ?>
                             </div>
                             
+                            <!-- CTA Matricule-se Ultra Moderno -->
+                            <div class="cta-matricule-se-ultra" data-aos="fade-up" data-aos-delay="900">
+                                <div class="cta-content-ultra">
+                                    <h3 class="cta-titulo-ultra">Pronto para começar sua jornada?</h3>
+                                    <div class="cta-botoes-ultra">
+                                        <a href="#" class="btn-matricule-se-ultra">
+                                            <div class="btn-content-ultra">
+                                                <i class="fas fa-graduation-cap"></i>
+                                                <span>Matricule-se Agora</span>
+                                            </div>
+                                            <div class="btn-shine-ultra"></div>
+                                        </a>
+                                        <a href="#curso-detalhes" class="btn-saiba-mais-ultra">
+                                            <div class="btn-content-ultra">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span>Saiba Mais</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        
                             </div>
                         
                         <!-- Card de Preço Ultra Moderno -->
@@ -572,19 +594,19 @@ get_header(); ?>
                                 <div class="endereco-detalhes-ultra">
                                     <div class="endereco-linha-ultra">
                                         <div class="endereco-linha-icon">
-                                            <i class="fas fa-building"></i>
-                                        </div>
+                                        <i class="fas fa-building"></i>
+                                    </div>
                                         <span class="endereco-linha-texto"><strong>QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102</strong></span>
                                     </div>
                                     <div class="endereco-linha-ultra">
                                         <div class="endereco-linha-icon">
-                                            <i class="fas fa-city"></i>
-                                        </div>
+                                        <i class="fas fa-city"></i>
+                                    </div>
                                         <span class="endereco-linha-texto">Ceilândia, Brasília - DF</span>
                                     </div>
                                     <div class="endereco-linha-ultra">
                                         <div class="endereco-linha-icon">
-                                            <i class="fas fa-mail-bulk"></i>
+                                        <i class="fas fa-mail-bulk"></i>
                                         </div>
                                         <span class="endereco-linha-texto">CEP: 72220-025</span>
                                     </div>
@@ -685,7 +707,7 @@ get_header(); ?>
                             Formas de Pagamento
                         </h2>
                         <p class="section-subtitulo-ultra">Opções flexíveis para facilitar seu investimento</p>
-                    </div>
+                                    </div>
                     
                     <div class="pagamento-content-ultra">
                         <?php
@@ -712,7 +734,7 @@ get_header(); ?>
                             <div class="pagamento-card-ultra" data-aos="zoom-in" data-aos-delay="200">
                                 <div class="pagamento-icon-ultra">
                                     <i class="fas fa-calendar-alt"></i>
-                                </div>
+                        </div>
                                 <h3 class="pagamento-titulo-ultra">Parcelamento</h3>
                                 <?php if ($parcelamento) : ?>
                                     <p class="pagamento-descricao-ultra"><?php 
@@ -1076,6 +1098,135 @@ get_header(); ?>
     font-size: 0.875rem;
     font-weight: 700;
     color: white;
+}
+
+/* ===== CTA MATRICULE-SE ULTRA MODERNO ===== */
+.cta-matricule-se-ultra {
+    margin: var(--space-3xl) 0;
+    padding: var(--space-2xl);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-3xl);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-matricule-se-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+    z-index: 1;
+}
+
+.cta-content-ultra {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xl);
+}
+
+.cta-titulo-ultra {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+    letter-spacing: -0.025em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cta-botoes-ultra {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+}
+
+.btn-matricule-se-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-2xl);
+    background: var(--gradient-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-2xl);
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-matricule-se-ultra:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-2xl);
+    color: white;
+}
+
+.btn-matricule-se-ultra .btn-shine-ultra {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn-matricule-se-ultra:hover .btn-shine-ultra {
+    left: 100%;
+}
+
+.btn-saiba-mais-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-2xl);
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-2xl);
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-saiba-mais-ultra:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-content-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    position: relative;
+    z-index: 2;
+}
+
+.btn-content-ultra i {
+    font-size: 1.25rem;
+}
+
+.btn-content-ultra span {
+    font-weight: inherit;
 }
 
 
@@ -2098,6 +2249,22 @@ get_header(); ?>
         justify-content: center;
     }
     
+    /* CTA Matricule-se - Mobile */
+    .cta-titulo-ultra {
+        font-size: 1.5rem;
+    }
+    
+    .cta-botoes-ultra {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-matricule-se-ultra,
+    .btn-saiba-mais-ultra {
+        width: 100%;
+        justify-content: center;
+    }
+    
     .curso-card-preco-ultra {
         padding: var(--space-xl);
     }
@@ -2185,6 +2352,22 @@ get_header(); ?>
     .preco-valor-promocional-ultra,
     .preco-valor-ultra {
         font-size: 2rem;
+    }
+    
+    /* CTA Matricule-se - Mobile Pequeno */
+    .cta-matricule-se-ultra {
+        padding: var(--space-xl);
+        margin: var(--space-2xl) 0;
+    }
+    
+    .cta-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    .btn-matricule-se-ultra,
+    .btn-saiba-mais-ultra {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 1rem;
     }
     
     .card-titulo-ultra {
@@ -2392,6 +2575,10 @@ get_header(); ?>
 .curso-info-grid-ultra .info-item-ultra:nth-child(1) { animation-delay: 0.1s; }
 .curso-info-grid-ultra .info-item-ultra:nth-child(2) { animation-delay: 0.2s; }
 .curso-info-grid-ultra .info-item-ultra:nth-child(3) { animation-delay: 0.3s; }
+
+.cta-matricule-se-ultra {
+    animation: fade-in-scale 0.8s ease-out forwards;
+}
 
 .hero-actions-ultra {
     animation: fade-in-scale 1s ease-out forwards;
@@ -3932,7 +4119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===== EFEITO RIPPLE NOS BOTÕES =====
-    const buttons = document.querySelectorAll('.btn-inscricao-ultra, .btn-inscricao-card-ultra');
+    const buttons = document.querySelectorAll('.btn-inscricao-ultra, .btn-inscricao-card-ultra, .btn-matricule-se-ultra');
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
             const ripple = this.querySelector('.btn-ripple');
