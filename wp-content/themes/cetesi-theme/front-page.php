@@ -89,87 +89,22 @@ get_header(); ?>
                 </h3>
                 
                 <?php
-                // Verificar se há cursos técnicos criados no WordPress
+                // Buscar cursos técnicos criados via página personalizada
                 $cursos_tecnico_dinamicos = cetesi_get_dynamic_courses('tecnico', 20);
                 
                 if (!empty($cursos_tecnico_dinamicos)) :
-                    // Se há cursos WP, mostrar apenas eles
                 ?>
                 <div class="cursos-grid">
                     <?php foreach ($cursos_tecnico_dinamicos as $curso) : ?>
                         <?php echo cetesi_render_dynamic_course($curso, 'tecnico'); ?>
                     <?php endforeach; ?>
                 </div>
-                <?php else :
-                    // Se não há cursos WP, mostrar cursos hardcoded
-                ?>
-                <div class="cursos-grid">
-                    <div class="curso-card tecnico">
-                        <div class="curso-image">
-                            <i class="fas fa-user-md"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Técnico em Enfermagem em Ceilândia</h3>
-                            <p>Formação completa para atuar na área da saúde com competência técnica e ética profissional. Curso técnico em enfermagem em Ceilândia, Brasília - DF.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('18 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('1.200 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('300 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Reconhecido pelo MEC', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link('tecnico-em-enfermagem'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card tecnico">
-                        <div class="curso-image">
-                            <i class="fas fa-x-ray"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Técnico em Radiologia</h3>
-                            <p>Especialização em técnicas radiológicas e diagnóstico por imagem.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('18 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('1.200 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('300 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Reconhecido pelo MEC', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link('tecnico-em-radiologia'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card tecnico">
-                        <div class="curso-image">
-                            <i class="fas fa-apple-alt"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Nutrição e Dietética</h3>
-                            <p>Formação em nutrição clínica e dietética hospitalar.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('18 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('1.200 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('300 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Reconhecido pelo MEC', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link('nutricao-e-dietetica'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card tecnico">
-                        <div class="curso-image">
-                            <i class="fas fa-hard-hat"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Segurança do Trabalho</h3>
-                            <p>Especialização em prevenção de acidentes e saúde ocupacional.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('18 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('1.200 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('300 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Reconhecido pelo MEC', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Segurança do Trabalho'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4><?php _e('Nenhum curso técnico disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos técnicos. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -183,74 +118,26 @@ get_header(); ?>
                 </h3>
                 
                 <?php
-                // Verificar se há cursos livres criados no WordPress
+                // Buscar cursos livres criados via página personalizada
                 $cursos_livre_dinamicos = cetesi_get_dynamic_courses('livre', 20);
                 
                 if (!empty($cursos_livre_dinamicos)) :
-                    // Se há cursos WP, mostrar apenas eles
                 ?>
                 <div class="cursos-grid livres">
                     <?php foreach ($cursos_livre_dinamicos as $curso) : ?>
                         <?php echo cetesi_render_dynamic_course($curso, 'livre'); ?>
                     <?php endforeach; ?>
                 </div>
-                <?php else :
-                    // Se não há cursos WP, mostrar cursos hardcoded
-                ?>
-                <div class="cursos-grid livres">
-                    <div class="curso-card livre">
-                        <div class="curso-image">
-                            <i class="fas fa-band-aid"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Feridas e Curativos</h3>
-                            <p>Especialização em técnicas de tratamento de feridas e aplicação de curativos.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('3 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('200 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('50 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação reconhecida', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Feridas e Curativos'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card livre">
-                        <div class="curso-image">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Cálculo de Medicação</h3>
-                            <p>Formação em cálculos farmacológicos e dosagem de medicamentos.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('3 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('200 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('50 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação reconhecida', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Cálculo de Medicação'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card livre">
-                        <div class="curso-image">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Punção Venosa</h3>
-                            <p>Especialização em técnicas de punção venosa e coleta de sangue.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('3 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('200 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('50 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação reconhecida', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Punção Venosa'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-certificate"></i>
+                        <h4><?php _e('Nenhum curso livre disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos livres. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
                 <?php endif; ?>
-                    </div>
+            </div>
                     
             <!-- Cursos 100% Online -->
             <div class="categoria-cursos">
@@ -260,53 +147,22 @@ get_header(); ?>
                 </h3>
                 
                 <?php
-                // Verificar se há cursos online criados no WordPress
+                // Buscar cursos online criados via página personalizada
                 $cursos_online_dinamicos = cetesi_get_dynamic_courses('online', 20);
                 
                 if (!empty($cursos_online_dinamicos)) :
-                    // Se há cursos WP, mostrar apenas eles
                 ?>
                 <div class="cursos-grid">
                     <?php foreach ($cursos_online_dinamicos as $curso) : ?>
                         <?php echo cetesi_render_dynamic_course($curso, 'online'); ?>
                     <?php endforeach; ?>
                 </div>
-                <?php else :
-                    // Se não há cursos WP, mostrar cursos hardcoded
-                ?>
-                <div class="cursos-grid">
-                    <div class="curso-card online">
-                        <div class="curso-image">
-                            <i class="fas fa-home"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Home Care</h3>
-                            <p>Especialização em técnicas modernas com flexibilidade total de horários.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('Modalidade 100% Online', 'cetesi'); ?></li>
-                                <li><?php _e('Flexibilidade total', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação reconhecida', 'cetesi'); ?></li>
-                                <li><?php _e('Suporte especializado', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Home Care'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card online">
-                        <div class="curso-image">
-                            <i class="fas fa-ambulance"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>UTI - Emergência e Urgência</h3>
-                            <p>Formação especializada em atendimento de emergências médicas.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('Modalidade 100% Online', 'cetesi'); ?></li>
-                                <li><?php _e('Flexibilidade total', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação reconhecida', 'cetesi'); ?></li>
-                                <li><?php _e('Suporte especializado', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('UTI - Emergência e Urgência'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-laptop"></i>
+                        <h4><?php _e('Nenhum curso online disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos online. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -320,36 +176,22 @@ get_header(); ?>
                 </h3>
                 
                 <?php
-                // Verificar se há cursos de educação básica criados no WordPress
+                // Buscar cursos de educação básica criados via página personalizada
                 $cursos_educacao_dinamicos = cetesi_get_dynamic_courses('educacao-basica', 20);
                 
                 if (!empty($cursos_educacao_dinamicos)) :
-                    // Se há cursos WP, mostrar apenas eles
                 ?>
                 <div class="cursos-grid educacao-basica">
                     <?php foreach ($cursos_educacao_dinamicos as $curso) : ?>
                         <?php echo cetesi_render_dynamic_course($curso, 'educacao-basica'); ?>
                     <?php endforeach; ?>
                 </div>
-                <?php else :
-                    // Se não há cursos WP, mostrar cursos hardcoded
-                ?>
-                <div class="cursos-grid educacao-basica">
-                    <div class="curso-card educacao-basica">
-                        <div class="curso-image">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>EJA - 1ª, 2ª, 3ª Série</h3>
-                            <p>Educação de Jovens e Adultos com metodologia adaptada para diferentes níveis.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('Flexibilidade de horários', 'cetesi'); ?></li>
-                                <li><?php _e('Metodologia adaptada', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação reconhecida', 'cetesi'); ?></li>
-                                <li><?php _e('Suporte pedagógico', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('EJA - 1ª, 2ª, 3ª Série'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-book-open"></i>
+                        <h4><?php _e('Nenhum curso de educação básica disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos de educação básica. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -363,308 +205,22 @@ get_header(); ?>
                 </h3>
                 
                 <?php
-                // Verificar se há cursos de qualificação criados no WordPress
+                // Buscar cursos de qualificação criados via página personalizada
                 $cursos_qualificacao_dinamicos = cetesi_get_dynamic_courses('qualificacao', 20);
                 
                 if (!empty($cursos_qualificacao_dinamicos)) :
-                    // Se há cursos WP, mostrar apenas eles
                 ?>
                 <div class="cursos-grid qualificacao">
                     <?php foreach ($cursos_qualificacao_dinamicos as $curso) : ?>
                         <?php echo cetesi_render_dynamic_course($curso, 'qualificacao'); ?>
                     <?php endforeach; ?>
                 </div>
-                <?php else :
-                    // Se não há cursos WP, mostrar cursos hardcoded
-                ?>
-                <div class="cursos-grid qualificacao">
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-bone"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Qualificação em Gesso Ortopédico</h3>
-                            <p>Especialização em técnicas de imobilização e gesso ortopédico.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Qualificação em Gesso Ortopédico'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Hemodiálise</h3>
-                            <p>Especialização em técnicas de diálise e cuidados renais.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Hemodiálise'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-cut"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Instrumentação Cirúrgica</h3>
-                            <p>Especialização avançada com foco em técnicas específicas e aplicação prática.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Instrumentação Cirúrgica'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Qualificação em Enfermagem do Trabalho</h3>
-                            <p>Especialização em saúde ocupacional e medicina do trabalho.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Qualificação em Enfermagem do Trabalho'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Qualificação em Necropsia</h3>
-                            <p>Formação especializada em técnicas de necropsia e patologia.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Qualificação em Necropsia'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-ambulance"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>APH - Atendimento Pré-Hospitalar</h3>
-                            <p>Formação em técnicas de socorro e atendimento de emergências.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('APH - Atendimento Pré-Hospitalar'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-tooth"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Saúde Bucal</h3>
-                            <p>Formação em cuidados odontológicos e higiene bucal.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Saúde Bucal'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Cuidador de Idosos</h3>
-                            <p>Formação especializada em cuidados geriátricos e bem-estar do idoso.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Cuidador de Idosos'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-pills"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Atendente de Farmácia</h3>
-                            <p>Especialização em atendimento farmacêutico e dispensação de medicamentos.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Atendente de Farmácia'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-microscope"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Análise Clínicas</h3>
-                            <p>Formação especializada em análise clínica e laboratorial.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Análise Clínicas'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-hospital"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Administração de Serviço Hospitalar</h3>
-                            <p>Formação em gestão e administração de serviços hospitalares.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Administração de Serviço Hospitalar'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-syringe"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Sala de Vacina</h3>
-                            <p>Especialização em técnicas de vacinação e procedimentos seguros.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Sala de Vacina'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-wheelchair"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Maqueiro</h3>
-                            <p>Formação especializada em transporte e movimentação de pacientes.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Maqueiro'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-x-ray"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Estudo da Radiologia e Tórax</h3>
-                            <p>Especialização em técnicas radiológicas e diagnóstico por imagem.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Estudo da Radiologia e Tórax'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Agente Comunitário</h3>
-                            <p>Formação para atuação na atenção primária à saúde.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Agente Comunitário'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Flebotomia</h3>
-                            <p>Especialização em técnicas de coleta de sangue e punção venosa.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Flebotomia'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
-                    </div>
-                    
-                    <div class="curso-card qualificacao">
-                        <div class="curso-image">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="curso-content">
-                            <h3>Saúde Mental</h3>
-                            <p>Formação especializada em cuidados de saúde mental e bem-estar.</p>
-                            <ul class="curso-features">
-                                <li><?php _e('6 meses de duração', 'cetesi'); ?></li>
-                                <li><?php _e('400 horas de carga horária', 'cetesi'); ?></li>
-                                <li><?php _e('100 horas de estágio', 'cetesi'); ?></li>
-                                <li><?php _e('Certificação especializada', 'cetesi'); ?></li>
-                            </ul>
-                            <a href="<?php echo cetesi_get_course_link_by_title('Saúde Mental'); ?>" class="curso-btn"><?php _e('Saiba Mais', 'cetesi'); ?></a>
-                        </div>
+                <?php else : ?>
+                <div class="no-courses-message">
+                    <div class="no-courses-content">
+                        <i class="fas fa-award"></i>
+                        <h4><?php _e('Nenhum curso de qualificação disponível no momento', 'cetesi'); ?></h4>
+                        <p><?php _e('Estamos trabalhando para disponibilizar novos cursos de qualificação. Em breve teremos novidades!', 'cetesi'); ?></p>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -1647,6 +1203,795 @@ get_header(); ?>
     will-change: transform;
 }
 
+/* ===== ESTILOS PARA MENSAGEM DE NENHUM CURSO ===== */
+.no-courses-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-4xl) var(--space-xl);
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border-radius: var(--radius-3xl);
+    border: 2px dashed var(--border-color);
+    margin: var(--space-2xl) 0;
+}
+
+.no-courses-content {
+    max-width: 500px;
+}
+
+.no-courses-content i {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: var(--space-xl);
+    opacity: 0.7;
+}
+
+.no-courses-content h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    line-height: 1.3;
+}
+
+.no-courses-content p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsividade para mensagem de nenhum curso */
+@media (max-width: 768px) {
+    .no-courses-message {
+        padding: var(--space-3xl) var(--space-lg);
+    }
+    
+    .no-courses-content i {
+        font-size: 3rem;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .no-courses-content h4 {
+        font-size: 1.25rem;
+    }
+    
+    .no-courses-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== ESTILOS ULTRA MODERNOS PARA SEÇÕES DE CURSOS ===== */
+
+/* Variáveis Ultra Modernas para Cursos */
+.cursos-section {
+    --primary-color: #3b82f6;
+    --primary-dark: #1e40af;
+    --primary-light: #60a5fa;
+    --secondary-color: #10b981;
+    --secondary-dark: #059669;
+    --secondary-light: #34d399;
+    --accent-color: #f59e0b;
+    --accent-dark: #d97706;
+    --accent-light: #fbbf24;
+    --accent-pink: #ec4899;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --success-color: #10b981;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-light: #94a3b8;
+    --text-muted: #cbd5e1;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-accent: #f1f5f9;
+    --bg-dark: #0f172a;
+    --border-color: #e2e8f0;
+    --border-light: #f1f5f9;
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --radius-xs: 0.125rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --radius-full: 9999px;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+    --space-3xl: 3rem;
+    --space-4xl: 4rem;
+    --space-5xl: 6rem;
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 300ms ease-in-out;
+    --transition-slow: 500ms ease-in-out;
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-pink) 100%);
+    --gradient-hero: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+/* ===== CATEGORIA CURSOS ULTRA MODERNA ===== */
+.categoria-cursos {
+    margin-bottom: var(--space-4xl);
+    position: relative;
+    padding: var(--space-3xl) 0;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-3xl);
+    overflow: hidden;
+}
+
+.categoria-cursos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.categoria-titulo {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3xl);
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    padding: var(--space-xl) 0;
+}
+
+.categoria-titulo::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-accent);
+    border-radius: var(--radius-full);
+}
+
+.categoria-titulo i {
+    color: var(--primary-color);
+    font-size: 2rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+/* ===== CURSOS GRID ULTRA MODERNO ===== */
+.cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    padding: 0 var(--space-xl);
+}
+
+/* ===== CURSO CARD ULTRA MODERNO ===== */
+.curso-card {
+    background: var(--bg-primary);
+    border-radius: var(--radius-3xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.curso-card:nth-child(1) { animation-delay: 0.1s; }
+.curso-card:nth-child(2) { animation-delay: 0.2s; }
+.curso-card:nth-child(3) { animation-delay: 0.3s; }
+.curso-card:nth-child(4) { animation-delay: 0.4s; }
+.curso-card:nth-child(5) { animation-delay: 0.5s; }
+.curso-card:nth-child(6) { animation-delay: 0.6s; }
+
+.curso-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-2xl);
+    border-color: var(--primary-light);
+}
+
+.curso-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transition: all var(--transition-normal);
+}
+
+.curso-card.tecnico::before {
+    background: var(--gradient-primary);
+}
+
+.curso-card.livre::before {
+    background: var(--gradient-secondary);
+}
+
+.curso-card.online::before {
+    background: var(--gradient-accent);
+}
+
+.curso-card.qualificacao::before {
+    background: linear-gradient(135deg, #8b5cf6 0%, var(--accent-pink) 100%);
+}
+
+.curso-card.educacao-basica::before {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+}
+
+.curso-card:hover::before {
+    height: 6px;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+/* ===== CURSO IMAGE ULTRA MODERNA ===== */
+.curso-image {
+    height: 150px;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.curso-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.curso-card:hover .curso-image::before {
+    left: 100%;
+}
+
+.curso-image i {
+    font-size: 3rem;
+    color: white;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: all var(--transition-normal);
+}
+
+.curso-card:hover .curso-image i {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* ===== CURSO CONTENT ULTRA CRIATIVO ===== */
+.curso-content {
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    backdrop-filter: blur(20px);
+}
+
+.curso-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    opacity: 0.3;
+}
+
+/* ===== CURSO HEADER CRIATIVO ===== */
+.curso-header {
+    margin-bottom: 0;
+    position: relative;
+    text-align: center;
+    padding: var(--space-sm) 0;
+}
+
+.curso-content h3 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    line-height: 1.3;
+    transition: all var(--transition-normal);
+    position: relative;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+
+.curso-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--gradient-accent);
+    border-radius: var(--radius-full);
+    opacity: 0.6;
+    transition: all var(--transition-normal);
+}
+
+.curso-card:hover .curso-content h3 {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+
+.curso-card:hover .curso-content h3::after {
+    width: 80px;
+    opacity: 1;
+}
+
+/* ===== CURSO BADGES INFORMATIVOS CRIATIVOS ===== */
+.curso-info-badges {
+    display: flex;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    justify-content: center;
+    padding: var(--space-sm) 0;
+    flex-wrap: nowrap;
+}
+
+.info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid transparent;
+    border-radius: var(--radius-xl);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    box-shadow: var(--shadow-sm);
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+}
+
+.info-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left var(--transition-slow);
+}
+
+.info-badge:hover::before {
+    left: 100%;
+}
+
+.info-badge:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.info-badge i {
+    font-size: 0.9rem;
+    transition: all var(--transition-normal);
+}
+
+.info-badge:hover i {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Badges específicos por tipo com cores únicas */
+.info-badge.duracao {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: var(--secondary-color);
+}
+
+.info-badge.duracao:hover {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border-color: var(--secondary-color);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+}
+
+.info-badge.carga-horaria {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: var(--accent-color);
+}
+
+.info-badge.carga-horaria:hover {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+}
+
+.info-badge.modalidade {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+    border-color: rgba(236, 72, 153, 0.3);
+    color: var(--accent-pink);
+}
+
+.info-badge.modalidade:hover {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(236, 72, 153, 0.1) 100%);
+    border-color: var(--accent-pink);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
+}
+
+.info-badge.reconhecimento {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #8b5cf6;
+}
+
+.info-badge.reconhecimento:hover {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border-color: #8b5cf6;
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+}
+
+/* ===== CURSO DESCRIÇÃO CRIATIVA ===== */
+.curso-descricao {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border-radius: var(--radius-xl);
+    border: 2px solid rgba(59, 130, 246, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(10px);
+    font-style: italic;
+}
+
+.curso-descricao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: var(--radius-full);
+    opacity: 0.8;
+}
+
+.curso-descricao::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    border-radius: var(--radius-full);
+    opacity: 0.6;
+}
+
+
+/* ===== CURSO BTN ULTRA CRIATIVO ===== */
+.curso-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg) var(--space-2xl);
+    background: var(--gradient-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-3xl);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    margin-top: auto;
+    align-self: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-lg);
+    min-width: 180px;
+    justify-content: center;
+}
+
+.curso-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left var(--transition-slow);
+}
+
+
+.curso-btn:hover::before {
+    left: 100%;
+}
+
+
+.curso-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-2xl);
+    color: white;
+}
+
+.curso-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.curso-btn i {
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    z-index: 2;
+}
+
+.curso-btn:hover i {
+    transform: translateX(4px) scale(1.1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.curso-btn span {
+    position: relative;
+    z-index: 2;
+    transition: all var(--transition-normal);
+}
+
+.curso-btn:hover span {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Botões específicos por categoria */
+.curso-btn.tecnico {
+    background: var(--gradient-primary);
+}
+
+.curso-btn.livre {
+    background: var(--gradient-secondary);
+}
+
+.curso-btn.online {
+    background: var(--gradient-accent);
+}
+
+.curso-btn.qualificacao {
+    background: linear-gradient(135deg, #8b5cf6 0%, var(--accent-pink) 100%);
+}
+
+.curso-btn.educacao-basica {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+}
+
+/* ===== ANIMAÇÕES ULTRA MODERNAS ===== */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); 
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); 
+    }
+}
+
+@keyframes slide-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVIDADE ULTRA MODERNA ===== */
+@media (max-width: 1200px) {
+    .cursos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-xl);
+    }
+    
+    .categoria-titulo {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .categoria-cursos {
+        padding: var(--space-2xl) 0;
+        margin-bottom: var(--space-3xl);
+    }
+    
+    .categoria-titulo {
+        font-size: 1.5rem;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .categoria-titulo i {
+        font-size: 1.5rem;
+    }
+    
+    .cursos-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        padding: 0 var(--space-md);
+    }
+    
+    .curso-content {
+        padding: var(--space-xl);
+    }
+    
+    .curso-content h3 {
+        font-size: 1.25rem;
+    }
+    
+    .curso-image {
+        height: 130px;
+    }
+    
+    .curso-image i {
+        font-size: 2.5rem;
+    }
+    
+    /* Info badges responsivos */
+    .curso-info-badges {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+    
+    .info-badge {
+        font-size: 0.65rem;
+        padding: var(--space-xs) var(--space-sm);
+        flex: none;
+    }
+    
+    /* Descrição responsiva */
+    .curso-descricao {
+        font-size: 0.85rem;
+        padding: var(--space-md);
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+    
+    .curso-descricao::before {
+        width: 40px;
+        height: 2px;
+    }
+    
+    .curso-descricao::after {
+        width: 30px;
+        height: 1px;
+    }
+    
+    /* Botão responsivo */
+    .curso-btn {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 0.9rem;
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .categoria-cursos {
+        padding: var(--space-xl) 0;
+        border-radius: var(--radius-2xl);
+    }
+    
+    .categoria-titulo {
+        font-size: 1.375rem;
+        padding: var(--space-lg) 0;
+    }
+    
+    .cursos-grid {
+        padding: 0 var(--space-sm);
+    }
+    
+    .curso-content {
+        padding: var(--space-lg);
+    }
+    
+    .curso-image {
+        height: 120px;
+    }
+    
+    .curso-image i {
+        font-size: 2rem;
+    }
+    
+    .curso-btn {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: 0.875rem;
+    }
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+@media (prefers-reduced-motion: reduce) {
+    .curso-card,
+    .curso-card * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* ===== MELHORIAS DE PERFORMANCE ===== */
+.curso-card:hover,
+.curso-btn:hover {
+    will-change: transform;
+}
+
 /* Estilos para a seção de localização moderna */
 .localizacao-content-moderno {
     display: grid;
@@ -2013,6 +2358,151 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('mousedown', function() {
         document.body.classList.remove('keyboard-navigation');
+    });
+
+    // ===== ANIMAÇÕES ULTRA MODERNAS PARA CURSOS =====
+    const cursoCards = document.querySelectorAll('.curso-card');
+    cursoCards.forEach((card, index) => {
+        // Adicionar delay escalonado para animação
+        card.style.animationDelay = `${index * 0.1}s`;
+        
+        // Efeito de hover avançado
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+            this.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+        });
+    });
+
+    // ===== INTERSECTION OBSERVER PARA CURSOS =====
+    const cursoObserverOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const cursoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, cursoObserverOptions);
+
+    // Observar categorias de cursos
+    document.querySelectorAll('.categoria-cursos').forEach(categoria => {
+        categoria.style.opacity = '0';
+        categoria.style.transform = 'translateY(30px)';
+        categoria.style.transition = 'all 0.8s ease-out';
+        cursoObserver.observe(categoria);
+    });
+
+    // ===== EFEITOS DE HOVER NOS BOTÕES DE CURSO =====
+    const cursoBtns = document.querySelectorAll('.curso-btn');
+    cursoBtns.forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+            this.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+        });
+    });
+
+    // ===== ANIMAÇÕES PARA INFO BADGES =====
+    const infoBadges = document.querySelectorAll('.info-badge');
+    infoBadges.forEach((badge, index) => {
+        badge.style.animationDelay = `${index * 0.1}s`;
+        
+        badge.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+            this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+        });
+        
+        badge.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+        });
+    });
+
+    // ===== ANIMAÇÕES PARA CURSO FEATURES =====
+    const cursoFeatures = document.querySelectorAll('.curso-features li');
+    cursoFeatures.forEach((feature, index) => {
+        feature.style.animationDelay = `${index * 0.1}s`;
+        
+        feature.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+        });
+        
+        feature.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
+
+    // ===== ANIMAÇÃO DE ENTRADA PARA CURSO HEADER =====
+    const cursoHeaders = document.querySelectorAll('.curso-header');
+    cursoHeaders.forEach(header => {
+        header.style.opacity = '0';
+        header.style.transform = 'translateY(20px)';
+        header.style.transition = 'all 0.6s ease-out';
+        
+        setTimeout(() => {
+            header.style.opacity = '1';
+            header.style.transform = 'translateY(0)';
+        }, 200);
+    });
+
+
+    // ===== SCROLL SUAVE PARA SEÇÕES DE CURSOS =====
+    document.querySelectorAll('a[href="#cursos"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ===== ANIMAÇÃO DE CONTAGEM PARA ESTATÍSTICAS =====
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const animateCounter = (element, target) => {
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current) + (target >= 1000 ? '+' : '');
+        }, 20);
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = parseInt(entry.target.textContent.replace(/[^\d]/g, ''));
+                animateCounter(entry.target, target);
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    });
+
+    statNumbers.forEach(stat => {
+        statsObserver.observe(stat);
     });
 
     // ===== PRELOAD DE RECURSOS CRÍTICOS HOMEPAGE =====

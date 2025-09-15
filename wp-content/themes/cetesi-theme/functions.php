@@ -460,7 +460,6 @@ function cetesi_customization_page() {
         </div>
         
         <div class="cetesi-sections">
-            <!-- Seção Header -->
             <div class="cetesi-section">
                 <div class="cetesi-section-header">
                     <h2><span class="dashicons dashicons-admin-tools"></span> Configurações do Header</h2>
@@ -470,7 +469,6 @@ function cetesi_customization_page() {
                 <div class="cetesi-section-content">
                     <form method="post" action="" class="cetesi-form">
                         <div class="cetesi-button-grid">
-                            <!-- Painel Unicollege -->
                             <div class="cetesi-button-card">
                                 <div class="cetesi-button-header">
                                     <div class="cetesi-button-icon">
@@ -517,7 +515,6 @@ function cetesi_customization_page() {
                                 </div>
                             </div>
                             
-                            <!-- Painel do Aluno -->
                             <div class="cetesi-button-card">
                                 <div class="cetesi-button-header">
                                     <div class="cetesi-button-icon">
@@ -564,7 +561,6 @@ function cetesi_customization_page() {
                                 </div>
                             </div>
                             
-                            <!-- Telefone -->
                             <div class="cetesi-button-card">
                                 <div class="cetesi-button-header">
                                     <div class="cetesi-button-icon">
@@ -614,7 +610,6 @@ function cetesi_customization_page() {
                 </div>
             </div>
             
-            <!-- Seção WhatsApp Flutuante -->
             <div class="cetesi-section">
                 <div class="cetesi-section-header">
                     <h2><span class="dashicons dashicons-whatsapp"></span> Botão WhatsApp Flutuante</h2>
@@ -671,7 +666,6 @@ function cetesi_customization_page() {
                 </div>
             </div>
             
-            <!-- Seção Botões CTA -->
             <div class="cetesi-section">
                 <div class="cetesi-section-header">
                     <h2><span class="dashicons dashicons-megaphone"></span> Botões de Call-to-Action</h2>
@@ -1661,110 +1655,33 @@ function cetesi_get_whatsapp_url($custom_message = '') {
     return 'https://wa.me/' . esc_attr($whatsapp_number) . '?text=' . urlencode($message);
 }
 
-/**
- * Função para buscar curso específico por slug
- */
-function cetesi_get_course_link($course_slug) {
-    // Se não há slug específico, retorna a página de listagem
-    if (empty($course_slug)) {
-        return esc_url(home_url('/cursos'));
-    }
-    
-    $curso = get_posts(array(
-        'post_type' => 'curso',
-        'name' => $course_slug,
-        'posts_per_page' => 1,
-        'post_status' => 'publish'
-    ));
-    
-    return !empty($curso) ? get_permalink($curso[0]->ID) : esc_url(home_url('/cursos'));
-}
 
 /**
- * Função inteligente para detectar curso pelo título e retornar link
+ * Buscar cursos dinâmicos por categoria
  */
-function cetesi_get_course_link_by_title($course_title) {
-    // Buscar curso pelo título exato
-    $curso = get_posts(array(
-        'post_type' => 'curso',
-        'title' => $course_title,
-        'posts_per_page' => 1,
-        'post_status' => 'publish'
-    ));
-    
-    // Se não encontrar pelo título exato, tentar busca mais flexível
-    if (empty($curso)) {
-        $curso = get_posts(array(
-            'post_type' => 'curso',
-            's' => $course_title,
-            'posts_per_page' => 1,
-            'post_status' => 'publish'
-        ));
-    }
-    
-    // Se encontrou o curso, retorna o link direto
-    if (!empty($curso)) {
-        return get_permalink($curso[0]->ID);
-    }
-    
-    // Se não encontrou, retorna a página de listagem
-    return esc_url(home_url('/cursos'));
-}
-
-/**
- * Função para obter informações de um curso pelo título
- */
-function cetesi_get_course_info($course_title) {
-    // Buscar curso pelo título exato
-    $curso = get_posts(array(
-        'post_type' => 'curso',
-        'title' => $course_title,
-        'posts_per_page' => 1,
-        'post_status' => 'publish'
-    ));
-    
-    // Se não encontrar pelo título exato, tentar busca mais flexível
-    if (empty($curso)) {
-        $curso = get_posts(array(
-            'post_type' => 'curso',
-            's' => $course_title,
-            'posts_per_page' => 1,
-            'post_status' => 'publish'
-        ));
-    }
-    
-    if (!empty($curso)) {
-        $curso_id = $curso[0]->ID;
-        return array(
-            'id' => $curso_id,
-            'title' => get_the_title($curso_id),
-            'excerpt' => get_the_excerpt($curso_id),
-            'content' => get_the_content($curso_id),
-            'permalink' => get_permalink($curso_id),
-            'thumbnail' => get_the_post_thumbnail_url($curso_id, 'large'),
-            'duracao' => get_post_meta($curso_id, '_curso_duracao', true),
-            'carga_horaria' => get_post_meta($curso_id, '_curso_carga_horaria', true),
-            'estagio' => get_post_meta($curso_id, '_curso_estagio', true),
-            'modalidade' => get_post_meta($curso_id, '_curso_modalidade', true),
-            'preco' => get_post_meta($curso_id, '_curso_preco', true),
-            'link_inscricao' => get_post_meta($curso_id, '_curso_link_inscricao', true),
-            'exists' => true
-        );
-    }
-    
-    return array('exists' => false);
-}
-
-/**
-* Função para buscar cursos dinâmicos por categoria
- */
-function cetesi_get_dynamic_courses($categoria, $limit = 4) {
+function cetesi_get_dynamic_courses($categoria, $limit = 20) {
     $args = array(
         'post_type' => 'curso',
         'posts_per_page' => $limit,
         'post_status' => 'publish',
         'orderby' => 'date',
-        'order' => 'DESC'
+        'order' => 'DESC',
+        'meta_query' => array(
+            // Garantir que o curso tenha pelo menos os campos básicos preenchidos
+            'relation' => 'AND',
+            array(
+                'key' => '_curso_duracao',
+                'compare' => 'EXISTS'
+            ),
+            array(
+                'key' => '_curso_carga_horaria',
+                'compare' => 'EXISTS'
+            ),
+            array(
+                'key' => '_curso_modalidade',
+                'compare' => 'EXISTS'
+            )
+        )
     );
     
     // Filtrar por categoria usando a taxonomia categoria_curso
@@ -1814,10 +1731,11 @@ function cetesi_get_dynamic_courses($categoria, $limit = 4) {
 }
 
 /**
-* Função para renderizar um curso dinâmico
+ * Renderizar curso dinâmico
  */
 function cetesi_render_dynamic_course($curso, $categoria_class = '') {
     $curso_id = $curso->ID;
+    
     $duracao = get_post_meta($curso_id, '_curso_duracao', true);
     $carga_horaria = get_post_meta($curso_id, '_curso_carga_horaria', true);
     $estagio = get_post_meta($curso_id, '_curso_estagio', true);
@@ -1825,9 +1743,15 @@ function cetesi_render_dynamic_course($curso, $categoria_class = '') {
     $turno = get_post_meta($curso_id, '_curso_turno', true);
     $reconhecimento = get_post_meta($curso_id, '_curso_reconhecimento', true);
     $preco = get_post_meta($curso_id, '_curso_preco', true);
-    
-    // Determinar ícone baseado no título ou categoria
-    $icon = 'fas fa-graduation-cap'; // padrão
+    $preco_promocional = get_post_meta($curso_id, '_curso_preco_promocional', true);
+    $certificacao = get_post_meta($curso_id, '_curso_certificacao', true);
+    $nivel_ensino = get_post_meta($curso_id, '_curso_nivel_ensino', true);
+    $area_conhecimento = get_post_meta($curso_id, '_curso_area_conhecimento', true);
+    $tipo_curso = get_post_meta($curso_id, '_curso_tipo', true);
+    $escolaridade = get_post_meta($curso_id, '_curso_escolaridade', true);
+    $idade_minima = get_post_meta($curso_id, '_curso_idade_minima', true);
+    $link_inscricao = get_post_meta($curso_id, '_curso_link_inscricao', true);
+    $icon = 'fas fa-graduation-cap';
     $title_lower = strtolower(get_the_title($curso_id));
     
     if (strpos($title_lower, 'enfermagem') !== false) $icon = 'fas fa-user-nurse';
@@ -1844,47 +1768,67 @@ function cetesi_render_dynamic_course($curso, $categoria_class = '') {
     elseif (strpos($title_lower, 'saúde mental') !== false) $icon = 'fas fa-brain';
     elseif (strpos($title_lower, 'trabalho') !== false) $icon = 'fas fa-briefcase';
     
-    // Determinar texto de reconhecimento baseado no campo
     $reconhecimento_text = '';
-    switch ($reconhecimento) {
-        case 'mec':
-            $reconhecimento_text = __('Reconhecido pelo MEC', 'cetesi');
-            break;
-        case 'conselho':
-            $reconhecimento_text = __('Reconhecido pelo Conselho', 'cetesi');
-            break;
-        case 'ministerio':
-            $reconhecimento_text = __('Reconhecido pelo Ministério', 'cetesi');
-            break;
-        case 'certificacao':
-            $reconhecimento_text = __('Certificação Profissional', 'cetesi');
-            break;
-        default:
-            $reconhecimento_text = __('Reconhecimento Oficial', 'cetesi');
-            break;
+    if ($reconhecimento) {
+        switch ($reconhecimento) {
+            case 'mec':
+                $reconhecimento_text = __('Reconhecido pelo MEC', 'cetesi');
+                break;
+            case 'conselho':
+                $reconhecimento_text = __('Reconhecido pelo Conselho', 'cetesi');
+                break;
+            case 'ministerio':
+                $reconhecimento_text = __('Reconhecido pelo Ministério', 'cetesi');
+                break;
+            case 'certificacao':
+                $reconhecimento_text = __('Certificação Profissional', 'cetesi');
+                break;
+            default:
+                $reconhecimento_text = $reconhecimento;
+                break;
+        }
     }
     
-    // Determinar texto do turno
     $turno_text = '';
-    switch ($turno) {
-        case 'matutino':
-            $turno_text = __('Matutino (6h às 12h)', 'cetesi');
-            break;
-        case 'vespertino':
-            $turno_text = __('Vespertino (13h às 18h)', 'cetesi');
-            break;
-        case 'noturno':
-            $turno_text = __('Noturno (19h às 22h)', 'cetesi');
-            break;
-        case 'integral':
-            $turno_text = __('Integral (manhã e tarde)', 'cetesi');
-            break;
-        case 'flexivel':
-            $turno_text = __('Flexível (horários variados)', 'cetesi');
-            break;
-        default:
-            $turno_text = $turno ? $turno : __('Turno a definir', 'cetesi');
-            break;
+    if ($turno) {
+        switch ($turno) {
+            case 'matutino':
+                $turno_text = __('Matutino (6h às 12h)', 'cetesi');
+                break;
+            case 'vespertino':
+                $turno_text = __('Vespertino (13h às 18h)', 'cetesi');
+                break;
+            case 'noturno':
+                $turno_text = __('Noturno (19h às 22h)', 'cetesi');
+                break;
+            case 'integral':
+                $turno_text = __('Integral (manhã e tarde)', 'cetesi');
+                break;
+            case 'flexivel':
+                $turno_text = __('Flexível (horários variados)', 'cetesi');
+                break;
+            default:
+                $turno_text = $turno;
+                break;
+        }
+    }
+    
+    $modalidade_text = '';
+    if ($modalidade) {
+        switch ($modalidade) {
+            case 'presencial':
+                $modalidade_text = __('Presencial', 'cetesi');
+                break;
+            case 'online':
+                $modalidade_text = __('100% Online', 'cetesi');
+                break;
+            case 'hibrido':
+                $modalidade_text = __('Híbrido', 'cetesi');
+                break;
+            default:
+                $modalidade_text = $modalidade;
+                break;
+        }
     }
     
     ob_start();
@@ -1898,29 +1842,39 @@ function cetesi_render_dynamic_course($curso, $categoria_class = '') {
             <?php endif; ?>
         </div>
         <div class="curso-content">
-            <h3><?php echo get_the_title($curso_id); ?></h3>
-            <p><?php echo get_the_excerpt($curso_id); ?></p>
-            <ul class="curso-features">
-                <?php if ($duracao) : ?>
-                <li><i class="fas fa-calendar-alt"></i> <?php echo esc_html($duracao); ?></li>
-                <?php endif; ?>
-                <?php if ($carga_horaria) : ?>
-                <li><i class="fas fa-clock"></i> <?php echo esc_html($carga_horaria); ?></li>
-                <?php endif; ?>
-                <?php if ($turno) : ?>
-                <li><i class="fas fa-calendar"></i> <?php echo esc_html($turno_text); ?></li>
-                <?php endif; ?>
-                <?php if ($reconhecimento) : ?>
-                <li><i class="fas fa-certificate"></i> <?php echo esc_html($reconhecimento_text); ?></li>
-                <?php elseif ($modalidade === 'online') : ?>
-                <li><i class="fas fa-laptop"></i> <?php _e('Modalidade 100% Online', 'cetesi'); ?></li>
-                <?php else : ?>
-                <li><i class="fas fa-certificate"></i> <?php _e('Reconhecido pelo MEC', 'cetesi'); ?></li>
-                <?php endif; ?>
-            </ul>
-            <a href="<?php echo get_permalink($curso_id); ?>" class="curso-btn">
+            <div class="curso-header">
+                <h3><?php echo get_the_title($curso_id); ?></h3>
+                <div class="curso-info-badges">
+                    <?php if ($duracao) : ?>
+                    <span class="info-badge duracao">
+                        <i class="fas fa-calendar-alt"></i>
+                        <?php echo esc_html($duracao); ?>
+                    </span>
+                    <?php endif; ?>
+                    <?php if ($carga_horaria) : ?>
+                    <span class="info-badge carga-horaria">
+                        <i class="fas fa-clock"></i>
+                        <?php echo esc_html($carga_horaria); ?>
+                    </span>
+                    <?php endif; ?>
+                    <?php if ($modalidade_text) : ?>
+                    <span class="info-badge modalidade">
+                        <i class="fas fa-<?php echo $modalidade === 'online' ? 'laptop' : 'building'; ?>"></i>
+                        <?php echo esc_html($modalidade_text); ?>
+                    </span>
+                    <?php endif; ?>
+                </div>
+            </div>
+            
+            <?php if (get_the_excerpt($curso_id)) : ?>
+            <div class="curso-descricao">
+                <?php echo get_the_excerpt($curso_id); ?>
+            </div>
+            <?php endif; ?>
+            
+            <a href="<?php echo $link_inscricao ? esc_url($link_inscricao) : get_permalink($curso_id); ?>" class="curso-btn <?php echo esc_attr($categoria_class); ?>">
                 <i class="fas fa-arrow-right"></i>
-                <?php _e('Saiba Mais', 'cetesi'); ?>
+                <span><?php _e('Saiba Mais', 'cetesi'); ?></span>
             </a>
         </div>
     </div>
@@ -1928,26 +1882,12 @@ function cetesi_render_dynamic_course($curso, $categoria_class = '') {
     return ob_get_clean();
 }
 
-/**
- * Enfileirar estilos e scripts
- */
 function cetesi_scripts() {
-    // Google Fonts
     wp_enqueue_style('cetesi-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap', array(), CETESI_VERSION);
-    
-    // Font Awesome
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
-    
-    // Estilo principal
     wp_enqueue_style('cetesi-style', get_stylesheet_uri(), array('cetesi-fonts', 'font-awesome'), CETESI_VERSION);
-    
-    // JavaScript principal
     wp_enqueue_script('cetesi-main', CETESI_THEME_URL . '/assets/js/main.js', array('jquery'), CETESI_VERSION, true);
-    
-    // Script seguro para formulário de contato
     wp_enqueue_script('cetesi-contact-form', CETESI_THEME_URL . '/assets/js/contact-form.js', array('jquery'), CETESI_VERSION, true);
-    
-    // Localizar script para AJAX
     wp_localize_script('cetesi-contact-form', 'cetesi_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce'    => wp_create_nonce('cetesi_nonce'),
@@ -1955,11 +1895,7 @@ function cetesi_scripts() {
 }
 add_action('wp_enqueue_scripts', 'cetesi_scripts');
 
-/**
- * Registrar Post Types personalizados
- */
 function cetesi_register_post_types() {
-    // Post Type: Cursos
     register_post_type('curso', array(
         'labels' => array(
             'name'               => __('Cursos', 'cetesi'),
@@ -1989,7 +1925,6 @@ function cetesi_register_post_types() {
         'show_in_rest'        => true,
     ));
     
-    // Post Type: Depoimentos
     register_post_type('depoimento', array(
         'labels' => array(
             'name'               => __('Depoimentos', 'cetesi'),
@@ -2019,7 +1954,6 @@ function cetesi_register_post_types() {
         'show_in_rest'        => true,
     ));
     
-    // Post Type: Membros da Equipe
     register_post_type('membro_equipe', array(
         'labels' => array(
             'name'               => __('Equipe', 'cetesi'),
@@ -6001,6 +5935,7 @@ function cetesi_process_course_update($course_id) {
         'ID' => $course_id,
         'post_title' => sanitize_text_field($_POST['curso_titulo']),
         'post_content' => wp_kses_post($_POST['curso_descricao']),
+        'post_excerpt' => sanitize_textarea_field($_POST['curso_descricao']),
         'post_status' => 'publish'
     );
     
@@ -8431,9 +8366,6 @@ function cetesi_excerpt_more($more) {
 }
 add_filter('excerpt_more', 'cetesi_excerpt_more');
 
-/**
- * Funções helper para botões CTA
- */
 function cetesi_get_cta_button($button_key, $default_text = '', $default_url = '#') {
     $cta_buttons = get_option('cetesi_cta_buttons', array(
         'homepage_inscreva' => array('text' => 'Inscreva-se', 'url' => '#inscricao'),
@@ -8464,11 +8396,7 @@ function cetesi_get_header_button($button_key, $default_text = '', $default_url 
     return array('enabled' => 1, 'text' => $default_text, 'url' => $default_url, 'new_tab' => $default_new_tab);
 }
 
-/**
- * Página de Conteúdo
- */
 function cetesi_content_page() {
-    // Mostrar mensagem de sucesso se os cursos foram criados
     if (isset($_GET['courses_created']) && $_GET['courses_created'] == '1') {
         echo '<div class="notice notice-success"><p>Cursos técnicos reais do CETESI criados com sucesso!</p></div>';
     }
@@ -8480,7 +8408,6 @@ function cetesi_content_page() {
         </div>
         
         <div class="cetesi-sections">
-            <!-- Seção Equipe -->
             <div class="cetesi-section">
                 <div class="cetesi-section-header">
                     <h2><span class="dashicons dashicons-groups"></span> Gerenciar Equipe</h2>
@@ -8558,7 +8485,6 @@ function cetesi_content_page() {
                 </div>
             </div>
             
-            <!-- Seção Cursos -->
             <div class="cetesi-section">
                 <div class="cetesi-section-header">
                     <h2><span class="dashicons dashicons-book"></span> Gerenciar Cursos</h2>
