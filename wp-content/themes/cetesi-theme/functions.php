@@ -1886,6 +1886,33 @@ function cetesi_scripts() {
     wp_enqueue_style('cetesi-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap', array(), CETESI_VERSION);
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
     wp_enqueue_style('cetesi-style', get_stylesheet_uri(), array('cetesi-fonts', 'font-awesome'), CETESI_VERSION);
+    
+    // CSS específico para hero section (extraído do inline)
+    if (is_front_page()) {
+        wp_enqueue_style('cetesi-hero', CETESI_THEME_URL . '/assets/css/hero.css', array('cetesi-style'), CETESI_VERSION);
+        wp_enqueue_style('cetesi-front-page', CETESI_THEME_URL . '/assets/css/front-page.css', array('cetesi-style'), CETESI_VERSION);
+    }
+    
+    // Carregar CSS do single-curso apenas nas páginas de curso
+    if (is_singular('curso')) {
+        wp_enqueue_style('cetesi-single-curso', CETESI_THEME_URL . '/assets/css/single-curso.css', array('cetesi-style'), CETESI_VERSION);
+    }
+    
+    // Carregar CSS da página equipe apenas na página equipe
+    if (is_page('equipe')) {
+        wp_enqueue_style('cetesi-page-equipe', CETESI_THEME_URL . '/assets/css/page-equipe.css', array('cetesi-style'), CETESI_VERSION);
+    }
+    
+    // Carregar CSS das páginas (exceto homepage e equipe)
+    if (is_page() && !is_front_page() && !is_page('equipe')) {
+        wp_enqueue_style('cetesi-page', CETESI_THEME_URL . '/assets/css/page.css', array('cetesi-style'), CETESI_VERSION);
+    }
+    
+    // Carregar CSS do index (blog/posts)
+    if (is_home() || is_archive() || is_search()) {
+        wp_enqueue_style('cetesi-index', CETESI_THEME_URL . '/assets/css/index.css', array('cetesi-style'), CETESI_VERSION);
+    }
+    
     wp_enqueue_script('cetesi-main', CETESI_THEME_URL . '/assets/js/main.js', array('jquery'), CETESI_VERSION, true);
     wp_enqueue_script('cetesi-contact-form', CETESI_THEME_URL . '/assets/js/contact-form.js', array('jquery'), CETESI_VERSION, true);
     wp_localize_script('cetesi-contact-form', 'cetesi_ajax', array(

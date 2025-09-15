@@ -832,8 +832,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Lazy loading para imagens
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
                     const img = entry.target;
                     img.src = img.dataset.src;
                     img.classList.remove('lazy');
@@ -854,12 +854,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const counter = entry.target;
                 const target = parseInt(counter.textContent.replace(/\D/g, ''));
-        const increment = target / 100;
+                const increment = target / 100;
                 let current = 0;
                 
                 const updateCounter = () => {
                     if (current < target) {
-            current += increment;
+                        current += increment;
                         counter.textContent = Math.ceil(current) + (counter.textContent.includes('+') ? '+' : '') + (counter.textContent.includes('%') ? '%' : '');
                         requestAnimationFrame(updateCounter);
                     } else {

@@ -1,0 +1,6 @@
+[15-Sep-2025 22:15:29 UTC] PHP Fatal error:  Cannot redeclare cetesi_breadcrumbs() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi-theme\functions.php:1504) in C:\wamp64\www\cetesi\wp-content\themes\cetesi-theme\functions.php on line 2212
+[15-Sep-2025 22:15:29 UTC] PHP Stack trace:
+[15-Sep-2025 22:15:29 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin-ajax.php:0
+[15-Sep-2025 22:15:29 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\admin-ajax.php:22
+[15-Sep-2025 22:15:29 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[15-Sep-2025 22:15:29 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-config.php:40
