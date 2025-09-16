@@ -299,4 +299,187 @@
     // Expor objeto globalmente para uso em outros scripts
     window.CetesiTheme = CetesiTheme;
 
+    /**
+     * Funcionalidades responsivas avançadas
+     */
+    function initResponsiveFeatures() {
+        // Detectar orientação do dispositivo
+        function handleOrientationChange() {
+            if (window.matchMedia('(orientation: portrait)').matches) {
+                $('body').addClass('portrait').removeClass('landscape');
+            } else {
+                $('body').addClass('landscape').removeClass('portrait');
+            }
+        }
+
+        // Executar na inicialização
+        handleOrientationChange();
+
+        // Escutar mudanças de orientação
+        window.addEventListener('orientationchange', function() {
+            setTimeout(handleOrientationChange, 100);
+        });
+
+        // Detectar tamanho da tela
+        function handleResize() {
+            var windowWidth = $(window).width();
+            
+            if (windowWidth < 768) {
+                $('body').addClass('mobile').removeClass('tablet desktop');
+            } else if (windowWidth < 1024) {
+                $('body').addClass('tablet').removeClass('mobile desktop');
+            } else {
+                $('body').addClass('desktop').removeClass('mobile tablet');
+            }
+        }
+
+        // Executar na inicialização
+        handleResize();
+
+        // Escutar mudanças de tamanho com debounce
+        $(window).on('resize', debounce(handleResize, 250));
+
+        // Melhorar experiência em touch devices
+        if ('ontouchstart' in window) {
+            $('body').addClass('touch-device');
+            
+            // Adicionar classe para elementos tocados
+            $('a, button').on('touchstart', function() {
+                $(this).addClass('touched');
+            }).on('touchend', function() {
+                var $this = $(this);
+                setTimeout(function() {
+                    $this.removeClass('touched');
+                }, 300);
+            });
+        }
+
+        // Scroll suave com throttle
+        $(window).on('scroll', throttle(function() {
+            var scrollTop = $(window).scrollTop();
+            
+            // Adicionar classe quando scroll
+            if (scrollTop > 100) {
+                $('body').addClass('scrolled');
+            } else {
+                $('body').removeClass('scrolled');
+            }
+        }, 16)); // ~60fps
+    }
+
+    /**
+     * Otimizações de performance
+     */
+    function initPerformanceOptimizations() {
+        // Debounce para eventos de resize
+        function debounce(func, wait) {
+            var timeout;
+            return function executedFunction() {
+                var later = function() {
+                    clearTimeout(timeout);
+                    func();
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Throttle para eventos de scroll
+        function throttle(func, limit) {
+            var inThrottle;
+            return function() {
+                var args = arguments;
+                var context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(function() {
+                        inThrottle = false;
+                    }, limit);
+                }
+            };
+        }
+
+        // Preload de recursos críticos
+        function preloadCriticalResources() {
+            var criticalImages = [
+                // Adicionar URLs de imagens críticas aqui
+            ];
+
+            criticalImages.forEach(function(src) {
+                var link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'image';
+                link.href = src;
+                document.head.appendChild(link);
+            });
+        }
+
+        // Executar preload apenas em conexões rápidas
+        if ('connection' in navigator && navigator.connection.effectiveType === '4g') {
+            preloadCriticalResources();
+        }
+
+        // Otimizar animações para dispositivos com pouca memória
+        if ('deviceMemory' in navigator && navigator.deviceMemory < 4) {
+            $('body').addClass('low-memory');
+        }
+
+        // Adicionar suporte para prefers-reduced-motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            $('*').css({
+                'animation-duration': '0.01ms !important',
+                'animation-iteration-count': '1 !important',
+                'transition-duration': '0.01ms !important'
+            });
+        }
+    }
+
+    /**
+     * Utilitários responsivos globais
+     */
+    window.CetesiResponsive = {
+        // Função para detectar se é mobile
+        isMobile: function() {
+            return window.innerWidth < 768;
+        },
+
+        // Função para detectar se é tablet
+        isTablet: function() {
+            return window.innerWidth >= 768 && window.innerWidth < 1024;
+        },
+
+        // Função para detectar se é desktop
+        isDesktop: function() {
+            return window.innerWidth >= 1024;
+        },
+
+        // Função para detectar orientação
+        isPortrait: function() {
+            return window.innerHeight > window.innerWidth;
+        },
+
+        isLandscape: function() {
+            return window.innerWidth > window.innerHeight;
+        },
+
+        // Função para detectar conexão
+        isSlowConnection: function() {
+            return 'connection' in navigator && 
+                   (navigator.connection.effectiveType === 'slow-2g' || 
+                    navigator.connection.effectiveType === '2g');
+        },
+
+        // Função para detectar se é touch device
+        isTouchDevice: function() {
+            return 'ontouchstart' in window;
+        }
+    };
+
+    // Inicializar funcionalidades responsivas
+    $(document).ready(function() {
+        initResponsiveFeatures();
+        initPerformanceOptimizations();
+    });
+
 })(jQuery);

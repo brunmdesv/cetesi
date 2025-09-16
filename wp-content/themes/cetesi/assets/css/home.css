@@ -592,44 +592,315 @@
     min-height: 120px;
 }
 
-/* ===== RESPONSIVIDADE ===== */
-@media (max-width: 768px) {
+/* ==========================================================================
+   RESPONSIVIDADE AVANÇADA - MOBILE FIRST
+   ========================================================================== */
+
+/* ===== BREAKPOINTS ESPECÍFICOS ===== */
+
+/* Extra Large Devices (1400px+) */
+@media (min-width: 1400px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+    
+    .hero-section,
+    .cursos-destaque-section,
+    .sobre-escola-section,
+    .professores-section,
+    .depoimentos-section,
+    .estatisticas-section,
+    .contato-section {
+        padding: 100px 0;
+    }
+}
+
+/* Large Devices (1200px+) */
+@media (min-width: 1200px) {
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
+    }
+    
+    .cursos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .professores-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .depoimentos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Medium Devices (992px+) */
+@media (min-width: 992px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .cursos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .professores-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .depoimentos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small Devices (768px+) */
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-section,
+    .cursos-destaque-section,
+    .sobre-escola-section,
+    .professores-section,
+    .depoimentos-section,
+    .estatisticas-section,
+    .contato-section {
+        padding: 80px 0;
+    }
+}
+
+/* ===== RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS ===== */
+
+/* Mobile Landscape (768px-) */
+@media (max-width: 767.98px) {
+    /* Layout em coluna única com espaçamento melhor */
     .hero-content,
     .sobre-content,
     .contato-content {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 50px;
+        text-align: center;
     }
     
+    /* Títulos responsivos mais elegantes */
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
     
     .section-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
     }
     
+    .section-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* Grids em coluna única com espaçamento melhor */
     .cursos-grid,
     .professores-grid,
     .depoimentos-grid {
         grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 500px;
+        margin: 0 auto;
     }
     
+    /* Estatísticas em 2 colunas mais elegantes */
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        max-width: 600px;
+        margin: 0 auto;
     }
     
+    /* Botões responsivos mais bonitos */
     .hero-actions {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
+        gap: 20px;
+        margin-top: 2rem;
     }
     
     .btn-large {
         text-align: center;
+        width: 100%;
+        max-width: 300px;
+        padding: 18px 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-large:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(30, 58, 138, 0.4);
+    }
+    
+    /* Padding reduzido mas elegante */
+    .hero-section,
+    .cursos-destaque-section,
+    .sobre-escola-section,
+    .professores-section,
+    .depoimentos-section,
+    .estatisticas-section,
+    .contato-section {
+        padding: 80px 0;
+    }
+    
+    /* Cards responsivos mais bonitos */
+    .course-card,
+    .teacher-card,
+    .testimonial-card {
+        margin-bottom: 30px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .course-card:hover,
+    .teacher-card:hover,
+    .testimonial-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    /* Formulário responsivo mais elegante */
+    .contato-form {
+        padding: 40px 30px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    /* Features responsivas mais elegantes */
+    .sobre-features {
+        gap: 30px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .feature-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 30px 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    /* Contato responsivo mais elegante */
+    .contato-details {
+        gap: 30px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 25px 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--secondary-color), #10b981);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    /* Professores responsivos mais elegantes */
+    .teacher-stats {
+        gap: 30px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    /* Depoimentos responsivos mais elegantes */
+    .testimonial-author {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .testimonial-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 0 auto;
     }
 }
 
-@media (max-width: 480px) {
+/* Mobile Portrait (576px-) */
+@media (max-width: 575.98px) {
+    /* Títulos menores mas elegantes */
+    .hero-title {
+        font-size: 2.2rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.9rem;
+        line-height: 1.2;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* Padding menor mas elegante */
     .hero-section,
     .cursos-destaque-section,
     .sobre-escola-section,
@@ -640,15 +911,367 @@
         padding: 60px 0;
     }
     
+    /* Estatísticas em coluna única mais elegantes */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .stat-number {
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    
+    /* Formulário mais compacto mas elegante */
+    .contato-form {
+        padding: 30px 20px;
+        margin: 0 10px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 15px;
+        font-size: 1rem;
+        border-radius: 12px;
+        border: 2px solid #e5e7eb;
+        transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    }
+    
+    /* Cards mais compactos mas elegantes */
+    .course-content,
+    .teacher-info {
+        padding: 25px 20px;
+    }
+    
+    .testimonial-card {
+        padding: 30px 20px;
+    }
+    
+    /* Botões mais compactos mas elegantes */
+    .btn-large {
+        padding: 16px 25px;
+        font-size: 1rem;
+        max-width: 280px;
+    }
+    
+    /* Hero mais compacto mas elegante */
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        line-height: 1.5;
+    }
+    
+    /* Features mais compactas mas elegantes */
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .feature-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .feature-content p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    /* Contato mais compacto mas elegante */
+    .contact-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .contact-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .contact-content p {
+        font-size: 0.95rem;
+    }
+    
+    /* Grids mais compactos */
+    .cursos-grid,
+    .professores-grid,
+    .depoimentos-grid {
+        gap: 25px;
+        max-width: 400px;
+    }
+    
+    .sobre-features {
+        gap: 25px;
+        max-width: 400px;
+    }
+    
+    .contato-details {
+        gap: 25px;
+        max-width: 400px;
+    }
+    
+    .teacher-stats {
+        gap: 25px;
+        max-width: 400px;
+    }
+}
+
+/* ===== RESPONSIVIDADE PARA TABLETS ===== */
+
+/* Tablet Landscape (1024px-) */
+@media (max-width: 1023.98px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.8rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .cursos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .professores-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .depoimentos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablet Portrait (768px-) */
+@media (max-width: 767.98px) {
+    /* Grid de 2 colunas em tablets */
+    .cursos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .professores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .depoimentos-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
     
     .stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+}
+
+/* ===== RESPONSIVIDADE PARA DESKTOPS PEQUENOS ===== */
+
+/* Desktop Small (992px-) */
+@media (max-width: 991.98px) {
+    .hero-content {
+        gap: 50px;
     }
     
-    .contato-form {
-        padding: 25px;
+    .sobre-content {
+        gap: 50px;
     }
+    
+    .contato-content {
+        gap: 50px;
+    }
+    
+    .cursos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .professores-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .depoimentos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== UTILITÁRIOS RESPONSIVOS ESPECÍFICOS ===== */
+
+/* Esconder elementos em mobile */
+@media (max-width: 767.98px) {
+    .d-none-mobile {
+        display: none !important;
+    }
+    
+    /* Hero image em mobile */
+    .hero-image {
+        order: -1;
+        margin-bottom: 30px;
+    }
+    
+    /* Sobre image em mobile */
+    .sobre-image {
+        order: -1;
+        margin-bottom: 30px;
+    }
+}
+
+/* Esconder elementos em tablet */
+@media (max-width: 991.98px) {
+    .d-none-tablet {
+        display: none !important;
+    }
+}
+
+/* Esconder elementos em desktop */
+@media (min-width: 992px) {
+    .d-none-desktop {
+        display: none !important;
+    }
+}
+
+/* Mostrar apenas em mobile */
+@media (max-width: 767.98px) {
+    .d-mobile-only {
+        display: block !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .d-mobile-only {
+        display: none !important;
+    }
+}
+
+/* Mostrar apenas em tablet */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .d-tablet-only {
+        display: block !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .d-tablet-only {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .d-tablet-only {
+        display: none !important;
+    }
+}
+
+/* Mostrar apenas em desktop */
+@media (min-width: 992px) {
+    .d-desktop-only {
+        display: block !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .d-desktop-only {
+        display: none !important;
+    }
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+
+/* Reduzir animações para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    .course-card,
+    .teacher-card,
+    .testimonial-card,
+    .btn,
+    .card {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .course-card:hover,
+    .teacher-card:hover,
+    .testimonial-card:hover {
+        transform: none !important;
+    }
+}
+
+/* Alto contraste para usuários com deficiência visual */
+@media (prefers-contrast: high) {
+    .btn-primary {
+        border: 2px solid #000;
+    }
+    
+    .btn-secondary {
+        border: 2px solid #000;
+    }
+    
+    .course-card,
+    .teacher-card,
+    .testimonial-card {
+        border: 2px solid #000;
+    }
+}
+
+/* ===== OTIMIZAÇÕES DE PERFORMANCE ===== */
+
+/* Usar will-change apenas quando necessário */
+.course-card:hover,
+.teacher-card:hover,
+.testimonial-card:hover {
+    will-change: transform;
+}
+
+/* Otimizar repaints */
+.hero-section,
+.estatisticas-section {
+    contain: layout style paint;
+}
+
+/* ===== CORREÇÕES DE LAYOUT ===== */
+
+/* Garantir que imagens não quebrem o layout */
+.hero-img,
+.sobre-img,
+.course-thumbnail img,
+.teacher-avatar img,
+.testimonial-avatar img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Garantir que SVGs sejam responsivos */
+.hero-placeholder svg,
+.sobre-placeholder svg,
+.avatar-placeholder svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Garantir que formulários sejam responsivos */
+.contact-form {
+    width: 100%;
+    max-width: 100%;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }

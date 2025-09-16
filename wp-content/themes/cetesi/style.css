@@ -899,3 +899,619 @@ a:hover {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* ==========================================================================
+   RESPONSIVIDADE COMPLETA - MOBILE FIRST
+   ========================================================================== */
+
+/* ===== BREAKPOINTS ESPECÍFICOS ===== */
+
+/* Extra Large Devices (1400px+) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .site-title {
+        font-size: 2rem;
+    }
+    
+    .entry-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Large Devices (1200px+) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .site-title {
+        font-size: 1.8rem;
+    }
+    
+    .entry-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Medium Devices (992px+) */
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .site-title {
+        font-size: 1.6rem;
+    }
+    
+    .entry-title {
+        font-size: 2rem;
+    }
+}
+
+/* Small Devices (768px+) */
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .site-title {
+        font-size: 1.5rem;
+    }
+    
+    .entry-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* ===== RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS ===== */
+
+/* Mobile Landscape (768px-) */
+@media (max-width: 767.98px) {
+    .container {
+        padding: 0 20px;
+        max-width: 100%;
+    }
+    
+    .site-header {
+        padding: 15px 0;
+        position: relative;
+    }
+    
+    .site-branding {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .site-title {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+    
+    .site-description {
+        display: none;
+    }
+    
+    .main-navigation {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        display: none;
+    }
+    
+    .main-navigation.toggled {
+        display: block;
+    }
+    
+    .main-navigation ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+    }
+    
+    .main-navigation li {
+        width: 100%;
+    }
+    
+    .main-navigation a {
+        padding: 15px 20px;
+        display: block;
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.3s ease;
+    }
+    
+    .main-navigation a:hover {
+        background: var(--bg-light);
+        color: var(--primary-color);
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+    }
+    
+    .mobile-menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: var(--text-dark);
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    .site-main {
+        padding: 40px 0;
+    }
+    
+    .entry-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    .entry-title {
+        font-size: 1.8rem;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+    
+    .entry-meta {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .entry-content {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .entry-content h1,
+    .entry-content h2,
+    .entry-content h3,
+    .entry-content h4,
+    .entry-content h5,
+    .entry-content h6 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .entry-content p {
+        margin-bottom: 15px;
+    }
+    
+    .entry-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    .widget-area {
+        margin-top: 40px;
+    }
+    
+    .widget {
+        margin-bottom: 30px;
+        padding: 25px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .widget-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+    
+    .site-footer {
+        padding: 30px 0;
+        text-align: center;
+    }
+    
+    .footer-info {
+        text-align: center;
+    }
+    
+    .footer-info p {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .footer-navigation {
+        margin-bottom: 20px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .footer-links a {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Botões responsivos */
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+        padding: 15px 25px;
+        font-size: 1rem;
+        border-radius: 25px;
+    }
+    
+    /* Formulários responsivos */
+    .search-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-form input[type="search"] {
+        width: 100%;
+        padding: 15px;
+        border-radius: 25px;
+        border: 2px solid #e5e7eb;
+    }
+    
+    .search-form button {
+        width: 100%;
+        padding: 15px;
+        border-radius: 25px;
+    }
+    
+    /* Comentários responsivos */
+    .comment-list {
+        padding: 0;
+    }
+    
+    .comment {
+        padding: 20px;
+        margin-bottom: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .comment-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .comment-author .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    
+    .comment-meta {
+        font-size: 0.9rem;
+        color: var(--text-light);
+    }
+    
+    .comment-content {
+        margin-top: 10px;
+        line-height: 1.6;
+    }
+    
+    .reply {
+        margin-top: 15px;
+    }
+    
+    .reply a {
+        padding: 8px 15px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .reply a:hover {
+        background: var(--secondary-color);
+    }
+}
+
+/* Mobile Portrait (576px-) */
+@media (max-width: 575.98px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .site-header {
+        padding: 10px 0;
+    }
+    
+    .site-title {
+        font-size: 1.3rem;
+    }
+    
+    .site-main {
+        padding: 30px 0;
+    }
+    
+    .entry-title {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    
+    .entry-content {
+        font-size: 0.95rem;
+    }
+    
+    .entry-content h1,
+    .entry-content h2,
+    .entry-content h3,
+    .entry-content h4,
+    .entry-content h5,
+    .entry-content h6 {
+        font-size: 1.2rem;
+    }
+    
+    .site-footer {
+        padding: 20px 0;
+    }
+    
+    .footer-info p {
+        font-size: 0.85rem;
+    }
+    
+    .widget {
+        padding: 20px;
+    }
+    
+    .widget-title {
+        font-size: 1.1rem;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        max-width: 280px;
+    }
+    
+    .comment {
+        padding: 15px;
+    }
+    
+    .comment-author .avatar {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* ===== RESPONSIVIDADE PARA TABLETS ===== */
+
+/* Tablet Landscape (1024px-) */
+@media (max-width: 1023.98px) {
+    .container {
+        max-width: 100%;
+        padding: 0 30px;
+    }
+    
+    .site-title {
+        font-size: 1.7rem;
+    }
+    
+    .entry-title {
+        font-size: 2rem;
+    }
+}
+
+/* Tablet Portrait (768px-) */
+@media (max-width: 767.98px) {
+    .container {
+        padding: 0 25px;
+    }
+    
+    .site-title {
+        font-size: 1.5rem;
+    }
+    
+    .entry-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* ===== RESPONSIVIDADE PARA DESKTOPS PEQUENOS ===== */
+
+/* Desktop Small (992px-) */
+@media (max-width: 991.98px) {
+    .container {
+        max-width: 100%;
+        padding: 0 40px;
+    }
+    
+    .main-navigation ul {
+        gap: 20px;
+    }
+    
+    .main-navigation a {
+        padding: 12px 18px;
+    }
+}
+
+/* ===== UTILITÁRIOS RESPONSIVOS ESPECÍFICOS ===== */
+
+/* Esconder elementos em mobile */
+@media (max-width: 767.98px) {
+    .d-none-mobile {
+        display: none !important;
+    }
+}
+
+/* Esconder elementos em tablet */
+@media (max-width: 991.98px) {
+    .d-none-tablet {
+        display: none !important;
+    }
+}
+
+/* Esconder elementos em desktop */
+@media (min-width: 992px) {
+    .d-none-desktop {
+        display: none !important;
+    }
+}
+
+/* Mostrar apenas em mobile */
+@media (max-width: 767.98px) {
+    .d-mobile-only {
+        display: block !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .d-mobile-only {
+        display: none !important;
+    }
+}
+
+/* Mostrar apenas em tablet */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .d-tablet-only {
+        display: block !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .d-tablet-only {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .d-tablet-only {
+        display: none !important;
+    }
+}
+
+/* Mostrar apenas em desktop */
+@media (min-width: 992px) {
+    .d-desktop-only {
+        display: block !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .d-desktop-only {
+        display: none !important;
+    }
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+
+/* Reduzir animações para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Alto contraste para usuários com deficiência visual */
+@media (prefers-contrast: high) {
+    .btn-primary,
+    .btn-secondary {
+        border: 2px solid #000;
+    }
+    
+    .widget,
+    .comment {
+        border: 2px solid #000;
+    }
+}
+
+/* ===== OTIMIZAÇÕES DE PERFORMANCE ===== */
+
+/* Usar will-change apenas quando necessário */
+.main-navigation a:hover,
+.btn:hover {
+    will-change: transform;
+}
+
+/* Otimizar repaints */
+.site-header,
+.site-footer {
+    contain: layout style paint;
+}
+
+/* ===== CORREÇÕES DE LAYOUT ===== */
+
+/* Garantir que imagens não quebrem o layout */
+.entry-content img,
+.widget img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Garantir que formulários sejam responsivos */
+.search-form,
+.comment-form {
+    width: 100%;
+    max-width: 100%;
+}
+
+.search-form input,
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Garantir que tabelas sejam responsivas */
+.entry-content table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+}
+
+.entry-content table th,
+.entry-content table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Garantir que listas sejam responsivas */
+.entry-content ul,
+.entry-content ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.entry-content li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+}

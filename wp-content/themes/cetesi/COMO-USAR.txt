@@ -82,9 +82,64 @@ CAMPOS PARA DEPOIMENTOS:
 - curso_aluno: Curso que o aluno fez
 - avaliacao_aluno: Nota de 1 a 5
 
+RESPONSIVIDADE COMPLETA:
+========================
+✅ Mobile First Design
+✅ Breakpoints específicos:
+   - Mobile: até 767px
+   - Tablet: 768px - 1023px  
+   - Desktop: 1024px+
+   - Extra Large: 1400px+
+
+✅ Funcionalidades Responsivas:
+   - Menu hambúrguer animado
+   - Grids adaptativos
+   - Imagens responsivas
+   - Formulários otimizados
+   - Touch gestures
+   - Orientação automática
+   - Lazy loading
+   - Performance otimizada
+
+✅ Acessibilidade:
+   - Navegação por teclado
+   - Screen readers
+   - Alto contraste
+   - Movimento reduzido
+   - ARIA labels
+   - Skip links
+
+✅ Performance:
+   - Debounce/Throttle
+   - Preload crítico
+   - Otimização de memória
+   - Conexão adaptativa
+   - Animações otimizadas
+
+UTILITÁRIOS RESPONSIVOS:
+========================
+- .d-none-mobile (esconder em mobile)
+- .d-none-tablet (esconder em tablet)
+- .d-none-desktop (esconder em desktop)
+- .d-mobile-only (apenas mobile)
+- .d-tablet-only (apenas tablet)
+- .d-desktop-only (apenas desktop)
+
+JavaScript Responsivo:
+======================
+- CetesiResponsive.isMobile()
+- CetesiResponsive.isTablet()
+- CetesiResponsive.isDesktop()
+- CetesiResponsive.isPortrait()
+- CetesiResponsive.isLandscape()
+- CetesiResponsive.isTouchDevice()
+- CetesiResponsive.isSlowConnection()
+
 PLUGINS RECOMENDADOS:
 =====================
 - Advanced Custom Fields (para campos personalizados)
 - Custom Post Type UI (para tipos de post)
 - Contact Form 7 (para formulário de contato)
 - WooCommerce (para vendas de cursos)
+- WP Rocket (para cache e performance)
+- Smush (para otimização de imagens)
