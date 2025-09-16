@@ -35,11 +35,11 @@ get_header();
                     </button>
                     <button class="equipe-filter-btn" data-filter="direcao">
                         <i class="fas fa-crown"></i>
-                         Direçío
+                         Direção
                     </button>
                     <button class="equipe-filter-btn" data-filter="coordenacao">
                         <i class="fas fa-chalkboard-teacher"></i>
-                        Coordenaçío
+                        Coordenação
                     </button>
                     <button class="equipe-filter-btn" data-filter="docentes">
                         <i class="fas fa-graduation-cap"></i>
@@ -67,11 +67,10 @@ get_header();
                         while ($equipe_query->have_posts()) : $equipe_query->the_post();
                             $cargo = get_post_meta(get_the_ID(), '_membro_cargo', true);
                             $formacao = get_post_meta(get_the_ID(), '_membro_formacao', true);
-                            $experiencia = get_post_meta(get_the_ID(), '_membro_experiencia', true);
                             $email = get_post_meta(get_the_ID(), '_membro_email', true);
                             $telefone = get_post_meta(get_the_ID(), '_membro_telefone', true);
                             $linkedin = get_post_meta(get_the_ID(), '_membro_linkedin', true);
-                            $bio = get_the_content(); // Biografia estí¡ no post_content
+                            $bio = get_the_content(); // Biografia está no post_content
                             
                             // Determinar categoria baseada no cargo
                             $categoria = 'administrativo';
@@ -115,12 +114,6 @@ get_header();
                                     <?php echo esc_html($formacao ?: 'Formação não informada'); ?>
                                 </p>
                                 <p class="membro-bio-moderno"><?php echo esc_html($bio ? wp_trim_words($bio, 15) : 'Biografia não informada'); ?></p>
-                                <div class="membro-experiencia-moderno">
-                                    <span class="experiencia-text">
-                                        <i class="fas fa-clock"></i>
-                                        <?php echo esc_html($experiencia ?: 'Experiência não informada'); ?>
-                                    </span>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -136,23 +129,23 @@ get_header();
                                 'formacao' => 'Doutor em Educação',
                                 'experiencia' => 'Mais de 20 anos de experiência em educação profissional',
                                 'categoria' => 'direcao',
-                                'bio' => 'Lí­der visioní¡rio com vasta experiência em gestão educacional e desenvolvimento de polí­ticas acadêmicas.'
+                                'bio' => 'Líder visionário com vasta experiência em gestão educacional e desenvolvimento de políticas acadêmicas.'
                             ),
                             array(
                                 'nome' => 'Dra. Maria Santos',
                                 'cargo' => 'Diretora Acadêmica',
                                 'formacao' => 'Doutora em Enfermagem',
-                                'experiencia' => 'Especialista em metodologias de ensino na í¡rea da saíºde',
+                                'experiencia' => 'Especialista em metodologias de ensino na área da saúde',
                                 'categoria' => 'direcao',
-                                'bio' => 'Especialista em metodologias de ensino e desenvolvimento curricular na í¡rea da saíºde.'
+                                'bio' => 'Especialista em metodologias de ensino e desenvolvimento curricular na área da saúde.'
                             ),
                             array(
                                 'nome' => 'Prof. Carlos Oliveira',
                                 'cargo' => 'Coordenador de Enfermagem',
                                 'formacao' => 'Mestre em Enfermagem',
-                                'experiencia' => '26 anos de experiência clí­nica e docente',
+                                'experiencia' => '26 anos de experiência clínica e docente',
                                 'categoria' => 'coordenacao',
-                                'bio' => 'Coordenador experiente com ampla vivência clí­nica e acadêmica na í¡rea de enfermagem.'
+                                'bio' => 'Coordenador experiente com ampla vivência clínica e acadêmica na área de enfermagem.'
                             ),
                                 array(
                                 'nome' => 'Prof. Ana Costa',
@@ -160,7 +153,7 @@ get_header();
                                 'formacao' => 'Especialista em Radiologia',
                                 'experiencia' => '12 anos de experiência em diagnóstico por imagem',
                                 'categoria' => 'coordenacao',
-                                'bio' => 'Especialista em tí©cnicas radiológicas com vasta experiência em diagnóstico por imagem.'
+                                'bio' => 'Especialista em técnicas radiológicas com vasta experiência em diagnóstico por imagem.'
                             ),
                             array(
                                 'nome' => 'Prof. Roberto Lima',
@@ -168,11 +161,11 @@ get_header();
                                 'formacao' => 'Especialista em Enfermagem',
                                 'experiencia' => '10 anos de experiência docente',
                                 'categoria' => 'docentes',
-                                'bio' => 'Professor dedicado com experiência prí¡tica e teórica em enfermagem.'
+                                'bio' => 'Professor dedicado com experiência prática e teórica em enfermagem.'
                             ),
                             array(
                                 'nome' => 'Sra. Patricia Mendes',
-                                'cargo' => 'Secretí¡ria Acadêmica',
+                                'cargo' => 'Secretária Acadêmica',
                                 'formacao' => 'Administração',
                                 'experiencia' => '8 anos de experiência administrativa',
                                 'categoria' => 'administrativo',
@@ -210,12 +203,6 @@ get_header();
                                     <?php echo esc_html($membro['formacao']); ?>
                                 </p>
                                 <p class="membro-bio-moderno"><?php echo esc_html($membro['bio']); ?></p>
-                                <div class="membro-experiencia-moderno">
-                                    <span class="experiencia-text">
-                                        <i class="fas fa-clock"></i>
-                                        <?php echo esc_html($membro['experiencia']); ?>
-                                    </span>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -224,34 +211,11 @@ get_header();
             </div>
         </section>
 
-        <!-- Estatí­sticas da Equipe -->
-        <section class="stats-section">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Profissionais Qualificados</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">80%</span>
-                        <span class="stat-label">Mestres e Doutores</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">26+</span>
-                        <span class="stat-label">Anos de Experiência Mí©dia</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Comprometimento com a Qualidade</span>
-                    </div>
-                </div>
-            </div>
-        </section>
 
     </main>
                 </div>
                 
-<!-- CSS da pígina equipe movido para assets/css/page-equipe.css -->
+<!-- CSS da página equipe movido para assets/css/page-equipe.css -->
 
 <script>
 jQuery(document).ready(function($) {
@@ -259,7 +223,7 @@ jQuery(document).ready(function($) {
     $('.equipe-filter-btn').on('click', function() {
         var filter = $(this).data('filter');
         
-        // Atualizar botíµes ativos
+        // Atualizar botões ativos
         $('.equipe-filter-btn').removeClass('active');
         $(this).addClass('active');
         

@@ -24,7 +24,7 @@ get_header(); ?>
                     <div class="hero-content-ultra">
                         <div class="hero-main-content">
                                 <?php
-                            // Campos dinÃ¢micos
+                            // Campos dinâmicos
                             $nivel_ensino = get_post_meta(get_the_ID(), '_curso_nivel_ensino', true);
                             $area_conhecimento = get_post_meta(get_the_ID(), '_curso_area_conhecimento', true);
                             $modalidade = get_post_meta(get_the_ID(), '_curso_modalidade', true);
@@ -45,10 +45,10 @@ get_header(); ?>
                                     </div>
                                     <span class="badge-text"><?php 
                                         $nivel_labels = array(
-                                            'tecnico' => 'TÃ©cnico',
+                                            'tecnico' => 'Técnico',
                                             'livre' => 'Curso Livre',
-                                            'qualificacao' => 'QualificaÃ§Ã£o',
-                                            'especializacao' => 'EspecializaÃ§Ã£o'
+                                            'qualificacao' => 'Qualificação',
+                                            'especializacao' => 'Especialização'
                                         );
                                         echo isset($nivel_labels[$nivel_ensino]) ? $nivel_labels[$nivel_ensino] : ucfirst($nivel_ensino);
                                     ?></span>
@@ -64,7 +64,7 @@ get_header(); ?>
                                         $modalidade_labels = array(
                                             'presencial' => 'Presencial',
                                             'online' => '100% Online',
-                                            'hibrido' => 'HÃ­brido'
+                                            'hibrido' => 'Híbrido'
                                         );
                                         echo isset($modalidade_labels[$modalidade]) ? $modalidade_labels[$modalidade] : ucfirst($modalidade);
                                     ?></span>
@@ -78,11 +78,11 @@ get_header(); ?>
                                     </div>
                                     <span class="badge-text"><?php 
                                         $area_labels = array(
-                                            'saude' => 'SaÃºde',
+                                            'saude' => 'Saúde',
                                             'tecnologia' => 'Tecnologia',
-                                            'gestao' => 'GestÃ£o',
-                                            'educacao' => 'EducaÃ§Ã£o',
-                                            'seguranca' => 'SeguranÃ§a'
+                                            'gestao' => 'Gestão',
+                                            'educacao' => 'Educação',
+                                            'seguranca' => 'Segurança'
                                         );
                                         echo isset($area_labels[$area_conhecimento]) ? $area_labels[$area_conhecimento] : ucfirst($area_conhecimento);
                                     ?></span>
@@ -90,13 +90,13 @@ get_header(); ?>
                                 <?php endif; ?>
                             </div>
                             
-                            <!-- TÃ­tulo e DescriÃ§Ã£o Ultra Modernos -->
+                            <!-- Título e Descrição Ultra Modernos -->
                             <div class="curso-header-ultra" data-aos="fade-up" data-aos-delay="400">
                                 <h1 class="curso-titulo-ultra"><?php the_title(); ?></h1>
                                 <p class="curso-descricao-ultra"><?php the_content(); ?></p>
                             </div>
                             
-                            <!-- Grid de InformaÃ§Ãµes Ultra Moderno -->
+                            <!-- Grid de Informações Ultra Moderno -->
                             <div class="curso-info-grid-ultra" data-aos="fade-up" data-aos-delay="500">
                                 <?php if ($duracao) : ?>
                                 <div class="info-item-ultra" data-aos="zoom-in" data-aos-delay="600">
@@ -104,7 +104,7 @@ get_header(); ?>
                                     <i class="fas fa-clock"></i>
                                 </div>
                                     <div class="info-content-ultra">
-                                        <span class="info-label-ultra">DuraÃ§Ã£o</span>
+                                        <span class="info-label-ultra">Duração</span>
                                         <span class="info-value-ultra"><?php echo esc_html($duracao); ?></span>
                             </div>
                                 </div>
@@ -116,7 +116,7 @@ get_header(); ?>
                                     <i class="fas fa-book"></i>
                                     </div>
                                     <div class="info-content-ultra">
-                                        <span class="info-label-ultra">Carga HorÃ¡ria</span>
+                                        <span class="info-label-ultra">Carga Horária</span>
                                         <span class="info-value-ultra"><?php echo esc_html($carga_horaria); ?></span>
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@ get_header(); ?>
                                                 'vespertino' => 'Vespertino',
                                                 'noturno' => 'Noturno',
                                                 'integral' => 'Integral',
-                                                'flexivel' => 'FlexÃ­vel'
+                                                'flexivel' => 'Flexível'
                                             );
                                             echo isset($turno_labels[$turno]) ? $turno_labels[$turno] : ucfirst($turno);
                                         ?></span>
@@ -150,7 +150,7 @@ get_header(); ?>
                             <!-- CTA Matricule-se Ultra Moderno -->
                             <div class="cta-matricule-se-ultra" data-aos="fade-up" data-aos-delay="900">
                                 <div class="cta-content-ultra">
-                                    <h3 class="cta-titulo-ultra">Pronto para comeÃ§ar sua jornada?</h3>
+                                    <h3 class="cta-titulo-ultra">Pronto para começar sua jornada?</h3>
                                     <div class="cta-botoes-ultra">
                                         <a href="#" class="btn-matricule-se-ultra">
                                             <div class="btn-content-ultra">
@@ -171,7 +171,7 @@ get_header(); ?>
                         
                             </div>
                         
-                        <!-- Card de PreÃ§o Ultra Moderno -->
+                        <!-- Card de Preço Ultra Moderno -->
                         <div class="hero-sidebar-ultra" data-aos="fade-left" data-aos-delay="1000">
                             <div class="curso-card-preco-ultra">
                                 <div class="card-header-ultra">
@@ -209,7 +209,7 @@ get_header(); ?>
                                         <div class="beneficio-icon">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
-                                        <span class="beneficio-texto">Certificado vÃ¡lido</span>
+                                        <span class="beneficio-texto">Certificado válido</span>
                                     </div>
                                     <div class="beneficio-item-ultra">
                                         <div class="beneficio-icon">
@@ -223,7 +223,7 @@ get_header(); ?>
                                 <a href="<?php echo esc_url($link_inscricao); ?>" class="btn-inscricao-card-ultra" target="_blank" rel="noopener">
                                     <div class="btn-content">
                                     <i class="fas fa-rocket"></i>
-                                    <span>ComeÃ§ar Agora</span>
+                                    <span>Começar Agora</span>
                                     </div>
                                     <div class="btn-shine-ultra"></div>
                                 </a>
@@ -234,7 +234,7 @@ get_header(); ?>
                 </div>
             </section>
 
-            <!-- SeÃ§Ã£o de Detalhes do Curso Ultra Moderna -->
+            <!-- Seção de Detalhes do Curso Ultra Moderna -->
             <section id="curso-detalhes" class="curso-detalhes-section-ultra">
                 <div class="container">
                     <div class="section-header-ultra">
@@ -244,7 +244,7 @@ get_header(); ?>
                             </span>
                             Detalhes do Curso
                         </h2>
-                        <p class="section-subtitulo-ultra">ConheÃ§a todos os aspectos importantes do curso</p>
+                        <p class="section-subtitulo-ultra">Conheça todos os aspectos importantes do curso</p>
                                 </div>
                     
                     <div class="detalhes-grid-ultra">
@@ -259,7 +259,7 @@ get_header(); ?>
                             ?>
                                 <p class="card-descricao-ultra"><?php echo esc_html($objetivos); ?></p>
                             <?php else : ?>
-                                <p class="card-descricao-ultra">Formar profissionais capacitados e preparados para o mercado de trabalho, desenvolvendo competÃªncias tÃ©cnicas e habilidades prÃ¡ticas essenciais.</p>
+                                <p class="card-descricao-ultra">Formar profissionais capacitados e preparados para o mercado de trabalho, desenvolvendo competências técnicas e habilidades práticas essenciais.</p>
                                     <?php endif; ?>
                             </div>
                             
@@ -274,7 +274,7 @@ get_header(); ?>
                             ?>
                                 <p class="card-descricao-ultra"><?php echo esc_html($metodologia); ?></p>
                             <?php else : ?>
-                                <p class="card-descricao-ultra">Metodologia ativa com aulas teÃ³ricas, prÃ¡ticas laboratoriais, estudos de caso e estÃ¡gio supervisionado em ambiente real de trabalho.</p>
+                                <p class="card-descricao-ultra">Metodologia ativa com aulas teóricas, práticas laboratoriais, estudos de caso e estágio supervisionado em ambiente real de trabalho.</p>
                         <?php endif; ?>
                             </div>
                             
@@ -282,7 +282,7 @@ get_header(); ?>
                             <div class="card-icon-ultra">
                                 <i class="fas fa-certificate"></i>
                                 </div>
-                            <h3 class="card-titulo-ultra">CertificaÃ§Ã£o</h3>
+                            <h3 class="card-titulo-ultra">Certificação</h3>
                             <?php
                             $certificacao = get_post_meta(get_the_ID(), '_curso_certificacao', true);
                             $certificacao_detalhada = get_post_meta(get_the_ID(), '_curso_certificacao_detalhada', true);
@@ -294,7 +294,7 @@ get_header(); ?>
                                 <?php elseif ($certificacao) : ?>
                                     <?php echo esc_html($certificacao); ?>
                                 <?php else : ?>
-                                    Certificado de conclusÃ£o vÃ¡lido em todo territÃ³rio nacional
+                                    Certificado de conclusão válido em todo território nacional
                                 <?php endif; ?>
                                 
                                 <?php if ($reconhecimento) : ?>
@@ -303,8 +303,8 @@ get_header(); ?>
                                         $reconhecimento_labels = array(
                                             'mec' => 'Reconhecido pelo MEC',
                                             'conselho' => 'Reconhecido pelo Conselho',
-                                            'ministerio' => 'Reconhecido pelo MinistÃ©rio',
-                                            'certificacao' => 'CertificaÃ§Ã£o Profissional'
+                                            'ministerio' => 'Reconhecido pelo Ministério',
+                                            'certificacao' => 'Certificação Profissional'
                                         );
                                         echo isset($reconhecimento_labels[$reconhecimento]) ? $reconhecimento_labels[$reconhecimento] : ucfirst($reconhecimento);
                                         ?>
@@ -325,7 +325,7 @@ get_header(); ?>
                             $modulo_3 = get_post_meta(get_the_ID(), '_curso_modulo_3', true);
                             $disciplinas = get_post_meta(get_the_ID(), '_curso_disciplinas', true);
                             
-                            // Se hÃ¡ mÃ³dulos definidos, exibir os cards dos mÃ³dulos
+                            // Se há módulos definidos, exibir os cards dos módulos
                             if ($modulo_1 || $modulo_2 || $modulo_3) :
                             ?>
                                 <div class="modulos-grid-ultra">
@@ -335,7 +335,7 @@ get_header(); ?>
                                             <div class="modulo-icon-ultra">
                                                 <i class="fas fa-book"></i>
                                             </div>
-                                            <h4 class="modulo-titulo-ultra">MÃ³dulo 1</h4>
+                                            <h4 class="modulo-titulo-ultra">Módulo 1</h4>
                                         </div>
                                         <div class="modulo-conteudo-ultra">
                                             <?php echo wpautop(esc_html($modulo_1)); ?>
@@ -349,7 +349,7 @@ get_header(); ?>
                                             <div class="modulo-icon-ultra">
                                                 <i class="fas fa-book-open"></i>
                                             </div>
-                                            <h4 class="modulo-titulo-ultra">MÃ³dulo 2</h4>
+                                            <h4 class="modulo-titulo-ultra">Módulo 2</h4>
                                         </div>
                                         <div class="modulo-conteudo-ultra">
                                             <?php echo wpautop(esc_html($modulo_2)); ?>
@@ -363,7 +363,7 @@ get_header(); ?>
                                             <div class="modulo-icon-ultra">
                                                 <i class="fas fa-graduation-cap"></i>
                                             </div>
-                                            <h4 class="modulo-titulo-ultra">MÃ³dulo 3</h4>
+                                            <h4 class="modulo-titulo-ultra">Módulo 3</h4>
                                         </div>
                                         <div class="modulo-conteudo-ultra">
                                             <?php echo wpautop(esc_html($modulo_3)); ?>
@@ -380,7 +380,7 @@ get_header(); ?>
                                     ?>
                                 </div>
                             <?php else : ?>
-                                <p class="card-descricao-ultra">Grade curricular completa com disciplinas teÃ³ricas e prÃ¡ticas, incluindo estÃ¡gio supervisionado e atividades complementares.</p>
+                                <p class="card-descricao-ultra">Grade curricular completa com disciplinas teóricas e práticas, incluindo estágio supervisionado e atividades complementares.</p>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -388,14 +388,14 @@ get_header(); ?>
             </section>
 
             <?php
-            // Verificar se o curso Ã© da categoria tÃ©cnica usando o meta field _curso_tipo
+            // Verificar se o curso é da categoria técnica usando o meta field _curso_tipo
             $curso_tipo = get_post_meta(get_the_ID(), '_curso_tipo', true);
             $is_tecnico = ($curso_tipo === 'tecnico');
             
-            // Mostrar seÃ§Ã£o de Mercado de Trabalho apenas para cursos tÃ©cnicos
+            // Mostrar seção de Mercado de Trabalho apenas para cursos técnicos
             if ($is_tecnico) :
             ?>
-            <!-- SeÃ§Ã£o de Mercado de Trabalho Ultra Moderna -->
+            <!-- Seção de Mercado de Trabalho Ultra Moderna -->
             <section class="mercado-trabalho-section-ultra">
                 <div class="container">
                     <div class="section-header-ultra">
@@ -435,7 +435,7 @@ get_header(); ?>
                                     <i class="fas fa-dollar-sign"></i>
                                 </div>
                                 <div class="stat-number-ultra"><?php echo esc_html($salario_inicial ?: $salario_medio); ?></div>
-                                <div class="stat-label-ultra"><?php echo $salario_inicial ? 'SalÃ¡rio Inicial' : 'SalÃ¡rio MÃ©dio'; ?></div>
+                                <div class="stat-label-ultra"><?php echo $salario_inicial ? 'Salário Inicial' : 'Salário Médio'; ?></div>
                                 </div>
                             <?php else : ?>
                             <div class="stat-card-ultra" data-aos="zoom-in" data-aos-delay="200">
@@ -443,7 +443,7 @@ get_header(); ?>
                                     <i class="fas fa-dollar-sign"></i>
                                 </div>
                                 <div class="stat-number-ultra">R$ 3.500</div>
-                                <div class="stat-label-ultra">SalÃ¡rio Inicial</div>
+                                <div class="stat-label-ultra">Salário Inicial</div>
                                     </div>
                                     <?php endif; ?>
                                     
@@ -482,17 +482,17 @@ get_header(); ?>
                                         </div>
                             <?php else : ?>
                             <div class="mercado-texto">
-                                <h3>Mercado em ExpansÃ£o</h3>
-                                <p>O mercado de trabalho para profissionais tÃ©cnicos estÃ¡ em constante crescimento, com alta demanda em diversos setores da economia.</p>
+                                <h3>Mercado em Expansão</h3>
+                                <p>O mercado de trabalho para profissionais técnicos está em constante crescimento, com alta demanda em diversos setores da economia.</p>
                                     </div>
                                     <?php endif; ?>
                                     
                             <?php if ($areas_atuacao) : ?>
                             <div class="areas-atuacao">
-                                <h3>Principais Ãreas de AtuaÃ§Ã£o</h3>
+                                <h3>Principais Ãreas de Atuação</h3>
                                 <div class="areas-lista-moderna">
                                     <?php 
-                                    // Dividir por vÃ­rgula e limpar espaÃ§os
+                                    // Dividir por vírgula e limpar espaços
                                     $areas_array = array_map('trim', explode(',', $areas_atuacao));
                                     $areas_array = array_filter($areas_array); // Remove itens vazios
                                     foreach ($areas_array as $area) {
@@ -508,19 +508,19 @@ get_header(); ?>
                             </div>
                             <?php else : ?>
                             <div class="areas-atuacao">
-                                <h3>Principais Ãreas de AtuaÃ§Ã£o</h3>
+                                <h3>Principais Ãreas de Atuação</h3>
                                 <div class="areas-lista-moderna">
                                     <div class="area-item-moderno">
                                         <i class="fas fa-check-circle"></i>
-                                        <span>Hospitais pÃºblicos e privados</span>
+                                        <span>Hospitais públicos e privados</span>
                                     </div>
                                     <div class="area-item-moderno">
                                         <i class="fas fa-check-circle"></i>
-                                        <span>Unidades BÃ¡sicas de SaÃºde (UBS)</span>
+                                        <span>Unidades Básicas de Saúde (UBS)</span>
                                     </div>
                                     <div class="area-item-moderno">
                                         <i class="fas fa-check-circle"></i>
-                                        <span>ClÃ­nicas especializadas</span>
+                                        <span>Clínicas especializadas</span>
                                     </div>
                                     <div class="area-item-moderno">
                                         <i class="fas fa-check-circle"></i>
@@ -528,11 +528,11 @@ get_header(); ?>
                                     </div>
                                     <div class="area-item-moderno">
                                         <i class="fas fa-check-circle"></i>
-                                        <span>InstituiÃ§Ãµes de longa permanÃªncia</span>
+                                        <span>Instituições de longa permanência</span>
                                     </div>
                                     <div class="area-item-moderno">
                                         <i class="fas fa-check-circle"></i>
-                                        <span>LaboratÃ³rios de anÃ¡lises clÃ­nicas</span>
+                                        <span>Laboratórios de análises clínicas</span>
                                     </div>
                                         </div>
                                     </div>
@@ -543,7 +543,7 @@ get_header(); ?>
             </section>
             <?php endif; ?>
 
-            <!-- SeÃ§Ã£o de PrÃ©-requisitos Ultra Moderna -->
+            <!-- Seção de Pré-requisitos Ultra Moderna -->
             <section class="prerequisitos-section-ultra">
                 <div class="container">
                     <div class="section-header-ultra">
@@ -551,9 +551,9 @@ get_header(); ?>
                             <span class="titulo-icon-ultra">
                                 <i class="fas fa-clipboard-list"></i>
                             </span>
-                            PrÃ©-requisitos e Documentos
+                            Pré-requisitos e Documentos
                         </h2>
-                        <p class="section-subtitulo-ultra">Tudo que vocÃª precisa saber para se inscrever</p>
+                        <p class="section-subtitulo-ultra">Tudo que você precisa saber para se inscrever</p>
                     </div>
                     
                     <div class="prerequisitos-content-ultra">
@@ -565,7 +565,7 @@ get_header(); ?>
                         ?>
                         
                         <div class="prerequisitos-grid-ultra">
-                            <!-- Primeira linha: Escolaridade + PrÃ©-requisitos -->
+                            <!-- Primeira linha: Escolaridade + Pré-requisitos -->
                             <div class="requisito-card-ultra requisito-card-small-ultra" data-aos="fade-up" data-aos-delay="100">
                                 <div class="requisito-header-ultra">
                                     <div class="requisito-icon-ultra">
@@ -577,13 +577,13 @@ get_header(); ?>
                                     if ($escolaridade) {
                                         $escolaridade_labels = array(
                                             'fundamental' => 'Ensino Fundamental Completo',
-                                            'medio' => 'Ensino MÃ©dio Completo',
+                                            'medio' => 'Ensino Médio Completo',
                                             'superior' => 'Ensino Superior Completo',
                                             'qualquer' => 'Qualquer Escolaridade'
                                         );
                                         echo isset($escolaridade_labels[$escolaridade]) ? $escolaridade_labels[$escolaridade] : ucfirst($escolaridade);
                                     } else {
-                                        echo 'Ensino MÃ©dio Completo';
+                                        echo 'Ensino Médio Completo';
                                     }
                                 ?></p>
                             </div>
@@ -593,25 +593,25 @@ get_header(); ?>
                                     <div class="requisito-icon-ultra">
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </div>
-                                    <h3 class="requisito-titulo-ultra">PrÃ©-requisitos EspecÃ­ficos</h3>
+                                    <h3 class="requisito-titulo-ultra">Pré-requisitos Específicos</h3>
                                 </div>
                                 <p class="requisito-descricao-ultra"><?php 
                                     if (!empty($prerequisitos)) {
                                         $prerequisitos_formatados = str_replace('|', ',', $prerequisitos);
                                         echo esc_html($prerequisitos_formatados);
                                     } else {
-                                        echo 'Idade mÃ­nima de 18 anos, Ensino MÃ©dio completo, DocumentaÃ§Ã£o pessoal (RG, CPF, comprovante de residÃªncia)';
+                                        echo 'Idade mínima de 18 anos, Ensino Médio completo, Documentação pessoal (RG, CPF, comprovante de residência)';
                                     }
                                 ?></p>
                             </div>
                             
-                            <!-- Segunda linha: Idade MÃ­nima + Documentos -->
+                            <!-- Segunda linha: Idade Mínima + Documentos -->
                             <div class="requisito-card-ultra requisito-card-small-ultra" data-aos="fade-up" data-aos-delay="300">
                                 <div class="requisito-header-ultra">
                                     <div class="requisito-icon-ultra">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
-                                    <h3 class="requisito-titulo-ultra">Idade MÃ­nima</h3>
+                                    <h3 class="requisito-titulo-ultra">Idade Mínima</h3>
                                 </div>
                                 <p class="requisito-descricao-ultra"><?php echo !empty($idade_minima) ? esc_html($idade_minima) . ' anos' : '18 anos'; ?></p>
                             </div>
@@ -621,14 +621,14 @@ get_header(); ?>
                                     <div class="requisito-icon-ultra">
                                         <i class="fas fa-file-alt"></i>
                                     </div>
-                                    <h3 class="requisito-titulo-ultra">Documentos NecessÃ¡rios</h3>
+                                    <h3 class="requisito-titulo-ultra">Documentos Necessários</h3>
                                 </div>
                                 <p class="requisito-descricao-ultra"><?php 
                                     if (!empty($documentos)) {
                                         $documentos_formatados = str_replace('|', ',', $documentos);
                                         echo esc_html($documentos_formatados);
                                     } else {
-                                        echo 'RG (original e cÃ³pia), CPF (original e cÃ³pia), Comprovante de residÃªncia (original e cÃ³pia), Foto 3x4 recente (2 fotos)';
+                                        echo 'RG (original e cópia), CPF (original e cópia), Comprovante de residência (original e cópia), Foto 3x4 recente (2 fotos)';
                                     }
                                 ?></p>
                             </div>
@@ -637,7 +637,7 @@ get_header(); ?>
                 </div>
             </section>
 
-            <!-- SeÃ§Ã£o de LocalizaÃ§Ã£o Ultra Moderna -->
+            <!-- Seção de Localização Ultra Moderna -->
             <section class="localizacao-section-ultra">
                 <div class="container">
                     <div class="section-header-ultra">
@@ -645,20 +645,20 @@ get_header(); ?>
                             <span class="titulo-icon-ultra">
                                 <i class="fas fa-map-marker-alt"></i>
                             </span>
-                            LocalizaÃ§Ã£o
+                            Localização
                         </h2>
-                        <p class="section-subtitulo-ultra">Encontre-nos facilmente em CeilÃ¢ndia, BrasÃ­lia</p>
+                        <p class="section-subtitulo-ultra">Encontre-nos facilmente em Ceilândia, Brasília</p>
                     </div>
                     
                     <div class="localizacao-content-ultra">
-                        <!-- InformaÃ§Ãµes principais -->
+                        <!-- Informações principais -->
                         <div class="localizacao-principal-ultra">
                             <div class="endereco-card-ultra" data-aos="fade-right" data-aos-delay="100">
                                 <div class="endereco-header-ultra">
                                     <div class="endereco-icon-ultra">
                                         <i class="fas fa-map-marker-alt"></i>
                                     </div>
-                                    <h3 class="endereco-titulo-ultra">Nossa LocalizaÃ§Ã£o</h3>
+                                    <h3 class="endereco-titulo-ultra">Nossa Localização</h3>
                                 </div>
                                 
                                 <div class="endereco-detalhes-ultra">
@@ -672,7 +672,7 @@ get_header(); ?>
                                         <div class="endereco-linha-icon">
                                         <i class="fas fa-city"></i>
                                     </div>
-                                        <span class="endereco-linha-texto">CeilÃ¢ndia, BrasÃ­lia - DF</span>
+                                        <span class="endereco-linha-texto">Ceilândia, Brasília - DF</span>
                                     </div>
                                     <div class="endereco-linha-ultra">
                                         <div class="endereco-linha-icon">
@@ -692,8 +692,8 @@ get_header(); ?>
                                             <i class="fas fa-bus"></i>
                                         </div>
                                         <div class="facilidade-texto-ultra">
-                                            <strong>Transporte PÃºblico</strong>
-                                            <span>FÃ¡cil acesso por Ã´nibus</span>
+                                            <strong>Transporte Público</strong>
+                                            <span>Fácil acesso por ônibus</span>
                                         </div>
                                     </div>
                                     <div class="facilidade-item-ultra">
@@ -702,7 +702,7 @@ get_header(); ?>
                                         </div>
                                         <div class="facilidade-texto-ultra">
                                             <strong>Estacionamento</strong>
-                                            <span>Vagas disponÃ­veis</span>
+                                            <span>Vagas disponíveis</span>
                                         </div>
                                     </div>
                                     <div class="facilidade-item-ultra">
@@ -710,15 +710,15 @@ get_header(); ?>
                                             <i class="fas fa-subway"></i>
                                         </div>
                                         <div class="facilidade-texto-ultra">
-                                            <strong>MetrÃ´</strong>
-                                            <span>PrÃ³ximo Ã  estaÃ§Ã£o</span>
+                                            <strong>Metrô</strong>
+                                            <span>Próximo à estação</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- AÃ§Ãµes e mapa -->
+                        <!-- Ações e mapa -->
                         <div class="localizacao-secundaria-ultra">
                             <div class="acoes-card-ultra" data-aos="fade-left" data-aos-delay="300">
                                 <h4 class="acoes-titulo-ultra">Como Chegar</h4>
@@ -729,7 +729,7 @@ get_header(); ?>
                                         </div>
                                         <div class="btn-texto-ultra">
                                             <strong>Ver no Maps</strong>
-                                            <span>NavegaÃ§Ã£o GPS</span>
+                                            <span>Navegação GPS</span>
                                         </div>
                                     </a>
                                     <a href="tel:<?php echo esc_attr(get_theme_mod('cetesi_phone', '(61) 99999-9999')); ?>" class="btn-acao-ultra btn-ligar-ultra">
@@ -747,7 +747,7 @@ get_header(); ?>
                             <div class="mapa-container-ultra" data-aos="fade-left" data-aos-delay="400">
                                 <div class="mapa-header-ultra">
                                     <i class="fas fa-map"></i>
-                                    <span>LocalizaÃ§Ã£o no Mapa</span>
+                                    <span>Localização no Mapa</span>
                                 </div>
                                 <div class="mapa-wrapper-ultra">
                                     <iframe 
@@ -766,7 +766,7 @@ get_header(); ?>
                 </div>
             </section>
 
-            <!-- SeÃ§Ã£o de Formas de Pagamento Ultra Moderna -->
+            <!-- Seção de Formas de Pagamento Ultra Moderna -->
             <section class="pagamento-section-ultra">
                 <div class="container">
                     <div class="section-header-ultra">
@@ -776,7 +776,7 @@ get_header(); ?>
                             </span>
                             Formas de Pagamento
                         </h2>
-                        <p class="section-subtitulo-ultra">OpÃ§Ãµes flexÃ­veis para facilitar seu investimento</p>
+                        <p class="section-subtitulo-ultra">Opções flexíveis para facilitar seu investimento</p>
                                     </div>
                     
                     <div class="pagamento-content-ultra">
@@ -790,14 +790,14 @@ get_header(); ?>
                                 <div class="pagamento-icon-ultra">
                                     <i class="fas fa-money-bill-wave"></i>
                                 </div>
-                                <h3 class="pagamento-titulo-ultra">MÃ©todos Aceitos</h3>
+                                <h3 class="pagamento-titulo-ultra">Métodos Aceitos</h3>
                                 <?php if ($forma_pagamento) : ?>
                                     <p class="pagamento-descricao-ultra"><?php 
                                         $forma_pagamento_formatada = str_replace('|', ',', $forma_pagamento);
                                         echo esc_html($forma_pagamento_formatada); 
                                     ?></p>
                                 <?php else : ?>
-                                    <p class="pagamento-descricao-ultra">Dinheiro, cartÃ£o de crÃ©dito, dÃ©bito, PIX e boleto bancÃ¡rio</p>
+                                    <p class="pagamento-descricao-ultra">Dinheiro, cartão de crédito, débito, PIX e boleto bancário</p>
                                 <?php endif; ?>
                             </div>
                             
@@ -812,7 +812,7 @@ get_header(); ?>
                                         echo esc_html($parcelamento_formatado); 
                                     ?></p>
                                 <?php else : ?>
-                                    <p class="pagamento-descricao-ultra">AtÃ© 12x sem juros no cartÃ£o de crÃ©dito</p>
+                                    <p class="pagamento-descricao-ultra">Até 12x sem juros no cartão de crédito</p>
                                 <?php endif; ?>
                             </div>
                             
@@ -833,8 +833,8 @@ get_header(); ?>
                 <div class="container">
                     <div class="cta-content">
                         <div class="cta-text">
-                            <h2>Pronto para comeÃ§ar sua jornada profissional?</h2>
-                            <p>NÃ£o perca esta oportunidade de investir no seu futuro. Inscreva-se agora e dÃª o primeiro passo para uma carreira de sucesso!</p>
+                            <h2>Pronto para começar sua jornada profissional?</h2>
+                            <p>Não perca esta oportunidade de investir no seu futuro. Inscreva-se agora e dê o primeiro passo para uma carreira de sucesso!</p>
                         </div>
                         
                         <div class="cta-actions">
@@ -927,7 +927,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===== SCROLL SUAVE =====
-    // Scroll suave para seÃ§Ãµes internas
+    // Scroll suave para seções internas
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -958,7 +958,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const number = parseFloat(text.replace(/[^\d.,]/g, '').replace(',', '.'));
         
         if (!isNaN(number)) {
-            element.textContent = text; // Manter formataÃ§Ã£o original
+            element.textContent = text; // Manter formatação original
             element.style.opacity = '0';
             element.style.transform = 'scale(0.8)';
             
@@ -992,12 +992,12 @@ document.addEventListener('DOMContentLoaded', function() {
             clearTimeout(scrollTimeout);
         }
         scrollTimeout = setTimeout(function() {
-            // CÃ³digo de scroll aqui
+            // Código de scroll aqui
         }, 10);
     });
 
     // ===== MELHORIAS DE ACESSIBILIDADE =====
-    // Foco visÃ­vel melhorado
+    // Foco visível melhorado
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Tab') {
             document.body.classList.add('keyboard-navigation');
@@ -1024,3 +1024,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php get_footer(); ?>
+

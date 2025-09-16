@@ -34,7 +34,7 @@ get_header(); ?>
                             <div class="badge-icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            <span class="badge-text">+5.000 Alunos Formados</span>
+                            <span class="badge-text">+60.000 Alunos Formados</span>
                         </div>
                         
                         <div class="badge-ultra badge-excelencia-ultra" data-aos="zoom-in" data-aos-delay="500">

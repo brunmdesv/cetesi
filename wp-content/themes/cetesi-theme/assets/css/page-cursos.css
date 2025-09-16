@@ -92,11 +92,11 @@
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
+    color: white;
     margin-bottom: var(--space-lg);
     line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-title .highlight {
@@ -219,17 +219,6 @@ ease;
     position: relative;
 }
 
-.section-header h2::after {
-    content: '';
-    position: absolute;
-    bottom: -var(--space-md);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: var(--gradient-primary);
-    border-radius: var(--radius-full);
-}
 
 .section-header p {
     font-family: var(--font-primary);

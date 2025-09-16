@@ -67,15 +67,15 @@ get_header();
                     </div>
                     <div class="historia-stats">
                         <div class="stat-item">
-                            <div class="stat-number">500+</div>
+                            <div class="stat-number">60.000</div>
                             <div class="stat-label">Alunos Formados</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">26+</div>
+                            <div class="stat-number">25</div>
                             <div class="stat-label">Anos de Experiência</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">20+</div>
+                            <div class="stat-number">30</div>
                             <div class="stat-label">Cursos Oferecidos</div>
                         </div>
                         <div class="stat-item">
@@ -110,14 +110,6 @@ get_header();
                         </div>
                         <h3>Infraestrutura Moderna</h3>
                         <p>Laboratórios equipados com tecnologia de ponta e ambientes de aprendizagem inovadores.</p>
-                    </div>
-                    
-                    <div class="diferencial-card">
-                        <div class="diferencial-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>Parcerias Empresariais</h3>
-                        <p>Convênios com empresas locais para estágios, empregos e desenvolvimento de projetos práticos.</p>
                     </div>
                     
                     <div class="diferencial-card">

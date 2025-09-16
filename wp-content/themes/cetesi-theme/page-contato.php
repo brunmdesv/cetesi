@@ -33,9 +33,9 @@ get_header();
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <h3>Endereço</h3>
-                        <p>Rua das Flores, 123<br>
-                        Centro, São Paulo - SP<br>
-                        CEP: 01234-567</p>
+                        <p>QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102<br>
+                        Ceilândia, Brasília - DF<br>
+                        CEP: 72220-025</p>
                     </div>
 
                     <div class="contato-info-card">
@@ -43,9 +43,8 @@ get_header();
                             <i class="fas fa-phone"></i>
                         </div>
                         <h3>Telefone</h3>
-                        <p>(11) 9999-9999<br>
-                        (11) 3333-3333</p>
-                        <a href="tel:+5511999999999" class="contato-link">
+                        <p>(61) 3351-4511</p>
+                        <a href="tel:+556133514511" class="contato-link">
                             <i class="fas fa-phone"></i>
                             Ligar Agora
                         </a>
@@ -56,8 +55,7 @@ get_header();
                             <i class="fas fa-envelope"></i>
                         </div>
                         <h3>E-mail</h3>
-                        <p>contato@cetesi.com.br<br>
-                        info@cetesi.com.br</p>
+                        <p>contato@cetesi.com.br</p>
                         <a href="mailto:contato@cetesi.com.br" class="contato-link">
                             <i class="fas fa-envelope"></i>
                             Enviar E-mail
@@ -174,7 +172,7 @@ get_header();
                     <h2>Pronto para Começar sua Jornada?</h2>
                     <p>Não perca tempo! Entre em contato agora mesmo e dê o primeiro passo rumo ao sucesso profissional.</p>
                     <div class="cta-buttons">
-                        <a href="tel:+5511999999999" class="button button-primary">
+                        <a href="tel:+556133514511" class="button button-primary">
                             <i class="fas fa-phone"></i>
                             Ligar Agora
                         </a>
