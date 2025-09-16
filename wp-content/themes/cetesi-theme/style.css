@@ -892,7 +892,7 @@ body {
 }
 
 .homepage .curso-image {
-    height: 150px;
+    height: 15  0px;
     background: var(--gradient-primary);
     display: flex;
     align-items: center;
@@ -7231,6 +7231,318 @@ body {
     background: white;
     color: var(--primary-color);
     transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVIDADE MOBILE HEADER ===== */
+@media (max-width: 768px) {
+    .header {
+        padding: var(--space-sm) 0;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .site-branding {
+        flex: 1;
+    }
+    
+    .site-title {
+        font-size: 1.25rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        border-radius: var(--radius-md);
+        transition: all 0.3s ease;
+    }
+    
+    .menu-toggle:hover {
+        background: var(--gray-100);
+    }
+    
+    .menu-toggle-icon {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 20px;
+    }
+    
+    .menu-toggle-icon span {
+        width: 100%;
+        height: 2px;
+        background: var(--gray-700);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-toggle.active .menu-toggle-icon span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .menu-toggle.active .menu-toggle-icon span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active .menu-toggle-icon span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        box-shadow: var(--shadow-xl);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 9999;
+        padding: var(--space-xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+    
+    .nav-menu.open {
+        transform: translateX(0);
+    }
+    
+    .nav-menu-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+        height: 100%;
+    }
+    
+    .nav-menu-links {
+        flex: 1;
+    }
+    
+    .nav-menu-links ul {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .nav-menu-links a {
+        display: block;
+        padding: var(--space-md) var(--space-lg);
+        color: var(--gray-700);
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: var(--radius-lg);
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+    
+    .nav-menu-links a:hover {
+        background: var(--gray-100);
+        color: var(--primary-color);
+        transform: translateX(5px);
+    }
+    
+    .nav-menu-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        padding-top: var(--space-lg);
+        border-top: 1px solid var(--gray-200);
+    }
+    
+    .nav-menu-btn {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-md) var(--space-lg);
+        border-radius: var(--radius-lg);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        justify-content: center;
+        min-height: 48px;
+    }
+    
+    .nav-menu-btn-primary {
+        background: var(--gradient-primary);
+        color: white;
+    }
+    
+    .nav-menu-btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        color: white;
+    }
+    
+    .nav-menu-btn-secondary {
+        background: var(--gradient-secondary);
+        color: white;
+    }
+    
+    .nav-menu-btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        color: white;
+    }
+    
+    .nav-menu-btn-accent {
+        background: var(--gradient-accent);
+        color: white;
+    }
+    
+    .nav-menu-btn-accent:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        color: white;
+    }
+    
+    .header-cta {
+        display: none;
+    }
+    
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+    
+    .menu-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: var(--space-xs) 0;
+    }
+    
+    .site-title {
+        font-size: 1.125rem;
+    }
+    
+    .logo {
+        font-size: 1.375rem;
+    }
+    
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .menu-toggle-icon {
+        width: 18px;
+    }
+    
+    .nav-menu {
+        width: 100vw;
+        padding: var(--space-lg);
+    }
+    
+    .nav-menu-links a {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.9rem;
+    }
+    
+    .nav-menu-btn {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.85rem;
+        min-height: 44px;
+    }
+    
+    /* WhatsApp Floating Button Mobile */
+    .floating-btn {
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
+    }
+    
+    /* Melhorias gerais para mobile */
+    .container {
+        padding: 0 var(--space-md);
+    }
+    
+    /* Seções gerais */
+    .section-header {
+        text-align: center;
+        margin-bottom: var(--space-2xl);
+        padding: 0 var(--space-sm);
+    }
+    
+    .section-header h2 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+        margin-bottom: var(--space-md);
+    }
+    
+    .section-header p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    /* Botões gerais para mobile */
+    .btn, .button {
+        min-height: 48px;
+        padding: var(--space-md) var(--space-lg);
+        font-size: 0.9rem;
+        border-radius: var(--radius-lg);
+    }
+    
+    /* Cards gerais */
+    .card {
+        border-radius: var(--radius-xl);
+        padding: var(--space-lg);
+    }
+    
+    /* Grids responsivos */
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    /* Espaçamentos reduzidos */
+    .section {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .section-lg {
+        padding: var(--space-3xl) 0;
+    }
 }
 
 /* Responsive Design */
