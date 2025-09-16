@@ -71,11 +71,8 @@ add_action( 'after_setup_theme', 'cetesi_footer_setup' );
  * Enfileiramento de scripts e estilos específicos do footer
  */
 function cetesi_footer_scripts() {
-    // CSS de fontes personalizadas locais (carregar primeiro)
-    wp_enqueue_style( 'cetesi-fonts', CETESI_ASSETS_URL . '/css/fonts.css', array(), CETESI_VERSION );
-    
     // CSS do footer (sempre carregado)
-    wp_enqueue_style( 'cetesi-footer', CETESI_ASSETS_URL . '/css/footer.css', array( 'cetesi-fonts' ), CETESI_VERSION );
+    wp_enqueue_style( 'cetesi-footer', CETESI_ASSETS_URL . '/css/footer.css', array( 'font-awesome' ), CETESI_VERSION );
     
     // JavaScript do footer (sempre carregado)
     wp_enqueue_script( 'cetesi-footer', CETESI_ASSETS_URL . '/js/footer.js', array( 'jquery' ), CETESI_VERSION, true );

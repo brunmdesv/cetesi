@@ -297,21 +297,17 @@
 .nav-menu a i,
 .nav-menu-list a i,
 .nav-menu-list li a i,
-.nav-menu-list li a span i,
-.nav-menu-list li a .fa,
+/* Ícones FontAwesome agora são exibidos normalmente */
 .nav-menu-list li a .fas,
 .nav-menu-list li a .far,
-.nav-menu-list li a .fab,
-.nav-menu-list li a .fal,
-.nav-menu-list li a .fad {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    font-size: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
+.nav-menu-list li a .fab {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 1rem !important;
+    margin-right: 0.5rem !important;
+    width: auto !important;
+    height: auto !important;
 }
 
 /* ===== BOTÕES CTA ===== */
@@ -339,6 +335,24 @@
     padding: var(--space-sm) var(--space-md);
 }
 
+/* Garantir que ícones FontAwesome nos botões sejam exibidos */
+.btn-nav .fas,
+.btn-nav .far,
+.btn-nav .fab,
+.btn-nav .fa,
+.btn-primary .fas,
+.btn-primary .far,
+.btn-primary .fab,
+.btn-primary .fa {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 1rem !important;
+    margin-right: 0.5rem !important;
+    width: auto !important;
+    height: auto !important;
+}
+
 .btn-nav:hover {
     background: var(--gray-50);
     color: var(--primary-color);
@@ -348,6 +362,12 @@
 
 .btn-nav i {
     font-size: 12px;
+    font-family: "Font Awesome 6 Free" !important;
+    font-style: normal !important;
+    font-weight: 900 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .btn-primary {
@@ -376,6 +396,12 @@ cubic-bezier(0.4, 0, 0.2, 1);
 
 .btn-primary i {
     font-size: 12px;
+    font-family: "Font Awesome 6 Free" !important;
+    font-style: normal !important;
+    font-weight: 900 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 /* ===== MENU MOBILE TOGGLE ===== */
@@ -616,23 +642,22 @@ cubic-bezier(0.4, 0, 0.2, 1);
     .nav-menu-list a i,
     .nav-menu-list li a i,
     .nav-menu-list li a span i,
+    /* Ícones FontAwesome agora são exibidos normalmente */
     .nav-menu-list li a .fa,
     .nav-menu-list li a .fas,
     .nav-menu-list li a .far,
     .nav-menu-list li a .fab,
     .nav-menu-list li a .fal,
     .nav-menu-list li a .fad,
-    .nav-menu-list li a [class*="fa-"],
-    .nav-menu-list li a [class*="icon-"] {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        width: 0 !important;
-        height: 0 !important;
-        font-size: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        line-height: 0 !important;
+    .nav-menu-list li a [class*="fa-"] {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        font-size: 1rem !important;
+        margin-right: 0.5rem !important;
+        width: auto !important;
+        height: auto !important;
+        line-height: 1 !important;
     }
 }
 

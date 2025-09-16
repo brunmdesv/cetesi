@@ -51,11 +51,8 @@ add_action( 'after_setup_theme', 'cetesi_header_setup' );
  * Enfileiramento de scripts e estilos específicos do header
  */
 function cetesi_header_scripts() {
-    // CSS de fontes personalizadas locais (carregar primeiro)
-    wp_enqueue_style( 'cetesi-fonts', CETESI_ASSETS_URL . '/css/fonts.css', array(), CETESI_VERSION );
-    
     // CSS do header (sempre carregado)
-    wp_enqueue_style( 'cetesi-header', CETESI_ASSETS_URL . '/css/header.css', array( 'cetesi-fonts' ), CETESI_VERSION );
+    wp_enqueue_style( 'cetesi-header', CETESI_ASSETS_URL . '/css/header.css', array( 'font-awesome' ), CETESI_VERSION );
     
     // JavaScript do header (sempre carregado)
     wp_enqueue_script( 'cetesi-header', CETESI_ASSETS_URL . '/js/header.js', array( 'jquery' ), CETESI_VERSION, true );

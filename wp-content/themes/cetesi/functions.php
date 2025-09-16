@@ -234,11 +234,14 @@ function cetesi_scripts() {
     // CSS de fontes personalizadas locais (carregar primeiro com prioridade máxima)
     wp_enqueue_style( 'cetesi-fonts', CETESI_ASSETS_URL . '/css/fonts.css', array(), CETESI_VERSION );
     
+    // FontAwesome via CDN (seguindo padrão do cetesi-theme)
+    wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0' );
+    
     // CSS principal
-    wp_enqueue_style( 'cetesi-style', get_stylesheet_uri(), array( 'cetesi-fonts' ), CETESI_VERSION );
+    wp_enqueue_style( 'cetesi-style', get_stylesheet_uri(), array( 'cetesi-fonts', 'font-awesome' ), CETESI_VERSION );
     
     // CSS adicional
-    wp_enqueue_style( 'cetesi-main', CETESI_ASSETS_URL . '/css/main.css', array( 'cetesi-fonts' ), CETESI_VERSION );
+    wp_enqueue_style( 'cetesi-main', CETESI_ASSETS_URL . '/css/main.css', array( 'font-awesome' ), CETESI_VERSION );
     
     // CSS da página inicial
     if ( is_front_page() ) {
@@ -278,6 +281,14 @@ function cetesi_force_fonts_in_head() {
     echo '<noscript><link rel="stylesheet" href="' . CETESI_ASSETS_URL . '/css/fonts.css"></noscript>';
 }
 add_action( 'wp_head', 'cetesi_force_fonts_in_head', 1 );
+
+/**
+ * Forçar carregamento do FontAwesome no head com prioridade máxima
+ */
+function cetesi_force_fontawesome_in_head() {
+    echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">';
+}
+add_action( 'wp_head', 'cetesi_force_fontawesome_in_head', 2 );
 
 /**
  * Estilos do editor
@@ -407,3 +418,4 @@ add_action( 'switch_theme', 'cetesi_theme_deactivation' );
 /**
  * Walker personalizado para menu mobile movido para header-functions.php
  */
+
