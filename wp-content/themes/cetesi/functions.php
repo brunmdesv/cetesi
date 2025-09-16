@@ -246,6 +246,10 @@ function cetesi_scripts() {
     // CSS da página inicial
     if ( is_front_page() ) {
         wp_enqueue_style( 'cetesi-home', CETESI_ASSETS_URL . '/css/home.css', array( 'cetesi-main' ), CETESI_VERSION );
+        // CSS da Hero Moderna
+        wp_enqueue_style( 'cetesi-hero-modern', CETESI_ASSETS_URL . '/css/hero-modern.css', array( 'cetesi-home' ), CETESI_VERSION );
+        // CSS Mobile Customizado (carregado após hero-modern para sobrescrever)
+        wp_enqueue_style( 'cetesi-hero-mobile-custom', CETESI_ASSETS_URL . '/css/hero-mobile-custom.css', array( 'cetesi-hero-modern' ), CETESI_VERSION );
     }
     
     // JavaScript principal
@@ -254,6 +258,8 @@ function cetesi_scripts() {
     // JavaScript da página inicial
     if ( is_front_page() ) {
         wp_enqueue_script( 'cetesi-home', CETESI_ASSETS_URL . '/js/home.js', array( 'jquery' ), CETESI_VERSION, true );
+        // JavaScript da Hero Moderna
+        wp_enqueue_script( 'cetesi-hero-modern', CETESI_ASSETS_URL . '/js/hero-modern.js', array( 'jquery', 'cetesi-home' ), CETESI_VERSION, true );
     }
     
     // Comentários
@@ -394,6 +400,7 @@ require_once CETESI_THEME_DIR . '/inc/header-functions.php';
 require_once CETESI_THEME_DIR . '/inc/footer-functions.php';
 require_once CETESI_THEME_DIR . '/inc/customizer.php';
 require_once CETESI_THEME_DIR . '/inc/home-customizer.php';
+require_once CETESI_THEME_DIR . '/inc/hero-modern-customizer.php';
 require_once CETESI_THEME_DIR . '/inc/template-functions.php';
 require_once CETESI_THEME_DIR . '/inc/template-tags.php';
 
