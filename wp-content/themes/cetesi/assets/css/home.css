@@ -7,9 +7,9 @@
 
 /* ===== SEÇÃO HERO ===== */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: var(--gradient-hero);
     color: white;
-    padding: 80px 0;
+    padding: var(--space-4xl) 0;
     position: relative;
     overflow: hidden;
 }
@@ -28,7 +28,7 @@
 .hero-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: var(--space-4xl);
     align-items: center;
     position: relative;
     z-index: 2;
@@ -38,26 +38,28 @@
     font-size: 3rem;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
+    font-family: var(--font-heading);
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
     line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: var(--space-2xl);
     opacity: 0.9;
 }
 
 .hero-actions {
     display: flex;
-    gap: 20px;
+    gap: var(--space-lg);
     flex-wrap: wrap;
 }
 
 .btn-large {
-    padding: 15px 30px;
+    padding: var(--space-md) var(--space-2xl);
     font-size: 1.1rem;
     font-weight: 600;
+    border-radius: var(--radius-full);
 }
 
 .hero-image {
@@ -67,28 +69,29 @@
 .hero-img {
     max-width: 100%;
     height: auto;
-    border-radius: 15px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
 }
 
 .hero-placeholder {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 40px;
+    border-radius: var(--radius-xl);
+    padding: var(--space-3xl);
     backdrop-filter: blur(10px);
 }
 
 /* ===== SEÇÕES GERAIS ===== */
 .section-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: var(--space-4xl);
 }
 
 .section-title {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 15px;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-heading);
 }
 
 .section-subtitle {
@@ -100,33 +103,33 @@
 
 .section-footer {
     text-align: center;
-    margin-top: 50px;
+    margin-top: var(--space-3xl);
 }
 
 /* ===== CURSOS EM DESTAQUE ===== */
 .cursos-destaque-section {
-    padding: 80px 0;
+    padding: var(--space-4xl) 0;
     background: var(--bg-light);
 }
 
 .cursos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    margin-bottom: 50px;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
 }
 
 .course-card {
     background: white;
-    border-radius: 15px;
+    border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
 }
 
 .course-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-xl);
 }
 
 .course-thumbnail {
@@ -138,7 +141,7 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
 }
 
 .course-card:hover .course-thumbnail img {
@@ -147,30 +150,31 @@
 
 .course-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: var(--space-md);
+    right: var(--space-md);
     background: var(--accent-color);
     color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
     font-size: 0.85rem;
     font-weight: 600;
 }
 
 .course-content {
-    padding: 25px;
+    padding: var(--space-xl);
 }
 
 .course-title {
     font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-heading);
 }
 
 .course-title a {
-    color: var(--text-dark);
+    color: var(--text-color);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: var(--transition);
 }
 
 .course-title a:hover {
@@ -179,28 +183,28 @@
 
 .course-meta {
     display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-md);
     font-size: 0.9rem;
     color: var(--text-light);
 }
 
 .course-meta svg {
-    margin-right: 5px;
+    margin-right: var(--space-xs);
     vertical-align: middle;
 }
 
 .course-excerpt {
     color: var(--text-light);
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .course-price {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .course-price .currency {
@@ -215,11 +219,11 @@
 .btn-course {
     background: var(--primary-color);
     color: white;
-    padding: 12px 25px;
-    border-radius: 25px;
+    padding: var(--space-sm) var(--space-xl);
+    border-radius: var(--radius-full);
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     display: inline-block;
 }
 
@@ -230,13 +234,13 @@
 
 /* ===== SOBRE A ESCOLA ===== */
 .sobre-escola-section {
-    padding: 80px 0;
+    padding: var(--space-4xl) 0;
 }
 
 .sobre-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: var(--space-4xl);
     align-items: center;
 }
 
@@ -244,18 +248,18 @@
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-light);
-    margin-bottom: 40px;
+    margin-bottom: var(--space-3xl);
 }
 
 .sobre-features {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: var(--space-xl);
 }
 
 .feature-item {
     display: flex;
-    gap: 20px;
+    gap: var(--space-lg);
     align-items: flex-start;
 }
 
@@ -264,7 +268,7 @@
     color: white;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -274,8 +278,9 @@
 .feature-content h3 {
     font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--text-dark);
+    margin-bottom: var(--space-xs);
+    color: var(--text-color);
+    font-family: var(--font-heading);
 }
 
 .feature-content p {
@@ -290,36 +295,36 @@
 .sobre-img {
     max-width: 100%;
     height: auto;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
 }
 
 .sobre-placeholder {
     background: var(--bg-light);
-    border-radius: 15px;
-    padding: 40px;
+    border-radius: var(--radius-xl);
+    padding: var(--space-3xl);
 }
 
 /* ===== PROFESSORES ===== */
 .professores-section {
-    padding: 80px 0;
+    padding: var(--space-4xl) 0;
     background: var(--bg-light);
 }
 
 .professores-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 50px;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
 }
 
 .teacher-card {
     background: white;
-    border-radius: 15px;
-    padding: 30px;
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
     text-align: center;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
 }
 
 .teacher-card:hover {
@@ -327,13 +332,13 @@
 }
 
 .teacher-avatar {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .teacher-avatar img {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     object-fit: cover;
     border: 4px solid var(--accent-color);
 }
@@ -345,40 +350,41 @@
 .teacher-name {
     font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--text-dark);
+    margin-bottom: var(--space-xs);
+    color: var(--text-color);
+    font-family: var(--font-heading);
 }
 
 .teacher-title {
     color: var(--primary-color);
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: var(--space-md);
 }
 
 .teacher-bio {
     color: var(--text-light);
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .teacher-specialties {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .specialty-tag {
     background: var(--bg-light);
-    color: var(--text-dark);
-    padding: 5px 12px;
-    border-radius: 15px;
+    color: var(--text-color);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
     font-size: 0.85rem;
-    margin: 0 5px 5px 0;
+    margin: 0 var(--space-xs) var(--space-xs) 0;
     display: inline-block;
 }
 
 .teacher-stats {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: var(--space-2xl);
 }
 
 .stat {
@@ -399,26 +405,26 @@
 
 /* ===== DEPOIMENTOS ===== */
 .depoimentos-section {
-    padding: 80px 0;
+    padding: var(--space-4xl) 0;
 }
 
 .depoimentos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
+    gap: var(--space-2xl);
 }
 
 .testimonial-card {
     background: white;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-md);
     position: relative;
 }
 
 .testimonial-quote {
     color: var(--accent-color);
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .testimonial-text {
@@ -426,38 +432,39 @@
     line-height: 1.7;
     color: var(--text-light);
     font-style: italic;
-    margin-bottom: 25px;
+    margin-bottom: var(--space-xl);
 }
 
 .testimonial-author {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: var(--space-md);
 }
 
 .testimonial-avatar img {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     object-fit: cover;
 }
 
 .testimonial-name {
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 2px;
-    color: var(--text-dark);
+    margin-bottom: var(--space-xs);
+    color: var(--text-color);
+    font-family: var(--font-heading);
 }
 
 .testimonial-course {
     font-size: 0.9rem;
     color: var(--text-light);
-    margin-bottom: 8px;
+    margin-bottom: var(--space-xs);
 }
 
 .testimonial-rating {
     display: flex;
-    gap: 2px;
+    gap: var(--space-xs);
 }
 
 .testimonial-rating svg {
@@ -466,7 +473,7 @@
 
 /* ===== ESTATÍSTICAS ===== */
 .estatisticas-section {
-    padding: 80px 0;
+    padding: var(--space-4xl) 0;
     background: var(--primary-color);
     color: white;
 }
@@ -474,7 +481,7 @@
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
+    gap: var(--space-3xl);
 }
 
 .stat-item {
@@ -482,7 +489,7 @@
 }
 
 .stat-icon {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
     opacity: 0.8;
 }
 
@@ -490,7 +497,8 @@
     display: block;
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-sm);
+    font-family: var(--font-heading);
 }
 
 .stat-label {
@@ -500,31 +508,31 @@
 
 /* ===== CONTATO ===== */
 .contato-section {
-    padding: 80px 0;
+    padding: var(--space-4xl) 0;
     background: var(--bg-light);
 }
 
 .contato-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: var(--space-4xl);
 }
 
 .contato-subtitle {
     font-size: 1.2rem;
     color: var(--text-light);
-    margin-bottom: 40px;
+    margin-bottom: var(--space-3xl);
 }
 
 .contato-details {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: var(--space-xl);
 }
 
 .contact-item {
     display: flex;
-    gap: 20px;
+    gap: var(--space-lg);
     align-items: flex-start;
 }
 
@@ -533,7 +541,7 @@
     color: white;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -543,8 +551,9 @@
 .contact-content h3 {
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--text-dark);
+    margin-bottom: var(--space-xs);
+    color: var(--text-color);
+    font-family: var(--font-heading);
 }
 
 .contact-content p {
@@ -553,31 +562,32 @@
 
 .contato-form {
     background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    padding: var(--space-3xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
 }
 
 .contato-form h3 {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 30px;
-    color: var(--text-dark);
+    margin-bottom: var(--space-2xl);
+    color: var(--text-color);
+    font-family: var(--font-heading);
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 15px;
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
+    padding: var(--space-md);
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-md);
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: var(--transition);
 }
 
 .form-group input:focus,

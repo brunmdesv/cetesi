@@ -41,26 +41,7 @@ function cetesi_setup() {
     // Suporte a título dinâmico
     add_theme_support( 'title-tag' );
 
-    // Suporte a logo personalizado
-    add_theme_support( 'custom-logo', array(
-        'height'      => 100,
-        'width'       => 300,
-        'flex-height' => true,
-        'flex-width'  => true,
-        'header-text' => array( 'site-title', 'site-description' ),
-    ) );
-
-    // Suporte a imagem de cabeçalho personalizada
-    add_theme_support( 'custom-header', array(
-        'default-image'      => '',
-        'default-text-color' => '2c3e50',
-        'width'              => 1200,
-        'height'             => 300,
-        'flex-height'        => true,
-        'flex-width'         => true,
-        'uploads'            => true,
-        'header-text'        => true,
-    ) );
+    // Suporte a logo personalizado e imagem de cabeçalho movidos para header-functions.php
 
     // Suporte a imagem de fundo personalizada
     add_theme_support( 'custom-background', array(
@@ -75,11 +56,9 @@ function cetesi_setup() {
     add_image_size( 'cetesi-featured', 800, 400, true );
     add_image_size( 'cetesi-thumbnail', 300, 200, true );
 
-    // Suporte a menus
+    // Suporte a menus (principal e cursos movidos para header-functions.php)
     register_nav_menus( array(
-        'principal' => esc_html__( 'Menu Principal', 'cetesi' ),
         'rodape'    => esc_html__( 'Menu do Rodapé', 'cetesi' ),
-        'cursos'    => esc_html__( 'Menu de Cursos', 'cetesi' ),
     ) );
 
     // Suporte a feed automático
@@ -249,7 +228,7 @@ function cetesi_widgets_init() {
 add_action( 'widgets_init', 'cetesi_widgets_init' );
 
 /**
- * Enfileiramento de scripts e estilos
+ * Enfileiramento de scripts e estilos (exceto header)
  */
 function cetesi_scripts() {
     // CSS principal
@@ -313,7 +292,7 @@ function cetesi_excerpt_more( $more ) {
 add_filter( 'excerpt_more', 'cetesi_excerpt_more' );
 
 /**
- * Adiciona classes ao body
+ * Adiciona classes ao body (exceto header)
  */
 function cetesi_body_classes( $classes ) {
     // Adiciona classe se não há sidebar
@@ -359,25 +338,8 @@ function cetesi_wp_title( $title, $sep ) {
 add_filter( 'wp_title', 'cetesi_wp_title', 10, 2 );
 
 /**
- * Adiciona suporte a SVG
+ * Funções de limpeza e otimização movidas para header-functions.php
  */
-function cetesi_mime_types( $mimes ) {
-    $mimes['svg'] = 'image/svg+xml';
-    return $mimes;
-}
-add_filter( 'upload_mimes', 'cetesi_mime_types' );
-
-/**
- * Remove versão do WordPress do head
- */
-remove_action( 'wp_head', 'wp_generator' );
-
-/**
- * Remove links desnecessários do head
- */
-remove_action( 'wp_head', 'rsd_link' );
-remove_action( 'wp_head', 'wlwmanifest_link' );
-remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 
 /**
  * Otimização de performance
@@ -405,19 +367,17 @@ add_filter( 'wp_get_attachment_image_attributes', 'cetesi_add_lazy_loading', 10,
 /**
  * Inclui arquivos de funcionalidades
  */
+require_once CETESI_THEME_DIR . '/inc/header-functions.php';
+require_once CETESI_THEME_DIR . '/inc/footer-functions.php';
 require_once CETESI_THEME_DIR . '/inc/customizer.php';
 require_once CETESI_THEME_DIR . '/inc/home-customizer.php';
 require_once CETESI_THEME_DIR . '/inc/template-functions.php';
 require_once CETESI_THEME_DIR . '/inc/template-tags.php';
 
 /**
- * Ativação do tema
+ * Ativação do tema (configurações do header movidas para header-functions.php)
  */
 function cetesi_theme_activation() {
-    // Define opções padrão
-    set_theme_mod( 'cetesi_header_textcolor', '2c3e50' );
-    set_theme_mod( 'cetesi_background_color', 'ffffff' );
-    
     // Flush rewrite rules
     flush_rewrite_rules();
 }
@@ -431,3 +391,7 @@ function cetesi_theme_deactivation() {
     flush_rewrite_rules();
 }
 add_action( 'switch_theme', 'cetesi_theme_deactivation' );
+
+/**
+ * Walker personalizado para menu mobile movido para header-functions.php
+ */

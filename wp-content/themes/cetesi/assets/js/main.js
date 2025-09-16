@@ -13,52 +13,12 @@
         
         // Inicialização
         init: function() {
-            this.mobileMenu();
             this.smoothScroll();
             this.lazyLoading();
             this.searchEnhancements();
             this.commentsEnhancements();
             this.accessibilityEnhancements();
             this.performanceOptimizations();
-        },
-
-        // Menu mobile
-        mobileMenu: function() {
-            var $menuToggle = $('.menu-toggle');
-            var $menu = $('.menu');
-            var $body = $('body');
-
-            $menuToggle.on('click', function(e) {
-                e.preventDefault();
-                
-                $(this).toggleClass('active');
-                $menu.toggleClass('active');
-                $body.toggleClass('menu-open');
-                
-                // Acessibilidade
-                var expanded = $(this).hasClass('active');
-                $(this).attr('aria-expanded', expanded);
-            });
-
-            // Fechar menu ao clicar fora
-            $(document).on('click', function(e) {
-                if (!$(e.target).closest('.main-navigation').length) {
-                    $menuToggle.removeClass('active');
-                    $menu.removeClass('active');
-                    $body.removeClass('menu-open');
-                    $menuToggle.attr('aria-expanded', false);
-                }
-            });
-
-            // Fechar menu ao pressionar ESC
-            $(document).on('keydown', function(e) {
-                if (e.keyCode === 27) { // ESC
-                    $menuToggle.removeClass('active');
-                    $menu.removeClass('active');
-                    $body.removeClass('menu-open');
-                    $menuToggle.attr('aria-expanded', false);
-                }
-            });
         },
 
         // Scroll suave

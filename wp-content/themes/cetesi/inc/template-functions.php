@@ -12,24 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Menu de fallback
+ * Menu de fallback movido para header-functions.php
  */
-function cetesi_fallback_menu() {
-    echo '<ul class="menu">';
-    echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Início', 'cetesi' ) . '</a></li>';
-    
-    // Páginas principais
-    $pages = get_pages( array(
-        'sort_column' => 'menu_order',
-        'number'      => 5,
-    ) );
-    
-    foreach ( $pages as $page ) {
-        echo '<li><a href="' . esc_url( get_permalink( $page->ID ) ) . '">' . esc_html( $page->post_title ) . '</a></li>';
-    }
-    
-    echo '</ul>';
-}
 
 /**
  * Exibe informações do post
