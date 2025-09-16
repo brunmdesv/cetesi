@@ -19,7 +19,6 @@
                 'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
                 'fallback_cb'    => 'cetesi_fallback_menu',
                 'depth'          => 1,
-                'link_before'    => '<i class="fas fa-home"></i> ',
                 'walker'         => new Cetesi_Mobile_Menu_Walker()
             ));
             ?>

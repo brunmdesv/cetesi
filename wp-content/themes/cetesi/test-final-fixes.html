@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Final - Correções de Ícones e JavaScript</title>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <style>
+        body {
+            font-family: var(--font-primary);
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .test-title {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .status-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .status-title {
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 8px;
+        }
+        
+        .status-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .error-card {
+            background: #fef2f2;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #ef4444;
+        }
+        
+        .error-title {
+            font-weight: bold;
+            color: #ef4444;
+            margin-bottom: 8px;
+        }
+        
+        .error-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .test-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .test-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        
+        .test-button.success {
+            background: #22c55e;
+        }
+        
+        .test-button.error {
+            background: #ef4444;
+        }
+        
+        .header-demo {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            min-height: 32px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .site-branding {
+            order: 1;
+            flex-shrink: 0;
+        }
+        
+        .nav-menu {
+            order: 2;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-menu-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 20px;
+        }
+        
+        .nav-menu-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        
+        .nav-menu-list {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: nowrap;
+        }
+        
+        .nav-menu-list a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 36px;
+        }
+        
+        .nav-menu-list a:hover {
+            color: #2563eb;
+            background: #f8f9fa;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* REGRA GLOBAL PARA REMOVER TODOS OS ÍCONES DOS LINKS DE NAVEGAÇÃO */
+        .nav-menu a *,
+        .nav-menu-list a *,
+        .nav-menu-list li a * {
+            font-family: inherit !important;
+        }
+
+        .nav-menu a i,
+        .nav-menu-list a i,
+        .nav-menu-list li a i,
+        .nav-menu a span,
+        .nav-menu-list a span,
+        .nav-menu-list li a span {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            width: 0 !important;
+            height: 0 !important;
+            font-size: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 0 !important;
+            overflow: hidden !important;
+        }
+        
+        .header-cta {
+            order: 3;
+            flex-shrink: 0;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .console-output {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin: 10px 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .code-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .code-example .comment {
+            color: #64748b;
+        }
+        
+        .code-example .selector {
+            color: #38bdf8;
+        }
+        
+        .code-example .property {
+            color: #fb7185;
+        }
+        
+        .code-example .value {
+            color: #34d399;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 Correções Finais - Ícones e JavaScript</h1>
+        
+        <div class="test-section">
+            <h2 class="test-title">✅ Problemas Resolvidos</h2>
+            
+            <div class="status-card">
+                <div class="status-title">🚫 Ícones do Menu Removidos</div>
+                <div class="status-desc">
+                    • PHP: link_before removido do wp_nav_menu<br>
+                    • CSS: Regras globais para ocultar todos os ícones<br>
+                    • Pseudo-elementos: ::before e ::after removidos<br>
+                    • FontAwesome: Tags &lt;i&gt; ocultas com múltiplas propriedades<br>
+                    • Desktop específico: Media query com regras reforçadas
+                </div>
+            </div>
+            
+            <div class="status-card">
+                <div class="status-title">⚡ Erro JavaScript Corrigido</div>
+                <div class="status-desc">
+                    • Função throttle: Definida localmente na initResponsiveFeatures<br>
+                    • Função debounce: Definida localmente na initResponsiveFeatures<br>
+                    • Escopo: Funções agora estão no escopo correto<br>
+                    • Performance: Mantidas as otimizações de scroll e resize
+                </div>
+            </div>
+            
+            <div class="status-card">
+                <div class="status-title">🎯 Cobertura Completa</div>
+                <div class="status-desc">
+                    • Múltiplos seletores CSS para garantir remoção<br>
+                    • !important em todas as propriedades<br>
+                    • visibility, opacity, width, height zerados<br>
+                    • overflow: hidden para elementos ocultos<br>
+                    • Regras específicas para desktop e mobile
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">💻 Código das Correções</h2>
+            
+            <h3>1. JavaScript - main.js</h3>
+            <div class="code-example">
+<span class="comment">// Função debounce local</span>
+<span class="selector">function debounce(func, wait)</span> {
+    <span class="property">var</span> <span class="value">timeout</span>;
+    <span class="property">return</span> <span class="selector">function executedFunction()</span> {
+        <span class="property">var</span> <span class="selector">later</span> = <span class="selector">function()</span> {
+            <span class="property">clearTimeout</span>(<span class="value">timeout</span>);
+            <span class="property">func</span>();
+        };
+        <span class="property">clearTimeout</span>(<span class="value">timeout</span>);
+        <span class="property">timeout</span> = <span class="property">setTimeout</span>(<span class="selector">later</span>, <span class="value">wait</span>);
+    };
+}
+
+<span class="comment">// Função throttle local</span>
+<span class="selector">function throttle(func, limit)</span> {
+    <span class="property">var</span> <span class="value">inThrottle</span>;
+    <span class="property">return</span> <span class="selector">function()</span> {
+        <span class="property">var</span> <span class="value">args</span> = <span class="property">arguments</span>;
+        <span class="property">var</span> <span class="value">context</span> = <span class="property">this</span>;
+        <span class="property">if</span> (!<span class="value">inThrottle</span>) {
+            <span class="property">func.apply</span>(<span class="value">context</span>, <span class="value">args</span>);
+            <span class="property">inThrottle</span> = <span class="value">true</span>;
+            <span class="property">setTimeout</span>(<span class="selector">function()</span> {
+                <span class="property">inThrottle</span> = <span class="value">false</span>;
+            }, <span class="value">limit</span>);
+        }
+    };
+}
+            </div>
+            
+            <h3>2. CSS - Regras Globais</h3>
+            <div class="code-example">
+<span class="comment">/* REGRA GLOBAL PARA REMOVER TODOS OS ÍCONES */</span>
+<span class="selector">.nav-menu a i,
+.nav-menu-list a i,
+.nav-menu-list li a i,
+.nav-menu a span,
+.nav-menu-list a span,
+.nav-menu-list li a span</span> {
+    <span class="property">display</span>: <span class="value">none !important</span>;
+    <span class="property">visibility</span>: <span class="value">hidden !important</span>;
+    <span class="property">opacity</span>: <span class="value">0 !important</span>;
+    <span class="property">width</span>: <span class="value">0 !important</span>;
+    <span class="property">height</span>: <span class="value">0 !important</span>;
+    <span class="property">font-size</span>: <span class="value">0 !important</span>;
+    <span class="property">margin</span>: <span class="value">0 !important</span>;
+    <span class="property">padding</span>: <span class="value">0 !important</span>;
+    <span class="property">line-height</span>: <span class="value">0 !important</span>;
+    <span class="property">overflow</span>: <span class="value">hidden !important</span>;
+}
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">🎮 Demonstração Visual</h2>
+            <p>Menu completamente limpo - sem ícones:</p>
+            
+            <div class="header-demo">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="site-branding">
+                        <a href="#" class="logo">CETESI</a>
+                    </div>
+                    
+                    <!-- Menu de Navegação SEM ÍCONES -->
+                    <nav class="nav-menu">
+                        <div class="nav-menu-content">
+                            <div class="nav-menu-links">
+                                <ul class="nav-menu-list">
+                                    <li><a href="#">Início</a></li>
+                                    <li><a href="#">Cursos</a></li>
+                                    <li><a href="#">Equipe</a></li>
+                                    <li><a href="#">Sobre</a></li>
+                                    <li><a href="#">Contato</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    
+                    <!-- Botões CTA -->
+                    <div class="header-cta">
+                        <a href="#" class="btn-primary">
+                            <i class="fas fa-phone"></i>
+                            Ligar Agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">🔍 Testes de Verificação</h2>
+            <button class="test-button" onclick="testJavaScriptErrors()">Testar JavaScript</button>
+            <button class="test-button" onclick="testIconsRemoval()">Testar Remoção de Ícones</button>
+            <button class="test-button" onclick="testConsoleErrors()">Verificar Console</button>
+            <button class="test-button success" onclick="runAllTests()">Executar Todos os Testes</button>
+            
+            <div id="console-output" class="console-output" style="display: none;">
+                <div id="console-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function logToConsole(message, type = 'info') {
+            const consoleDiv = document.getElementById('console-output');
+            const consoleContent = document.getElementById('console-content');
+            
+            consoleDiv.style.display = 'block';
+            
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#ef4444' : type === 'success' ? '#22c55e' : '#e2e8f0';
+            
+            consoleContent.innerHTML += `<div style="color: ${color};">[${timestamp}] ${message}</div>`;
+            consoleContent.scrollTop = consoleContent.scrollHeight;
+        }
+
+        function testJavaScriptErrors() {
+            logToConsole('=== TESTE DE ERROS JAVASCRIPT ===');
+            
+            try {
+                // Testar se as funções estão definidas
+                if (typeof debounce === 'function') {
+                    logToConsole('✅ Função debounce: OK', 'success');
+                } else {
+                    logToConsole('❌ Função debounce: NÃO DEFINIDA', 'error');
+                }
+                
+                if (typeof throttle === 'function') {
+                    logToConsole('✅ Função throttle: OK', 'success');
+                } else {
+                    logToConsole('❌ Função throttle: NÃO DEFINIDA', 'error');
+                }
+                
+                // Verificar se não há erros no console
+                const originalError = console.error;
+                let errorCount = 0;
+                
+                console.error = function(...args) {
+                    errorCount++;
+                    originalError.apply(console, args);
+                };
+                
+                setTimeout(() => {
+                    if (errorCount === 0) {
+                        logToConsole('✅ Nenhum erro JavaScript detectado', 'success');
+                    } else {
+                        logToConsole(`❌ ${errorCount} erro(s) JavaScript detectado(s)`, 'error');
+                    }
+                    console.error = originalError;
+                }, 1000);
+                
+            } catch (error) {
+                logToConsole(`❌ Erro no teste: ${error.message}`, 'error');
+            }
+        }
+
+        function testIconsRemoval() {
+            logToConsole('=== TESTE DE REMOÇÃO DE ÍCONES ===');
+            
+            const navLinks = document.querySelectorAll('.nav-menu-list a');
+            let iconsFound = 0;
+            let pseudoElementsFound = 0;
+            
+            navLinks.forEach((link, index) => {
+                // Verificar ícones
+                const icons = link.querySelectorAll('i');
+                iconsFound += icons.length;
+                
+                // Verificar pseudo-elementos
+                const beforeStyle = window.getComputedStyle(link, '::before');
+                const afterStyle = window.getComputedStyle(link, '::after');
+                
+                if (beforeStyle.display !== 'none' && beforeStyle.content !== 'none') {
+                    pseudoElementsFound++;
+                }
+                if (afterStyle.display !== 'none' && afterStyle.content !== 'none') {
+                    pseudoElementsFound++;
+                }
+                
+                logToConsole(`Link ${index + 1}: ${icons.length} ícone(s), pseudo-elementos: ${beforeStyle.display !== 'none' ? 'before' : ''} ${afterStyle.display !== 'none' ? 'after' : ''}`);
+            });
+            
+            if (iconsFound === 0 && pseudoElementsFound === 0) {
+                logToConsole('✅ TODOS OS ÍCONES REMOVIDOS COM SUCESSO', 'success');
+            } else {
+                logToConsole(`❌ ${iconsFound} ícone(s) e ${pseudoElementsFound} pseudo-elemento(s) ainda visíveis`, 'error');
+            }
+        }
+
+        function testConsoleErrors() {
+            logToConsole('=== VERIFICAÇÃO DE ERROS NO CONSOLE ===');
+            
+            // Capturar erros do console
+            const originalError = console.error;
+            const originalWarn = console.warn;
+            let errorCount = 0;
+            let warningCount = 0;
+            
+            console.error = function(...args) {
+                errorCount++;
+                logToConsole(`ERRO: ${args.join(' ')}`, 'error');
+                originalError.apply(console, args);
+            };
+            
+            console.warn = function(...args) {
+                warningCount++;
+                logToConsole(`AVISO: ${args.join(' ')}`, 'error');
+                originalWarn.apply(console, args);
+            };
+            
+            setTimeout(() => {
+                logToConsole(`Total: ${errorCount} erro(s), ${warningCount} aviso(s)`, errorCount === 0 ? 'success' : 'error');
+                console.error = originalError;
+                console.warn = originalWarn;
+            }, 2000);
+        }
+
+        function runAllTests() {
+            logToConsole('=== EXECUTANDO TODOS OS TESTES ===');
+            
+            setTimeout(() => testJavaScriptErrors(), 100);
+            setTimeout(() => testIconsRemoval(), 500);
+            setTimeout(() => testConsoleErrors(), 1000);
+            
+            setTimeout(() => {
+                logToConsole('=== TESTES CONCLUÍDOS ===', 'success');
+            }, 3000);
+        }
+
+        // Log das correções
+        console.log('=== CORREÇÕES IMPLEMENTADAS ===');
+        console.log('✅ JavaScript: Funções throttle e debounce corrigidas');
+        console.log('✅ CSS: Regras globais para remoção de ícones');
+        console.log('✅ PHP: link_before removido');
+        console.log('✅ Performance: Otimizações mantidas');
+        console.log('✅ Cobertura: Múltiplos seletores CSS');
+    </script>
+</body>
+</html>

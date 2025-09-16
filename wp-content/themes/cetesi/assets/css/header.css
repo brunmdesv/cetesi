@@ -18,8 +18,7 @@
     top: 0;
     z-index: 1000;
     transition: all 0.3s ease;
-    min-height: 50px;
-    padding: 1rem;
+    padding: 1rem 0;
 }
 
 .header.scrolled {
@@ -33,6 +32,40 @@
     align-items: center;
     gap: 16px;
     min-height: 32px;
+    position: relative;
+    width: 100%;
+}
+
+/* Layout responsivo do header */
+.header-content > * {
+    flex-shrink: 0;
+}
+
+/* Logo - sempre à esquerda */
+.site-branding {
+    order: 1;
+    flex-shrink: 0;
+}
+
+/* Menu de navegação - sempre centralizado */
+.nav-menu {
+    order: 2;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botões CTA - sempre à direita */
+.header-cta {
+    order: 3;
+    flex-shrink: 0;
+}
+
+/* Menu toggle mobile - sempre à direita */
+.menu-toggle {
+    order: 4;
+    flex-shrink: 0;
 }
 
 /* ===== LOGO CETESI ===== */
@@ -82,21 +115,58 @@
 }
 
 /* ===== MENU DE NAVEGAÇÃO ===== */
-.nav-menu {
+
+/* REGRA GLOBAL PARA REMOVER TODOS OS ÍCONES DOS LINKS DE NAVEGAÇÃO */
+.nav-menu a *,
+.nav-menu-list a *,
+.nav-menu-list li a * {
+    font-family: inherit !important;
+}
+
+.nav-menu a i,
+.nav-menu-list a i,
+.nav-menu-list li a i,
+.nav-menu a span,
+.nav-menu-list a span,
+.nav-menu-list li a span {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Container do conteúdo do menu */
+.nav-menu-content {
     display: flex;
-    gap: 20px;
     align-items: center;
-    flex: 1;
     justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+/* Links de navegação */
+.nav-menu-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 
 .nav-menu-list {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     align-items: center;
+    justify-content: center;
     list-style: none !important;
     margin: 0;
     padding: 0;
+    flex-wrap: nowrap;
 }
 
 .nav-menu-list li {
@@ -187,18 +257,61 @@
     color: var(--gray-600);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
-    padding: 6px 12px;
+    padding: 8px 16px;
     border-radius: var(--radius-lg);
     position: relative;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
 }
 
 .nav-menu a:hover,
 .nav-menu-list a:hover {
     color: var(--primary-color);
     background: var(--gray-50);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Remover qualquer ícone ou pseudo-elemento dos links de navegação */
+.nav-menu a::before,
+.nav-menu-list a::before,
+.nav-menu a::after,
+.nav-menu-list a::after {
+    display: none !important;
+    content: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Remover ícones específicos de FontAwesome ou similares */
+.nav-menu a i,
+.nav-menu-list a i,
+.nav-menu-list li a i,
+.nav-menu-list li a span i,
+.nav-menu-list li a .fa,
+.nav-menu-list li a .fas,
+.nav-menu-list li a .far,
+.nav-menu-list li a .fab,
+.nav-menu-list li a .fal,
+.nav-menu-list li a .fad {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* ===== BOTÕES CTA ===== */
@@ -392,13 +505,18 @@ cubic-bezier(0.4, 0, 0.2, 1);
         flex-direction: row !important;
         height: auto !important;
         padding: 0 !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
     }
     
     .nav-menu-links {
         display: flex !important;
         flex-direction: row !important;
-        flex: none !important;
+        flex: 1 !important;
         overflow: visible !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
     
     .nav-menu-buttons {
@@ -408,6 +526,9 @@ cubic-bezier(0.4, 0, 0.2, 1);
     .nav-menu-list {
         display: flex !important;
         flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 16px !important;
     }
     
     .nav-menu.active {
@@ -466,6 +587,52 @@ cubic-bezier(0.4, 0, 0.2, 1);
     .nav-menu-list li a:hover {
         color: var(--primary-color) !important;
         background: var(--gray-50) !important;
+    }
+    
+    /* Remover qualquer ícone dos links de navegação no desktop */
+    .nav-menu a::before,
+    .nav-menu-list a::before,
+    .nav-menu a::after,
+    .nav-menu-list a::after,
+    .nav-menu-list li a::before,
+    .nav-menu-list li a::after,
+    .nav-menu-list li a i::before,
+    .nav-menu-list li a i::after,
+    .nav-menu-list li a span::before,
+    .nav-menu-list li a span::after {
+        display: none !important;
+        content: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        font-size: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Remover ícones FontAwesome dos links de navegação no desktop */
+    .nav-menu a i,
+    .nav-menu-list a i,
+    .nav-menu-list li a i,
+    .nav-menu-list li a span i,
+    .nav-menu-list li a .fa,
+    .nav-menu-list li a .fas,
+    .nav-menu-list li a .far,
+    .nav-menu-list li a .fab,
+    .nav-menu-list li a .fal,
+    .nav-menu-list li a .fad,
+    .nav-menu-list li a [class*="fa-"],
+    .nav-menu-list li a [class*="icon-"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        font-size: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
     }
 }
 
@@ -1352,7 +1519,6 @@ body.mobile-menu-open {
 
 .mobile-menu-link:hover {
     background-color: rgba(0, 123, 255, 0.05);
-    border-left-color: #007bff;
     color: #007bff;
     transform: translateX(4px);
 }

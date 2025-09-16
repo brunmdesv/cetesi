@@ -296,6 +296,19 @@
         // Executar na inicialização
         handleResize();
 
+        // Função debounce local
+        function debounce(func, wait) {
+            var timeout;
+            return function executedFunction() {
+                var later = function() {
+                    clearTimeout(timeout);
+                    func();
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
         // Escutar mudanças de tamanho com debounce
         $(window).on('resize', debounce(handleResize, 250));
 
@@ -312,6 +325,22 @@
                     $this.removeClass('touched');
                 }, 300);
             });
+        }
+
+        // Função throttle local
+        function throttle(func, limit) {
+            var inThrottle;
+            return function() {
+                var args = arguments;
+                var context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(function() {
+                        inThrottle = false;
+                    }, limit);
+                }
+            };
         }
 
         // Scroll suave com throttle

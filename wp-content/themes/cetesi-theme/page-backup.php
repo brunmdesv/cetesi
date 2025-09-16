@@ -1,0 +1,351 @@
+<?php
+/**
+ * Template para páginas
+ * 
+ * @package CETESI
+ * @version 1.0.0
+ */
+
+get_header(); ?>
+
+<main id="main" class="site-main page">
+    <?php while (have_posts()) : the_post(); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+            <!-- Breadcrumbs -->
+            <div class="container">
+                <?php cetesi_breadcrumbs(); ?>
+            </div>
+            
+            <!-- Hero da Página -->
+            <section class="page-hero">
+                <div class="container">
+                    <div class="page-hero-content">
+                        <h1 class="page-title"><?php the_title(); ?></h1>
+                        <?php if (get_the_excerpt()) : ?>
+                        <p class="page-excerpt"><?php the_excerpt(); ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conteúdo da Página -->
+            <section class="page-content">
+                <div class="container">
+                    <div class="content-wrapper">
+                        <div class="main-content">
+                            <?php if (has_post_thumbnail()) : ?>
+                            <div class="page-thumbnail">
+                                <?php the_post_thumbnail('large'); ?>
+                            </div>
+                            <?php endif; ?>
+                            
+                            <div class="page-text">
+                                <?php the_content(); ?>
+                            </div>
+                            
+                            <?php
+                            // Paginação para páginas com <!--nextpage-->
+                            wp_link_pages(array(
+                                'before' => '<div class="page-links">',
+                                'after'  => '</div>',
+                                'link_before' => '<span class="page-number">',
+                                'link_after'  => '</span>',
+                            ));
+                            ?>
+                        </div>
+                        
+                        <?php if (is_active_sidebar('sidebar-1')) : ?>
+                        <aside class="sidebar">
+                            <?php dynamic_sidebar('sidebar-1'); ?>
+                        </aside>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+        </article>
+    <?php endwhile; ?>
+</main>
+
+<!-- CSS das páginas movido para assets/css/page.css -->
+    margin-top: 80px;
+}
+
+.page-hero {
+    background: var(--gradient-hero);
+    color: white;
+    padding: var(--space-4xl) 0;
+    text-align: center;
+}
+
+.page-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: var(--space-lg);
+    line-height: 1.2;
+}
+
+.page-excerpt {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.page-content {
+    padding: var(--space-4xl) 0;
+    background: white;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-4xl);
+}
+
+.main-content {
+    min-width: 0; /* Para evitar overflow */
+}
+
+.page-thumbnail {
+    margin-bottom: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.page-thumbnail img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.page-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--gray-700);
+}
+
+.page-text h1,
+.page-text h2,
+.page-text h3,
+.page-text h4,
+.page-text h5,
+.page-text h6 {
+    font-family: var(--font-heading);
+    color: var(--gray-800);
+    margin: var(--space-2xl) 0 var(--space-lg) 0;
+    line-height: 1.3;
+}
+
+.page-text h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding-bottom: var(--space-sm);
+    border-bottom: 3px solid var(--gradient-primary);
+}
+
+.page-text h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.page-text h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.page-text p {
+    margin-bottom: var(--space-lg);
+}
+
+.page-text ul,
+.page-text ol {
+    margin: var(--space-lg) 0;
+    padding-left: var(--space-xl);
+}
+
+.page-text li {
+    margin-bottom: var(--space-sm);
+    line-height: 1.6;
+}
+
+.page-text ul li {
+    list-style: none;
+    position: relative;
+}
+
+.page-text ul li::before {
+    content: "✓";
+    position: absolute;
+    left: -var(--space-xl);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.page-text blockquote {
+    background: var(--gray-50);
+    border-left: 4px solid var(--primary-color);
+    padding: var(--space-lg);
+    margin: var(--space-2xl) 0;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    font-style: italic;
+    color: var(--gray-700);
+}
+
+.page-text img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin: var(--space-lg) 0;
+}
+
+.page-text table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-lg) 0;
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.page-text th,
+.page-text td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.page-text th {
+    background: var(--gray-50);
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.page-text tr:hover {
+    background: var(--gray-50);
+}
+
+.page-links {
+    margin: var(--space-2xl) 0;
+    text-align: center;
+}
+
+.page-number {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-md);
+    margin: 0 var(--space-xs);
+    background: var(--gray-100);
+    color: var(--gray-700);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.page-number:hover,
+.page-number.current {
+    background: var(--primary-color);
+    color: white;
+}
+
+.sidebar {
+    min-width: 0; /* Para evitar overflow */
+}
+
+.sidebar .widget {
+    background: var(--gray-50);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-2xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar .widget h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.sidebar .widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .widget li {
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.sidebar .widget li:last-child {
+    border-bottom: none;
+}
+
+.sidebar .widget a {
+    color: var(--gray-700);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sidebar .widget a:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+    }
+    
+    .page-thumbnail img {
+        height: 250px;
+    }
+    
+    .page-text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .page-text h3 {
+        font-size: 1.3rem;
+    }
+    
+    .page-text h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .page-excerpt {
+        font-size: 1rem;
+    }
+    
+    .page-content {
+        padding: var(--space-2xl) 0;
+    }
+}
+</style>
+
+<?php get_footer(); ?>

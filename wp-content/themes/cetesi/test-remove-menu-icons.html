@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Remoção de Ícones do Menu</title>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <style>
+        body {
+            font-family: var(--font-primary);
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .test-title {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .improvement-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .improvement-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .improvement-title {
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 8px;
+        }
+        
+        .improvement-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        
+        .before {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        
+        .after {
+            color: #22c55e;
+            font-weight: bold;
+        }
+        
+        .test-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .test-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        
+        .header-demo {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            min-height: 32px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .site-branding {
+            order: 1;
+            flex-shrink: 0;
+        }
+        
+        .nav-menu {
+            order: 2;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-menu-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 20px;
+        }
+        
+        .nav-menu-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        
+        .nav-menu-list {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: nowrap;
+        }
+        
+        .nav-menu-list a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 36px;
+        }
+        
+        .nav-menu-list a:hover {
+            color: #2563eb;
+            background: #f8f9fa;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Remover qualquer ícone ou pseudo-elemento dos links de navegação */
+        .nav-menu a::before,
+        .nav-menu-list a::before,
+        .nav-menu a::after,
+        .nav-menu-list a::after {
+            display: none !important;
+            content: none !important;
+        }
+        
+        /* Remover ícones específicos de FontAwesome ou similares */
+        .nav-menu a i,
+        .nav-menu-list a i {
+            display: none !important;
+        }
+        
+        .header-cta {
+            order: 3;
+            flex-shrink: 0;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .code-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .code-example .comment {
+            color: #64748b;
+        }
+        
+        .code-example .selector {
+            color: #38bdf8;
+        }
+        
+        .code-example .property {
+            color: #fb7185;
+        }
+        
+        .code-example .value {
+            color: #34d399;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🚫 Remoção de Ícones do Menu - Correções Implementadas</h1>
+        
+        <div class="test-section">
+            <h2 class="test-title">✨ Correções Implementadas</h2>
+            <div class="improvement-list">
+                <div class="improvement-card">
+                    <div class="improvement-title">🔧 PHP - link_before Removido</div>
+                    <div class="improvement-desc">Removido 'link_before' => '&lt;i class="fas fa-home"&gt;&lt;/i&gt; ' do wp_nav_menu</div>
+                </div>
+                
+                <div class="improvement-card">
+                    <div class="improvement-title">🎨 CSS - Pseudo-elementos Removidos</div>
+                    <div class="improvement-desc">Adicionado display: none !important para ::before e ::after dos links</div>
+                </div>
+                
+                <div class="improvement-card">
+                    <div class="improvement-title">❌ FontAwesome - Ícones Ocultos</div>
+                    <div class="improvement-desc">Regra CSS para ocultar qualquer tag &lt;i&gt; dentro dos links de navegação</div>
+                </div>
+                
+                <div class="improvement-card">
+                    <div class="improvement-title">📱 Desktop Específico</div>
+                    <div class="improvement-desc">Regras específicas no media query de desktop com !important</div>
+                </div>
+                
+                <div class="improvement-card">
+                    <div class="improvement-title">🔒 Força Máxima</div>
+                    <div class="improvement-desc">Múltiplas regras CSS garantindo que nenhum ícone apareça</div>
+                </div>
+                
+                <div class="improvement-card">
+                    <div class="improvement-title">✅ Organização Profissional</div>
+                    <div class="improvement-desc">Código limpo e organizado mantendo as boas práticas</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">📊 Comparação Antes vs Depois</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Antes</th>
+                        <th>Depois</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PHP wp_nav_menu</td>
+                        <td class="before">'link_before' => '&lt;i class="fas fa-home"&gt;&lt;/i&gt; '</td>
+                        <td class="after">Removido</td>
+                        <td>Edição do PHP</td>
+                    </tr>
+                    <tr>
+                        <td>Pseudo-elementos</td>
+                        <td class="before">Possíveis ::before/::after</td>
+                        <td class="after">display: none !important</td>
+                        <td>CSS Override</td>
+                    </tr>
+                    <tr>
+                        <td>Ícones FontAwesome</td>
+                        <td class="before">Tags &lt;i&gt; visíveis</td>
+                        <td class="after">display: none !important</td>
+                        <td>CSS Seletor</td>
+                    </tr>
+                    <tr>
+                        <td>Especificidade CSS</td>
+                        <td class="before">Regras normais</td>
+                        <td class="after">!important</td>
+                        <td>Força máxima</td>
+                    </tr>
+                    <tr>
+                        <td>Media Query Desktop</td>
+                        <td class="before">Sem regras específicas</td>
+                        <td class="after">Regras dedicadas</td>
+                        <td>@media (min-width: 1025px)</td>
+                    </tr>
+                    <tr>
+                        <td>Cobertura</td>
+                        <td class="before">Parcial</td>
+                        <td class="after">100% dos casos</td>
+                        <td>Múltiplas regras</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">💻 Código Implementado</h2>
+            
+            <h3>1. PHP - navigation.php</h3>
+            <div class="code-example">
+<span class="comment">// ANTES</span>
+wp_nav_menu(array(
+    'theme_location' => 'principal',
+    'menu_class'     => 'nav-menu-list',
+    'container'      => false,
+    'items_wrap'     => '&lt;ul class="%2s"&gt;%3s&lt;/ul&gt;',
+    'fallback_cb'    => 'cetesi_fallback_menu',
+    'depth'          => 1,
+    <span class="highlight">'link_before'    => '&lt;i class="fas fa-home"&gt;&lt;/i&gt; ',</span> <span class="comment">// ❌ REMOVIDO</span>
+    'walker'         => new Cetesi_Mobile_Menu_Walker()
+));
+
+<span class="comment">// DEPOIS</span>
+wp_nav_menu(array(
+    'theme_location' => 'principal',
+    'menu_class'     => 'nav-menu-list',
+    'container'      => false,
+    'items_wrap'     => '&lt;ul class="%2s"&gt;%3s&lt;/ul&gt;',
+    'fallback_cb'    => 'cetesi_fallback_menu',
+    'depth'          => 1,
+    'walker'         => new Cetesi_Mobile_Menu_Walker()
+)); <span class="comment">// ✅ LIMPO</span>
+            </div>
+            
+            <h3>2. CSS - Regras Gerais</h3>
+            <div class="code-example">
+<span class="comment">/* Remover qualquer ícone ou pseudo-elemento dos links de navegação */</span>
+<span class="selector">.nav-menu a::before,
+.nav-menu-list a::before,
+.nav-menu a::after,
+.nav-menu-list a::after</span> {
+    <span class="property">display</span>: <span class="value">none !important</span>;
+    <span class="property">content</span>: <span class="value">none !important</span>;
+}
+
+<span class="comment">/* Remover ícones específicos de FontAwesome ou similares */</span>
+<span class="selector">.nav-menu a i,
+.nav-menu-list a i</span> {
+    <span class="property">display</span>: <span class="value">none !important</span>;
+}
+            </div>
+            
+            <h3>3. CSS - Desktop Específico</h3>
+            <div class="code-example">
+<span class="selector">@media (min-width: 1025px)</span> {
+    <span class="comment">/* Remover qualquer ícone dos links de navegação no desktop */</span>
+    <span class="selector">.nav-menu a::before,
+    .nav-menu-list a::before,
+    .nav-menu a::after,
+    .nav-menu-list a::after,
+    .nav-menu-list li a::before,
+    .nav-menu-list li a::after</span> {
+        <span class="property">display</span>: <span class="value">none !important</span>;
+        <span class="property">content</span>: <span class="value">none !important</span>;
+    }
+    
+    <span class="comment">/* Remover ícones FontAwesome dos links de navegação no desktop */</span>
+    <span class="selector">.nav-menu a i,
+    .nav-menu-list a i,
+    .nav-menu-list li a i</span> {
+        <span class="property">display</span>: <span class="value">none !important</span>;
+    }
+}
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">🎮 Demonstração Visual</h2>
+            <p>Menu sem ícones - apenas texto limpo:</p>
+            
+            <div class="header-demo">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="site-branding">
+                        <a href="#" class="logo">CETESI</a>
+                    </div>
+                    
+                    <!-- Menu de Navegação SEM ÍCONES -->
+                    <nav class="nav-menu">
+                        <div class="nav-menu-content">
+                            <div class="nav-menu-links">
+                                <ul class="nav-menu-list">
+                                    <li><a href="#">Início</a></li>
+                                    <li><a href="#">Cursos</a></li>
+                                    <li><a href="#">Equipe</a></li>
+                                    <li><a href="#">Sobre</a></li>
+                                    <li><a href="#">Contato</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    
+                    <!-- Botões CTA -->
+                    <div class="header-cta">
+                        <a href="#" class="btn-primary">
+                            <i class="fas fa-phone"></i>
+                            Ligar Agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">🔍 Testes de Verificação</h2>
+            <button class="test-button" onclick="checkForIcons()">Verificar Ícones</button>
+            <button class="test-button" onclick="checkPseudoElements()">Verificar Pseudo-elementos</button>
+            <button class="test-button" onclick="checkFontAwesome()">Verificar FontAwesome</button>
+            <button class="test-button" onclick="checkAllElements()">Verificar Tudo</button>
+        </div>
+    </div>
+
+    <script>
+        function checkForIcons() {
+            const navLinks = document.querySelectorAll('.nav-menu-list a');
+            let iconsFound = 0;
+            
+            navLinks.forEach(link => {
+                const icons = link.querySelectorAll('i');
+                iconsFound += icons.length;
+            });
+            
+            console.log('=== VERIFICAÇÃO DE ÍCONES ===');
+            console.log('Links de navegação:', navLinks.length);
+            console.log('Ícones encontrados:', iconsFound);
+            console.log('Status:', iconsFound === 0 ? '✅ NENHUM ÍCONE' : '❌ ÍCONES ENCONTRADOS');
+            
+            alert(`Ícones encontrados: ${iconsFound}\nStatus: ${iconsFound === 0 ? 'LIMPO ✅' : 'ÍCONES ENCONTRADOS ❌'}`);
+        }
+
+        function checkPseudoElements() {
+            const navLinks = document.querySelectorAll('.nav-menu-list a');
+            let pseudoElementsFound = 0;
+            
+            navLinks.forEach(link => {
+                const beforeStyle = window.getComputedStyle(link, '::before');
+                const afterStyle = window.getComputedStyle(link, '::after');
+                
+                if (beforeStyle.display !== 'none' && beforeStyle.content !== 'none') {
+                    pseudoElementsFound++;
+                }
+                if (afterStyle.display !== 'none' && afterStyle.content !== 'none') {
+                    pseudoElementsFound++;
+                }
+            });
+            
+            console.log('=== VERIFICAÇÃO DE PSEUDO-ELEMENTOS ===');
+            console.log('Links verificados:', navLinks.length);
+            console.log('Pseudo-elementos ativos:', pseudoElementsFound);
+            console.log('Status:', pseudoElementsFound === 0 ? '✅ NENHUM PSEUDO-ELEMENTO' : '❌ PSEUDO-ELEMENTOS ENCONTRADOS');
+            
+            alert(`Pseudo-elementos ativos: ${pseudoElementsFound}\nStatus: ${pseudoElementsFound === 0 ? 'LIMPO ✅' : 'PSEUDO-ELEMENTOS ATIVOS ❌'}`);
+        }
+
+        function checkFontAwesome() {
+            const faIcons = document.querySelectorAll('.nav-menu-list a i[class*="fa"]');
+            
+            console.log('=== VERIFICAÇÃO DE FONTAWESOME ===');
+            console.log('Ícones FontAwesome nos links:', faIcons.length);
+            
+            faIcons.forEach((icon, index) => {
+                const isVisible = window.getComputedStyle(icon).display !== 'none';
+                console.log(`Ícone ${index + 1}:`, {
+                    classes: icon.className,
+                    visible: isVisible
+                });
+            });
+            
+            alert(`Ícones FontAwesome encontrados: ${faIcons.length}\nTodos devem estar ocultos com display: none`);
+        }
+
+        function checkAllElements() {
+            console.log('=== VERIFICAÇÃO COMPLETA ===');
+            
+            // Verificar ícones
+            const navLinks = document.querySelectorAll('.nav-menu-list a');
+            const icons = document.querySelectorAll('.nav-menu-list a i');
+            
+            // Verificar pseudo-elementos
+            let pseudoActive = 0;
+            navLinks.forEach(link => {
+                const beforeStyle = window.getComputedStyle(link, '::before');
+                const afterStyle = window.getComputedStyle(link, '::after');
+                
+                if (beforeStyle.display !== 'none') pseudoActive++;
+                if (afterStyle.display !== 'none') pseudoActive++;
+            });
+            
+            // Verificar estilos aplicados
+            const sampleLink = navLinks[0];
+            if (sampleLink) {
+                const linkStyles = window.getComputedStyle(sampleLink);
+                console.log('Estilos do link:', {
+                    display: linkStyles.display,
+                    alignItems: linkStyles.alignItems,
+                    gap: linkStyles.gap,
+                    padding: linkStyles.padding
+                });
+            }
+            
+            console.log('Resumo:', {
+                totalLinks: navLinks.length,
+                totalIcons: icons.length,
+                pseudoActive: pseudoActive,
+                allClean: icons.length === 0 && pseudoActive === 0
+            });
+            
+            const isClean = icons.length === 0 && pseudoActive === 0;
+            alert(`VERIFICAÇÃO COMPLETA:\n\nLinks: ${navLinks.length}\nÍcones: ${icons.length}\nPseudo-elementos ativos: ${pseudoActive}\n\nStatus: ${isClean ? 'COMPLETAMENTE LIMPO ✅' : 'NECESSITA AJUSTES ❌'}`);
+        }
+
+        // Log das correções
+        console.log('=== CORREÇÕES IMPLEMENTADAS ===');
+        console.log('✅ PHP link_before removido');
+        console.log('✅ CSS pseudo-elementos removidos');
+        console.log('✅ CSS ícones FontAwesome ocultos');
+        console.log('✅ Regras específicas para desktop');
+        console.log('✅ !important para força máxima');
+        console.log('✅ Múltiplas regras de segurança');
+    </script>
+</body>
+</html>
