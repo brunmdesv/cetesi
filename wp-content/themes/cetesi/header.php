@@ -1,4 +1,4 @@
-<?php
+    <?php
 /**
  * Cabeçalho do tema Cetesi
  *
@@ -11,7 +11,7 @@
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="<?php bloginfo('name'); ?>">
     <meta name="generator" content="WordPress">
@@ -31,7 +31,7 @@
 <div id="page" class="site">
     <a class="skip-link screen-reader-text" href="#main"><?php _e('Pular para o conteúdo', 'cetesi'); ?></a>
 
-    <!-- Header -->
+    <!-- Header Desktop -->
     <header id="masthead" class="header">
         <div class="container">
             <div class="header-content">
@@ -51,6 +51,9 @@
             </div>
         </div>
     </header>
+
+    <!-- Header Mobile -->
+    <?php get_template_part('template-parts/header/mobile-header'); ?>
 
     <!-- WhatsApp Floating Button -->
     <?php get_template_part('template-parts/header/whatsapp-button'); ?>

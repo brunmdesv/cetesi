@@ -20,7 +20,7 @@
     --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
     --border-radius: 8px;
     --transition: all 0.3s ease;
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    /* --font-family movido para assets/css/fonts.css */
     --font-size-base: 16px;
     --line-height-base: 1.6;
 }
@@ -155,7 +155,6 @@
     position: relative;
     width: 100%;
     height: 3px;
-    background: var(--secondary-color);
     transition: var(--transition);
 }
 

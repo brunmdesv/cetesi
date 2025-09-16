@@ -1,0 +1,320 @@
+/**
+ * Fontes Personalizadas do Tema CETESI
+ * Usando fontes locais para máxima performance e consistência
+ * 
+ * @package Cetesi
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   FONTE INTER - FONTE PRINCIPAL DO TEMA
+   ========================================================================== */
+
+/* Inter Regular */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter Medium */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter SemiBold */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter Bold */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter ExtraBold */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter Black */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter Light */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter Thin */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter ExtraLight */
+@font-face {
+    font-family: 'CETESI-Inter';
+    src: url('../fonts/Inter_18pt-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   FONTE POPPINS - FONTE ALTERNATIVA PARA TÍTULOS
+   ========================================================================== */
+
+/* Poppins Regular */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins Medium */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins SemiBold */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins Bold */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins ExtraBold */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins Black */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins Light */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins Thin */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins ExtraLight */
+@font-face {
+    font-family: 'CETESI-Poppins';
+    src: url('../fonts/Poppins-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   VARIÁVEIS CSS PARA FONTES
+   ========================================================================== */
+
+:root {
+    /* Fonte principal do tema - Inter local */
+    --font-primary: 'CETESI-Inter', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    
+    /* Fonte para títulos - Poppins para mais impacto visual */
+    --font-heading: 'CETESI-Poppins', 'Poppins', 'CETESI-Inter', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    
+    /* Fonte para corpo do texto - Inter para melhor legibilidade */
+    --font-body: 'CETESI-Inter', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    
+    /* Fonte monospace para código */
+    --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
+    
+    /* Fonte alternativa - Inter para elementos secundários */
+    --font-secondary: 'CETESI-Inter', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ==========================================================================
+   APLICAÇÃO DAS FONTES NO SITE
+   ========================================================================== */
+
+/* Aplicar fonte padrão para todo o site */
+* {
+    font-family: var(--font-primary) !important;
+}
+
+/* Elementos específicos */
+body {
+    font-family: var(--font-body) !important;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Títulos - Usando Poppins para mais impacto */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading) !important;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+/* Títulos específicos */
+h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Logo e branding - Poppins para destaque */
+.site-branding,
+.logo,
+.mobile-logo-text,
+.mobile-menu-logo-text {
+    font-family: var(--font-heading) !important;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+/* Botões - Inter para legibilidade */
+.btn-primary,
+.btn-nav,
+.mobile-btn-primary,
+.mobile-btn-nav {
+    font-family: var(--font-primary) !important;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* Navegação - Inter para consistência */
+.main-navigation,
+.mobile-nav-menu {
+    font-family: var(--font-primary) !important;
+    font-weight: 500;
+}
+
+/* Links */
+a {
+    font-family: var(--font-primary) !important;
+    font-weight: 500;
+}
+
+/* Inputs e formulários */
+input,
+textarea,
+select,
+button {
+    font-family: var(--font-primary) !important;
+    font-weight: 400;
+}
+
+/* Código */
+code,
+pre {
+    font-family: var(--font-mono);
+    font-weight: 400;
+}
+
+/* Elementos secundários */
+.sidebar,
+.widget,
+.footer-widget {
+    font-family: var(--font-secondary);
+    font-weight: 400;
+}
+
+/* Texto pequeno */
+small,
+.small-text {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 0.875rem;
+}
+
+/* Texto destacado */
+strong,
+b {
+    font-family: var(--font-primary);
+    font-weight: 600;
+}
+
+/* Texto em itálico */
+em,
+i {
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-weight: 400;
+}

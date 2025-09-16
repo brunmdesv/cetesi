@@ -231,11 +231,14 @@ add_action( 'widgets_init', 'cetesi_widgets_init' );
  * Enfileiramento de scripts e estilos (exceto header)
  */
 function cetesi_scripts() {
+    // CSS de fontes personalizadas locais (carregar primeiro com prioridade máxima)
+    wp_enqueue_style( 'cetesi-fonts', CETESI_ASSETS_URL . '/css/fonts.css', array(), CETESI_VERSION );
+    
     // CSS principal
-    wp_enqueue_style( 'cetesi-style', get_stylesheet_uri(), array(), CETESI_VERSION );
+    wp_enqueue_style( 'cetesi-style', get_stylesheet_uri(), array( 'cetesi-fonts' ), CETESI_VERSION );
     
     // CSS adicional
-    wp_enqueue_style( 'cetesi-main', CETESI_ASSETS_URL . '/css/main.css', array(), CETESI_VERSION );
+    wp_enqueue_style( 'cetesi-main', CETESI_ASSETS_URL . '/css/main.css', array( 'cetesi-fonts' ), CETESI_VERSION );
     
     // CSS da página inicial
     if ( is_front_page() ) {
@@ -266,6 +269,15 @@ function cetesi_scripts() {
     ) );
 }
 add_action( 'wp_enqueue_scripts', 'cetesi_scripts' );
+
+/**
+ * Forçar carregamento das fontes no head
+ */
+function cetesi_force_fonts_in_head() {
+    echo '<link rel="preload" href="' . CETESI_ASSETS_URL . '/css/fonts.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">';
+    echo '<noscript><link rel="stylesheet" href="' . CETESI_ASSETS_URL . '/css/fonts.css"></noscript>';
+}
+add_action( 'wp_head', 'cetesi_force_fonts_in_head', 1 );
 
 /**
  * Estilos do editor

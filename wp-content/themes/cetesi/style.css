@@ -32,7 +32,7 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    /* font-family definido em assets/css/fonts.css */
     color: #333;
     background-color: #fff;
     overflow-x: hidden;
@@ -85,9 +85,8 @@ body {
     --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-pink) 100%);
     --gradient-hero: linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(16, 185, 129, 0.95) 100%);
     
-    /* Tipografia */
-    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Tipografia - Variáveis movidas para assets/css/fonts.css */
+    /* As variáveis de fonte agora são definidas em assets/css/fonts.css */
     
     /* Espaçamentos */
     --space-xs: 0.25rem;
