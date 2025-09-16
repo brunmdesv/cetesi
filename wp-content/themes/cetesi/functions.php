@@ -250,6 +250,10 @@ function cetesi_scripts() {
         wp_enqueue_style( 'cetesi-hero-modern', CETESI_ASSETS_URL . '/css/hero-modern.css', array( 'cetesi-home' ), CETESI_VERSION );
         // CSS Mobile Customizado (carregado após hero-modern para sobrescrever)
         wp_enqueue_style( 'cetesi-hero-mobile-custom', CETESI_ASSETS_URL . '/css/hero-mobile-custom.css', array( 'cetesi-hero-modern' ), CETESI_VERSION );
+        // CSS da Seção de Cursos
+        wp_enqueue_style( 'cetesi-courses', CETESI_ASSETS_URL . '/css/courses.css', array( 'cetesi-home' ), CETESI_VERSION );
+        // CSS Mobile Customizado para Cursos (carregado após courses para sobrescrever)
+        wp_enqueue_style( 'cetesi-courses-mobile-custom', CETESI_ASSETS_URL . '/css/courses-mobile-custom.css', array( 'cetesi-courses' ), CETESI_VERSION );
     }
     
     // JavaScript principal
@@ -401,6 +405,7 @@ require_once CETESI_THEME_DIR . '/inc/footer-functions.php';
 require_once CETESI_THEME_DIR . '/inc/customizer.php';
 require_once CETESI_THEME_DIR . '/inc/home-customizer.php';
 require_once CETESI_THEME_DIR . '/inc/hero-modern-customizer.php';
+require_once CETESI_THEME_DIR . '/inc/courses-customizer.php';
 require_once CETESI_THEME_DIR . '/inc/template-functions.php';
 require_once CETESI_THEME_DIR . '/inc/template-tags.php';
 

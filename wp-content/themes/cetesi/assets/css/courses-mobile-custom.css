@@ -1,0 +1,347 @@
+/*
+ * COURSES MOBILE CUSTOMIZATIONS - CETESI TEMA
+ * 
+ * Este arquivo contém customizações específicas para mobile
+ * que NÃO afetam o desktop. Use apenas media queries com max-width.
+ * 
+ * REGRAS DE SEGURANÇA:
+ * - NUNCA mexe nos estilos base (sem media query)
+ * - SEMPRE use max-width para mobile
+ * - NUNCA use min-width para mobile
+ * - SEMPRE teste no desktop após mudanças
+ * 
+ * STATUS ATUAL: Mantém tudo do desktop por padrão
+ * Você pode adicionar customizações conforme necessário
+ */
+
+/* ===== MOBILE LANDSCAPE (576px - 767px) ===== */
+@media (max-width: 767px) {
+    
+    /* ===== CUSTOMIZAÇÕES ESPECÍFICAS PARA MOBILE LANDSCAPE ===== */
+    
+    /* 
+     * CUSTOMIZAÇÕES DISPONÍVEIS (descomente conforme necessário):
+     */
+    
+    /* Exemplo: Ajustar espaçamentos para mobile */
+    /*
+    .courses-section {
+        padding: var(--space-xl) 0 !important;
+    }
+    
+    .courses-header {
+        margin-bottom: var(--space-xl) !important;
+    }
+    */
+    
+    /* Exemplo: Simplificar cards para mobile */
+    /*
+    .course-card {
+        border-radius: var(--radius-lg) !important;
+    }
+    
+    .course-content {
+        padding: var(--space-md) !important;
+    }
+    */
+    
+    /* Exemplo: Ajustar tamanhos de fonte para mobile */
+    /*
+    .courses-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .course-title {
+        font-size: 1rem !important;
+    }
+    */
+    
+    /* Exemplo: Simplificar detalhes do curso */
+    /*
+    .course-details {
+        flex-direction: column !important;
+        gap: var(--space-xs) !important;
+    }
+    
+    .detail-item {
+        justify-content: center !important;
+        font-size: 0.8rem !important;
+    }
+    */
+    
+    /* Exemplo: Ocultar elementos específicos no mobile */
+    /*
+    .course-lines {
+        display: none !important;
+    }
+    */
+    
+    /* Exemplo: Simplificar botões para mobile */
+    /*
+    .course-btn {
+        padding: var(--space-sm) var(--space-md) !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .courses-view-all {
+        padding: var(--space-md) var(--space-lg) !important;
+        font-size: 0.9rem !important;
+    }
+    */
+}
+
+/* ===== MOBILE PORTRAIT (até 575px) ===== */
+@media (max-width: 575px) {
+    
+    /* ===== CUSTOMIZAÇÕES ESPECÍFICAS PARA MOBILE PORTRAIT ===== */
+    
+    /* 
+     * CUSTOMIZAÇÕES DISPONÍVEIS (descomente conforme necessário):
+     */
+    
+    /* Exemplo: Layout ultra-compacto */
+    /*
+    .courses-section {
+        padding: var(--space-lg) 0 !important;
+    }
+    
+    .courses-header {
+        margin-bottom: var(--space-lg) !important;
+    }
+    */
+    
+    /* Exemplo: Cards mais compactos */
+    /*
+    .course-card {
+        border-radius: var(--radius-md) !important;
+    }
+    
+    .course-content {
+        padding: var(--space-sm) !important;
+    }
+    
+    .course-header {
+        height: 80px !important;
+    }
+    
+    .course-icon {
+        font-size: 1.75rem !important;
+    }
+    */
+    
+    /* Exemplo: Títulos menores */
+    /*
+    .courses-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .courses-subtitle {
+        font-size: 0.85rem !important;
+    }
+    
+    .course-title {
+        font-size: 0.95rem !important;
+    }
+    */
+    
+    /* Exemplo: Detalhes em linha única */
+    /*
+    .course-details {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: var(--space-xs) !important;
+    }
+    
+    .detail-item {
+        flex: 1 !important;
+        min-width: 80px !important;
+        font-size: 0.7rem !important;
+        padding: 0.25rem var(--space-xs) !important;
+    }
+    */
+    
+    /* Exemplo: Descrição mais compacta */
+    /*
+    .course-description {
+        padding: var(--space-xs) !important;
+        margin-bottom: var(--space-md) !important;
+    }
+    
+    .course-description p {
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+    }
+    */
+    
+    /* Exemplo: Botões menores */
+    /*
+    .course-btn {
+        padding: var(--space-xs) var(--space-sm) !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .courses-view-all {
+        padding: var(--space-sm) var(--space-md) !important;
+        font-size: 0.8rem !important;
+    }
+    */
+}
+
+/* ===== MOBILE EXTRA PEQUENO (até 480px) ===== */
+@media (max-width: 480px) {
+    
+    /* ===== CUSTOMIZAÇÕES ESPECÍFICAS PARA MOBILE EXTRA PEQUENO ===== */
+    
+    /* 
+     * CUSTOMIZAÇÕES DISPONÍVEIS (descomente conforme necessário):
+     */
+    
+    /* Exemplo: Layout mínimo */
+    /*
+    .courses-section {
+        padding: var(--space-md) 0 !important;
+    }
+    
+    .courses-header {
+        margin-bottom: var(--space-md) !important;
+    }
+    
+    .courses-grid {
+        gap: var(--space-md) !important;
+        margin-bottom: var(--space-lg) !important;
+    }
+    */
+    
+    /* Exemplo: Cards ultra-compactos */
+    /*
+    .course-card {
+        border-radius: var(--radius-sm) !important;
+    }
+    
+    .course-content {
+        padding: var(--space-xs) !important;
+    }
+    
+    .course-header {
+        height: 70px !important;
+    }
+    
+    .course-icon {
+        font-size: 1.5rem !important;
+    }
+    */
+    
+    /* Exemplo: Títulos ultra-compactos */
+    /*
+    .courses-title {
+        font-size: 1.25rem !important;
+    }
+    
+    .courses-subtitle {
+        font-size: 0.8rem !important;
+    }
+    
+    .course-title {
+        font-size: 0.9rem !important;
+    }
+    */
+    
+    /* Exemplo: Detalhes em grid compacto */
+    /*
+    .course-details {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: var(--space-xs) !important;
+    }
+    
+    .detail-item {
+        font-size: 0.65rem !important;
+        padding: 0.2rem var(--space-xs) !important;
+        text-align: center !important;
+    }
+    
+    .detail-item i {
+        font-size: 0.8rem !important;
+    }
+    */
+    
+    /* Exemplo: Descrição mínima */
+    /*
+    .course-description {
+        padding: 0.5rem !important;
+        margin-bottom: var(--space-sm) !important;
+    }
+    
+    .course-description p {
+        font-size: 0.7rem !important;
+        line-height: 1.3 !important;
+    }
+    */
+    
+    /* Exemplo: Botões ultra-compactos */
+    /*
+    .course-btn {
+        padding: 0.4rem var(--space-xs) !important;
+        font-size: 0.7rem !important;
+    }
+    
+    .courses-view-all {
+        padding: var(--space-xs) var(--space-sm) !important;
+        font-size: 0.75rem !important;
+    }
+    */
+}
+
+/* ===== CUSTOMIZAÇÕES ESPECÍFICAS ===== */
+
+/* 
+ * CUSTOMIZAÇÕES GERAIS PARA MOBILE
+ * Adicione suas modificações aqui conforme necessário
+ * 
+ * Exemplos disponíveis (descomente conforme necessário):
+ */
+
+/* Exemplo: Simplificar animações no mobile */
+/*
+@media (max-width: 767px) {
+    .course-card {
+        transition: none !important;
+    }
+    
+    .course-card:hover {
+        transform: none !important;
+    }
+    
+    .course-btn::before,
+    .courses-view-all::before {
+        display: none !important;
+    }
+}
+*/
+
+/* Exemplo: Ajustar contraste para mobile */
+/*
+@media (max-width: 767px) {
+    .course-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .course-btn {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+}
+*/
+
+/* Exemplo: Ocultar elementos específicos */
+/*
+@media (max-width: 767px) {
+    .course-lines {
+        display: none !important;
+    }
+    
+    .courses-title::after {
+        display: none !important;
+    }
+}
+*/

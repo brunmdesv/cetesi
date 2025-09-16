@@ -13,6 +13,9 @@ get_header(); ?>
     <!-- Seção Hero -->
     <?php get_template_part( 'template-parts/home/hero' ); ?>
     
+    <!-- Seção de Cursos -->
+    <?php get_template_part( 'template-parts/home/courses' ); ?>
+    
     <!-- Seção Cursos em Destaque -->
     <?php get_template_part( 'template-parts/home/cursos-destaque' ); ?>
     
