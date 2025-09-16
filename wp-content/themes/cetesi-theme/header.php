@@ -201,6 +201,9 @@
         </div>
     </header>
 
+    <!-- Header Mobile -->
+    <?php get_template_part('template-parts/header/mobile-header'); ?>
+
     <!-- WhatsApp Floating Button -->
     <?php 
     $whatsapp_floating = get_option('cetesi_whatsapp_floating', array('enabled' => 1, 'number' => '556133514511'));
@@ -260,13 +263,65 @@ function closeMobileMenu() {
     toggle.classList.remove('active');
 }
 
+// Mobile Header Menu Functions
+function toggleMobileHeaderMenu() {
+    const mobileOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileButton = document.getElementById('mobile-menu-button');
+    
+    if (mobileOverlay.style.display === 'block') {
+        closeMobileHeaderMenu();
+    } else {
+        openMobileHeaderMenu();
+    }
+}
+
+function openMobileHeaderMenu() {
+    const mobileOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileButton = document.getElementById('mobile-menu-button');
+    
+    mobileOverlay.style.display = 'block';
+    mobileOverlay.setAttribute('aria-hidden', 'false');
+    mobileButton.setAttribute('aria-expanded', 'true');
+    mobileButton.classList.add('active');
+    
+    // Animar entrada
+    setTimeout(() => {
+        mobileOverlay.style.opacity = '1';
+    }, 10);
+    
+    // Prevenir scroll do body
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMobileHeaderMenu() {
+    const mobileOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileButton = document.getElementById('mobile-menu-button');
+    
+    mobileOverlay.style.opacity = '0';
+    mobileOverlay.setAttribute('aria-hidden', 'true');
+    mobileButton.setAttribute('aria-expanded', 'false');
+    mobileButton.classList.remove('active');
+    
+    // Restaurar scroll do body
+    document.body.style.overflow = '';
+    
+    setTimeout(() => {
+        mobileOverlay.style.display = 'none';
+    }, 300);
+}
+
 // Quando a página carregar
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
     const menuOverlay = document.getElementById('menu-overlay');
     
-    // Garantir que o menu comece fechado
+    // Mobile header elements
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    
+    // Garantir que o menu desktop comece fechado
     if (navMenu) {
         navMenu.style.display = 'none';
     }
@@ -274,38 +329,80 @@ document.addEventListener('DOMContentLoaded', function() {
         menuOverlay.style.display = 'none';
     }
     
-    // Clique no hambúrguer
+    // Garantir que o menu mobile comece fechado
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.style.display = 'none';
+        mobileMenuOverlay.setAttribute('aria-hidden', 'true');
+    }
+    
+    // Clique no hambúrguer desktop
     if (menuToggle) {
         menuToggle.onclick = function() {
             toggleMobileMenu();
         };
     }
     
-    // Clique no overlay para fechar
+    // Clique no overlay desktop para fechar
     if (menuOverlay) {
         menuOverlay.onclick = function() {
             closeMobileMenu();
         };
     }
     
-    // Fechar ao clicar nos links
-    const links = navMenu.querySelectorAll('a');
-    links.forEach(function(link) {
-        link.onclick = function() {
-            closeMobileMenu();
+    // Clique no botão mobile header
+    if (mobileMenuButton) {
+        mobileMenuButton.onclick = function() {
+            toggleMobileHeaderMenu();
         };
-        
-        // Efeito hover
-        link.addEventListener('mouseenter', function() {
-            this.style.background = '#f3f4f6';
-            this.style.transform = 'translateX(5px)';
+    }
+    
+    // Clique no botão fechar mobile header
+    if (mobileMenuClose) {
+        mobileMenuClose.onclick = function() {
+            closeMobileHeaderMenu();
+        };
+    }
+    
+    // Clique no overlay mobile para fechar
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.onclick = function(e) {
+            if (e.target === mobileMenuOverlay) {
+                closeMobileHeaderMenu();
+            }
+        };
+    }
+    
+    // Fechar ao clicar nos links desktop
+    if (navMenu) {
+        const links = navMenu.querySelectorAll('a');
+        links.forEach(function(link) {
+            link.onclick = function() {
+                closeMobileMenu();
+            };
+            
+            // Efeito hover
+            link.addEventListener('mouseenter', function() {
+                this.style.background = '#f3f4f6';
+                this.style.transform = 'translateX(5px)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.background = 'transparent';
+                this.style.transform = 'translateX(0)';
+            });
         });
-        
-        link.addEventListener('mouseleave', function() {
-            this.style.background = 'transparent';
-            this.style.transform = 'translateX(0)';
+    }
+    
+    // Fechar ao clicar nos links mobile
+    const mobileNavMenu = document.getElementById('mobile-menu');
+    if (mobileNavMenu) {
+        const mobileLinks = mobileNavMenu.querySelectorAll('a');
+        mobileLinks.forEach(function(link) {
+            link.onclick = function() {
+                closeMobileHeaderMenu();
+            };
         });
-    });
+    }
 });
 </script>
 

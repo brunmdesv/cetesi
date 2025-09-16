@@ -31,22 +31,39 @@
 <div id="page" class="site">
     <a class="skip-link screen-reader-text" href="#main"><?php _e('Pular para o conteúdo', 'cetesi'); ?></a>
 
-    <!-- Header Desktop -->
+    <!-- Header -->
     <header id="masthead" class="header">
         <div class="container">
             <div class="header-content">
                 
-                <!-- Logo -->
-                <?php get_template_part('template-parts/header/site-branding'); ?>
+                <!-- Header Top (Logo + Menu Toggle) -->
+                <div class="header-top">
+                    <!-- Logo -->
+                    <?php get_template_part('template-parts/header/site-branding'); ?>
+                    
+                    <!-- Menu Toggle Mobile -->
+                    <?php get_template_part('template-parts/header/menu-toggle'); ?>
+                </div>
 
-                <!-- Menu de Navegação -->
-                <?php get_template_part('template-parts/header/navigation'); ?>
-
-                <!-- Botões CTA Desktop -->
-                <?php get_template_part('template-parts/header/cta-buttons'); ?>
-
-                <!-- Menu Toggle Mobile -->
-                <?php get_template_part('template-parts/header/menu-toggle'); ?>
+                <!-- Menu Principal -->
+                <nav class="nav-menu" id="nav-menu">
+                    <div class="nav-menu-content">
+                        <!-- Menu de Navegação -->
+                        <div class="nav-menu-links">
+                            <?php get_template_part('template-parts/header/navigation'); ?>
+                        </div>
+                        
+                        <!-- Botões CTA no Menu Mobile -->
+                        <div class="nav-menu-buttons">
+                            <?php get_template_part('template-parts/header/cta-buttons'); ?>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- CTA Header -->
+                <div class="header-cta">
+                    <?php get_template_part('template-parts/header/cta-buttons'); ?>
+                </div>
 
             </div>
         </div>
