@@ -4,3 +4,211 @@
 [15-Sep-2025 22:15:29 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\admin-ajax.php:22
 [15-Sep-2025 22:15:29 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-load.php:50
 [15-Sep-2025 22:15:29 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:18:35 UTC] PHP Deprecated:  O arquivo Tema sem header.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo header.php em seu tema. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[16-Sep-2025 03:18:35 UTC] PHP Stack trace:
+[16-Sep-2025 03:18:35 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[16-Sep-2025 03:18:35 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[16-Sep-2025 03:18:35 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[16-Sep-2025 03:18:35 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[16-Sep-2025 03:18:35 UTC] PHP   5. get_header($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\index.php:12
+[16-Sep-2025 03:18:35 UTC] PHP   6. locate_template($template_names = [0 => 'header.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:48
+[16-Sep-2025 03:18:35 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-includes/theme-compat/header.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[16-Sep-2025 03:18:35 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[16-Sep-2025 03:18:35 UTC] PHP   9. _deprecated_file($file = 'Tema sem header.php', $version = '3.0.0', $replacement = NULL, $message = 'Inclua um modelo header.php em seu tema.') C:\wamp64\www\cetesi\wp-includes\theme-compat\header.php:9
+[16-Sep-2025 03:18:35 UTC] PHP  10. wp_trigger_error($function_name = '', $message = 'O arquivo Tema sem header.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo header.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5831
+[16-Sep-2025 03:18:35 UTC] PHP  11. trigger_error($message = 'O arquivo Tema sem header.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo header.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[16-Sep-2025 03:18:35 UTC] PHP Deprecated:  O arquivo Tema sem sidebar.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo sidebar.php em seu tema. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[16-Sep-2025 03:18:35 UTC] PHP Stack trace:
+[16-Sep-2025 03:18:35 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[16-Sep-2025 03:18:35 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[16-Sep-2025 03:18:35 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[16-Sep-2025 03:18:35 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[16-Sep-2025 03:18:35 UTC] PHP   5. get_sidebar($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\index.php:187
+[16-Sep-2025 03:18:35 UTC] PHP   6. locate_template($template_names = [0 => 'sidebar.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:136
+[16-Sep-2025 03:18:35 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-includes/theme-compat/sidebar.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[16-Sep-2025 03:18:35 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[16-Sep-2025 03:18:35 UTC] PHP   9. _deprecated_file($file = 'Tema sem sidebar.php', $version = '3.0.0', $replacement = NULL, $message = 'Inclua um modelo sidebar.php em seu tema.') C:\wamp64\www\cetesi\wp-includes\theme-compat\sidebar.php:9
+[16-Sep-2025 03:18:35 UTC] PHP  10. wp_trigger_error($function_name = '', $message = 'O arquivo Tema sem sidebar.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo sidebar.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5831
+[16-Sep-2025 03:18:35 UTC] PHP  11. trigger_error($message = 'O arquivo Tema sem sidebar.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo sidebar.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[16-Sep-2025 03:18:35 UTC] PHP Deprecated:  O arquivo Tema sem footer.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo footer.php em seu tema. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[16-Sep-2025 03:18:35 UTC] PHP Stack trace:
+[16-Sep-2025 03:18:35 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[16-Sep-2025 03:18:35 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[16-Sep-2025 03:18:35 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[16-Sep-2025 03:18:35 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[16-Sep-2025 03:18:35 UTC] PHP   5. get_footer($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\index.php:193
+[16-Sep-2025 03:18:35 UTC] PHP   6. locate_template($template_names = [0 => 'footer.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:92
+[16-Sep-2025 03:18:35 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-includes/theme-compat/footer.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[16-Sep-2025 03:18:35 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[16-Sep-2025 03:18:35 UTC] PHP   9. _deprecated_file($file = 'Tema sem footer.php', $version = '3.0.0', $replacement = NULL, $message = 'Inclua um modelo footer.php em seu tema.') C:\wamp64\www\cetesi\wp-includes\theme-compat\footer.php:9
+[16-Sep-2025 03:18:35 UTC] PHP  10. wp_trigger_error($function_name = '', $message = 'O arquivo Tema sem footer.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo footer.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5831
+[16-Sep-2025 03:18:35 UTC] PHP  11. trigger_error($message = 'O arquivo Tema sem footer.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo footer.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[16-Sep-2025 03:18:40 UTC] PHP Deprecated:  O arquivo Tema sem header.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo header.php em seu tema. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[16-Sep-2025 03:18:40 UTC] PHP Stack trace:
+[16-Sep-2025 03:18:40 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[16-Sep-2025 03:18:40 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[16-Sep-2025 03:18:40 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[16-Sep-2025 03:18:40 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[16-Sep-2025 03:18:40 UTC] PHP   5. get_header($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\index.php:12
+[16-Sep-2025 03:18:40 UTC] PHP   6. locate_template($template_names = [0 => 'header.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:48
+[16-Sep-2025 03:18:40 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-includes/theme-compat/header.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[16-Sep-2025 03:18:40 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[16-Sep-2025 03:18:40 UTC] PHP   9. _deprecated_file($file = 'Tema sem header.php', $version = '3.0.0', $replacement = NULL, $message = 'Inclua um modelo header.php em seu tema.') C:\wamp64\www\cetesi\wp-includes\theme-compat\header.php:9
+[16-Sep-2025 03:18:40 UTC] PHP  10. wp_trigger_error($function_name = '', $message = 'O arquivo Tema sem header.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo header.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5831
+[16-Sep-2025 03:18:40 UTC] PHP  11. trigger_error($message = 'O arquivo Tema sem header.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo header.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[16-Sep-2025 03:18:40 UTC] PHP Deprecated:  O arquivo Tema sem sidebar.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo sidebar.php em seu tema. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[16-Sep-2025 03:18:40 UTC] PHP Stack trace:
+[16-Sep-2025 03:18:40 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[16-Sep-2025 03:18:40 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[16-Sep-2025 03:18:40 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[16-Sep-2025 03:18:40 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[16-Sep-2025 03:18:40 UTC] PHP   5. get_sidebar($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\index.php:187
+[16-Sep-2025 03:18:40 UTC] PHP   6. locate_template($template_names = [0 => 'sidebar.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:136
+[16-Sep-2025 03:18:40 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-includes/theme-compat/sidebar.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[16-Sep-2025 03:18:40 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[16-Sep-2025 03:18:40 UTC] PHP   9. _deprecated_file($file = 'Tema sem sidebar.php', $version = '3.0.0', $replacement = NULL, $message = 'Inclua um modelo sidebar.php em seu tema.') C:\wamp64\www\cetesi\wp-includes\theme-compat\sidebar.php:9
+[16-Sep-2025 03:18:40 UTC] PHP  10. wp_trigger_error($function_name = '', $message = 'O arquivo Tema sem sidebar.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo sidebar.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5831
+[16-Sep-2025 03:18:40 UTC] PHP  11. trigger_error($message = 'O arquivo Tema sem sidebar.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo sidebar.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[16-Sep-2025 03:18:40 UTC] PHP Deprecated:  O arquivo Tema sem footer.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo footer.php em seu tema. in C:\wamp64\www\cetesi\wp-includes\functions.php on line 6121
+[16-Sep-2025 03:18:40 UTC] PHP Stack trace:
+[16-Sep-2025 03:18:40 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[16-Sep-2025 03:18:40 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[16-Sep-2025 03:18:40 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[16-Sep-2025 03:18:40 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[16-Sep-2025 03:18:40 UTC] PHP   5. get_footer($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\index.php:193
+[16-Sep-2025 03:18:40 UTC] PHP   6. locate_template($template_names = [0 => 'footer.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:92
+[16-Sep-2025 03:18:40 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-includes/theme-compat/footer.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[16-Sep-2025 03:18:40 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[16-Sep-2025 03:18:40 UTC] PHP   9. _deprecated_file($file = 'Tema sem footer.php', $version = '3.0.0', $replacement = NULL, $message = 'Inclua um modelo footer.php em seu tema.') C:\wamp64\www\cetesi\wp-includes\theme-compat\footer.php:9
+[16-Sep-2025 03:18:40 UTC] PHP  10. wp_trigger_error($function_name = '', $message = 'O arquivo Tema sem footer.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo footer.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:5831
+[16-Sep-2025 03:18:40 UTC] PHP  11. trigger_error($message = 'O arquivo Tema sem footer.php está <strong>obsoleto</strong> desde a versão 3.0.0 sem nenhuma alternativa disponível. Inclua um modelo footer.php em seu tema.', $error_level = 16384) C:\wamp64\www\cetesi\wp-includes\functions.php:6121
+[16-Sep-2025 03:18:57 UTC] PHP Warning:  require_once(C:\wamp64\www\cetesi/wp-content/themes/cetesi/inc/customizer.php): Failed to open stream: No such file or directory in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php on line 353
+[16-Sep-2025 03:18:57 UTC] PHP Stack trace:
+[16-Sep-2025 03:18:57 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin-ajax.php:0
+[16-Sep-2025 03:18:57 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\admin-ajax.php:22
+[16-Sep-2025 03:18:57 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:18:57 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:18:57 UTC] PHP   5. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:18:57 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\wamp64\www\cetesi/wp-content/themes/cetesi/inc/customizer.php' (include_path='.;C:\php\pear') in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php:353
+Stack trace:
+#0 C:\wamp64\www\cetesi\wp-settings.php(695): include()
+#1 C:\wamp64\www\cetesi\wp-config.php(40): require_once('C:\\wamp64\\www\\c...')
+#2 C:\wamp64\www\cetesi\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#3 C:\wamp64\www\cetesi\wp-admin\admin-ajax.php(22): require_once('C:\\wamp64\\www\\c...')
+#4 {main}
+  thrown in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php on line 353
+[16-Sep-2025 03:18:59 UTC] PHP Warning:  require_once(C:\wamp64\www\cetesi/wp-content/themes/cetesi/inc/customizer.php): Failed to open stream: No such file or directory in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php on line 353
+[16-Sep-2025 03:18:59 UTC] PHP Stack trace:
+[16-Sep-2025 03:18:59 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\themes.php:0
+[16-Sep-2025 03:18:59 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\themes.php:10
+[16-Sep-2025 03:18:59 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:18:59 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:18:59 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:18:59 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:18:59 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\wamp64\www\cetesi/wp-content/themes/cetesi/inc/customizer.php' (include_path='.;C:\php\pear') in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php:353
+Stack trace:
+#0 C:\wamp64\www\cetesi\wp-settings.php(695): include()
+#1 C:\wamp64\www\cetesi\wp-config.php(40): require_once('C:\\wamp64\\www\\c...')
+#2 C:\wamp64\www\cetesi\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#3 C:\wamp64\www\cetesi\wp-admin\admin.php(35): require_once('C:\\wamp64\\www\\c...')
+#4 C:\wamp64\www\cetesi\wp-admin\themes.php(10): require_once('C:\\wamp64\\www\\c...')
+#5 {main}
+  thrown in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php on line 353
+[16-Sep-2025 03:19:03 UTC] PHP Warning:  require_once(C:\wamp64\www\cetesi/wp-content/themes/cetesi/inc/customizer.php): Failed to open stream: No such file or directory in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php on line 353
+[16-Sep-2025 03:19:03 UTC] PHP Stack trace:
+[16-Sep-2025 03:19:03 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\themes.php:0
+[16-Sep-2025 03:19:03 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\themes.php:10
+[16-Sep-2025 03:19:03 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:19:03 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:19:03 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:19:03 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:19:03 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\wamp64\www\cetesi/wp-content/themes/cetesi/inc/customizer.php' (include_path='.;C:\php\pear') in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php:353
+Stack trace:
+#0 C:\wamp64\www\cetesi\wp-settings.php(695): include()
+#1 C:\wamp64\www\cetesi\wp-config.php(40): require_once('C:\\wamp64\\www\\c...')
+#2 C:\wamp64\www\cetesi\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#3 C:\wamp64\www\cetesi\wp-admin\admin.php(35): require_once('C:\\wamp64\\www\\c...')
+#4 C:\wamp64\www\cetesi\wp-admin\themes.php(10): require_once('C:\\wamp64\\www\\c...')
+#5 {main}
+  thrown in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php on line 353
+[16-Sep-2025 03:19:05 UTC] PHP Warning:  require_once(C:\wamp64\www\cetesi/wp-content/themes/cetesi/inc/customizer.php): Failed to open stream: No such file or directory in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php on line 353
+[16-Sep-2025 03:19:05 UTC] PHP Stack trace:
+[16-Sep-2025 03:19:05 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:19:05 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:19:05 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:19:05 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:19:05 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:19:05 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:19:05 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\wamp64\www\cetesi/wp-content/themes/cetesi/inc/customizer.php' (include_path='.;C:\php\pear') in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php:353
+Stack trace:
+#0 C:\wamp64\www\cetesi\wp-settings.php(695): include()
+#1 C:\wamp64\www\cetesi\wp-config.php(40): require_once('C:\\wamp64\\www\\c...')
+#2 C:\wamp64\www\cetesi\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#3 C:\wamp64\www\cetesi\wp-admin\admin.php(35): require_once('C:\\wamp64\\www\\c...')
+#4 C:\wamp64\www\cetesi\wp-admin\index.php(10): require_once('C:\\wamp64\\www\\c...')
+#5 {main}
+  thrown in C:\wamp64\www\cetesi\wp-content\themes\cetesi\functions.php on line 353
+[16-Sep-2025 03:22:21 UTC] PHP Fatal error:  Cannot redeclare cetesi_search_form() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-functions.php:237) in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-tags.php on line 251
+[16-Sep-2025 03:22:21 UTC] PHP Stack trace:
+[16-Sep-2025 03:22:21 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:22:21 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:22:21 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:22:21 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:22:21 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:22:21 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:22:37 UTC] PHP Fatal error:  Cannot redeclare cetesi_search_form() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-functions.php:237) in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-tags.php on line 251
+[16-Sep-2025 03:22:37 UTC] PHP Stack trace:
+[16-Sep-2025 03:22:37 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:22:37 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:22:37 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:22:37 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:22:37 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:22:37 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:22:38 UTC] PHP Fatal error:  Cannot redeclare cetesi_search_form() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-functions.php:237) in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-tags.php on line 251
+[16-Sep-2025 03:22:38 UTC] PHP Stack trace:
+[16-Sep-2025 03:22:38 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:22:38 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:22:38 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:22:38 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:22:38 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:22:38 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:22:40 UTC] PHP Fatal error:  Cannot redeclare cetesi_search_form() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-functions.php:237) in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-tags.php on line 251
+[16-Sep-2025 03:22:40 UTC] PHP Stack trace:
+[16-Sep-2025 03:22:40 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:22:40 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:22:40 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:22:40 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:22:40 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:22:40 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:22:41 UTC] PHP Fatal error:  Cannot redeclare cetesi_search_form() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-functions.php:237) in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-tags.php on line 251
+[16-Sep-2025 03:22:41 UTC] PHP Stack trace:
+[16-Sep-2025 03:22:41 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:22:41 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:22:41 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:22:41 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:22:41 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:22:41 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:22:46 UTC] PHP Fatal error:  Cannot redeclare cetesi_search_form() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-functions.php:237) in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-tags.php on line 251
+[16-Sep-2025 03:22:46 UTC] PHP Stack trace:
+[16-Sep-2025 03:22:46 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:22:46 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:22:46 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:22:46 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:22:46 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:22:46 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:22:51 UTC] PHP Fatal error:  Cannot redeclare cetesi_search_form() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-functions.php:237) in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-tags.php on line 251
+[16-Sep-2025 03:22:51 UTC] PHP Stack trace:
+[16-Sep-2025 03:22:51 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:22:51 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:22:51 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:22:51 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:22:51 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:22:51 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695
+[16-Sep-2025 03:23:19 UTC] PHP Fatal error:  Cannot redeclare cetesi_author_info() (previously declared in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-functions.php:91) in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\template-tags.php on line 344
+[16-Sep-2025 03:23:19 UTC] PHP Stack trace:
+[16-Sep-2025 03:23:19 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\index.php:0
+[16-Sep-2025 03:23:19 UTC] PHP   2. require_once() C:\wamp64\www\cetesi\wp-admin\index.php:10
+[16-Sep-2025 03:23:19 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-admin\admin.php:35
+[16-Sep-2025 03:23:19 UTC] PHP   4. require_once() C:\wamp64\www\cetesi\wp-load.php:50
+[16-Sep-2025 03:23:19 UTC] PHP   5. require_once() C:\wamp64\www\cetesi\wp-config.php:40
+[16-Sep-2025 03:23:19 UTC] PHP   6. include() C:\wamp64\www\cetesi\wp-settings.php:695

@@ -1,0 +1,90 @@
+COMO USAR O TEMA CETESI - ESCOLA DE CURSOS
+============================================
+
+1. ATIVAR O TEMA
+   - Vá em Aparência > Temas
+   - Encontre "CETESI - Escola de Cursos" e clique em Ativar
+
+2. CONFIGURAR PÁGINA INICIAL
+   - Vá em Configurações > Leitura
+   - Selecione "Uma página estática"
+   - Escolha uma página para "Página inicial"
+   - O tema criará automaticamente a página inicial com todas as seções
+
+3. PERSONALIZAR PÁGINA INICIAL
+   - Vá em Aparência > Personalizar > Página Inicial
+   - Configure cada seção:
+     * Seção Hero: Título, subtítulo, botões e imagem
+     * Seção Cursos: Título, subtítulo e botão
+     * Seção Sobre: Título, conteúdo e imagem
+     * Seção Estatísticas: Números e labels
+     * Seção Contato: Informações de contato
+
+4. CONFIGURAR MENUS
+   - Vá em Aparência > Menus
+   - Crie 3 menus:
+     * Menu Principal (para navegação geral)
+     * Menu de Cursos (para categorias de cursos)
+     * Menu do Rodapé (para links importantes)
+   - Atribua cada menu à sua localização
+
+5. CONFIGURAR WIDGETS
+   - Vá em Aparência > Widgets
+   - Configure as áreas:
+     * Sidebar Principal
+     * Cursos em Destaque
+     * Professores
+     * Depoimentos
+     * Estatísticas
+     * Sidebar do Rodapé
+
+6. CRIAR CONTEÚDO
+   - Crie páginas importantes (Sobre, Contato, etc.)
+   - Publique posts sobre cursos
+   - Configure categorias e tags
+
+ESTRUTURA DE ARQUIVOS ORGANIZADA:
+==================================
+- front-page.php: Template da página inicial
+- template-parts/home/: Seções da página inicial
+  * hero.php: Seção principal
+  * cursos-destaque.php: Cursos em destaque
+  * sobre-escola.php: Sobre a escola
+  * professores.php: Professores
+  * depoimentos.php: Depoimentos
+  * estatisticas.php: Estatísticas
+  * contato.php: Formulário de contato
+- assets/css/home.css: Estilos da página inicial
+- assets/js/home.js: JavaScript da página inicial
+- inc/home-customizer.php: Configurações do Customizer
+
+CAMPOS PERSONALIZADOS PARA CURSOS:
+==================================
+- duracao_curso: Duração do curso
+- nivel_curso: iniciante, intermediario, avancado
+- preco_curso: Preço em números
+- numero_alunos: Quantidade de alunos
+- conteudo_curso: Conteúdo programático
+- professor_curso: ID do professor
+- curso_destaque: Marcar como destaque (1 ou 0)
+
+CAMPOS PARA PROFESSORES:
+========================
+- tipo_professor: Marcar como professor (1 ou 0)
+- titulo_professor: Título/cargo do professor
+- especialidades_professor: Especialidades (separadas por vírgula)
+- cursos_ministrados: Número de cursos ministrados
+- anos_experiencia: Anos de experiência
+
+CAMPOS PARA DEPOIMENTOS:
+========================
+- tipo_depoimento: Marcar como depoimento (1 ou 0)
+- curso_aluno: Curso que o aluno fez
+- avaliacao_aluno: Nota de 1 a 5
+
+PLUGINS RECOMENDADOS:
+=====================
+- Advanced Custom Fields (para campos personalizados)
+- Custom Post Type UI (para tipos de post)
+- Contact Form 7 (para formulário de contato)
+- WooCommerce (para vendas de cursos)

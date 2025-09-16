@@ -1,0 +1,380 @@
+/* ==========================================================================
+   ESTILOS DO EDITOR DE BLOCOS
+   ========================================================================== */
+
+/* Variáveis CSS para o editor */
+:root {
+    --primary-color: #3498db;
+    --primary-dark: #2980b9;
+    --secondary-color: #2c3e50;
+    --text-color: #333;
+    --text-light: #7f8c8d;
+    --bg-color: #fff;
+    --bg-light: #f8f9fa;
+    --border-color: #e9ecef;
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Editor principal */
+.editor-styles-wrapper {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Títulos */
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.editor-styles-wrapper h1 { font-size: 2.5rem; }
+.editor-styles-wrapper h2 { font-size: 2rem; }
+.editor-styles-wrapper h3 { font-size: 1.75rem; }
+.editor-styles-wrapper h4 { font-size: 1.5rem; }
+.editor-styles-wrapper h5 { font-size: 1.25rem; }
+.editor-styles-wrapper h6 { font-size: 1rem; }
+
+/* Parágrafos */
+.editor-styles-wrapper p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* Links */
+.editor-styles-wrapper a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.editor-styles-wrapper a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Listas */
+.editor-styles-wrapper ul,
+.editor-styles-wrapper ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.editor-styles-wrapper li {
+    margin-bottom: 0.5rem;
+}
+
+/* Citações */
+.editor-styles-wrapper blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-light);
+}
+
+/* Código */
+.editor-styles-wrapper code {
+    background-color: var(--bg-light);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.editor-styles-wrapper pre {
+    background-color: var(--bg-light);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.editor-styles-wrapper pre code {
+    background: none;
+    padding: 0;
+}
+
+/* Tabelas */
+.editor-styles-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.editor-styles-wrapper th,
+.editor-styles-wrapper td {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.editor-styles-wrapper th {
+    background-color: var(--bg-light);
+    font-weight: 600;
+}
+
+/* Imagens */
+.editor-styles-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Botões */
+.editor-styles-wrapper .wp-block-button__link {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.editor-styles-wrapper .wp-block-button__link:hover {
+    background-color: var(--primary-dark);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Grupos e colunas */
+.editor-styles-wrapper .wp-block-group {
+    margin: 1rem 0;
+}
+
+.editor-styles-wrapper .wp-block-columns {
+    margin: 1rem 0;
+}
+
+/* Separadores */
+.editor-styles-wrapper .wp-block-separator {
+    border: none;
+    border-top: 2px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+/* Espaçadores */
+.editor-styles-wrapper .wp-block-spacer {
+    margin: 0;
+}
+
+/* Citações de pull */
+.editor-styles-wrapper .wp-block-pullquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1rem;
+    margin: 2rem 0;
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.editor-styles-wrapper .wp-block-pullquote cite {
+    font-size: 0.9em;
+    color: var(--text-light);
+    font-style: normal;
+}
+
+/* Galeria */
+.editor-styles-wrapper .wp-block-gallery {
+    margin: 1rem 0;
+}
+
+.editor-styles-wrapper .wp-block-gallery .wp-block-image {
+    margin: 0;
+}
+
+/* Mídia e texto */
+.editor-styles-wrapper .wp-block-media-text {
+    margin: 1rem 0;
+}
+
+/* Capa */
+.editor-styles-wrapper .wp-block-cover {
+    margin: 1rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Vídeo */
+.editor-styles-wrapper .wp-block-video {
+    margin: 1rem 0;
+}
+
+.editor-styles-wrapper .wp-block-video video {
+    width: 100%;
+    height: auto;
+}
+
+/* Áudio */
+.editor-styles-wrapper .wp-block-audio {
+    margin: 1rem 0;
+}
+
+.editor-styles-wrapper .wp-block-audio audio {
+    width: 100%;
+}
+
+/* Arquivo */
+.editor-styles-wrapper .wp-block-file {
+    margin: 1rem 0;
+}
+
+.editor-styles-wrapper .wp-block-file__button {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.editor-styles-wrapper .wp-block-file__button:hover {
+    background-color: var(--primary-dark);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Lista de arquivos */
+.editor-styles-wrapper .wp-block-file__content-wrapper {
+    margin: 1rem 0;
+}
+
+/* Código */
+.editor-styles-wrapper .wp-block-code {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.editor-styles-wrapper .wp-block-code code {
+    background: none;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* Pré-formatado */
+.editor-styles-wrapper .wp-block-preformatted {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+}
+
+/* Verso */
+.editor-styles-wrapper .wp-block-verse {
+    background-color: var(--bg-light);
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+}
+
+/* Mais */
+.editor-styles-wrapper .wp-block-more {
+    border-top: 2px solid var(--border-color);
+    margin: 2rem 0;
+    padding-top: 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+/* Quebra de página */
+.editor-styles-wrapper .wp-block-nextpage {
+    border-top: 2px solid var(--border-color);
+    margin: 2rem 0;
+    padding-top: 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+/* Comentários */
+.editor-styles-wrapper .wp-block-comments {
+    margin: 2rem 0;
+}
+
+/* Comentário */
+.editor-styles-wrapper .wp-block-comment {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+/* Comentário autor */
+.editor-styles-wrapper .wp-block-comment-author {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Comentário data */
+.editor-styles-wrapper .wp-block-comment-date {
+    color: var(--text-light);
+    font-size: 0.9em;
+    margin-bottom: 0.5rem;
+}
+
+/* Comentário conteúdo */
+.editor-styles-wrapper .wp-block-comment-content {
+    margin-bottom: 0.5rem;
+}
+
+/* Comentário resposta */
+.editor-styles-wrapper .wp-block-comment-reply-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.editor-styles-wrapper .wp-block-comment-reply-link:hover {
+    text-decoration: underline;
+}
+
+/* Comentário avatar */
+.editor-styles-wrapper .wp-block-comment-avatar {
+    float: left;
+    margin-right: 1rem;
+}
+
+.editor-styles-wrapper .wp-block-comment-avatar img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+/* Limpar floats */
+.editor-styles-wrapper .wp-block-comment::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsividade no editor */
+@media (max-width: 768px) {
+    .editor-styles-wrapper h1 { font-size: 2rem; }
+    .editor-styles-wrapper h2 { font-size: 1.75rem; }
+    .editor-styles-wrapper h3 { font-size: 1.5rem; }
+    
+    .editor-styles-wrapper .wp-block-columns {
+        flex-direction: column;
+    }
+    
+    .editor-styles-wrapper .wp-block-media-text {
+        flex-direction: column;
+    }
+}
