@@ -83,34 +83,6 @@ function cetesi_fallback_menu() {
 }
 
 /**
- * Carregar estilos e scripts do tema
- */
-function cetesi_enqueue_scripts() {
-    // Estilo principal
-    wp_enqueue_style('cetesi-style', get_stylesheet_uri(), array(), CETESI_VERSION);
-    
-    // Estilos específicos
-    wp_enqueue_style('cetesi-hero', get_template_directory_uri() . '/assets/css/hero.css', array('cetesi-style'), CETESI_VERSION);
-    wp_enqueue_style('cetesi-front-page', get_template_directory_uri() . '/assets/css/front-page.css', array('cetesi-style'), CETESI_VERSION);
-    wp_enqueue_style('cetesi-mobile', get_template_directory_uri() . '/assets/css/mobile.css', array('cetesi-style'), CETESI_VERSION);
-    
-    // Estilo específico para página de cursos
-    if (is_page_template('page-cursos.php')) {
-        wp_enqueue_style('cetesi-page-cursos', get_template_directory_uri() . '/assets/css/page-cursos.css', array('cetesi-style'), CETESI_VERSION);
-    }
-    
-    // Scripts
-    wp_enqueue_script('cetesi-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), CETESI_VERSION, true);
-    
-    // Font Awesome
-    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
-    
-    // Google Fonts
-    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap', array(), null);
-}
-add_action('wp_enqueue_scripts', 'cetesi_enqueue_scripts');
-
-/**
  * Configurações Avançadas do Tema
  */
 function cetesi_advanced_settings() {

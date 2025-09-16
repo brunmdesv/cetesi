@@ -282,36 +282,25 @@
     
     .hero-titulo-ultra {
         font-size: 2.5rem;
-        line-height: 1.2;
-        margin-bottom: var(--space-lg);
     }
     
     .hero-descricao-ultra {
         font-size: 1.125rem;
-        line-height: 1.6;
-        margin-bottom: var(--space-xl);
     }
     
     .hero-badges-ultra {
         justify-content: center;
-        gap: var(--space-sm);
-        margin-bottom: var(--space-xl);
     }
     
     .cta-botoes-ultra {
         flex-direction: column;
         width: 100%;
-        gap: var(--space-md);
-        margin: var(--space-xl) 0;
     }
     
     .btn-hero-principal-ultra,
     .btn-hero-secundario-ultra {
         width: 100%;
         justify-content: center;
-        padding: var(--space-lg) var(--space-xl);
-        font-size: 1rem;
-        min-height: 56px;
     }
 }
 
@@ -322,59 +311,27 @@
     }
     
     .hero-titulo-ultra {
-        font-size: 1.875rem;
-        line-height: 1.1;
-        margin-bottom: var(--space-md);
-        padding: 0 var(--space-sm);
+        font-size: 2rem;
     }
     
     .hero-descricao-ultra {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-bottom: var(--space-lg);
-        padding: 0 var(--space-sm);
-    }
-    
-    .hero-badges-ultra {
-        gap: var(--space-xs);
-        margin-bottom: var(--space-lg);
-        padding: 0 var(--space-sm);
+        font-size: 1rem;
     }
     
     .badge-ultra {
         padding: var(--space-sm) var(--space-md);
-        font-size: 0.75rem;
-        flex: 1;
-        min-width: 0;
-        text-align: center;
+        font-size: 0.8rem;
     }
     
     .badge-icon {
-        width: 18px;
-        height: 18px;
-        font-size: 0.75rem;
-    }
-    
-    .badge-text {
-        font-size: 0.7rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .cta-botoes-ultra {
-        padding: 0 var(--space-sm);
-        gap: var(--space-sm);
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
     }
     
     .btn-hero-principal-ultra,
     .btn-hero-secundario-ultra {
         padding: var(--space-md) var(--space-lg);
-        font-size: 0.9rem;
-        min-height: 48px;
-    }
-    
-    .btn-content-ultra i {
         font-size: 1rem;
     }
 }
