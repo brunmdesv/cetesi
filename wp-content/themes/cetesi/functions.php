@@ -20,6 +20,11 @@ define( 'CETESI_THEME_DIR', get_template_directory() );
 define( 'CETESI_THEME_URL', get_template_directory_uri() );
 define( 'CETESI_ASSETS_URL', CETESI_THEME_URL . '/assets' );
 
+// Incluir arquivos de funcionalidades
+require_once CETESI_THEME_DIR . '/inc/courses-admin.php';
+require_once CETESI_THEME_DIR . '/inc/courses-create.php';
+require_once CETESI_THEME_DIR . '/inc/courses-edit.php';
+
 /**
  * Configuração do tema
  */
