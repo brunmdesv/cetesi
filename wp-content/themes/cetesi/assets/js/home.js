@@ -47,7 +47,7 @@
     function animateOnScroll() {
         $('.course-card, .teacher-card, .testimonial-card').each(function() {
             if (isElementInViewport(this)) {
-                $(this).addClass('animate-in');
+                $(this).addClass('animate-in fade-in-up');
             }
         });
     }
@@ -187,6 +187,21 @@
                     .course-card.animate-in, .teacher-card.animate-in, .testimonial-card.animate-in {
                         opacity: 1;
                         transform: translateY(0);
+                    }
+                    
+                    .fade-in-up {
+                        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+                    
+                    @keyframes fadeInUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
                     }
                     
                     .success-message {

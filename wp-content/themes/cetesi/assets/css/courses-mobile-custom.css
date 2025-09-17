@@ -19,23 +19,16 @@
     
     /* ===== CUSTOMIZAÇÕES ESPECÍFICAS PARA MOBILE LANDSCAPE ===== */
     
-    /* 
-     * CUSTOMIZAÇÕES DISPONÍVEIS (descomente conforme necessário):
-     */
-    
-    /* Exemplo: Ajustar espaçamentos para mobile */
-    /*
+    /* Ajustar espaçamentos para mobile */
     .courses-section {
-        padding: var(--space-xl) 0 !important;
+        padding: var(--space-2xl) 0 !important;
     }
     
     .courses-header {
-        margin-bottom: var(--space-xl) !important;
+        margin-bottom: var(--space-2xl) !important;
     }
-    */
     
-    /* Exemplo: Simplificar cards para mobile */
-    /*
+    /* Simplificar cards para mobile */
     .course-card {
         border-radius: var(--radius-lg) !important;
     }
@@ -43,21 +36,19 @@
     .course-content {
         padding: var(--space-md) !important;
     }
-    */
     
-    /* Exemplo: Ajustar tamanhos de fonte para mobile */
-    /*
+    /* Ajustar tamanhos de fonte para mobile */
     .courses-title {
         font-size: 1.75rem !important;
     }
     
-    .course-title {
-        font-size: 1rem !important;
+    .course-header h3 {
+        font-size: 1.7rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: var(--space-sm) !important;
     }
-    */
     
-    /* Exemplo: Simplificar detalhes do curso */
-    /*
+    /* Simplificar detalhes do curso */
     .course-details {
         flex-direction: column !important;
         gap: var(--space-xs) !important;
@@ -67,17 +58,25 @@
         justify-content: center !important;
         font-size: 0.8rem !important;
     }
-    */
     
-    /* Exemplo: Ocultar elementos específicos no mobile */
-    /*
-    .course-lines {
-        display: none !important;
+    /* Course info badges na mesma linha */
+    .course-info-badges {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: var(--space-xs) !important;
+        flex-wrap: nowrap !important;
     }
-    */
     
-    /* Exemplo: Simplificar botões para mobile */
-    /*
+    .info-badge {
+        flex: 1 !important;
+        min-width: 0 !important;
+        text-align: center !important;
+        font-size: 0.7rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    /* Simplificar botões para mobile */
     .course-btn {
         padding: var(--space-sm) var(--space-md) !important;
         font-size: 0.8rem !important;
@@ -87,7 +86,12 @@
         padding: var(--space-md) var(--space-lg) !important;
         font-size: 0.9rem !important;
     }
-    */
+    
+    /* Ajustar grid para mobile */
+    .courses-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-lg) !important;
+    }
 }
 
 /* ===== MOBILE PORTRAIT (até 575px) ===== */
@@ -95,23 +99,16 @@
     
     /* ===== CUSTOMIZAÇÕES ESPECÍFICAS PARA MOBILE PORTRAIT ===== */
     
-    /* 
-     * CUSTOMIZAÇÕES DISPONÍVEIS (descomente conforme necessário):
-     */
-    
-    /* Exemplo: Layout ultra-compacto */
-    /*
+    /* Layout ultra-compacto */
     .courses-section {
-        padding: var(--space-lg) 0 !important;
+        padding: var(--space-xl) 0 !important;
     }
     
     .courses-header {
-        margin-bottom: var(--space-lg) !important;
+        margin-bottom: var(--space-xl) !important;
     }
-    */
     
-    /* Exemplo: Cards mais compactos */
-    /*
+    /* Cards mais compactos */
     .course-card {
         border-radius: var(--radius-md) !important;
     }
@@ -121,16 +118,19 @@
     }
     
     .course-header {
-        height: 80px !important;
+        height: auto !important;
+        padding: var(--space-xs) 0 !important;
     }
     
-    .course-icon {
+    .course-image {
+        height: 100px !important;
+    }
+    
+    .course-image i {
         font-size: 1.75rem !important;
     }
-    */
     
-    /* Exemplo: Títulos menores */
-    /*
+    /* Títulos menores */
     .courses-title {
         font-size: 1.5rem !important;
     }
@@ -139,13 +139,13 @@
         font-size: 0.85rem !important;
     }
     
-    .course-title {
-        font-size: 0.95rem !important;
+    .course-header h3 {
+        font-size: 1.7rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: var(--space-xs) !important;
     }
-    */
     
-    /* Exemplo: Detalhes em linha única */
-    /*
+    /* Detalhes em linha única */
     .course-details {
         flex-direction: row !important;
         flex-wrap: wrap !important;
@@ -159,10 +159,25 @@
         font-size: 0.7rem !important;
         padding: 0.25rem var(--space-xs) !important;
     }
-    */
     
-    /* Exemplo: Descrição mais compacta */
-    /*
+    /* Course info badges na mesma linha */
+    .course-info-badges {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: var(--space-xs) !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .info-badge {
+        flex: 1 !important;
+        min-width: 0 !important;
+        text-align: center !important;
+        font-size: 0.65rem !important;
+        padding: 0.2rem 0.4rem !important;
+    }
+    
+    /* Descrição mais compacta */
     .course-description {
         padding: var(--space-xs) !important;
         margin-bottom: var(--space-md) !important;
@@ -172,10 +187,8 @@
         font-size: 0.75rem !important;
         line-height: 1.4 !important;
     }
-    */
     
-    /* Exemplo: Botões menores */
-    /*
+    /* Botões menores */
     .course-btn {
         padding: var(--space-xs) var(--space-sm) !important;
         font-size: 0.75rem !important;
@@ -185,7 +198,11 @@
         padding: var(--space-sm) var(--space-md) !important;
         font-size: 0.8rem !important;
     }
-    */
+    
+    /* Grid ainda mais compacto */
+    .courses-grid {
+        gap: var(--space-md) !important;
+    }
 }
 
 /* ===== MOBILE EXTRA PEQUENO (até 480px) ===== */
@@ -193,47 +210,43 @@
     
     /* ===== CUSTOMIZAÇÕES ESPECÍFICAS PARA MOBILE EXTRA PEQUENO ===== */
     
-    /* 
-     * CUSTOMIZAÇÕES DISPONÍVEIS (descomente conforme necessário):
-     */
-    
-    /* Exemplo: Layout mínimo */
-    /*
+    /* Layout mínimo */
     .courses-section {
-        padding: var(--space-md) 0 !important;
+        padding: var(--space-lg) 0 !important;
     }
     
     .courses-header {
-        margin-bottom: var(--space-md) !important;
+        margin-bottom: var(--space-lg) !important;
     }
     
     .courses-grid {
         gap: var(--space-md) !important;
         margin-bottom: var(--space-lg) !important;
     }
-    */
     
-    /* Exemplo: Cards ultra-compactos */
-    /*
+    /* Cards ultra-compactos */
     .course-card {
         border-radius: var(--radius-sm) !important;
     }
     
     .course-content {
-        padding: var(--space-xs) !important;
+        padding: 1.0rem 0.7rem !important;
     }
     
     .course-header {
-        height: 70px !important;
+        height: auto !important;
+        padding: 0.25rem 0 !important;
     }
     
-    .course-icon {
+    .course-image {
+        height: 80px !important;
+    }
+    
+    .course-image i {
         font-size: 1.5rem !important;
     }
-    */
     
-    /* Exemplo: Títulos ultra-compactos */
-    /*
+    /* Títulos ultra-compactos */
     .courses-title {
         font-size: 1.25rem !important;
     }
@@ -242,13 +255,13 @@
         font-size: 0.8rem !important;
     }
     
-    .course-title {
-        font-size: 0.9rem !important;
+    .course-header h3 {
+        font-size: 1.7rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0.25rem !important;
     }
-    */
     
-    /* Exemplo: Detalhes em grid compacto */
-    /*
+    /* Detalhes em grid compacto */
     .course-details {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
@@ -264,10 +277,25 @@
     .detail-item i {
         font-size: 0.8rem !important;
     }
-    */
     
-    /* Exemplo: Descrição mínima */
-    /*
+    /* Course info badges na mesma linha */
+    .course-info-badges {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: var(--space-xs) !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .info-badge {
+        flex: 1 !important;
+        min-width: 0 !important;
+        text-align: center !important;
+        font-size: 0.6rem !important;
+        padding: 0.15rem 0.3rem !important;
+    }
+    
+    /* Descrição mínima */
     .course-description {
         padding: 0.5rem !important;
         margin-bottom: var(--space-sm) !important;
@@ -277,71 +305,115 @@
         font-size: 0.7rem !important;
         line-height: 1.3 !important;
     }
-    */
     
-    /* Exemplo: Botões ultra-compactos */
-    /*
+    /* Botões ultra-compactos */
     .course-btn {
-        padding: 0.4rem var(--space-xs) !important;
-        font-size: 0.7rem !important;
+        padding: 0.7rem var(--space-xs) !important;
+        font-size: 0.6rem !important;
     }
     
     .courses-view-all {
         padding: var(--space-xs) var(--space-sm) !important;
         font-size: 0.75rem !important;
     }
-    */
 }
 
 /* ===== CUSTOMIZAÇÕES ESPECÍFICAS ===== */
 
-/* 
- * CUSTOMIZAÇÕES GERAIS PARA MOBILE
- * Adicione suas modificações aqui conforme necessário
- * 
- * Exemplos disponíveis (descomente conforme necessário):
- */
-
-/* Exemplo: Simplificar animações no mobile */
-/*
+/* Simplificar animações no mobile para melhor performance */
 @media (max-width: 767px) {
     .course-card {
-        transition: none !important;
+        transition: box-shadow 0.2s ease !important;
     }
     
     .course-card:hover {
         transform: none !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
     }
     
     .course-btn::before,
     .courses-view-all::before {
         display: none !important;
     }
+    
+    /* Simplificar efeitos de hover para mobile */
+    .course-header h3::after {
+        display: none !important;
+    }
 }
-*/
 
-/* Exemplo: Ajustar contraste para mobile */
-/*
+/* Ajustar contraste e sombras para mobile */
 @media (max-width: 767px) {
     .course-card {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
     }
     
     .course-btn {
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
-    }
-}
-*/
-
-/* Exemplo: Ocultar elementos específicos */
-/*
-@media (max-width: 767px) {
-    .course-lines {
-        display: none !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
     }
     
+    /* Melhorar legibilidade */
+    .course-description p {
+        color: var(--gray-700) !important;
+    }
+}
+
+/* Ocultar elementos decorativos desnecessários no mobile */
+@media (max-width: 767px) {
     .courses-title::after {
         display: none !important;
     }
+    
+    /* Simplificar badges */
+    .course-info-badges {
+        margin-bottom: var(--space-sm) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: var(--space-xs) !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .info-badge {
+        font-size: 0.5rem !important;
+        padding: 0.2rem 0.4rem !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        text-align: center !important;
+    }
 }
-*/
+
+/* Melhorar espaçamento entre elementos */
+@media (max-width: 767px) {
+    .course-header {
+        margin-bottom: var(--space-sm) !important;
+    }
+    
+    .course-description {
+        margin-bottom: var(--space-sm) !important;
+    }
+    
+    .course-actions {
+        margin-top: var(--space-sm) !important;
+    }
+}
+
+/* Otimizar para telas muito pequenas */
+@media (max-width: 360px) {
+    .courses-title {
+        font-size: 1.1rem !important;
+    }
+    
+    .course-header h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .course-description p {
+        font-size: 0.65rem !important;
+    }
+    
+    .course-btn {
+        font-size: 0.65rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+}

@@ -1,0 +1,692 @@
+/*
+ * RESPONSIVE BREAKPOINTS - CETESI TEMA SIMPLIFICADO
+ * 
+ * Este arquivo consolida TODA a responsividade do tema em apenas 3 breakpoints essenciais:
+ * 
+ * 1. DESKTOP: min-width: 1200px (padrão)
+ * 2. TABLET: max-width: 1199px and min-width: 768px  
+ * 3. MOBILE: max-width: 767px
+ * 
+ * Todas as regras foram consolidadas aqui para facilitar manutenção e evitar duplicações.
+ */
+
+/* ==========================================================================
+   TABLET (768px - 1199px)
+   ========================================================================== */
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    
+    /* ===== COURSES SECTION - TABLET ===== */
+    .courses-section {
+        padding: var(--space-3xl) 0;
+    }
+    
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+    
+    .courses-title {
+        font-size: 2.25rem;
+    }
+    
+    .courses-subtitle {
+        font-size: 1rem;
+    }
+    
+    .course-content {
+        padding: var(--space-lg);
+    }
+    
+    .course-header h3 {
+        font-size: 1.125rem;
+    }
+    
+    /* ===== HERO SECTION - TABLET ===== */
+    .hero-modern {
+        padding: var(--space-4xl) 0;
+    }
+    
+    .hero-title-modern {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle-modern {
+        font-size: 1.1rem;
+    }
+    
+    /* ===== HEADER - TABLET ===== */
+    .header-content {
+        padding: 0 var(--space-lg);
+    }
+    
+    .main-navigation ul {
+        gap: var(--space-md);
+    }
+    
+    .main-navigation a {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.95rem;
+    }
+    
+    /* ===== FOOTER - TABLET ===== */
+    .footer-content {
+        padding: var(--space-2xl) var(--space-lg);
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+}
+
+/* ==========================================================================
+   MOBILE (até 767px)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    
+    /* ===== COURSES SECTION - MOBILE ===== */
+    .courses-section {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .courses-header {
+        margin-bottom: var(--space-2xl);
+    }
+    
+    .courses-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        margin-bottom: var(--space-2xl);
+    }
+    
+    .courses-title {
+        font-size: 1.75rem;
+    }
+    
+    .courses-subtitle {
+        font-size: 0.95rem;
+        padding: 0 var(--space-md);
+    }
+    
+    .course-content {
+        padding: 1.0rem 0.7rem;
+    }
+    
+    .course-header h3 {
+        font-size: 1.4rem;
+        line-height: 1.2;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .course-details {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+    
+    .detail-item {
+        justify-content: center;
+        font-size: 0.8rem;
+    }
+    
+    /* Course info badges na mesma linha */
+    .course-info-badges {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: var(--space-xs);
+        flex-wrap: nowrap;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .info-badge {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+        font-size: 0.5rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .course-descricao {
+        font-size: 0.85rem;
+    }
+    
+    .course-btn {
+        padding: 0.8rem var(--space-xs);
+        font-size: 0.6rem;
+    }
+    
+    .courses-view-all {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 0.9rem;
+    }
+    
+    /* Simplificar animações no mobile para melhor performance */
+    .course-card {
+        transition: box-shadow 0.2s ease;
+    }
+    
+    .course-card:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .course-btn::before,
+    .courses-view-all::before {
+        display: none;
+    }
+    
+    .course-header h3::after {
+        display: none;
+    }
+    
+    .courses-title::after {
+        display: none;
+    }
+    
+    /* Ajustar contraste e sombras para mobile */
+    .course-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    .course-btn {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+    
+    .course-description p {
+        color: var(--gray-700);
+    }
+    
+    /* Melhorar espaçamento entre elementos */
+    .course-header {
+        margin-bottom: var(--space-sm);
+    }
+    
+    .course-description {
+        margin-bottom: var(--space-sm);
+    }
+    
+    .course-actions {
+        margin-top: var(--space-sm);
+    }
+    
+    /* ===== HERO SECTION - MOBILE ===== */
+    .hero-modern {
+        padding: var(--space-2xl) 0;
+        min-height: auto;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-xl);
+    }
+    
+    .hero-title-modern {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle-modern {
+        font-size: 1rem;
+        margin-bottom: var(--space-lg);
+    }
+    
+    /* Hero stats na mesma linha */
+    .hero-stats {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .stat-item {
+        flex: 1;
+        min-width: 60px;
+        max-width: 100px;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.7rem;
+    }
+    
+    .stat-number {
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+    
+    .stat-label {
+        font-size: 0.6rem;
+        line-height: 1.1;
+    }
+    
+    /* CTA botões na mesma linha */
+    .cta-botoes-ultra {
+        flex-direction: row;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .btn-hero-principal-ultra,
+    .btn-hero-secundario-ultra {
+        flex: 1;
+        min-width: 120px;
+        max-width: 160px;
+        padding: 0.9rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Melhorar distanciamento do hero-card do hero-scroll */
+    .hero-visual {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-scroll {
+        display: none;
+    }
+    
+    /* ===== HEADER - MOBILE ===== */
+    .header {
+        padding: var(--space-sm) 0;
+    }
+    
+    .header-content {
+        padding: 0 var(--space-md);
+    }
+    
+    .header-top {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .site-title {
+        font-size: 1.5rem;
+    }
+    
+    .main-navigation {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .mobile-menu {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: var(--shadow-lg);
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .mobile-menu ul {
+        flex-direction: column;
+        padding: var(--space-md);
+    }
+    
+    .mobile-menu li {
+        margin: 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .mobile-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .mobile-menu a {
+        display: block;
+        padding: var(--space-md);
+        color: var(--text-color);
+        font-weight: 500;
+    }
+    
+    /* ===== FOOTER - MOBILE ===== */
+    .footer-content {
+        padding: var(--space-xl) var(--space-md);
+        text-align: center;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .footer-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .footer-section p,
+    .footer-section li {
+        font-size: 0.9rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+    }
+    
+    /* ===== LAYOUT GERAL - MOBILE ===== */
+    .container {
+        padding: 0 var(--space-md);
+        max-width: 100%;
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+    
+    .col {
+        margin-bottom: var(--space-md);
+    }
+    
+    /* Títulos responsivos */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    
+    /* Botões responsivos */
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+        padding: 15px 25px;
+        font-size: 1rem;
+        border-radius: 25px;
+    }
+    
+    /* Formulários responsivos */
+    .search-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-form input[type="search"] {
+        width: 100%;
+        padding: 15px;
+        border-radius: 25px;
+        border: 2px solid #e5e7eb;
+    }
+    
+    .search-form button {
+        width: 100%;
+        padding: 15px;
+        border-radius: 25px;
+    }
+}
+
+/* ==========================================================================
+   MOBILE EXTRA PEQUENO (até 480px) - Apenas ajustes específicos
+   ========================================================================== */
+
+@media (max-width: 480px) {
+    
+    /* ===== COURSES - MOBILE EXTRA PEQUENO ===== */
+    .courses-section {
+        padding: var(--space-lg) 0;
+    }
+    
+    .courses-header {
+        margin-bottom: var(--space-lg);
+    }
+    
+    .courses-grid {
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+    
+    .courses-title {
+        font-size: 1.25rem;
+    }
+    
+    .courses-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .course-content {
+        padding: var(--space-xs);
+    }
+    
+    .course-header h3 {
+        font-size: 1.4rem;
+        line-height: 1.1;
+        margin-bottom: 0.25rem;
+    }
+    
+    .course-image {
+        height: 80px;
+    }
+    
+    .course-image i {
+        font-size: 1.5rem;
+    }
+    
+    .course-details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xs);
+    }
+    
+    .detail-item {
+        font-size: 0.65rem;
+        padding: 0.2rem var(--space-xs);
+        text-align: center;
+    }
+    
+    .detail-item i {
+        font-size: 0.8rem;
+    }
+    
+    .info-badge {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.3rem;
+    }
+    
+    .course-description {
+        padding: 0.5rem;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .course-description p {
+        font-size: 0.7rem;
+        line-height: 1.3;
+    }
+    
+    .course-btn {
+        padding: 0.8rem var(--space-xs);
+        font-size: 0.6rem;
+    }
+    
+    .courses-view-all {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.75rem;
+    }
+    
+    /* ===== HERO - MOBILE EXTRA PEQUENO ===== */
+    .hero-modern {
+        padding: 2rem 0 0.5rem 0;
+        min-height: auto;
+    }
+    
+    .hero-title-modern {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle-modern {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .stat-item {
+        min-width: 50px;
+        max-width: 100px;
+        padding: 0.25rem 0.3rem;
+        font-size: 0.6rem;
+    }
+    
+    .stat-number {
+        font-size: 0.75rem;
+    }
+    
+    .stat-label {
+        font-size: 0.5rem;
+    }
+    
+    .cta-botoes-ultra {
+        gap: 0.4rem;
+    }
+    
+    .btn-hero-principal-ultra,
+    .btn-hero-secundario-ultra {
+        min-width: 90px;
+        max-width: 160px;
+        padding: 0.9rem 0.7rem;
+        font-size: 0.75rem;
+    }
+    
+    .hero-visual {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-card {
+        margin-bottom: 0.75rem;
+    }
+    
+    /* ===== HEADER - MOBILE EXTRA PEQUENO ===== */
+    .site-title {
+        font-size: 1.3rem;
+    }
+    
+    .header-content {
+        padding: 0 var(--space-sm);
+    }
+    
+    /* ===== FOOTER - MOBILE EXTRA PEQUENO ===== */
+    .footer-content {
+        padding: var(--space-lg) var(--space-sm);
+    }
+    
+    .footer-section h3 {
+        font-size: 1rem;
+    }
+    
+    .footer-section p,
+    .footer-section li {
+        font-size: 0.85rem;
+    }
+    
+    /* ===== LAYOUT GERAL - MOBILE EXTRA PEQUENO ===== */
+    .container {
+        padding: 0 var(--space-sm);
+    }
+    
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.2rem; }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        max-width: 280px;
+    }
+}
+
+/* ==========================================================================
+   OTIMIZAÇÕES DE PERFORMANCE E ACESSIBILIDADE
+   ========================================================================== */
+
+/* Reduzir animações para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Alto contraste para usuários com deficiência visual */
+@media (prefers-contrast: high) {
+    .btn-primary,
+    .btn-secondary {
+        border: 2px solid #000;
+    }
+    
+    .widget,
+    .comment {
+        border: 2px solid #000;
+    }
+}
+
+/* Usar will-change apenas quando necessário */
+.main-navigation a:hover,
+.btn:hover {
+    will-change: transform;
+}
+
+/* Otimizar repaints */
+.site-header,
+.site-footer {
+    contain: layout style paint;
+}
+
+/* Garantir que imagens não quebrem o layout */
+.entry-content img,
+.widget img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Garantir que formulários sejam responsivos */
+.search-form,
+.comment-form {
+    width: 100%;
+    max-width: 100%;
+}
+
+.search-form input,
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Garantir que tabelas sejam responsivas */
+.entry-content table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+}
+
+.entry-content table th,
+.entry-content table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Garantir que listas sejam responsivas */
+.entry-content ul,
+.entry-content ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.entry-content li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+}

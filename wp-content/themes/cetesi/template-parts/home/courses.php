@@ -50,69 +50,45 @@ if ( ! defined( 'ABSPATH' ) ) {
                     $course_color = get_post_meta( get_the_ID(), '_course_color', true );
                     ?>
                     
-                    <div class="course-card" data-aos="fade-up" data-aos-delay="<?php echo $courses_query->current_post * 100; ?>">
-                        <!-- Header do Card -->
-                        <div class="course-header" style="background: <?php echo $course_color ? $course_color : 'var(--gradient-primary)'; ?>">
-                            <div class="course-icon">
-                                <i class="<?php echo $course_icon ? $course_icon : 'fas fa-graduation-cap'; ?>"></i>
-                            </div>
+                    <div class="course-card tecnico fade-in-up" data-aos="fade-up" data-aos-delay="<?php echo $courses_query->current_post * 100; ?>">
+                        <div class="course-image">
+                            <i class="<?php echo $course_icon ? $course_icon : 'fas fa-graduation-cap'; ?>"></i>
                         </div>
-
-                        <!-- Conteúdo do Card -->
                         <div class="course-content">
-                            <!-- Título -->
-                            <h3 class="course-title">
-                                <?php the_title(); ?>
-                            </h3>
-
-                            <!-- Linhas decorativas -->
-                            <div class="course-lines">
-                                <div class="line line-primary"></div>
-                                <div class="line line-secondary"></div>
-                            </div>
-
-                            <!-- Detalhes do Curso -->
-                            <div class="course-details">
-                                <?php if ( $course_duration ) : ?>
-                                    <div class="detail-item detail-duration">
+                            <div class="course-header">
+                                <h3><?php the_title(); ?></h3>
+                                <div class="course-info-badges">
+                                    <?php if ( $course_duration ) : ?>
+                                    <span class="info-badge duracao">
                                         <i class="fas fa-calendar-alt"></i>
-                                        <span><?php echo esc_html( $course_duration ); ?></span>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ( $course_hours ) : ?>
-                                    <div class="detail-item detail-hours">
+                                        <?php echo esc_html( $course_duration ); ?>
+                                    </span>
+                                    <?php endif; ?>
+                                    <?php if ( $course_hours ) : ?>
+                                    <span class="info-badge carga-horaria">
                                         <i class="fas fa-clock"></i>
-                                        <span><?php echo esc_html( $course_hours ); ?></span>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ( $course_format ) : ?>
-                                    <div class="detail-item detail-format">
+                                        <?php echo esc_html( $course_hours ); ?>
+                                    </span>
+                                    <?php endif; ?>
+                                    <?php if ( $course_format ) : ?>
+                                    <span class="info-badge modalidade">
                                         <i class="fas fa-building"></i>
-                                        <span><?php echo esc_html( $course_format ); ?></span>
-                                    </div>
-                                <?php endif; ?>
+                                        <?php echo esc_html( $course_format ); ?>
+                                    </span>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-
-                            <!-- Linhas decorativas -->
-                            <div class="course-lines">
-                                <div class="line line-accent"></div>
-                                <div class="line line-success"></div>
+                            
+                            <?php if ( get_the_excerpt() ) : ?>
+                            <div class="course-descricao">
+                                <?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?>
                             </div>
-
-                            <!-- Descrição -->
-                            <div class="course-description">
-                                <p><?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?></p>
-                            </div>
-
-                            <!-- Botão -->
-                            <div class="course-action">
-                                <a href="<?php the_permalink(); ?>" class="course-btn">
-                                    <i class="fas fa-arrow-right"></i>
-                                    <span>Saiba Mais</span>
-                                </a>
-                            </div>
+                            <?php endif; ?>
+                            
+                            <a href="<?php the_permalink(); ?>" class="course-btn tecnico">
+                                <i class="fas fa-arrow-right"></i>
+                                <span>Saiba Mais</span>
+                            </a>
                         </div>
                     </div>
 
@@ -180,61 +156,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 
                 foreach ( $sample_courses as $index => $course ) :
                     ?>
-                    <div class="course-card" data-aos="fade-up" data-aos-delay="<?php echo $index * 100; ?>">
-                        <!-- Header do Card -->
-                        <div class="course-header" style="background: <?php echo $course['color']; ?>">
-                            <div class="course-icon">
-                                <i class="<?php echo $course['icon']; ?>"></i>
-                            </div>
+                    <div class="course-card tecnico fade-in-up" data-aos="fade-up" data-aos-delay="<?php echo $index * 100; ?>">
+                        <div class="course-image">
+                            <i class="<?php echo $course['icon']; ?>"></i>
                         </div>
-
-                        <!-- Conteúdo do Card -->
                         <div class="course-content">
-                            <!-- Título -->
-                            <h3 class="course-title">
-                                <?php echo $course['title']; ?>
-                            </h3>
-
-                            <!-- Linhas decorativas -->
-                            <div class="course-lines">
-                                <div class="line line-primary"></div>
-                                <div class="line line-secondary"></div>
-                            </div>
-
-                            <!-- Detalhes do Curso -->
-                            <div class="course-details">
-                                <div class="detail-item detail-duration">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span><?php echo $course['duration']; ?></span>
-                                </div>
-                                <div class="detail-item detail-hours">
-                                    <i class="fas fa-clock"></i>
-                                    <span><?php echo $course['hours']; ?></span>
-                                </div>
-                                <div class="detail-item detail-format">
-                                    <i class="fas fa-building"></i>
-                                    <span><?php echo $course['format']; ?></span>
+                            <div class="course-header">
+                                <h3><?php echo $course['title']; ?></h3>
+                                <div class="course-info-badges">
+                                    <span class="info-badge duracao">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <?php echo $course['duration']; ?>
+                                    </span>
+                                    <span class="info-badge carga-horaria">
+                                        <i class="fas fa-clock"></i>
+                                        <?php echo $course['hours']; ?>
+                                    </span>
+                                    <span class="info-badge modalidade">
+                                        <i class="fas fa-building"></i>
+                                        <?php echo $course['format']; ?>
+                                    </span>
                                 </div>
                             </div>
-
-                            <!-- Linhas decorativas -->
-                            <div class="course-lines">
-                                <div class="line line-accent"></div>
-                                <div class="line line-success"></div>
+                            
+                            <div class="course-descricao">
+                                <?php echo $course['description']; ?>
                             </div>
-
-                            <!-- Descrição -->
-                            <div class="course-description">
-                                <p><?php echo $course['description']; ?></p>
-                            </div>
-
-                            <!-- Botão -->
-                            <div class="course-action">
-                                <a href="#contato" class="course-btn">
-                                    <i class="fas fa-arrow-right"></i>
-                                    <span>Saiba Mais</span>
-                                </a>
-                            </div>
+                            
+                            <a href="#contato" class="course-btn tecnico">
+                                <i class="fas fa-arrow-right"></i>
+                                <span>Saiba Mais</span>
+                            </a>
                         </div>
                     </div>
                     <?php
@@ -252,3 +204,4 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
     </div>
 </section>
+
