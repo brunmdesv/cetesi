@@ -24,6 +24,7 @@ define( 'CETESI_ASSETS_URL', CETESI_THEME_URL . '/assets' );
 require_once CETESI_THEME_DIR . '/inc/courses-admin.php';
 require_once CETESI_THEME_DIR . '/inc/courses-create.php';
 require_once CETESI_THEME_DIR . '/inc/courses-edit.php';
+require_once CETESI_THEME_DIR . '/inc/courses-functions.php';
 
 /**
  * Configuração do tema
@@ -259,6 +260,16 @@ function cetesi_scripts() {
         wp_enqueue_style( 'cetesi-courses', CETESI_ASSETS_URL . '/css/courses.css', array( 'cetesi-home' ), CETESI_VERSION );
         // CSS Mobile Customizado para Cursos (carregado após courses para sobrescrever)
         wp_enqueue_style( 'cetesi-courses-mobile-custom', CETESI_ASSETS_URL . '/css/courses-mobile-custom.css', array( 'cetesi-courses' ), CETESI_VERSION );
+    
+    }
+    
+    // Enfileirar estilos específicos para páginas de cursos
+    if (is_page_template('page-cursos.php')) {
+        wp_enqueue_style( 'cetesi-page-cursos', CETESI_ASSETS_URL . '/css/page-cursos.css', array( 'cetesi-main' ), CETESI_VERSION );
+    }
+    
+    if (is_singular('curso')) {
+        wp_enqueue_style( 'cetesi-single-curso', CETESI_ASSETS_URL . '/css/single-curso.css', array( 'cetesi-main' ), CETESI_VERSION );
     }
     
     // JavaScript principal

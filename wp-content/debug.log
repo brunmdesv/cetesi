@@ -217,3 +217,161 @@ Stack trace:
 [17-Sep-2025 02:08:28 UTC] Erro de evento de reagendamento do cron para o gancho: wp_privacy_delete_old_export_files, código de erro: could_not_set, mensagem de erro: Não foi possível salvar a lista de evento do cron, dados: {"schedule":"hourly","args":[],"interval":3600}
 [17-Sep-2025 13:28:49 UTC] Automatic updates starting...
 [17-Sep-2025 13:28:51 UTC] Automatic updates complete.
+[17-Sep-2025 13:38:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1450
+[17-Sep-2025 13:38:59 UTC] PHP Stack trace:
+[17-Sep-2025 13:38:59 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:38:59 UTC] PHP   2. do_action($hook_name = 'cursos_page_criar-curso-personalizado') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:38:59 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:38:59 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:38:59 UTC] PHP   5. cetesi_custom_course_page_callback('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:38:59 UTC] PHP   6. cetesi_process_custom_course_creation() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:20
+[17-Sep-2025 13:38:59 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=teste', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:574
+[17-Sep-2025 13:38:59 UTC] PHP   8. header($header = 'X-Redirect-By: WordPress') C:\wamp64\www\cetesi\wp-includes\pluggable.php:1450
+[17-Sep-2025 13:38:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1453
+[17-Sep-2025 13:38:59 UTC] PHP Stack trace:
+[17-Sep-2025 13:38:59 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:38:59 UTC] PHP   2. do_action($hook_name = 'cursos_page_criar-curso-personalizado') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:38:59 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:38:59 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:38:59 UTC] PHP   5. cetesi_custom_course_page_callback('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:38:59 UTC] PHP   6. cetesi_process_custom_course_creation() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:20
+[17-Sep-2025 13:38:59 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=teste', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:574
+[17-Sep-2025 13:38:59 UTC] PHP   8. header($header = 'Location: http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=teste', $replace = TRUE, $response_code = 302) C:\wamp64\www\cetesi\wp-includes\pluggable.php:1453
+[17-Sep-2025 13:40:27 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1450
+[17-Sep-2025 13:40:27 UTC] PHP Stack trace:
+[17-Sep-2025 13:40:27 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:40:27 UTC] PHP   2. do_action($hook_name = 'toplevel_page_cetesi-courses-management') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:40:27 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:40:27 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:40:27 UTC] PHP   5. cetesi_courses_management_page('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:40:27 UTC] PHP   6. cetesi_process_bulk_delete_javascript() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-admin.php:134
+[17-Sep-2025 13:40:27 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&bulk_deleted=1', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-admin.php:390
+[17-Sep-2025 13:40:27 UTC] PHP   8. header($header = 'X-Redirect-By: WordPress') C:\wamp64\www\cetesi\wp-includes\pluggable.php:1450
+[17-Sep-2025 13:40:27 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1453
+[17-Sep-2025 13:40:27 UTC] PHP Stack trace:
+[17-Sep-2025 13:40:27 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:40:27 UTC] PHP   2. do_action($hook_name = 'toplevel_page_cetesi-courses-management') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:40:27 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:40:27 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:40:27 UTC] PHP   5. cetesi_courses_management_page('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:40:27 UTC] PHP   6. cetesi_process_bulk_delete_javascript() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-admin.php:134
+[17-Sep-2025 13:40:27 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&bulk_deleted=1', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-admin.php:390
+[17-Sep-2025 13:40:27 UTC] PHP   8. header($header = 'Location: http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&bulk_deleted=1', $replace = TRUE, $response_code = 302) C:\wamp64\www\cetesi\wp-includes\pluggable.php:1453
+[17-Sep-2025 13:43:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1450
+[17-Sep-2025 13:43:00 UTC] PHP Stack trace:
+[17-Sep-2025 13:43:00 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:43:00 UTC] PHP   2. do_action($hook_name = 'cursos_page_criar-curso-personalizado') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:43:00 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:43:00 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:43:00 UTC] PHP   5. cetesi_custom_course_page_callback('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:43:00 UTC] PHP   6. cetesi_process_custom_course_creation() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:20
+[17-Sep-2025 13:43:00 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=teste+2', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:575
+[17-Sep-2025 13:43:00 UTC] PHP   8. header($header = 'X-Redirect-By: WordPress') C:\wamp64\www\cetesi\wp-includes\pluggable.php:1450
+[17-Sep-2025 13:43:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1453
+[17-Sep-2025 13:43:00 UTC] PHP Stack trace:
+[17-Sep-2025 13:43:00 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:43:00 UTC] PHP   2. do_action($hook_name = 'cursos_page_criar-curso-personalizado') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:43:00 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:43:00 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:43:00 UTC] PHP   5. cetesi_custom_course_page_callback('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:43:00 UTC] PHP   6. cetesi_process_custom_course_creation() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:20
+[17-Sep-2025 13:43:00 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=teste+2', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:575
+[17-Sep-2025 13:43:00 UTC] PHP   8. header($header = 'Location: http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=teste+2', $replace = TRUE, $response_code = 302) C:\wamp64\www\cetesi\wp-includes\pluggable.php:1453
+[17-Sep-2025 13:43:22 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1450
+[17-Sep-2025 13:43:22 UTC] PHP Stack trace:
+[17-Sep-2025 13:43:22 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:43:22 UTC] PHP   2. do_action($hook_name = 'toplevel_page_cetesi-courses-management') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:43:22 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:43:22 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:43:22 UTC] PHP   5. cetesi_courses_management_page('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:43:22 UTC] PHP   6. cetesi_process_course_action() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-admin.php:124
+[17-Sep-2025 13:43:22 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_deleted=1', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-admin.php:341
+[17-Sep-2025 13:43:22 UTC] PHP   8. header($header = 'X-Redirect-By: WordPress') C:\wamp64\www\cetesi\wp-includes\pluggable.php:1450
+[17-Sep-2025 13:43:22 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1453
+[17-Sep-2025 13:43:22 UTC] PHP Stack trace:
+[17-Sep-2025 13:43:22 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:43:22 UTC] PHP   2. do_action($hook_name = 'toplevel_page_cetesi-courses-management') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:43:22 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:43:22 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:43:22 UTC] PHP   5. cetesi_courses_management_page('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:43:22 UTC] PHP   6. cetesi_process_course_action() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-admin.php:124
+[17-Sep-2025 13:43:22 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_deleted=1', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-admin.php:341
+[17-Sep-2025 13:43:22 UTC] PHP   8. header($header = 'Location: http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_deleted=1', $replace = TRUE, $response_code = 302) C:\wamp64\www\cetesi\wp-includes\pluggable.php:1453
+[17-Sep-2025 13:43:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1450
+[17-Sep-2025 13:43:51 UTC] PHP Stack trace:
+[17-Sep-2025 13:43:51 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:43:51 UTC] PHP   2. do_action($hook_name = 'cursos_page_criar-curso-personalizado') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:43:51 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:43:51 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:43:51 UTC] PHP   5. cetesi_custom_course_page_callback('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:43:51 UTC] PHP   6. cetesi_process_custom_course_creation() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:20
+[17-Sep-2025 13:43:51 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=ffff', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:575
+[17-Sep-2025 13:43:51 UTC] PHP   8. header($header = 'X-Redirect-By: WordPress') C:\wamp64\www\cetesi\wp-includes\pluggable.php:1450
+[17-Sep-2025 13:43:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\cetesi\wp-includes\script-loader.php:3015) in C:\wamp64\www\cetesi\wp-includes\pluggable.php on line 1453
+[17-Sep-2025 13:43:51 UTC] PHP Stack trace:
+[17-Sep-2025 13:43:51 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\wp-admin\admin.php:0
+[17-Sep-2025 13:43:51 UTC] PHP   2. do_action($hook_name = 'cursos_page_criar-curso-personalizado') C:\wamp64\www\cetesi\wp-admin\admin.php:260
+[17-Sep-2025 13:43:51 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\plugin.php:517
+[17-Sep-2025 13:43:51 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:348
+[17-Sep-2025 13:43:51 UTC] PHP   5. cetesi_custom_course_page_callback('') C:\wamp64\www\cetesi\wp-includes\class-wp-hook.php:324
+[17-Sep-2025 13:43:51 UTC] PHP   6. cetesi_process_custom_course_creation() C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:20
+[17-Sep-2025 13:43:51 UTC] PHP   7. wp_redirect($location = 'http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=ffff', $status = *uninitialized*, $x_redirect_by = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\courses-create.php:575
+[17-Sep-2025 13:43:51 UTC] PHP   8. header($header = 'Location: http://192.168.100.12/wp-admin/admin.php?page=cetesi-courses-management&course_created=1&course_name=ffff', $replace = TRUE, $response_code = 302) C:\wamp64\www\cetesi\wp-includes\pluggable.php:1453
+[17-Sep-2025 13:50:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function cetesi_get_dynamic_courses() in C:\wamp64\www\cetesi\wp-content\themes\cetesi\page-cursos.php:71
+Stack trace:
+#0 C:\wamp64\www\cetesi\wp-includes\template-loader.php(106): include()
+#1 C:\wamp64\www\cetesi\wp-blog-header.php(19): require_once('C:\\wamp64\\www\\c...')
+#2 C:\wamp64\www\cetesi\index.php(17): require('C:\\wamp64\\www\\c...')
+#3 {main}
+  thrown in C:\wamp64\www\cetesi\wp-content\themes\cetesi\page-cursos.php on line 71
+[17-Sep-2025 13:51:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function cetesi_get_dynamic_courses() in C:\wamp64\www\cetesi\wp-content\themes\cetesi\page-cursos.php:71
+Stack trace:
+#0 C:\wamp64\www\cetesi\wp-includes\template-loader.php(106): include()
+#1 C:\wamp64\www\cetesi\wp-blog-header.php(19): require_once('C:\\wamp64\\www\\c...')
+#2 C:\wamp64\www\cetesi\index.php(17): require('C:\\wamp64\\www\\c...')
+#3 {main}
+  thrown in C:\wamp64\www\cetesi\wp-content\themes\cetesi\page-cursos.php on line 71
+[17-Sep-2025 14:01:17 UTC] PHP Warning:  Attempt to read property "name" on array in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\header-functions.php on line 176
+[17-Sep-2025 14:01:17 UTC] PHP Stack trace:
+[17-Sep-2025 14:01:17 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[17-Sep-2025 14:01:17 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[17-Sep-2025 14:01:17 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[17-Sep-2025 14:01:17 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[17-Sep-2025 14:01:17 UTC] PHP   5. get_header($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\single-curso.php:9
+[17-Sep-2025 14:01:17 UTC] PHP   6. locate_template($template_names = [0 => 'header.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:48
+[17-Sep-2025 14:01:17 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-content/themes/cetesi/header.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[17-Sep-2025 14:01:17 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[17-Sep-2025 14:01:17 UTC] PHP   9. cetesi_header_meta_tags() C:\wamp64\www\cetesi\wp-content\themes\cetesi\header.php:22
+[17-Sep-2025 14:01:17 UTC] PHP Warning:  Attempt to read property "name" on array in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\header-functions.php on line 176
+[17-Sep-2025 14:01:17 UTC] PHP Stack trace:
+[17-Sep-2025 14:01:17 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[17-Sep-2025 14:01:17 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[17-Sep-2025 14:01:17 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[17-Sep-2025 14:01:17 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[17-Sep-2025 14:01:17 UTC] PHP   5. get_header($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\single-curso.php:9
+[17-Sep-2025 14:01:17 UTC] PHP   6. locate_template($template_names = [0 => 'header.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:48
+[17-Sep-2025 14:01:17 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-content/themes/cetesi/header.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[17-Sep-2025 14:01:17 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[17-Sep-2025 14:01:17 UTC] PHP   9. cetesi_header_meta_tags() C:\wamp64\www\cetesi\wp-content\themes\cetesi\header.php:22
+[17-Sep-2025 14:01:30 UTC] PHP Warning:  Attempt to read property "name" on array in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\header-functions.php on line 176
+[17-Sep-2025 14:01:30 UTC] PHP Stack trace:
+[17-Sep-2025 14:01:30 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[17-Sep-2025 14:01:30 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[17-Sep-2025 14:01:30 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[17-Sep-2025 14:01:30 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[17-Sep-2025 14:01:30 UTC] PHP   5. get_header($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\single-curso.php:9
+[17-Sep-2025 14:01:30 UTC] PHP   6. locate_template($template_names = [0 => 'header.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:48
+[17-Sep-2025 14:01:30 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-content/themes/cetesi/header.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[17-Sep-2025 14:01:30 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[17-Sep-2025 14:01:30 UTC] PHP   9. cetesi_header_meta_tags() C:\wamp64\www\cetesi\wp-content\themes\cetesi\header.php:22
+[17-Sep-2025 14:01:30 UTC] PHP Warning:  Attempt to read property "name" on array in C:\wamp64\www\cetesi\wp-content\themes\cetesi\inc\header-functions.php on line 176
+[17-Sep-2025 14:01:30 UTC] PHP Stack trace:
+[17-Sep-2025 14:01:30 UTC] PHP   1. {main}() C:\wamp64\www\cetesi\index.php:0
+[17-Sep-2025 14:01:30 UTC] PHP   2. require() C:\wamp64\www\cetesi\index.php:17
+[17-Sep-2025 14:01:30 UTC] PHP   3. require_once() C:\wamp64\www\cetesi\wp-blog-header.php:19
+[17-Sep-2025 14:01:30 UTC] PHP   4. include() C:\wamp64\www\cetesi\wp-includes\template-loader.php:106
+[17-Sep-2025 14:01:30 UTC] PHP   5. get_header($name = *uninitialized*, $args = *uninitialized*) C:\wamp64\www\cetesi\wp-content\themes\cetesi\single-curso.php:9
+[17-Sep-2025 14:01:30 UTC] PHP   6. locate_template($template_names = [0 => 'header.php'], $load = TRUE, $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\general-template.php:48
+[17-Sep-2025 14:01:30 UTC] PHP   7. load_template($_template_file = 'C:\\wamp64\\www\\cetesi/wp-content/themes/cetesi/header.php', $load_once = TRUE, $args = []) C:\wamp64\www\cetesi\wp-includes\template.php:745
+[17-Sep-2025 14:01:30 UTC] PHP   8. require_once() C:\wamp64\www\cetesi\wp-includes\template.php:810
+[17-Sep-2025 14:01:30 UTC] PHP   9. cetesi_header_meta_tags() C:\wamp64\www\cetesi\wp-content\themes\cetesi\header.php:22

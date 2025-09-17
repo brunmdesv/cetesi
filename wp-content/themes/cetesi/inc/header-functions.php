@@ -170,10 +170,12 @@ function cetesi_header_meta_tags() {
     // Meta Keywords
     $meta_keywords = 'cursos técnicos, enfermagem, radiologia, nutrição, saúde, CETESI, educação técnica, qualificação profissional, cursos de saúde, Ceilândia, Brasília, DF, Distrito Federal';
     if (is_single() && get_post_type() == 'curso') {
-        $curso_terms = wp_get_post_terms(get_the_ID(), 'categoria_curso');
+        $curso_terms = wp_get_post_terms(get_the_ID(), 'curso_categoria');
         $keywords_array = array('cursos técnicos', 'saúde', 'CETESI', 'Ceilândia', 'Brasília', 'DF');
-        foreach ($curso_terms as $term) {
-            $keywords_array[] = $term->name;
+        if (!is_wp_error($curso_terms) && !empty($curso_terms)) {
+            foreach ($curso_terms as $term) {
+                $keywords_array[] = $term->name;
+            }
         }
         $meta_keywords = implode(', ', array_unique($keywords_array));
     }

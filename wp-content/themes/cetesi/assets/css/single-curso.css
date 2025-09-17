@@ -1,0 +1,760 @@
+/* ===== SINGLE CURSO - DESIGN ULTRA MODERNO ===== */
+
+/* Hero Ultra Moderno */
+.curso-hero-ultra-moderno {
+    padding: var(--space-5xl) 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-background-ultra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.hero-pattern-ultra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-gradient-ultra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%);
+}
+
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="80" r="3" fill="white" opacity="0.1"/><circle cx="60" cy="30" r="1.5" fill="white" opacity="0.1"/><circle cx="30" cy="70" r="2.5" fill="white" opacity="0.1"/></svg>');
+}
+
+.hero-content-ultra {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.hero-main-content {
+    padding-top: var(--space-xl);
+}
+
+/* Badges Ultra Modernos */
+.curso-badges-ultra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+}
+
+.badge-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    color: white;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all var(--transition-normal);
+}
+
+.badge-ultra:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.badge-icon i {
+    font-size: 0.75rem;
+}
+
+/* Header Ultra Moderno */
+.curso-header-ultra {
+    margin-bottom: var(--space-2xl);
+}
+
+.curso-titulo-ultra {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: var(--space-lg);
+    line-height: 1.1;
+}
+
+.curso-descricao-ultra {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* Grid de Informações Ultra Moderno */
+.curso-info-grid-ultra {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.info-item-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-normal);
+}
+
+.info-item-ultra:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+}
+
+.info-icon-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    color: white;
+}
+
+.info-icon-ultra i {
+    font-size: 1.25rem;
+}
+
+.info-content-ultra {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label-ultra {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.info-value-ultra {
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+}
+
+/* CTA Matricule-se Ultra Moderno */
+.cta-matricule-se-ultra {
+    margin-bottom: var(--space-2xl);
+}
+
+.cta-content-ultra {
+    text-align: center;
+}
+
+.cta-titulo-ultra {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: var(--space-lg);
+}
+
+.cta-botoes-ultra {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-matricule-se-ultra,
+.btn-saiba-mais-ultra {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg) var(--space-2xl);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-matricule-se-ultra {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid white;
+}
+
+.btn-matricule-se-ultra:hover {
+    background: var(--bg-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--primary-color);
+}
+
+.btn-saiba-mais-ultra {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-saiba-mais-ultra:hover {
+    background: white;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-content-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+    z-index: 2;
+}
+
+.btn-shine-ultra {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-matricule-se-ultra:hover .btn-shine-ultra {
+    left: 100%;
+}
+
+/* Sidebar Ultra Moderna */
+.hero-sidebar-ultra {
+    position: sticky;
+    top: var(--space-xl);
+}
+
+.curso-card-preco-ultra {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-2xl);
+    color: white;
+    box-shadow: var(--shadow-xl);
+}
+
+.card-header-ultra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+}
+
+.card-titulo-ultra {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.desconto-badge-ultra {
+    background: var(--accent-color);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.card-preco-ultra {
+    margin-bottom: var(--space-lg);
+}
+
+.preco-promocional-ultra {
+    margin-bottom: var(--space-sm);
+}
+
+.preco-valor-promocional-ultra {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-color);
+}
+
+.preco-valor-original-ultra {
+    font-size: 1.25rem;
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.preco-valor-ultra {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+}
+
+.card-beneficios-ultra {
+    margin-bottom: var(--space-lg);
+}
+
+.beneficio-item-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.beneficio-icon {
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+.beneficio-texto {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-inscricao-card-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: var(--space-lg);
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-inscricao-card-ultra:hover {
+    background: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+}
+
+.btn-inscricao-card-ultra .btn-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+    z-index: 2;
+}
+
+/* Seção de Detalhes Ultra Moderna */
+.curso-detalhes-section-ultra {
+    padding: var(--space-4xl) 0;
+    background: white;
+}
+
+.section-header-ultra {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 var(--space-lg);
+}
+
+.section-titulo-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+}
+
+.titulo-icon-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: var(--radius-xl);
+    color: white;
+    font-size: 1.5rem;
+}
+
+.section-subtitulo-ultra {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.detalhes-grid-ultra {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.detalhes-card-ultra {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+}
+
+.detalhes-card-ultra:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.detalhes-card-full-ultra {
+    grid-column: 1 / -1;
+}
+
+.card-icon-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: var(--radius-xl);
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+}
+
+.card-titulo-ultra {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.card-descricao-ultra {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.reconhecimento-texto {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Módulos Grid Ultra Moderna */
+.modulos-grid-ultra {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.modulo-card-ultra {
+    background: var(--bg-accent);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    transition: all var(--transition-normal);
+}
+
+.modulo-card-ultra:hover {
+    background: white;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.modulo-header-ultra {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.modulo-icon-ultra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 1rem;
+}
+
+.modulo-titulo-ultra {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modulo-conteudo-ultra {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.875rem;
+}
+
+.disciplinas-lista-ultra {
+    background: var(--bg-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+/* CTA Final */
+.cta-final-section {
+    padding: var(--space-4xl) 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.cta-text {
+    margin-bottom: var(--space-2xl);
+}
+
+.cta-text h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    line-height: 1.2;
+}
+
+.cta-text p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.cta-actions {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-cta-principal,
+.btn-cta-secundario,
+.btn-cta-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg) var(--space-2xl);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-cta-principal {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid white;
+}
+
+.btn-cta-principal:hover {
+    background: var(--bg-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--primary-color);
+}
+
+.btn-cta-secundario {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-cta-secundario:hover {
+    background: white;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-cta-whatsapp {
+    background: #25d366;
+    color: white;
+    border: 2px solid #25d366;
+}
+
+.btn-cta-whatsapp:hover {
+    background: #128c7e;
+    border-color: #128c7e;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+}
+
+.btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-cta-principal:hover .btn-shine {
+    left: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero-content-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .hero-main-content {
+        padding-top: 0;
+    }
+    
+    .curso-info-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .info-item-ultra {
+        padding: var(--space-md);
+    }
+    
+    .cta-botoes-ultra {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-matricule-se-ultra,
+    .btn-saiba-mais-ultra {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .curso-card-preco-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .detalhes-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .modulos-grid-ultra {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-cta-principal,
+    .btn-cta-secundario,
+    .btn-cta-whatsapp {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .curso-hero-ultra-moderno {
+        padding: var(--space-3xl) 0;
+    }
+    
+    .curso-titulo-ultra {
+        font-size: 2rem;
+    }
+    
+    .curso-detalhes-section-ultra {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .section-titulo-ultra {
+        font-size: 1.75rem;
+    }
+    
+    .titulo-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .detalhes-card-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .card-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}
