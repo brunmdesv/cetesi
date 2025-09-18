@@ -7,6 +7,23 @@
     z-index: 1000 !important;
 }
 
+/* ==========================================
+   BREAKPOINTS CANÔNICOS - PAGES
+   ========================================== */
+@media (max-width: 420px) {
+    .page-hero { padding: 48px 0; }
+    .page-hero h1 { font-size: clamp(1.6rem, 8vw, 2rem); }
+    .container-page { padding: 0 14px; }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+    .container-page { padding: 0 18px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .container-page { max-width: 1140px; }
+}
+
 body {
     padding-top: 80px !important;
 }
@@ -243,7 +260,7 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (min-width: 421px) and (max-width: 768px) {
     .page-title {
         font-size: 2rem;
     }

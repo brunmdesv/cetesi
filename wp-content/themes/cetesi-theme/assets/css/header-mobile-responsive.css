@@ -5,11 +5,28 @@
  * @since 1.0.0
  */
 
+/* ==========================================
+   BREAKPOINTS CANÔNICOS - HEADER MOBILE
+   ========================================== */
+@media (max-width: 420px) {
+    .mobile-header { padding: 8px 12px; }
+    .mobile-logo { font-size: 1.1rem; }
+    .mobile-menu-content { max-width: 260px; }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+    .mobile-header { padding: 10px 16px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .mobile-header-container { max-width: 1140px; }
+}
+
 /* ==========================================================================
    RESPONSIVIDADE MOBILE
    ========================================================================== */
 
-@media (max-width: 768px) {
+@media (min-width: 421px) and (max-width: 768px) {
     /* Esconder header desktop */
     .header {
         display: none;
@@ -37,19 +54,7 @@
     }
 }
 
-@media (max-width: 480px) {
-    .mobile-menu-content {
-        width: 100%;
-        max-width: 280px;
-        right: 0;
-        left: auto;
-        /* Garantir altura total em dispositivos móveis */
-        height: 100vh;
-        min-height: 100vh;
-        max-height: 100vh;
-        /* Adicionar padding bottom para garantir espaço */
-        padding-bottom: 0;
-    }
+/* REMOVIDO: Breakpoint de 480px - agora tudo é mobile padronizado em 768px */
     
     .mobile-menu-header {
         padding: 12px 16px;
@@ -111,7 +116,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 420px) {
     .mobile-container {
         padding: 0 12px;
     }

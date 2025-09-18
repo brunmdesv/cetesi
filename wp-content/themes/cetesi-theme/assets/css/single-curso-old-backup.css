@@ -7,27 +7,6 @@
     z-index: 1000 !important;
 }
 
-/* ==========================================
-   BREAKPOINTS CANÔNICOS - SINGLE CURSO
-   ========================================== */
-@media (max-width: 420px) {
-    .curso-hero { padding: 48px 0; }
-    .curso-titulo-ultra { font-size: clamp(1.6rem, 7.5vw, 2rem); }
-    .curso-descricao-ultra { font-size: 0.95rem; }
-    .cursos-grid-moderno, .modulos-grid-ultra { grid-template-columns: 1fr; gap: 16px; }
-    .card-curso-ultra, .modulo-card-ultra { padding: 18px; }
-    .btn-matricule-se-ultra, .btn-saiba-mais-ultra { width: 100%; }
-}
-
-@media (min-width: 421px) and (max-width: 768px) {
-    .curso-hero { padding: 64px 0; }
-    .cursos-grid-moderno, .modulos-grid-ultra { grid-template-columns: 1fr; gap: 20px; }
-}
-
-@media (min-width: 1024px) and (max-width: 1200px) {
-    .curso-container { max-width: 1140px; }
-}
-
 
 /* ===== ESTILOS ULTRA MODERNOS DA PÁGINA DE CURSO ===== */
 
@@ -1518,7 +1497,7 @@
 }
 
 /* ===== RESPONSIVIDADE ULTRA MODERNA ===== */
-@media (min-width: 1024px) and (max-width: 1200px) {
+@media (max-width: 1024px) {
     .hero-content-ultra {
         grid-template-columns: 1fr;
         gap: var(--space-3xl);
@@ -1535,7 +1514,7 @@
     }
 }
 
-@media (min-width: 421px) and (max-width: 768px) {
+@media (max-width: 768px) {
     .curso-hero-ultra-moderno {
         padding: var(--space-3xl) 0;
         min-height: 70vh;
@@ -1620,7 +1599,7 @@
     }
 }
 
-@media (min-width: 421px) and (max-width: 768px) {
+@media (max-width: 768px) {
     .curso-hero-ultra-moderno {
         padding: var(--space-2xl) 0;
         min-height: 60vh;
@@ -3146,7 +3125,7 @@
 }
 
 /* Responsividade */
-@media (min-width: 1024px) and (max-width: 1200px) {
+@media (max-width: 1024px) {
     .hero-content {
         grid-template-columns: 1fr;
         gap: var(--space-xl);
@@ -3169,7 +3148,7 @@
     }
 }
 
-@media (min-width: 421px) and (max-width: 768px) {
+@media (max-width: 768px) {
     .curso-titulo-principal {
         font-size: 2rem;
     }
@@ -3274,7 +3253,7 @@
     }
 }
 
-@media (min-width: 421px) and (max-width: 768px) {
+@media (max-width: 768px) {
     .curso-hero-moderno {
         padding: var(--space-xl) 0;
     }

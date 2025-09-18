@@ -38,7 +38,7 @@
 }
 
 /* Responsividade para mensagem de nenhum curso */
-@media (max-width: 768px) {
+@media (min-width: 421px) and (max-width: 768px) {
     .no-courses-message {
         padding: var(--space-3xl) var(--space-lg);
     }
@@ -650,7 +650,7 @@
 }
 
 /* ===== RESPONSIVIDADE ULTRA MODERNA ===== */
-@media (max-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1200px) {
     .cursos-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: var(--space-xl);
@@ -1057,3 +1057,44 @@
         font-size: 18px;
     }
 }
+
+/* ==========================================
+   BREAKPOINTS CANÔNICOS (NÃO REMOVER)
+   Mobile-first: ≤420px, Tablet: 421–768px, Desktop: 1024–1200px
+   Use estes blocos para centralizar regras responsivas.
+   ========================================== */
+
+/* MOBILE PEQUENO (≤420px) */
+@media (max-width: 420px) {
+    /* Hero/Topo */
+    .hero-front h1 { font-size: clamp(1.4rem, 8vw, 1.9rem); }
+    .hero-front p { font-size: 0.95rem; }
+    .container-front { padding: 0 14px; }
+    
+    /* Cards e grids */
+    .cursos-grid-front, .cards-grid-front { grid-template-columns: 1fr; gap: 16px; }
+    
+    /* Seções CTA */
+    .cta-front .btn { width: 100%; }
+
+    /* Contatos/Home */
+    .localizacao-content-moderno { grid-template-columns: 1fr; gap: 16px; }
+    .endereco-card-moderno, .facilidades-card, .acoes-card { padding: 20px; }
+}
+
+/* TABLET (421–768px) */
+@media (min-width: 421px) and (max-width: 768px) {
+    .grid-front-3 { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid-front { grid-template-columns: repeat(2, 1fr); }
+    .container-front { padding: 0 18px; }
+
+    /* Contatos/Home */
+    .localizacao-content-moderno { grid-template-columns: 1fr 1fr; gap: 18px; }
+    .acoes-card { grid-column: 1 / -1; }
+}
+
+/* DESKTOP MÉDIO (1024–1200px) */
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .container-front { max-width: 1140px; }
+}
+

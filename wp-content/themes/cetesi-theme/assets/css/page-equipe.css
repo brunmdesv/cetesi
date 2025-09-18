@@ -7,6 +7,22 @@
     z-index: 1000 !important;
 }
 
+/* ==========================================
+   BREAKPOINTS CANÔNICOS - PAGE EQUIPE
+   ========================================== */
+@media (max-width: 420px) {
+    .equipe-hero { padding: 48px 0; }
+    .membros-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+    .membros-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .equipe-container { max-width: 1140px; }
+}
+
 body {
     padding-top: 80px !important;
 }
@@ -235,7 +251,7 @@ body {
 
 
 /* Responsivo */
-@media (max-width: 768px) {
+@media (min-width: 421px) and (max-width: 768px) {
     .equipe-grid-moderno {
         grid-template-columns: 1fr;
         gap: 20px;

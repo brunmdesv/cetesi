@@ -1,5 +1,26 @@
 /* ===== ESTILOS ULTRA MODERNOS DA HERO SECTION HOMEPAGE ===== */
 
+/* ==========================================
+   BREAKPOINTS CANÔNICOS - HERO (NÃO REMOVER)
+   Mobile-first: ≤420px, Tablet: 421–768px, Desktop: 1024–1200px
+   ========================================== */
+
+@media (max-width: 420px) {
+    .hero, .hero-section { padding: 48px 0; }
+    .hero h1, .hero-title { font-size: clamp(1.6rem, 8vw, 2rem); }
+    .hero p, .hero-description { font-size: 0.95rem; }
+    .hero-cta .btn { width: 100%; }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+    .hero, .hero-section { padding: 64px 0; }
+    .hero h1, .hero-title { font-size: clamp(1.8rem, 6.5vw, 2.4rem); }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .hero-container { max-width: 1140px; }
+}
+
 /* Variáveis Ultra Modernas apenas para a Hero Section */
 .hero-section-ultra-moderno {
     --primary-color: #3b82f6;
@@ -268,13 +289,13 @@
 }
 
 /* ===== RESPONSIVIDADE ULTRA MODERNA HOMEPAGE ===== */
-@media (max-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1200px) {
     .hero-titulo-ultra {
         font-size: 3rem;
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 421px) and (max-width: 768px) {
     .hero-section-ultra-moderno {
         padding: var(--space-3xl) 0;
         min-height: 70vh;
@@ -487,45 +508,5 @@
     }
 }
 
-/* Telas muito pequenas (até 480px) */
-@media (max-width: 480px) {
-    .hero-section-ultra-moderno {
-        padding: 30px 0;
-        min-height: 100vh;
-    }
-    
-    .hero-titulo-ultra {
-        font-size: 1.8rem;
-        line-height: 1.3;
-    }
-    
-    .hero-descricao-ultra {
-        font-size: 1rem;
-        padding: 0 15px;
-    }
-    
-    .hero-badges-ultra {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 0 15px;
-    }
-    
-    .badge-ultra {
-        padding: 10px 14px;
-        font-size: 0.75rem;
-    }
-    
-    .cta-botoes-ultra {
-        padding: 0 15px;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .btn-hero-principal-ultra,
-    .btn-hero-secundario-ultra {
-        padding: 14px 20px;
-        font-size: 0.9rem;
-        width: 100%;
-    }
-}
+/* REMOVIDO: Breakpoint de 480px - agora tudo é mobile padronizado em 768px */
 

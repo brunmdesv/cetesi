@@ -469,85 +469,6 @@ body {
 }
 
 
-/* ==========================================
-   BREAKPOINTS CANÔNICOS (NÃO REMOVER)
-   Mobile-first: ≤420px, Tablet: 421–768px, Desktop: 1024–1200px
-   Use estes blocos para centralizar regras responsivas.
-   ========================================== */
-
-/* MOBILE PEQUENO (≤420px) */
-@media (max-width: 420px) {
-    /* Header */
-    .header { padding: var(--space-xs) 0; }
-    .header-content { gap: var(--space-sm); }
-    .menu-toggle { display: flex; }
-    .mobile-header { display: block; }
-    .header-cta { display: none; }
-    /* Navegação lateral mobile */
-    .nav-menu { width: 240px; padding: 16px 0; }
-    .nav-menu a { font-size: 0.9rem; padding: var(--space-xs) var(--space-sm); }
-    .btn-nav { font-size: 0.85rem; padding: var(--space-xs) var(--space-sm); }
-
-    /* Conteúdo base */
-    .container { padding: 0 var(--space-sm); }
-    h1 { font-size: clamp(1.4rem, 8vw, 1.9rem); }
-    h2 { font-size: clamp(1.2rem, 6.5vw, 1.6rem); }
-    p { font-size: 0.95rem; }
-
-    /* Footer */
-    .footer { padding: var(--space-xl) 0 var(--space-lg); }
-    .footer-content { display: flex; flex-direction: column; gap: var(--space-lg); }
-    .footer-section { padding: var(--space-lg); border-radius: var(--radius-lg); }
-    .footer-section h4 { font-size: 1.1rem; margin-bottom: var(--space-md); }
-
-    /* Cursos (listas e cards) */
-    .cursos-grid-moderno { grid-template-columns: 1fr; gap: 16px; }
-    .cursos-card { padding: var(--space-lg); }
-    .cursos-filter-btn { width: 100%; }
-
-    /* Contato */
-    .contato-hero { padding: var(--space-2xl) 0; }
-    .form-row { grid-template-columns: 1fr; gap: 12px; }
-    .contato-info-grid { grid-template-columns: 1fr; }
-}
-
-/* TABLET (421–768px) */
-@media (min-width: 421px) and (max-width: 768px) {
-    /* Header */
-    .menu-toggle { display: flex; }
-    .mobile-header { display: block; }
-    .header { padding: var(--space-sm) 0; }
-    .header-content { gap: var(--space-md); }
-    .header-top { display: flex; justify-content: space-between; align-items: center; }
-    .header-cta { display: none; }
-
-    /* Layout */
-    .container { padding: 0 var(--space-md); }
-    .grid-3 { grid-template-columns: repeat(2, 1fr); }
-
-    /* Tipografia */
-    h1 { font-size: clamp(1.6rem, 6.5vw, 2.2rem); }
-    h2 { font-size: clamp(1.3rem, 5.5vw, 1.9rem); }
-
-    /* Footer */
-    .footer-content { gap: var(--space-xl); }
-
-    /* Cursos */
-    .cursos-grid-moderno { grid-template-columns: 1fr; gap: 20px; }
-    .cursos-filters { gap: 10px; }
-
-    /* Contato */
-    .contato-hero { padding: var(--space-3xl) 0; }
-    .form-row { grid-template-columns: 1fr; }
-    .contato-info-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-}
-
-/* DESKTOP MÉDIO (1024–1200px) */
-@media (min-width: 1024px) and (max-width: 1200px) {
-    .container { max-width: 1140px; }
-    .header { padding: var(--space-sm) 0; }
-}
-
 /* REMOVIDO: Breakpoint tablet específico - agora tudo é mobile padronizado */
     
     .nav-menu {
@@ -616,7 +537,7 @@ body {
 }
 
 /* Mobile Menu Styles */
-@media (min-width: 421px) and (max-width: 768px) {
+@media (max-width: 768px) {
     .menu-toggle {
         display: flex;
     }
@@ -2698,7 +2619,7 @@ body {
 }
 
 /* Responsive */
-@media (min-width: 1024px) and (max-width: 1200px) {
+@media (max-width: 1024px) {
     .cursos-grid {
         grid-template-columns: repeat(2, 1fr);
     }

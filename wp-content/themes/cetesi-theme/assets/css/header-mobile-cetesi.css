@@ -5,6 +5,23 @@
  * @since 1.0.0
  */
 
+/* ==========================================
+   BREAKPOINTS CANÔNICOS - HEADER
+   ========================================== */
+@media (max-width: 420px) {
+    .header { padding: 6px 0; }
+    .header-content { gap: 8px; }
+    .menu-toggle { display: flex; }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+    .header { padding: 8px 0; }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .header .container { max-width: 1140px; }
+}
+
 /* ==========================================================================
    RESPONSIVIDADE DO HEADER CETESI
    ========================================================================== */
@@ -197,11 +214,7 @@
     }
 }
 
-/* Tablet Menu Styles */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .menu-toggle {
-        display: flex;
-    }
+/* REMOVIDO: Breakpoint tablet específico - agora tudo é mobile padronizado */
     
     .nav-menu {
         position: fixed;
@@ -265,7 +278,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 421px) and (max-width: 768px) {
     .menu-toggle {
         display: flex;
     }

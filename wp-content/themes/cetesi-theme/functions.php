@@ -1879,7 +1879,15 @@ function cetesi_render_dynamic_course($curso, $categoria_class = '') {
 }
 
 function cetesi_scripts() {
-    wp_enqueue_style('cetesi-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap', array(), CETESI_VERSION);
+    // Preconnect para Google Fonts para melhor performance
+    add_action('wp_head', function() {
+        echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+        echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+        echo '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n";
+        echo '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"></noscript>' . "\n";
+    }, 1);
+    
+    wp_enqueue_style('cetesi-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap', array(), CETESI_VERSION);
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
     wp_enqueue_style('cetesi-style', get_stylesheet_uri(), array('cetesi-fonts', 'font-awesome'), CETESI_VERSION);
     
@@ -1929,6 +1937,28 @@ function cetesi_scripts() {
     ));
 }
 add_action('wp_enqueue_scripts', 'cetesi_scripts');
+
+/**
+ * Otimização de carregamento de fontes para mobile
+ */
+function cetesi_optimize_fonts_for_mobile() {
+    // Adicionar meta tag para melhor renderização de fontes em mobile
+    echo '<meta name="format-detection" content="telephone=no">' . "\n";
+    
+    // Adicionar CSS crítico para fontes em mobile
+    echo '<style id="cetesi-critical-fonts">' . "\n";
+    echo '/* Fontes críticas para mobile */' . "\n";
+    echo 'body, html {' . "\n";
+    echo '    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;' . "\n";
+    echo '    font-display: swap;' . "\n";
+    echo '}' . "\n";
+    echo 'h1, h2, h3, h4, h5, h6 {' . "\n";
+    echo '    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;' . "\n";
+    echo '    font-display: swap;' . "\n";
+    echo '}' . "\n";
+    echo '</style>' . "\n";
+}
+add_action('wp_head', 'cetesi_optimize_fonts_for_mobile', 2);
 
 function cetesi_register_post_types() {
     register_post_type('curso', array(

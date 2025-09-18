@@ -1,5 +1,21 @@
 /* ===== PÁGINA CURSOS - ESTILOS IDÊNTICOS À FRONT-PAGE ===== */
 
+/* ==========================================
+   BREAKPOINTS CANÔNICOS - PAGE CURSOS
+   ========================================== */
+@media (max-width: 420px) {
+    .cursos-hero { padding: 48px 0; }
+    .cursos-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+    .cursos-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .cursos-container { max-width: 1140px; }
+}
+
 /* Variáveis Ultra Modernas - IDÊNTICAS À FRONT-PAGE */
 .cursos-section {
     /* Tipografia */
@@ -803,7 +819,7 @@ ease;
 }
 
 /* ===== RESPONSIVE - IDÊNTICO À FRONT-PAGE ===== */
-@media (max-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1200px) {
     .cursos-grid-moderno {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: var(--space-xl);
@@ -811,7 +827,7 @@ ease;
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 421px) and (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
     }
