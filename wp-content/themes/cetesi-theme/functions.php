@@ -1883,6 +1883,12 @@ function cetesi_scripts() {
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
     wp_enqueue_style('cetesi-style', get_stylesheet_uri(), array('cetesi-fonts', 'font-awesome'), CETESI_VERSION);
     
+    // CSS do Header Cetesi - Baseado no tema cetesi
+    wp_enqueue_style('cetesi-header', CETESI_THEME_URL . '/assets/css/header-cetesi.css', array('cetesi-style'), CETESI_VERSION);
+    wp_enqueue_style('cetesi-header-mobile', CETESI_THEME_URL . '/assets/css/header-mobile-cetesi.css', array('cetesi-header'), CETESI_VERSION);
+    wp_enqueue_style('cetesi-header-material', CETESI_THEME_URL . '/assets/css/header-mobile-material.css', array('cetesi-header-mobile'), CETESI_VERSION);
+    wp_enqueue_style('cetesi-header-responsive', CETESI_THEME_URL . '/assets/css/header-mobile-responsive.css', array('cetesi-header-material'), CETESI_VERSION);
+    
     // CSS específico para hero section (extraído do inline)
     if (is_front_page()) {
         wp_enqueue_style('cetesi-hero', CETESI_THEME_URL . '/assets/css/hero.css', array('cetesi-style'), CETESI_VERSION);
@@ -1915,6 +1921,7 @@ function cetesi_scripts() {
     }
     
     wp_enqueue_script('cetesi-main', CETESI_THEME_URL . '/assets/js/main.js', array('jquery'), CETESI_VERSION, true);
+    wp_enqueue_script('cetesi-header-mobile', CETESI_THEME_URL . '/assets/js/header-mobile.js', array('jquery'), CETESI_VERSION, true);
     wp_enqueue_script('cetesi-contact-form', CETESI_THEME_URL . '/assets/js/contact-form.js', array('jquery'), CETESI_VERSION, true);
     wp_localize_script('cetesi-contact-form', 'cetesi_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -3744,7 +3751,7 @@ function cetesi_add_member_page() {
         }
     }
     
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         .stat-item {
             flex-direction: column;
             text-align: center;
@@ -5423,7 +5430,7 @@ function cetesi_custom_course_page_callback() {
         }
     }
     
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         .stat-item {
             flex-direction: column;
             text-align: center;
@@ -7077,7 +7084,7 @@ function cetesi_courses_management_page() {
         }
     }
     
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         .course-list-item {
             padding: 20px;
         }

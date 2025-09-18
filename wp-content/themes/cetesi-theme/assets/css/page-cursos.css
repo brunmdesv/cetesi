@@ -542,6 +542,11 @@ ease;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     backdrop-filter: blur(10px);
     font-style: italic;
+    text-align: center;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
 }
 
 .curso-descricao::before {
@@ -798,7 +803,7 @@ ease;
 }
 
 /* ===== RESPONSIVE - IDÊNTICO À FRONT-PAGE ===== */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
     .cursos-grid-moderno {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: var(--space-xl);
@@ -850,9 +855,24 @@ ease;
         font-size: 1.25rem;
     }
     
+    /* Info badges responsivos - ocultar carga-horaria e colocar outros na mesma linha */
+    .curso-info-badges {
+        display: flex;
+        flex-direction: row;
+        gap: var(--space-xs);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
     .info-badge {
         font-size: 0.65rem;
         padding: var(--space-xs) var(--space-sm);
+        flex: none;
+    }
+    
+    /* Ocultar badge carga-horaria no mobile */
+    .info-badge.carga-horaria {
+        display: none;
     }
     
     .curso-btn {
@@ -886,7 +906,7 @@ ease;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .hero-section {
         padding: var(--space-2xl) 0;
     }

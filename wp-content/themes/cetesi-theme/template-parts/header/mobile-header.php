@@ -2,7 +2,7 @@
 /**
  * Template part para header mobile - Layout Material-UI
  *
- * @package Cetesi
+ * @package Cetesi-Theme
  * @since 1.0.0
  */
 ?>
@@ -85,7 +85,7 @@
             <nav class="mobile-navigation" id="mobile-menu" role="navigation" aria-label="Menu principal">
                 <?php
                 wp_nav_menu(array(
-                    'theme_location' => 'primary',
+                    'theme_location' => 'principal',
                     'container' => false,
                     'menu_class' => 'mobile-nav-menu',
                     'fallback_cb' => 'cetesi_fallback_menu',
@@ -96,34 +96,20 @@
 
             <!-- CTA Mobile -->
             <div class="mobile-cta">
-                <?php 
-                $header_buttons = get_option('cetesi_header_buttons', array(
-                    'painel_unicollege' => array('enabled' => 1, 'text' => 'Painel Unicollege', 'url' => '#', 'new_tab' => 0),
-                    'painel_aluno' => array('enabled' => 1, 'text' => 'Painel do Aluno', 'url' => '#', 'new_tab' => 0),
-                    'telefone' => array('enabled' => 1, 'text' => '(61) 3351-4511', 'url' => 'tel:(61) 3351-4511')
-                ));
-                ?>
-                
-                <?php if ($header_buttons['painel_unicollege']['enabled']): ?>
-                <a href="<?php echo esc_url($header_buttons['painel_unicollege']['url']); ?>" class="mobile-btn-nav" role="button"<?php echo ($header_buttons['painel_unicollege']['new_tab']) ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>>
+                <a href="#" class="mobile-btn-nav" role="button">
                     <i class="fas fa-graduation-cap"></i>
-                    <span><?php echo esc_html($header_buttons['painel_unicollege']['text']); ?></span>
+                    <span>Painel Unicollege</span>
                 </a>
-                <?php endif; ?>
                 
-                <?php if ($header_buttons['painel_aluno']['enabled']): ?>
-                <a href="<?php echo esc_url($header_buttons['painel_aluno']['url']); ?>" class="mobile-btn-nav" role="button"<?php echo ($header_buttons['painel_aluno']['new_tab']) ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>>
+                <a href="#" class="mobile-btn-nav" role="button">
                     <i class="fas fa-user-graduate"></i>
-                    <span><?php echo esc_html($header_buttons['painel_aluno']['text']); ?></span>
+                    <span>Painel do Aluno</span>
                 </a>
-                <?php endif; ?>
                 
-                <?php if ($header_buttons['telefone']['enabled']): ?>
-                <a href="<?php echo esc_url($header_buttons['telefone']['url']); ?>" class="mobile-btn-primary" role="button">
+                <a href="tel:(61) 3351-4511" class="mobile-btn-primary" role="button">
                     <i class="fas fa-phone"></i>
                     <span>Ligar agora</span>
                 </a>
-                <?php endif; ?>
             </div>
 
         </div>

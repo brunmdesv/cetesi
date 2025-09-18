@@ -1,56 +1,116 @@
 /* ===== PÁGINA CURSOS - ESTILOS IDÊNTICOS À FRONT-PAGE ===== */
 
-/* Hero Section da página de cursos */
-.hero-section {
-    padding: var(--space-4xl) 0;
-    background: var(--gray-900);
-    color: white;
+/* Hero Section agora usa hero-modern.css - estilos removidos para evitar conflitos */
+
+/* ===== HERO DE CURSOS CENTRALIZADO ===== */
+
+/* Layout centralizado - sobrescreve hero-modern.css */
+.hero-cursos-centered {
     text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 2rem 0 !important; /* Reduzido padding vertical */
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
+.hero-cursos-centered .hero-content-modern {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 60vh !important; /* Reduzido de 100vh para 60vh */
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+.hero-content-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Reduzido de 100vh para 60vh */
+    width: 100%;
+}
+
+.hero-main-centered {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    width: 100%;
 }
 
-.hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    color: white;
-    margin-bottom: var(--space-lg);
-    line-height: 1.2;
+/* Título simples - ESPECÍFICO PARA PÁGINA DE CURSOS */
+.hero-cursos-centered .hero-title-simple {
+    white-space: nowrap !important;
+    color: white !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
-.hero-title .highlight {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* Gradiente na palavra "cursos" - ESPECÍFICO PARA PÁGINA DE CURSOS */
+.hero-cursos-centered .title-highlight-cursos {
+    background: var(--gradient-cursos) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
 }
 
-.hero-description {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: var(--gray-300);
-    margin-bottom: 0;
+/* Hero scroll centralizado - ESPECÍFICO PARA PÁGINA DE CURSOS */
+.hero-cursos-centered .hero-scroll {
+    position: absolute !important;
+    bottom: 2rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
 }
+
+/* Elementos removidos - estilos limpos */
+
+/* Título centralizado - ESPECÍFICO PARA PÁGINA DE CURSOS */
+.hero-cursos-centered .hero-title-centered {
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Subtítulo centralizado - ESPECÍFICO PARA PÁGINA DE CURSOS */
+.hero-cursos-centered .hero-subtitle-centered {
+    text-align: center !important;
+    max-width: 600px !important;
+    margin: 0 auto 2rem auto !important;
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Estatísticas removidas - estilos limpos */
+
+/* Categorias removidas - estilos limpos */
+
+/* CTA removido - estilos limpos */
+
+/* Scroll indicator adaptado */
+.hero-scroll .scroll-text {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Animações específicas */
+@keyframes slideInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVIDADE MOBILE MOVIDA PARA page-cursos-mobile.css ===== */
+/* A responsividade mobile agora está no arquivo dedicado page-cursos-mobile.css */
 
 /* Filtros de Cursos */
 .cursos-filters-section {
@@ -437,100 +497,6 @@
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-    .hero-section {
-        padding: var(--space-3xl) 0;
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-description {
-        font-size: 1rem;
-    }
-    
-    .cursos-filters {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .cursos-filter-btn {
-        justify-content: center;
-        padding: var(--space-md) var(--space-lg);
-    }
-    
-    .cursos-grid-moderno {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
-        padding: 0 var(--space-md);
-    }
-    
-    .curso-content {
-        padding: var(--space-lg);
-    }
-    
-    .course-details {
-        flex-direction: column;
-        gap: var(--space-xs);
-    }
-    
-    .detail-item {
-        justify-content: center;
-    }
-    
-    .course-info-badges {
-        flex-direction: column;
-        gap: var(--space-xs);
-    }
-    
-    .course-actions {
-        flex-direction: column;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .button {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-}
+/* Media queries movidas para page-cursos-mobile.css */
 
-@media (max-width: 480px) {
-    .hero-section {
-        padding: var(--space-2xl) 0;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .cursos-section {
-        padding: var(--space-2xl) 0;
-    }
-    
-    .section-header {
-        margin-bottom: var(--space-2xl);
-    }
-    
-    .section-header h2 {
-        font-size: 1.75rem;
-    }
-    
-    .curso-content {
-        padding: var(--space-md);
-    }
-    
-    .course-header h3 {
-        font-size: 1.125rem;
-    }
-    
-    .course-btn {
-        padding: var(--space-sm) var(--space-md);
-        font-size: 0.8rem;
-    }
-}
+/* Media queries movidas para page-cursos-mobile.css */

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Mobile CTA Fix - CETESI</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Variáveis CSS */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --radius-lg: 0.75rem;
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            display: block;
+            background: white;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .mobile-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-logo-text {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: var(--radius-lg);
+            color: var(--gray-600);
+        }
+
+        .mobile-menu-btn:hover {
+            background: #f3f4f6;
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-menu-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 320px;
+            height: 100vh;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .mobile-menu-overlay.active .mobile-menu-content {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--gray-200);
+            background: white;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-logo-text {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: var(--radius-lg);
+            color: var(--gray-600);
+        }
+
+        .mobile-menu-close:hover {
+            background: #f3f4f6;
+        }
+
+        .mobile-navigation {
+            padding: var(--space-sm) 0;
+            max-height: calc(100vh - 280px);
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 0;
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-nav-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .mobile-nav-menu a {
+            display: block;
+            padding: 16px 24px;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-menu a:hover {
+            background: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        .mobile-cta {
+            padding: var(--space-md) var(--space-lg) var(--space-xl) var(--space-lg);
+            gap: var(--space-sm);
+            flex-shrink: 0;
+            position: sticky;
+            bottom: 0;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            border-top: 1px solid var(--gray-200);
+            z-index: 20;
+            margin-bottom: 0;
+            min-height: auto;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+            /* Garantir que sempre seja visível */
+            min-height: 140px;
+        }
+
+        .mobile-btn-nav,
+        .mobile-btn-primary {
+            padding: var(--space-sm) var(--space-md);
+            font-size: 0.85rem;
+            min-height: 48px;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            margin-bottom: var(--space-xs);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-btn-nav {
+            background: transparent;
+            color: var(--gray-600);
+            border: 1px solid var(--gray-200);
+        }
+
+        .mobile-btn-nav:hover {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .mobile-btn-primary {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+
+        .mobile-btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .mobile-menu-content {
+                width: 100%;
+                max-width: 280px;
+                right: 0;
+                left: auto;
+                height: 100vh;
+                min-height: 100vh;
+                max-height: 100vh;
+                padding-bottom: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-menu-content {
+                width: 100%;
+                max-width: 100%;
+                right: 0;
+                left: 0;
+                height: 100vh;
+                min-height: 100vh;
+                max-height: 100vh;
+                padding-bottom: 0;
+            }
+            
+            .mobile-menu-header {
+                padding: 12px 16px;
+                min-height: 50px;
+                flex-shrink: 0;
+            }
+            
+            .mobile-navigation {
+                padding: 8px 0;
+                max-height: calc(100vh - 200px);
+                flex: 1;
+                overflow-y: auto;
+                margin-bottom: 0;
+            }
+            
+            .mobile-cta {
+                padding: 16px 20px 24px 20px;
+                gap: 12px;
+                flex-shrink: 0;
+                position: sticky;
+                bottom: 0;
+                background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+                border-top: 1px solid #e0e0e0;
+                z-index: 20;
+                margin-bottom: 0;
+                min-height: 160px;
+                border-radius: 12px 12px 0 0;
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            }
+            
+            .mobile-btn-nav,
+            .mobile-btn-primary {
+                padding: 12px 16px;
+                font-size: 0.85rem;
+                min-height: 48px;
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Botão de teste */
+        .test-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            z-index: 10000;
+        }
+
+        .test-button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="mobile-toolbar">
+            <div class="mobile-logo">
+                <span class="mobile-logo-text">CETESI</span>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                ☰
+            </button>
+        </div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div style="padding: 20px;">
+        <h1>Teste do Mobile CTA Fix</h1>
+        <p>Este é um teste para verificar se o mobile-cta não está sendo cortado no celular.</p>
+        <p>Clique no botão do menu (☰) para abrir o menu mobile e verificar se os botões CTA estão visíveis.</p>
+        
+        <h2>Instruções:</h2>
+        <ul>
+            <li>Abra este arquivo no celular</li>
+            <li>Clique no botão do menu</li>
+            <li>Verifique se os botões "Painel Unicollege", "Painel do Aluno" e "Ligar agora" estão completamente visíveis</li>
+            <li>Role para baixo no menu se necessário</li>
+        </ul>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+            <!-- Header do Menu Mobile -->
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <span class="mobile-menu-logo-text">CETESI</span>
+                </div>
+                <button class="mobile-menu-close" onclick="closeMenu()">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Navegação Mobile -->
+            <nav class="mobile-navigation">
+                <ul class="mobile-nav-menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#noticias">Notícias</a></li>
+                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                </ul>
+            </nav>
+
+            <!-- CTA Mobile -->
+            <div class="mobile-cta">
+                <a href="#" class="mobile-btn-nav">
+                    🎓 Painel Unicollege
+                </a>
+                
+                <a href="#" class="mobile-btn-nav">
+                    👨‍🎓 Painel do Aluno
+                </a>
+                
+                <a href="tel:(61) 3351-4511" class="mobile-btn-primary">
+                    📞 Ligar agora
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const overlay = document.getElementById('mobile-menu-overlay');
+            overlay.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const overlay = document.getElementById('mobile-menu-overlay');
+            overlay.classList.remove('active');
+        }
+
+        // Fechar menu ao clicar no overlay
+        document.getElementById('mobile-menu-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMenu();
+            }
+        });
+    </script>
+</body>
+</html>

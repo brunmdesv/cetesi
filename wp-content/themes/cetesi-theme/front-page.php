@@ -24,30 +24,18 @@ get_header(); ?>
                     <!-- Badges Ultra Modernos -->
                     <div class="hero-badges-ultra" data-aos="fade-up" data-aos-delay="200">
                         <div class="badge-ultra badge-certificado-ultra" data-aos="zoom-in" data-aos-delay="300">
-                            <div class="badge-icon">
-                                <i class="fas fa-certificate"></i>
-                            </div>
                             <span class="badge-text">Reconhecido pelo MEC</span>
                         </div>
                         
                         <div class="badge-ultra badge-alunos-ultra" data-aos="zoom-in" data-aos-delay="400">
-                            <div class="badge-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
                             <span class="badge-text">+60.000 Alunos Formados</span>
                         </div>
                         
                         <div class="badge-ultra badge-excelencia-ultra" data-aos="zoom-in" data-aos-delay="500">
-                            <div class="badge-icon">
-                                <i class="fas fa-award"></i>
-                            </div>
                             <span class="badge-text">Excelência Acadêmica</span>
                         </div>
                         
                         <div class="badge-ultra badge-infraestrutura-ultra" data-aos="zoom-in" data-aos-delay="600">
-                            <div class="badge-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
                             <span class="badge-text">Infraestrutura Moderna</span>
                         </div>
                     </div>

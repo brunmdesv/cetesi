@@ -1,0 +1,506 @@
+/**
+ * Estilos específicos do Header - Baseado no tema Cetesi
+ * 
+ * @package Cetesi-Theme
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   HEADER CETESI - ESTILO REFERÊNCIA
+   ========================================================================== */
+
+/* ===== HEADER PRINCIPAL ===== */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    padding: 1rem 0;
+}
+
+.header.scrolled {
+    box-shadow: var(--shadow-lg);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    width: 100%;
+}
+
+/* Header Top (Logo + Menu Toggle) */
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+}
+
+/* Menu de navegação - sempre centralizado */
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-menu-content {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    justify-content: center;
+}
+
+.nav-menu-links {
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
+.nav-menu-buttons {
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
+/* Botões CTA - sempre à direita */
+.header-cta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: var(--space-sm);
+}
+
+/* ===== LOGO CETESI ===== */
+.site-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.site-title a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.site-title a:hover {
+    color: var(--primary-dark);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.site-logo img {
+    max-height: 28px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled .site-logo img {
+    max-height: 24px;
+}
+
+/* ===== MENU DE NAVEGAÇÃO ===== */
+
+/* REGRA GLOBAL PARA REMOVER TODOS OS ÍCONES DOS LINKS DE NAVEGAÇÃO */
+.nav-menu a *,
+.nav-menu-list a *,
+.nav-menu-list li a * {
+    font-family: inherit !important;
+}
+
+.nav-menu a i,
+.nav-menu-list a i,
+.nav-menu-list li a i,
+.nav-menu a span,
+.nav-menu-list a span,
+.nav-menu-list li a span {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Container do conteúdo do menu */
+.nav-menu-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+/* Links de navegação */
+.nav-menu-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.nav-menu-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+}
+
+.nav-menu-list li {
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remover marcadores específicos do WordPress */
+.nav-menu-links ul {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0px;
+}
+
+.nav-menu-links ul li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nav-menu-links ul li::before {
+    display: none !important;
+}
+
+.nav-menu-links ul li::after {
+    display: none !important;
+}
+
+/* Remover marcadores ::marker específicos */
+.nav-menu-links ul li::marker {
+    display: none !important;
+    content: none !important;
+}
+
+.nav-menu-links li::marker {
+    display: none !important;
+    content: none !important;
+}
+
+/* Forçar remoção de marcadores em todos os contextos */
+.nav-menu-links * {
+    list-style: none !important;
+}
+
+.nav-menu-links *::marker {
+    display: none !important;
+    content: none !important;
+}
+
+/* Regras específicas para menu WordPress */
+.menu-item {
+    list-style: none !important;
+}
+
+.menu-item::marker {
+    display: none !important;
+    content: none !important;
+}
+
+.menu-item::before {
+    display: none !important;
+    content: none !important;
+}
+
+.menu-item::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Forçar remoção em todos os elementos de menu */
+#nav-menu ul,
+#nav-menu li,
+#nav-menu .menu-item {
+    list-style: none !important;
+}
+
+#nav-menu ul::marker,
+#nav-menu li::marker,
+#nav-menu .menu-item::marker {
+    display: none !important;
+    content: none !important;
+}
+
+.nav-menu a,
+.nav-menu-list a {
+    color: var(--gray-600);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: var(--radius-lg);
+    position: relative;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+}
+
+.nav-menu a:hover,
+.nav-menu-list a:hover {
+    color: var(--primary-color);
+    background: var(--gray-50);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Remover qualquer ícone ou pseudo-elemento dos links de navegação */
+.nav-menu a::before,
+.nav-menu-list a::before,
+.nav-menu a::after,
+.nav-menu-list a::after {
+    display: none !important;
+    content: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Remover ícones específicos de FontAwesome ou similares */
+.nav-menu a i,
+.nav-menu-list a i,
+.nav-menu-list li a i,
+/* Ícones FontAwesome agora são exibidos normalmente */
+.nav-menu-list li a .fas,
+.nav-menu-list li a .far,
+.nav-menu-list li a .fab {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 1rem !important;
+    margin-right: 0.5rem !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* ===== BOTÕES CTA ===== */
+.header-cta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.btn-nav {
+    background: transparent;
+    color: var(--gray-600);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-200);
+    white-space: nowrap;
+    min-height: 30px;
+    padding: var(--space-sm) var(--space-md);
+}
+
+/* Garantir que ícones FontAwesome nos botões sejam exibidos */
+.btn-nav .fas,
+.btn-nav .far,
+.btn-nav .fab,
+.btn-nav .fa,
+.btn-primary .fas,
+.btn-primary .far,
+.btn-primary .fab,
+.btn-primary .fa {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 1rem !important;
+    margin-right: 0.5rem !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.btn-nav:hover {
+    background: var(--gray-50);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.btn-nav i {
+    font-size: 12px;
+    font-family: "Font Awesome 6 Free" !important;
+    font-style: normal !important;
+    font-weight: 900 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.btn-primary {
+    background: var(--gradient-secondary);
+    color: white;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary i {
+    font-size: 12px;
+    font-family: "Font Awesome 6 Free" !important;
+    font-style: normal !important;
+    font-weight: 900 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ===== MENU MOBILE TOGGLE ===== */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    position: relative;
+    z-index: 1001;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: var(--gray-50);
+}
+
+.menu-toggle-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 18px;
+    height: 12px;
+}
+
+.menu-toggle-icon span {
+    width: 100%;
+    height: 2px;
+    background: var(--gray-600);
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.menu-toggle.active .menu-toggle-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(3px, 3px);
+}
+
+.menu-toggle.active .menu-toggle-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .menu-toggle-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(3px, -3px);
+}
+
+/* ===== BOTÃO FLUTUANTE WHATSAPP ===== */
+.floating-btn {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    background: #25d366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    animation: pulse 2s infinite;
+    border: 2px solid white;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 16px rgba(37, 211, 102, 0.6);
+    color: white;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
+    }
+    50% {
+        box-shadow: 0 3px 10px rgba(37, 211, 102, 0.8);
+    }
+    100% {
+        box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
+    }
+}

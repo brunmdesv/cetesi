@@ -1,0 +1,1075 @@
+/* ===== RESPONSIVIDADE MELHORADA PARA SINGLE-CURSO ===== */
+
+/* Tablet (≤1024px) */
+@media (max-width: 1024px) {
+    .curso-hero-ultra-moderno {
+        padding: var(--space-4xl) 0;
+        min-height: 70vh;
+    }
+    
+    .hero-content-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+    }
+    
+    .hero-main-content {
+        padding-top: 0;
+        order: 1;
+    }
+    
+    .hero-sidebar-ultra {
+        order: 2;
+        position: static;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .curso-titulo-ultra {
+        font-size: 2.8rem;
+        line-height: 1.2;
+    }
+    
+    .curso-descricao-ultra {
+        font-size: 1.125rem;
+        line-height: 1.6;
+    }
+    
+    .curso-badges-ultra {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+    }
+    
+    .badge-ultra {
+        flex: 1;
+        min-width: 140px;
+        max-width: 200px;
+    }
+    
+    .curso-info-grid-ultra {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+    
+    .detalhes-grid-ultra {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+    
+    .modulos-grid-ultra {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+    
+    .mercado-stats-ultra {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+    
+    .prerequisitos-grid-ultra {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+    
+    .localizacao-content-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .pagamento-grid-ultra {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+}
+
+/* Mobile Grande (≤768px) */
+@media (max-width: 768px) {
+    .curso-hero-ultra-moderno {
+        padding: var(--space-3xl) 0;
+        min-height: 60vh;
+        background: var(--gradient-hero);
+    }
+    
+    /* Remover elementos de background do hero */
+    .hero-background-ultra,
+    .hero-pattern-ultra,
+    .hero-gradient-ultra,
+    .hero-shapes {
+        display: none !important;
+    }
+    
+    .hero-content-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .hero-main-content {
+        padding-top: 0;
+        text-align: center;
+        order: 1;
+    }
+    
+    /* Remover sidebar do hero */
+    .hero-sidebar-ultra {
+        display: none !important;
+    }
+    
+    .curso-titulo-ultra {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .curso-descricao-ultra {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: var(--space-xl);
+        text-align: center;
+        hyphens: none;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+    }
+    
+    /* Badges do Curso - Mobile Centralizados */
+    .curso-badges-ultra {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+        margin-bottom: var(--space-xl);
+        width: 100%;
+    }
+    
+    .badge-ultra {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.8rem;
+        flex-direction: row;
+        text-align: center;
+        gap: var(--space-xs);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        flex: 1;
+        min-width: 120px;
+        max-width: 150px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .badge-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 0.9rem;
+    }
+    
+    .badge-text {
+        font-weight: 600;
+        font-size: 0.75rem;
+    }
+    
+    /* Grid de Informações - Mobile - 3 na mesma linha */
+    .curso-info-grid-ultra {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-sm);
+        margin-bottom: var(--space-xl);
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .info-item-ultra {
+        padding: var(--space-md);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        min-height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .info-icon-ultra {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+        margin: 0 auto var(--space-xs);
+    }
+    
+    .info-label-ultra {
+        font-size: 0.7rem;
+        font-weight: 500;
+        display: block;
+        margin-bottom: var(--space-xs);
+        text-align: center;
+    }
+    
+    .info-value-ultra {
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    
+    /* CTA Matricule-se - Mobile */
+    .cta-matricule-se-ultra {
+        padding: var(--space-xl);
+        margin: var(--space-2xl) 0;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-xl);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+    }
+    
+    .cta-titulo-ultra {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .cta-botoes-ultra {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        align-items: center;
+    }
+    
+    .btn-matricule-se-ultra,
+    .btn-saiba-mais-ultra {
+        width: 100%;
+        max-width: 300px;
+        padding: var(--space-md) var(--space-lg);
+        font-size: 1rem;
+        justify-content: center;
+    }
+    
+    /* Card de Preço - Mobile */
+    .curso-card-preco-ultra {
+        padding: var(--space-xl);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius-2xl);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .card-header-ultra {
+        text-align: center;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .card-titulo-ultra {
+        font-size: 1.5rem;
+        color: var(--text-primary);
+    }
+    
+    .desconto-badge-ultra {
+        margin-top: var(--space-sm);
+    }
+    
+    .preco-valor-promocional-ultra,
+    .preco-valor-ultra {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .card-beneficios-ultra {
+        margin-bottom: var(--space-lg);
+    }
+    
+    .beneficio-item-ultra {
+        padding: var(--space-sm) 0;
+        font-size: 0.9rem;
+    }
+    
+    .btn-inscricao-card-ultra {
+        width: 100%;
+        padding: var(--space-md) var(--space-lg);
+        font-size: 1rem;
+        justify-content: center;
+    }
+    
+    /* Seções Ultra Modernas - Mobile */
+    .section-titulo-ultra {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+    
+    .titulo-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+        margin: 0 auto;
+    }
+    
+    .section-subtitulo-ultra {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    .detalhes-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .detalhes-card-full-ultra {
+        grid-column: 1;
+    }
+    
+    .detalhes-card-ultra {
+        padding: var(--space-xl);
+        text-align: center;
+    }
+    
+    .card-icon-ultra {
+        width: 70px;
+        height: 70px;
+        font-size: 1.75rem;
+        margin: 0 auto var(--space-lg);
+    }
+    
+    .card-titulo-ultra {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    .card-descricao-ultra {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .modulos-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .modulo-card-ultra {
+        padding: var(--space-lg);
+        text-align: center;
+    }
+    
+    .modulo-header-ultra {
+        margin-bottom: var(--space-md);
+    }
+    
+    .modulo-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+        margin: 0 auto var(--space-sm);
+    }
+    
+    .modulo-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    .modulo-conteudo-ultra {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    /* Mercado de Trabalho - Mobile */
+    .mercado-stats-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .stat-card-ultra {
+        padding: var(--space-xl);
+        text-align: center;
+    }
+    
+    .stat-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+        margin: 0 auto var(--space-md);
+    }
+    
+    .stat-number-ultra {
+        font-size: 2.5rem;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .stat-label-ultra {
+        font-size: 1rem;
+    }
+    
+    .mercado-info {
+        margin-top: var(--space-xl);
+    }
+    
+    .mercado-texto,
+    .areas-atuacao {
+        margin-bottom: var(--space-lg);
+        text-align: center;
+    }
+    
+    .mercado-texto h3,
+    .areas-atuacao h3 {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    .areas-lista-moderna {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .area-item-moderno {
+        padding: var(--space-md);
+        text-align: left;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .area-item-moderno i {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    
+    .area-item-moderno span {
+        font-size: 0.8rem;
+    }
+    
+    /* Pré-requisitos - Mobile */
+    .prerequisitos-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .requisito-card-ultra {
+        padding: var(--space-xl);
+        text-align: center;
+    }
+    
+    .requisito-header-ultra {
+        margin-bottom: var(--space-md);
+    }
+    
+    .requisito-icon-ultra {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin: 0 auto var(--space-sm);
+    }
+    
+    .requisito-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    .requisito-descricao-ultra {
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+    
+    /* Localização - Mobile */
+    .localizacao-content-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .localizacao-principal-ultra {
+        gap: var(--space-lg);
+    }
+    
+    .endereco-card-ultra,
+    .facilidades-card-ultra {
+        padding: var(--space-xl);
+        text-align: center;
+    }
+    
+    .endereco-header-ultra {
+        margin-bottom: var(--space-lg);
+    }
+    
+    .endereco-icon-ultra {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+        margin: 0 auto var(--space-sm);
+    }
+    
+    .endereco-titulo-ultra {
+        font-size: 1.5rem;
+    }
+    
+    .endereco-detalhes-ultra {
+        gap: var(--space-md);
+    }
+    
+    .endereco-linha-ultra {
+        text-align: center;
+        gap: var(--space-sm);
+    }
+    
+    .endereco-linha-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .endereco-linha-texto {
+        font-size: 0.875rem;
+    }
+    
+    .facilidades-titulo-ultra {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .facilidades-grid-ultra {
+        gap: var(--space-md);
+    }
+    
+    .facilidade-item-ultra {
+        padding: var(--space-md);
+        text-align: center;
+    }
+    
+    .facilidade-icon-ultra {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin: 0 auto var(--space-sm);
+    }
+    
+    .facilidade-texto-ultra strong {
+        font-size: 1rem;
+        display: block;
+        margin-bottom: var(--space-xs);
+    }
+    
+    .facilidade-texto-ultra span {
+        font-size: 0.75rem;
+    }
+    
+    .localizacao-secundaria-ultra {
+        gap: var(--space-lg);
+    }
+    
+    .acoes-card-ultra {
+        padding: var(--space-xl);
+        text-align: center;
+    }
+    
+    .acoes-titulo-ultra {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .acoes-botoes-ultra {
+        gap: var(--space-md);
+    }
+    
+    .btn-acao-ultra {
+        padding: var(--space-md);
+        text-align: center;
+    }
+    
+    .btn-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+        margin: 0 auto var(--space-sm);
+    }
+    
+    .btn-texto-ultra strong {
+        font-size: 1rem;
+        display: block;
+        margin-bottom: var(--space-xs);
+    }
+    
+    .btn-texto-ultra span {
+        font-size: 0.75rem;
+    }
+    
+    .mapa-container-ultra {
+        padding: var(--space-xl);
+    }
+    
+    .mapa-header-ultra {
+        text-align: center;
+        margin-bottom: var(--space-lg);
+        font-size: 1.25rem;
+    }
+    
+    .mapa-wrapper-ultra iframe {
+        height: 300px;
+        border-radius: var(--radius-lg);
+    }
+    
+    /* Pagamento - Mobile */
+    .pagamento-grid-ultra {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .pagamento-card-ultra {
+        padding: var(--space-xl);
+        text-align: center;
+    }
+    
+    .pagamento-icon-ultra {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin: 0 auto var(--space-md);
+    }
+    
+    .pagamento-titulo-ultra {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    .pagamento-descricao-ultra {
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+    
+    /* CTA Final - Mobile */
+    .cta-final-section {
+        padding: var(--space-3xl) 0;
+    }
+    
+    .cta-content {
+        text-align: center;
+        gap: var(--space-xl);
+    }
+    
+    .cta-text h2 {
+        font-size: 2rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    .cta-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+    }
+    
+    .btn-cta-principal,
+    .btn-cta-secundario,
+    .btn-cta-whatsapp {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+        padding: var(--space-md) var(--space-lg);
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Pequeno (≤480px) */
+@media (max-width: 480px) {
+    .curso-hero-ultra-moderno {
+        padding: var(--space-2xl) 0;
+        min-height: 50vh;
+        background: var(--gradient-hero);
+    }
+    
+    /* Remover elementos de background do hero */
+    .hero-background-ultra,
+    .hero-pattern-ultra,
+    .hero-gradient-ultra,
+    .hero-shapes {
+        display: none !important;
+    }
+    
+    /* Remover sidebar do hero */
+    .hero-sidebar-ultra {
+        display: none !important;
+    }
+    
+    .curso-titulo-ultra {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+    
+    .curso-descricao-ultra {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        text-align: center;
+        hyphens: none;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+    }
+    
+    /* Badges - Mobile Pequeno Centralizados */
+    .curso-badges-ultra {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        width: 100%;
+    }
+    
+    .badge-ultra {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.7rem;
+        flex-direction: row;
+        text-align: center;
+        gap: var(--space-xs);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        flex: 1;
+        min-width: 100px;
+        max-width: 120px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .badge-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+    
+    .badge-text {
+        font-size: 0.7rem;
+    }
+    
+    /* Grid de Informações - Mobile Pequeno - 3 na mesma linha */
+    .curso-info-grid-ultra {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xs);
+        margin-bottom: var(--space-xl);
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .info-item-ultra {
+        padding: var(--space-sm);
+        min-height: 70px;
+    }
+    
+    .info-icon-ultra {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .info-label-ultra {
+        font-size: 0.6rem;
+    }
+    
+    .info-value-ultra {
+        font-size: 0.8rem;
+    }
+    
+    /* CTA Matricule-se - Mobile Pequeno */
+    .cta-matricule-se-ultra {
+        padding: var(--space-lg);
+        margin: var(--space-xl) 0;
+    }
+    
+    .cta-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    .btn-matricule-se-ultra,
+    .btn-saiba-mais-ultra {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.9rem;
+    }
+    
+    /* Card de Preço - Mobile Pequeno */
+    .curso-card-preco-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .preco-valor-promocional-ultra,
+    .preco-valor-ultra {
+        font-size: 2rem;
+    }
+    
+    .beneficio-item-ultra {
+        padding: var(--space-xs) 0;
+        font-size: 0.8rem;
+    }
+    
+    .btn-inscricao-card-ultra {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.9rem;
+    }
+    
+    /* Seções - Mobile Pequeno */
+    .section-titulo-ultra {
+        font-size: 1.75rem;
+    }
+    
+    .titulo-icon-ultra {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .section-subtitulo-ultra {
+        font-size: 0.9rem;
+    }
+    
+    .detalhes-card-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .card-icon-ultra {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .card-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    .card-descricao-ultra {
+        font-size: 0.8rem;
+    }
+    
+    .modulo-card-ultra {
+        padding: var(--space-md);
+    }
+    
+    .modulo-icon-ultra {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .modulo-titulo-ultra {
+        font-size: 1.1rem;
+    }
+    
+    .modulo-conteudo-ultra {
+        font-size: 0.8rem;
+    }
+    
+    /* Mercado de Trabalho - Mobile Pequeno */
+    .stat-card-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .stat-icon-ultra {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .stat-number-ultra {
+        font-size: 2rem;
+    }
+    
+    .stat-label-ultra {
+        font-size: 0.9rem;
+    }
+    
+    .mercado-texto h3,
+    .areas-atuacao h3 {
+        font-size: 1.25rem;
+    }
+    
+    .area-item-moderno {
+        padding: var(--space-sm);
+    }
+    
+    .area-item-moderno i {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .area-item-moderno span {
+        font-size: 0.7rem;
+    }
+    
+    /* Pré-requisitos - Mobile Pequeno */
+    .requisito-card-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .requisito-icon-ultra {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .requisito-titulo-ultra {
+        font-size: 1.1rem;
+    }
+    
+    .requisito-descricao-ultra {
+        font-size: 0.8rem;
+    }
+    
+    /* Localização - Mobile Pequeno */
+    .endereco-card-ultra,
+    .facilidades-card-ultra,
+    .acoes-card-ultra,
+    .mapa-container-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .endereco-icon-ultra {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+    
+    .endereco-titulo-ultra {
+        font-size: 1.25rem;
+    }
+    
+    .endereco-linha-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .endereco-linha-texto {
+        font-size: 0.8rem;
+    }
+    
+    .facilidade-icon-ultra {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .facilidade-texto-ultra strong {
+        font-size: 0.9rem;
+    }
+    
+    .facilidade-texto-ultra span {
+        font-size: 0.7rem;
+    }
+    
+    .btn-icon-ultra {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .btn-texto-ultra strong {
+        font-size: 0.9rem;
+    }
+    
+    .btn-texto-ultra span {
+        font-size: 0.7rem;
+    }
+    
+    .mapa-header-ultra {
+        font-size: 1.1rem;
+    }
+    
+    .mapa-wrapper-ultra iframe {
+        height: 250px;
+    }
+    
+    /* Pagamento - Mobile Pequeno */
+    .pagamento-card-ultra {
+        padding: var(--space-lg);
+    }
+    
+    .pagamento-icon-ultra {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .pagamento-titulo-ultra {
+        font-size: 1.1rem;
+    }
+    
+    .pagamento-descricao-ultra {
+        font-size: 0.8rem;
+    }
+    
+    /* CTA Final - Mobile Pequeno */
+    .cta-text h2 {
+        font-size: 1.75rem;
+    }
+    
+    .cta-text p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-cta-principal,
+    .btn-cta-secundario,
+    .btn-cta-whatsapp {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== MELHORIAS ESPECÍFICAS PARA MOBILE ===== */
+
+/* Espaçamento consistente */
+@media (max-width: 768px) {
+    .curso-detalhes-section-ultra,
+    .mercado-trabalho-section-ultra,
+    .prerequisitos-section-ultra,
+    .localizacao-section-ultra,
+    .pagamento-section-ultra {
+        padding: var(--space-3xl) 0;
+    }
+    
+    .container {
+        padding: 0 var(--space-lg);
+    }
+}
+
+/* Melhorias de legibilidade */
+@media (max-width: 768px) {
+    .curso-descricao-ultra,
+    .card-descricao-ultra,
+    .modulo-conteudo-ultra,
+    .requisito-descricao-ultra,
+    .pagamento-descricao-ultra {
+        text-align: justify;
+        text-align-last: center;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+    }
+}
+
+/* Otimizações de performance para mobile */
+@media (max-width: 768px) {
+    .curso-hero-ultra-moderno,
+    .hero-background-ultra,
+    .hero-pattern-ultra,
+    .hero-gradient-ultra,
+    .hero-shapes {
+        will-change: auto;
+    }
+    
+    .badge-ultra,
+    .info-item-ultra,
+    .detalhes-card-ultra,
+    .stat-card-ultra,
+    .requisito-card-ultra,
+    .pagamento-card-ultra {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+}

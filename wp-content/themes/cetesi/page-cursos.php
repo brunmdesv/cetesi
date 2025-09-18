@@ -13,13 +13,33 @@ get_header();
     <main id="main" class="site-main">
 
         <!-- Hero Section -->
-        <section class="hero-section">
+        <section class="hero-modern hero-cursos hero-cursos-centered">
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Conheça nossos <span class="highlight">Cursos</span></h1>
-                    <p class="hero-description">
-                        Oferecemos uma ampla gama de cursos técnicos, de qualificação, livres e online, reconhecidos pelo MEC e alinhados com as demandas do mercado de trabalho.
-                    </p>
+                <div class="hero-content-modern hero-content-centered">
+                    <!-- Conteúdo Principal Centralizado -->
+                    <div class="hero-main hero-main-centered">
+
+                        <!-- Título principal -->
+                        <h1 class="hero-title-modern hero-title-centered hero-title-simple">
+                            Conheça nossos <span class="title-highlight-cursos">cursos</span>
+                        </h1>
+
+                        <!-- Subtítulo com animação -->
+                        <p class="hero-subtitle-modern hero-subtitle-centered">
+                            Cursos técnicos, de qualificação e livres reconhecidos pelo MEC. Formação completa para o mercado de trabalho com alta empregabilidade e certificação válida em todo território nacional.
+                        </p>
+
+
+
+                    </div>
+                </div>
+
+                <!-- Scroll indicator -->
+                <div class="hero-scroll">
+                    <div class="scroll-indicator">
+                        <div class="scroll-line"></div>
+                        <div class="scroll-text">Descubra nossos cursos</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -68,13 +88,13 @@ get_header();
                 
                 <?php
                 // Buscar cursos técnicos criados via página personalizada
-                $cursos_tecnico_dinamicos = cetesi_get_dynamic_courses('tecnico', 20);
+                $cursos_tecnico_dinamicos = cetesi_get_dynamic_courses('tecnicos', 20);
                 
                 if (!empty($cursos_tecnico_dinamicos)) :
                 ?>
                 <div class="cursos-grid-moderno" id="cursos-grid">
                     <?php foreach ($cursos_tecnico_dinamicos as $curso) : ?>
-                        <?php echo cetesi_render_dynamic_course($curso, 'tecnico'); ?>
+                        <?php echo cetesi_render_dynamic_course($curso, 'tecnicos'); ?>
                     <?php endforeach; ?>
                 </div>
                 <?php else : ?>
@@ -130,13 +150,13 @@ get_header();
                 
                 <?php
                 // Buscar cursos livres criados via página personalizada
-                $cursos_livre_dinamicos = cetesi_get_dynamic_courses('livre', 20);
+                $cursos_livre_dinamicos = cetesi_get_dynamic_courses('livres', 20);
                 
                 if (!empty($cursos_livre_dinamicos)) :
                 ?>
                 <div class="cursos-grid-moderno">
                     <?php foreach ($cursos_livre_dinamicos as $curso) : ?>
-                        <?php echo cetesi_render_dynamic_course($curso, 'livre'); ?>
+                        <?php echo cetesi_render_dynamic_course($curso, 'livres'); ?>
                     <?php endforeach; ?>
                 </div>
                 <?php else : ?>

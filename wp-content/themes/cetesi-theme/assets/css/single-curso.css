@@ -1,4 +1,4 @@
-/* CorreÁ„o para posicionamento do header */
+/* CorreÔøΩÔøΩo para posicionamento do header */
 .header {
     position: fixed !important;
     top: 0 !important;
@@ -7,9 +7,6 @@
     z-index: 1000 !important;
 }
 
-body {
-    padding-top: 80px !important;
-}
 
 /* ===== ESTILOS ULTRA MODERNOS DA P√ÅGINA DE CURSO ===== */
 
@@ -262,6 +259,7 @@ body {
     height: 100%;
     background: var(--gradient-accent);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    display: none;
 }
 
 .info-item-ultra:hover {
@@ -1499,7 +1497,7 @@ body {
 }
 
 /* ===== RESPONSIVIDADE ULTRA MODERNA ===== */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
     .hero-content-ultra {
         grid-template-columns: 1fr;
         gap: var(--space-3xl);
@@ -1601,7 +1599,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .curso-hero-ultra-moderno {
         padding: var(--space-2xl) 0;
         min-height: 60vh;
@@ -3255,7 +3253,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .curso-hero-moderno {
         padding: var(--space-xl) 0;
     }
@@ -3373,4 +3371,4 @@ body {
     .btn-texto span {
         font-size: 0.8rem;
     }
-
+}

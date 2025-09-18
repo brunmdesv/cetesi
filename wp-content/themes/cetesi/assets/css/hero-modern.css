@@ -12,7 +12,7 @@
 /* ===== CONTAINER PRINCIPAL ===== */
 .hero-modern {
     position: relative;
-    min-height: 100vh;
+    min-height: 70vh;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -595,7 +595,7 @@
 /* ===== MOBILE LANDSCAPE (576px - 767px) ===== */
 @media (max-width: 767px) {
     .hero-modern {
-        min-height: 90vh;
+        min-height: 70vh;
         padding: 3rem 0;
     }
     
@@ -671,7 +671,7 @@
 /* ===== MOBILE PORTRAIT (até 575px) ===== */
 @media (max-width: 575px) {
     .hero-modern {
-        min-height: 80vh;
+        min-height: 70vh;
         padding: 3rem 0;
     }
     

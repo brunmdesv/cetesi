@@ -3735,7 +3735,7 @@ body {
 }
 
 /* Mobile Small (320px - 480px) */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .container {
         padding: 0 var(--space-sm);
     }
@@ -4947,7 +4947,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .contato-hero {
         padding: var(--space-2xl) 0;
     }
@@ -5151,7 +5151,7 @@ body {
 }
 
 /* Responsivo - Adaptado para 3 cards por linha */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
     .cursos-grid-moderno {
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
@@ -5605,7 +5605,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .cursos-hero {
         padding: var(--space-2xl) 0;
     }
@@ -6071,7 +6071,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .sobre-hero {
         padding: var(--space-2xl) 0;
     }
@@ -6375,7 +6375,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .equipe-hero {
         padding: var(--space-2xl) 0;
     }
@@ -6745,7 +6745,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .cetesi-field-section {
         padding: 15px;
     }
@@ -7275,7 +7275,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .equipe-hero {
         padding: var(--space-2xl) 0;
     }

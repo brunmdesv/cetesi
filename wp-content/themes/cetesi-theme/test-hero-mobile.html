@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Hero Section Mobile - CETESI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Variáveis Ultra Modernas apenas para a Hero Section */
+        .hero-section-ultra-moderno {
+            --primary-color: #3b82f6;
+            --primary-dark: #1e40af;
+            --primary-light: #60a5fa;
+            --secondary-color: #10b981;
+            --secondary-dark: #059669;
+            --secondary-light: #34d399;
+            --accent-color: #f59e0b;
+            --accent-dark: #d97706;
+            --accent-light: #fbbf24;
+            --accent-pink: #ec4899;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --success-color: #10b981;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-light: #94a3b8;
+            --text-muted: #cbd5e1;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-accent: #f1f5f9;
+            --bg-dark: #0f172a;
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --radius-xs: 0.125rem;
+            --radius-sm: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-3xl: 1.5rem;
+            --radius-full: 9999px;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 0.75rem;
+            --space-lg: 1rem;
+            --space-xl: 1.5rem;
+            --space-2xl: 2rem;
+            --space-3xl: 3rem;
+            --space-4xl: 4rem;
+            --space-5xl: 6rem;
+            --transition-fast: 150ms ease-in-out;
+            --transition-normal: 300ms ease-in-out;
+            --transition-slow: 500ms ease-in-out;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-pink) 100%);
+            --gradient-hero: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+        }
+
+        /* ===== HERO ULTRA MODERNO HOMEPAGE ===== */
+        .hero-section-ultra-moderno {
+            position: relative;
+            background: #111827;
+            padding: var(--space-3xl) 0;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content-ultra {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-main-content {
+            color: white;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* ===== BADGES ULTRA MODERNOS HOMEPAGE ===== */
+        .hero-badges-ultra {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .badge-ultra {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-lg);
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-2xl);
+            font-size: 0.875rem;
+            font-weight: 600;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left var(--transition-slow);
+        }
+
+        .badge-ultra:hover::before {
+            left: 100%;
+        }
+
+        .badge-ultra:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .badge-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+        }
+
+        .badge-text {
+            font-weight: 600;
+            letter-spacing: 0.025em;
+        }
+
+        /* ===== HEADER ULTRA MODERNO HOMEPAGE ===== */
+        .hero-header-ultra {
+            margin-bottom: var(--space-3xl);
+        }
+
+        .hero-titulo-ultra {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--space-xl);
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.025em;
+        }
+
+        .highlight-ultra {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-descricao-ultra {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== CTA ULTRA MODERNO HOMEPAGE ===== */
+        .cta-botoes-ultra {
+            display: flex;
+            gap: var(--space-lg);
+            justify-content: center;
+            margin: var(--space-3xl) 0;
+        }
+
+        .btn-hero-principal-ultra {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-md);
+            padding: var(--space-lg) var(--space-2xl);
+            background: var(--gradient-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-2xl);
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-hero-principal-ultra:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-2xl);
+            color: white;
+        }
+
+        .btn-hero-principal-ultra .btn-shine-ultra {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left var(--transition-slow);
+        }
+
+        .btn-hero-principal-ultra:hover .btn-shine-ultra {
+            left: 100%;
+        }
+
+        .btn-hero-secundario-ultra {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-md);
+            padding: var(--space-lg) var(--space-2xl);
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-2xl);
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hero-secundario-ultra:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-content-ultra {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-content-ultra i {
+            font-size: 1.25rem;
+        }
+
+        .btn-content-ultra span {
+            font-weight: inherit;
+        }
+
+        /* ===== ESTILOS MOBILE ESPECÍFICOS PARA HERO SECTION ===== */
+        /* Estilos que só aparecem em mobile - não afetam desktop */
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Responsividade mobile específica */
+        @media (max-width: 768px) {
+            /* Melhorias específicas para mobile */
+            .hero-section-ultra-moderno {
+                padding: 40px 0;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+                position: relative;
+            }
+            
+            /* Adicionar padrão de fundo mobile */
+            .hero-section-ultra-moderno::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image: 
+                    radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+                pointer-events: none;
+            }
+            
+            /* Título mobile otimizado */
+            .hero-titulo-ultra {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            
+            /* Descrição mobile */
+            .hero-descricao-ultra {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                margin-bottom: 30px;
+                text-align: center;
+                padding: 0 10px;
+            }
+            
+            /* Badges mobile otimizados - 2 por linha, sem ícones */
+            .hero-badges-ultra {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+            
+            .badge-ultra {
+                padding: 12px 16px;
+                font-size: 0.8rem;
+                border-radius: 15px;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .badge-text {
+                font-size: 0.75rem;
+                text-align: center;
+                line-height: 1.3;
+                font-weight: 600;
+            }
+            
+            /* Botões CTA mobile - na mesma linha */
+            .cta-botoes-ultra {
+                display: flex;
+                flex-direction: row;
+                gap: 12px;
+                padding: 0 20px;
+                margin-top: 30px;
+            }
+            
+            .btn-hero-principal-ultra,
+            .btn-hero-secundario-ultra {
+                flex: 1;
+                padding: 16px 20px;
+                font-size: 0.9rem;
+                border-radius: 25px;
+                justify-content: center;
+            }
+            
+            .btn-content-ultra {
+                gap: 8px;
+            }
+            
+            .btn-content-ultra i {
+                font-size: 1rem;
+            }
+        }
+
+        /* Telas muito pequenas (até 480px) */
+        @media (max-width: 480px) {
+            .hero-section-ultra-moderno {
+                padding: 30px 0;
+                min-height: 100vh;
+            }
+            
+            .hero-titulo-ultra {
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+            
+            .hero-descricao-ultra {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+            
+            .hero-badges-ultra {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 0 15px;
+            }
+            
+            .badge-ultra {
+                padding: 10px 14px;
+                font-size: 0.75rem;
+            }
+            
+            .cta-botoes-ultra {
+                padding: 0 15px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn-hero-principal-ultra,
+            .btn-hero-secundario-ultra {
+                padding: 14px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+            }
+        }
+
+        /* Botão de teste */
+        .test-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            z-index: 10000;
+        }
+
+        .test-button:hover {
+            background: #1e40af;
+        }
+
+        /* Instruções */
+        .instructions {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .instructions h2 {
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .instructions ul {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Instruções -->
+    <div class="instructions">
+        <h2>📱 Teste Hero Section Mobile - CETESI</h2>
+        <ul>
+            <li><strong>Desktop:</strong> Visualize normalmente no computador</li>
+            <li><strong>Mobile:</strong> Redimensione a janela ou use DevTools para simular mobile</li>
+            <li><strong>Layout Mobile:</strong> Badges em grid 2x2 (sem ícones), botões na mesma linha</li>
+            <li><strong>Telas Pequenas:</strong> Badges em coluna única, botões empilhados</li>
+            <li><strong>Responsividade:</strong> Adapta-se automaticamente a diferentes tamanhos</li>
+        </ul>
+    </div>
+
+    <!-- Hero Section Ultra Moderna -->
+    <section class="hero-section-ultra-moderno">
+        <div class="container">
+            <div class="hero-content-ultra">
+                <div class="hero-main-content">
+                    <!-- Título e Descrição Ultra Modernos -->
+                    <div class="hero-header-ultra">
+                        <h1 class="hero-titulo-ultra">Transforme sua <span class="highlight-ultra">Carreira</span> com o CETESI</h1>
+                        <p class="hero-descricao-ultra">Centro Técnico de Educação Superior Integrada - Formando profissionais qualificados há mais de 26 anos com excelência acadêmica e infraestrutura moderna.</p>
+                    </div>
+                    
+                    <!-- Badges Ultra Modernos -->
+                    <div class="hero-badges-ultra">
+                        <div class="badge-ultra badge-certificado-ultra">
+                            <span class="badge-text">Reconhecido pelo MEC</span>
+                        </div>
+                        
+                        <div class="badge-ultra badge-alunos-ultra">
+                            <span class="badge-text">+60.000 Alunos Formados</span>
+                        </div>
+                        
+                        <div class="badge-ultra badge-excelencia-ultra">
+                            <span class="badge-text">Excelência Acadêmica</span>
+                        </div>
+                        
+                        <div class="badge-ultra badge-infraestrutura-ultra">
+                            <span class="badge-text">Infraestrutura Moderna</span>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Ultra Moderno -->
+                    <div class="cta-botoes-ultra">
+                        <a href="#cursos" class="btn-hero-principal-ultra">
+                            <div class="btn-content-ultra">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Ver Cursos</span>
+                            </div>
+                            <div class="btn-shine-ultra"></div>
+                        </a>
+                        <a href="#contato" class="btn-hero-secundario-ultra">
+                            <div class="btn-content-ultra">
+                                <i class="fas fa-phone"></i>
+                                <span>Fale Conosco</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Adicionar efeito de brilho nos botões
+        document.querySelectorAll('.btn-hero-principal-ultra').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.querySelector('.btn-shine-ultra').style.left = '100%';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.querySelector('.btn-shine-ultra').style.left = '-100%';
+            });
+        });
+
+        // Adicionar efeito de brilho nos badges
+        document.querySelectorAll('.badge-ultra').forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.background = 'rgba(255, 255, 255, 0.25)';
+            });
+            
+            badge.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.background = 'rgba(255, 255, 255, 0.15)';
+            });
+        });
+    </script>
+</body>
+</html>

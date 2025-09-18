@@ -24,10 +24,10 @@ function cetesi_get_dynamic_courses($tipo = 'todos', $limit = 20) {
         'meta_query' => array()
     );
     
-    // Filtrar por tipo se especificado
+    // Filtrar por categoria se especificado
     if ($tipo !== 'todos') {
         $args['meta_query'][] = array(
-            'key' => 'curso_nivel',
+            'key' => '_curso_categoria',
             'value' => $tipo,
             'compare' => '='
         );
@@ -46,15 +46,15 @@ function cetesi_render_dynamic_course($curso, $tipo = '') {
     $curso_titulo = $curso->post_title;
     $curso_descricao = wp_trim_words($curso->post_content, 20, '...');
     
-    // Meta fields
-    $curso_nivel = get_post_meta($curso_id, 'curso_nivel', true);
-    $curso_categoria = get_post_meta($curso_id, 'curso_categoria', true);
-    $curso_duracao = get_post_meta($curso_id, 'curso_duracao', true);
-    $curso_carga_horaria = get_post_meta($curso_id, 'curso_carga_horaria', true);
-    $curso_preco = get_post_meta($curso_id, 'curso_preco', true);
-    $curso_preco_promocional = get_post_meta($curso_id, 'curso_preco_promocional', true);
-    $curso_link_inscricao = get_post_meta($curso_id, 'curso_link_inscricao', true);
-    $curso_modalidade = get_post_meta($curso_id, 'curso_modalidade', true);
+    // Meta fields - usando prefixo _curso_ para consistência
+    $curso_nivel = get_post_meta($curso_id, '_curso_nivel', true);
+    $curso_categoria = get_post_meta($curso_id, '_curso_categoria', true);
+    $curso_duracao = get_post_meta($curso_id, '_curso_duracao', true);
+    $curso_carga_horaria = get_post_meta($curso_id, '_curso_carga_horaria', true);
+    $curso_preco = get_post_meta($curso_id, '_curso_preco', true);
+    $curso_preco_promocional = get_post_meta($curso_id, '_curso_preco_promocional', true);
+    $curso_link_inscricao = get_post_meta($curso_id, '_curso_link_inscricao', true);
+    $curso_modalidade = get_post_meta($curso_id, '_curso_modalidade', true);
     
     // Determinar ícone baseado no tipo
     $icon_map = array(

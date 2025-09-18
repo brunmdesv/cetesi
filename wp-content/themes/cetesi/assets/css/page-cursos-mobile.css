@@ -1,0 +1,468 @@
+/**
+ * Estilos Mobile Específicos para Página de Cursos
+ * 
+ * @package CETESI
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   MOBILE ESPECÍFICO PARA PÁGINA DE CURSOS
+   ========================================================================== */
+
+/* MOBILE LANDSCAPE (max-width: 767px) */
+@media (max-width: 767px) {
+    .hero-cursos-centered {
+        padding: 1rem 0 !important;
+    }
+    
+    .hero-cursos-centered .hero-content-modern {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        min-height: 45vh !important;
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+        padding: 1rem !important;
+    }
+    
+    .hero-main-centered {
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+    
+    .hero-cursos-centered .hero-title-simple {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+    }
+    
+    .hero-cursos-centered .title-highlight-cursos {
+        background: var(--gradient-cursos) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+    
+    .hero-cursos-centered .hero-subtitle-centered {
+        font-size: 1rem !important;
+        max-width: 100% !important;
+        margin: 0 auto 1rem auto !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .hero-cursos-centered .hero-scroll {
+        bottom: 1rem !important;
+    }
+    
+    /* FILTROS DE CURSOS MOBILE */
+    .cursos-filters-section {
+        padding: 1rem 0 !important;
+    }
+    
+    .cursos-filters-content {
+        padding: 0 0.5rem !important;
+    }
+    
+    .cursos-filters {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        max-width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    .cursos-filter-btn {
+        padding: 0.5rem 0.25rem !important;
+        font-size: 0.75rem !important;
+        border-radius: 0.375rem !important;
+        min-height: auto !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+}
+
+/* MOBILE PORTRAIT (max-width: 575px) */
+@media (max-width: 575px) {
+    .hero-cursos-centered {
+        padding: 0.75rem 0 !important;
+    }
+    
+    .hero-cursos-centered .hero-content-modern {
+        min-height: 40vh !important;
+        padding: 0.75rem !important;
+    }
+    
+    .hero-main-centered {
+        padding: 0 0.25rem;
+    }
+    
+    .hero-cursos-centered .hero-title-simple {
+        font-size: 2rem !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+    }
+    
+    .hero-cursos-centered .title-highlight-cursos {
+        background: var(--gradient-cursos) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+    
+    .hero-cursos-centered .hero-subtitle-centered {
+        font-size: 0.9rem !important;
+        max-width: 100% !important;
+        margin: 0 auto 0.75rem auto !important;
+        padding: 0 0.25rem !important;
+    }
+    
+    .hero-cursos-centered .hero-scroll {
+        bottom: 0.75rem !important;
+    }
+    
+    /* FILTROS DE CURSOS MOBILE PORTRAIT */
+    .cursos-filters-section {
+        padding: 0.75rem 0 !important;
+    }
+    
+    .cursos-filters-content {
+        padding: 0 0.25rem !important;
+    }
+    
+    .cursos-filters {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.375rem !important;
+        max-width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    .cursos-filter-btn {
+        padding: 0.375rem 0.125rem !important;
+        font-size: 0.7rem !important;
+        border-radius: 0.25rem !important;
+        min-height: auto !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    
+    /* GRID DE CURSOS MOBILE PORTRAIT */
+    .cursos-grid-moderno {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+        padding: 0 0.25rem !important;
+    }
+    
+    .curso-card {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .curso-content {
+        padding: 0.75rem !important;
+    }
+    
+    .course-header h3 {
+        font-size: 1rem !important;
+    }
+    
+    .course-description p {
+        font-size: 0.75rem !important;
+    }
+    
+    .course-details {
+        flex-direction: column !important;
+        gap: 0.375rem !important;
+    }
+    
+    .detail-item {
+        font-size: 0.65rem !important;
+        padding: 0.25rem 0.375rem !important;
+    }
+    
+    .course-actions {
+        flex-direction: column !important;
+        gap: 0.375rem !important;
+    }
+    
+    .course-btn {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+/* MOBILE EXTRA PEQUENO (max-width: 480px) */
+@media (max-width: 480px) {
+    .hero-cursos-centered {
+        padding: 0.5rem 0 !important;
+    }
+    
+    .hero-cursos-centered .hero-content-modern {
+        min-height: 35vh !important;
+        padding: 0.5rem !important;
+    }
+    
+    .hero-main-centered {
+        padding: 0 0.25rem;
+    }
+    
+    .hero-cursos-centered .hero-title-simple {
+        font-size: 1.8rem !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+    }
+    
+    .hero-cursos-centered .title-highlight-cursos {
+        background: var(--gradient-cursos) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+    
+    .hero-cursos-centered .hero-subtitle-centered {
+        font-size: 0.85rem !important;
+        max-width: 100% !important;
+        margin: 0 auto 0.5rem auto !important;
+        padding: 0 0.25rem !important;
+    }
+    
+    .hero-cursos-centered .hero-scroll {
+        bottom: 0.5rem !important;
+    }
+    
+    /* FILTROS DE CURSOS MOBILE EXTRA PEQUENO */
+    .cursos-filters-section {
+        padding: 0.5rem 0 !important;
+    }
+    
+    .cursos-filters-content {
+        padding: 0 0.25rem !important;
+    }
+    
+    .cursos-filters {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.25rem !important;
+        max-width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    .cursos-filter-btn {
+        padding: 0.50rem 0.125rem !important;
+        font-size: 0.65rem !important;
+        border-radius: 0.25rem !important;
+        min-height: auto !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    
+    /* GRID DE CURSOS MOBILE */
+    .cursos-grid-moderno {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .curso-card {
+        margin-bottom: 1rem !important;
+    }
+    
+    .curso-content {
+        padding: 1rem !important;
+    }
+    
+    .course-header h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    .course-description p {
+        font-size: 0.8rem !important;
+    }
+    
+    .course-details {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+    }
+    
+    .detail-item {
+        font-size: 0.7rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    .course-actions {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+    }
+    
+    .course-btn {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    /* GRID DE CURSOS MOBILE EXTRA PEQUENO */
+    .cursos-grid-moderno {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+        padding: 0 0.25rem !important;
+    }
+    
+    .curso-card {
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .curso-content {
+        padding: 0.5rem !important;
+    }
+    
+    .course-header h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    .course-description p {
+        font-size: 0.7rem !important;
+    }
+    
+    .course-details {
+        flex-direction: column !important;
+        gap: 0.25rem !important;
+    }
+    
+    .detail-item {
+        font-size: 0.6rem !important;
+        padding: 0.125rem 0.25rem !important;
+    }
+    
+    .course-actions {
+        flex-direction: column !important;
+        gap: 0.25rem !important;
+    }
+    
+    .course-btn {
+        padding: 0.375rem 0.5rem !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+/* MOBILE ULTRA PEQUENO (max-width: 360px) */
+@media (max-width: 360px) {
+    .hero-cursos-centered {
+        padding: 0.25rem 0 !important;
+    }
+    
+    .hero-cursos-centered .hero-content-modern {
+        min-height: 30vh !important;
+        padding: 0.25rem !important;
+    }
+    
+    .hero-main-centered {
+        padding: 0 0.25rem;
+    }
+    
+    .hero-cursos-centered .hero-title-simple {
+        font-size: 1.5rem !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+    }
+    
+    .hero-cursos-centered .title-highlight-cursos {
+        background: var(--gradient-cursos) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+    
+    .hero-cursos-centered .hero-subtitle-centered {
+        font-size: 0.8rem !important;
+        max-width: 100% !important;
+        margin: 0 auto 0.5rem auto !important;
+        padding: 0 0.25rem !important;
+    }
+    
+    .hero-cursos-centered .hero-scroll {
+        bottom: 0.25rem !important;
+    }
+    
+    /* FILTROS DE CURSOS MOBILE ULTRA PEQUENO */
+    .cursos-filters-section {
+        padding: 0.25rem 0 !important;
+    }
+    
+    .cursos-filters-content {
+        padding: 0 0.125rem !important;
+    }
+    
+    .cursos-filters {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.125rem !important;
+        max-width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    .cursos-filter-btn {
+        padding: 0.125rem 0.0625rem !important;
+        font-size: 0.6rem !important;
+        border-radius: 0.125rem !important;
+        min-height: auto !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    
+    /* GRID DE CURSOS MOBILE ULTRA PEQUENO */
+    .cursos-grid-moderno {
+        grid-template-columns: 1fr !important;
+        gap: 0.25rem !important;
+        padding: 0 0.125rem !important;
+    }
+    
+    .curso-card {
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .curso-content {
+        padding: 0.25rem !important;
+    }
+    
+    .course-header h3 {
+        font-size: 0.8rem !important;
+    }
+    
+    .course-description p {
+        font-size: 0.65rem !important;
+    }
+    
+    .course-details {
+        flex-direction: column !important;
+        gap: 0.125rem !important;
+    }
+    
+    .detail-item {
+        font-size: 0.55rem !important;
+        padding: 0.125rem 0.25rem !important;
+    }
+    
+    .course-actions {
+        flex-direction: column !important;
+        gap: 0.125rem !important;
+    }
+    
+    .course-btn {
+        padding: 0.25rem 0.375rem !important;
+        font-size: 0.65rem !important;
+    }
+}

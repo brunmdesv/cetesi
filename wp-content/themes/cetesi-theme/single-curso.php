@@ -869,6 +869,7 @@ get_header(); ?>
 </main>
 
 <!-- CSS da página de curso movido para assets/css/single-curso.css -->
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/single-curso-responsive.css">
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

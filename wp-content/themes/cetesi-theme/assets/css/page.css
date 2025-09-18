@@ -270,7 +270,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .page-hero {
         padding: var(--space-2xl) 0;
     }
