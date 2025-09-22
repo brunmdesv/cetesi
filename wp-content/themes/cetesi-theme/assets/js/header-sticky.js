@@ -24,27 +24,19 @@
         // Inicialização
         init: function() {
             if (this.isInitialized) {
-                console.log('[Cetesi] Header Sticky já foi inicializado');
                 return;
             }
             
-            console.log('[Cetesi] Inicializando Header Sticky...');
             this.cacheElements();
             this.bindEvents();
             this.forceSticky();
             this.isInitialized = true;
-            console.log('[Cetesi] Header Sticky inicializado com sucesso!');
         },
 
         // Cache de elementos DOM
         cacheElements: function() {
             this.elements.header = document.querySelector('.header');
             this.elements.mobileHeader = document.querySelector('.mobile-header');
-            
-            console.log('[Cetesi] Elementos encontrados:', {
-                header: !!this.elements.header,
-                mobileHeader: !!this.elements.mobileHeader
-            });
         },
 
         // Bind de eventos
@@ -66,7 +58,6 @@
             if (this.currentMode !== newMode) {
                 clearTimeout(this.resizeTimeout);
                 this.resizeTimeout = setTimeout(function() {
-                    console.log('[Cetesi] Modo mudou de', self.currentMode, 'para', newMode, '- reaplicando sticky...');
                     self.currentMode = newMode;
                     self.forceSticky();
                 }, 250);
@@ -79,8 +70,6 @@
             var mobileHeaderEl = this.elements.mobileHeader;
             var isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-            console.log('[Cetesi] Modo atual:', isMobile ? 'Mobile' : 'Desktop');
-
             // Aplicar sticky apenas no header ativo (desktop ou mobile)
             if (isMobile && mobileHeaderEl) {
                 // Modo mobile - aplicar no header mobile
@@ -88,7 +77,6 @@
                 mobileHeaderEl.style.setProperty('position', 'sticky', 'important');
                 mobileHeaderEl.style.setProperty('top', '0', 'important');
                 mobileHeaderEl.style.setProperty('z-index', '1000', 'important');
-                console.log('[Cetesi] Sticky aplicado ao header mobile');
                 
                 // Testar se sticky funciona no mobile (apenas na primeira vez)
                 if (this.currentMode === null || this.currentMode !== 'mobile') {
@@ -103,7 +91,6 @@
                 headerEl.style.setProperty('position', 'sticky', 'important');
                 headerEl.style.setProperty('top', '0', 'important');
                 headerEl.style.setProperty('z-index', '1000', 'important');
-                console.log('[Cetesi] Sticky aplicado ao header desktop');
                 
                 // Testar se sticky funciona no desktop (apenas na primeira vez)
                 if (this.currentMode === null || this.currentMode !== 'desktop') {
@@ -126,18 +113,9 @@
                 var afterTop = headerEl.getBoundingClientRect().top;
                 window.scrollTo(0, initialScrollY); // Voltar ao topo
                 
-                console.log('[Cetesi] Teste sticky ' + type + ':', {
-                    initialTop: initialTop,
-                    afterTop: afterTop,
-                    scrollY: window.scrollY
-                });
-                
                 // Se o header não grudou (top não é 0), aplicar fixed
                 if (afterTop !== 0 && Math.abs(afterTop - 0) > 5) {
-                    console.warn('[Cetesi] Sticky não funcionou, aplicando position fixed para ' + type);
                     this.applyFixedFallback(headerEl, type);
-                } else {
-                    console.log('[Cetesi] Sticky funcionando corretamente para ' + type);
                 }
             }, 50);
         },
@@ -166,14 +144,6 @@
             
             // Adicionar classe ao body para identificar que está usando fixed
             document.body.classList.add('header-fixed-mode');
-            
-            console.log('[Cetesi] Fallback fixed aplicado para ' + type + ' com altura: ' + headerHeight + 'px');
-            console.log('[Cetesi] Estilos aplicados:', {
-                position: headerEl.style.position,
-                top: headerEl.style.top,
-                zIndex: headerEl.style.zIndex,
-                bodyPaddingTop: document.body.style.paddingTop
-            });
         },
 
         // Handle scroll do header
