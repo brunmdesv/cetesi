@@ -144,12 +144,11 @@
 }
 
 .cursos-filters {
-    display: grid;
+    display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 50px;
     flex-wrap: wrap;
-    grid-template-columns: 1fr 1fr;
 }
 
 .cursos-filter-btn {
@@ -248,7 +247,7 @@ ease;
 /* ===== CURSOS GRID ULTRA MODERNO - IDÊNTICO À FRONT-PAGE ===== */
 .cursos-grid-moderno {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
     margin-bottom: var(--space-xl);
 }

@@ -411,6 +411,28 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
+
+                <div class="depoimento-card">
+                    <div class="depoimento-content">
+                        <div class="depoimento-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="depoimento-text"><?php _e('"Aprendizado incrível e apoio constante dos professores. Recomendo o CETESI para todos que buscam qualificação na área da saúde."', 'cetesi'); ?></p>
+                    </div>
+                    <div class="depoimento-author">
+                        <div class="depoimento-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="depoimento-info">
+                            <h4><?php _e('Ana Pereira', 'cetesi'); ?></h4>
+                            <span><?php _e('Técnica em Enfermagem - Rede Privada', 'cetesi'); ?></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

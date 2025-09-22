@@ -661,6 +661,19 @@
     }
 }
 
+/* ===== AJUSTES DECTA - BOTÕES LADO A LADO NO DESKTOP ===== */
+@media (min-width: 1024px) {
+    .cta-buttons {
+        display: flex;
+        gap: var(--space-lg);
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+    .cta-buttons .btn-hero {
+        white-space: nowrap;
+    }
+}
+
 @media (max-width: 768px) {
     .categoria-cursos {
         padding: var(--space-2xl) 0;

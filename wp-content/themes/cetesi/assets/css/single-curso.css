@@ -49,10 +49,9 @@
 .hero-content-ultra {
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--space-3xl);
-    align-items: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--space-lg);
@@ -60,6 +59,9 @@
 
 .hero-main-content {
     padding-top: var(--space-xl);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 /* Badges Ultra Modernos */

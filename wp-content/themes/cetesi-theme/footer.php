@@ -1,10 +1,10 @@
-    </main><!-- #main -->
+</main><!-- #main -->
 
     <!-- Footer -->
     <footer id="colophon" class="footer">
         <div class="container">
             <div class="footer-content">
-                <!-- Informações do CETESI -->
+                <!-- Informações do CETESI (única seção visível) -->
                 <div class="footer-section footer-brand">
                     <div class="footer-logo">
                         <i class="fas fa-graduation-cap"></i>
@@ -21,164 +21,10 @@
                         ?>
                     </p>
                     
-                    <!-- Informações de Contato -->
-                    <div class="contact-info">
-                        <?php if (get_theme_mod('cetesi_phone')) : ?>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <span class="contact-label">Telefone</span>
-                                <span class="contact-value"><?php echo esc_html(get_theme_mod('cetesi_phone')); ?></span>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                        
-                        <?php if (get_theme_mod('cetesi_email')) : ?>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <span class="contact-label">E-mail</span>
-                                <span class="contact-value"><?php echo esc_html(get_theme_mod('cetesi_email')); ?></span>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                        
-                    </div>
                     
-                    <!-- Redes Sociais -->
-                    <div class="social-links">
-                        <a href="#" class="social-link facebook" title="Facebook" target="_blank" rel="noopener">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link instagram" title="Instagram" target="_blank" rel="noopener">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link youtube" title="YouTube" target="_blank" rel="noopener">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="social-link linkedin" title="LinkedIn" target="_blank" rel="noopener">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link whatsapp" title="WhatsApp" target="_blank" rel="noopener">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
                 </div>
                 
-                <!-- Cursos Técnicos -->
-                <div class="footer-section">
-                    <h4><i class="fas fa-stethoscope"></i> <?php _e('Cursos Técnicos', 'cetesi'); ?></h4>
-                    <div class="footer-links">
-                        <?php
-                        $cursos_tecnicos = cetesi_get_cursos_by_category('tecnicos', 4);
-                        if ($cursos_tecnicos->have_posts()) :
-                            while ($cursos_tecnicos->have_posts()) : $cursos_tecnicos->the_post();
-                        ?>
-                            <a href="<?php the_permalink(); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php the_title(); ?>
-                            </a>
-                        <?php 
-                            endwhile;
-                            wp_reset_postdata();
-                        else :
-                        ?>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Técnico em Enfermagem', 'cetesi'); ?>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Técnico em Radiologia', 'cetesi'); ?>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Nutrição e Dietética', 'cetesi'); ?>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Segurança do Trabalho', 'cetesi'); ?>
-                            </a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                
-                <!-- Cursos de Qualificação -->
-                <div class="footer-section">
-                    <h4><i class="fas fa-certificate"></i> <?php _e('Cursos de Qualificação', 'cetesi'); ?></h4>
-                    <div class="footer-links">
-                        <?php
-                        $cursos_qualificacao = cetesi_get_cursos_by_category('qualificacao', 6);
-                        if ($cursos_qualificacao->have_posts()) :
-                            while ($cursos_qualificacao->have_posts()) : $cursos_qualificacao->the_post();
-                        ?>
-                            <a href="<?php the_permalink(); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php the_title(); ?>
-                            </a>
-                        <?php 
-                            endwhile;
-                            wp_reset_postdata();
-                        else :
-                        ?>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Instrumentação Cirúrgica', 'cetesi'); ?>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Saúde Mental', 'cetesi'); ?>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Enfermagem do Trabalho', 'cetesi'); ?>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Cuidador de Idosos', 'cetesi'); ?>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Hemodiálise', 'cetesi'); ?>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/cursos')); ?>" class="footer-link">
-                                <i class="fas fa-arrow-right"></i>
-                                <?php _e('Saúde Bucal', 'cetesi'); ?>
-                            </a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                
-                <!-- Institucional -->
-                <div class="footer-section">
-                    <h4><i class="fas fa-building"></i> <?php _e('Institucional', 'cetesi'); ?></h4>
-                    <div class="footer-links">
-                        <a href="<?php echo esc_url(home_url('/sobre')); ?>" class="footer-link">
-                            <i class="fas fa-arrow-right"></i>
-                            <?php _e('Sobre Nós', 'cetesi'); ?>
-                        </a>
-                        <a href="<?php echo esc_url(home_url('/diferenciais')); ?>" class="footer-link">
-                            <i class="fas fa-arrow-right"></i>
-                            <?php _e('Nossos Diferenciais', 'cetesi'); ?>
-                        </a>
-                        <a href="<?php echo esc_url(home_url('/infraestrutura')); ?>" class="footer-link">
-                            <i class="fas fa-arrow-right"></i>
-                            <?php _e('Infraestrutura', 'cetesi'); ?>
-                        </a>
-                        <a href="<?php echo esc_url(home_url('/trabalhe-conosco')); ?>" class="footer-link">
-                            <i class="fas fa-arrow-right"></i>
-                            <?php _e('Trabalhe Conosco', 'cetesi'); ?>
-                        </a>
-                        <a href="<?php echo esc_url(home_url('/politica-privacidade')); ?>" class="footer-link">
-                            <i class="fas fa-arrow-right"></i>
-                            <?php _e('Política de Privacidade', 'cetesi'); ?>
-                        </a>
-                        <a href="<?php echo esc_url(home_url('/termos-uso')); ?>" class="footer-link">
-                            <i class="fas fa-arrow-right"></i>
-                            <?php _e('Termos de Uso', 'cetesi'); ?>
-                        </a>
-                    </div>
-                </div>
+                <!-- Demais seções removidas conforme solicitado -->
             </div>
         </div>
         
@@ -191,7 +37,7 @@
                         <p class="cnpj-info">CNPJ: 00.000.000/0001-00</p>
                     </div>
                     
-                    <div class="security-badges">
+                    <div class="security-badges" style="display: flex; align-items: center;">
                         <div class="badge-item">
                             <i class="fas fa-shield-alt"></i>
                             <span>Site Seguro</span>

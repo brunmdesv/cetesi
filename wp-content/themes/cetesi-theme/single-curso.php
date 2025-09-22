@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template para cursos individuais - Design Ultra Moderno
  * 
@@ -170,66 +170,6 @@ get_header(); ?>
                             </div>
                         
                             </div>
-                        
-                        <!-- Card de Preço Ultra Moderno -->
-                        <div class="hero-sidebar-ultra" data-aos="fade-left" data-aos-delay="1000">
-                            <div class="curso-card-preco-ultra">
-                                <div class="card-header-ultra">
-                                    <h3 class="card-titulo-ultra">Investimento</h3>
-                                    <?php if ($desconto) : ?>
-                                    <div class="desconto-badge-ultra">
-                                        <span class="desconto-texto"><?php echo esc_html($desconto); ?></span>
-                                    </div>
-                                <?php endif; ?>
-                        </div>
-                        
-                                <div class="card-preco-ultra">
-                                    <?php if ($preco_promocional && $preco_promocional !== $preco) : ?>
-                                        <div class="preco-promocional-ultra">
-                                            <span class="preco-valor-promocional-ultra"><?php echo esc_html($preco_promocional); ?></span>
-                                        </div>
-                                        <div class="preco-original-ultra">
-                                            <span class="preco-valor-original-ultra"><?php echo esc_html($preco); ?></span>
-                                        </div>
-                                    <?php else : ?>
-                                        <div class="preco-normal-ultra">
-                                            <span class="preco-valor-ultra"><?php echo esc_html($preco); ?></span>
-                        </div>
-                        <?php endif; ?>
-                                </div>
-                                
-                                <div class="card-beneficios-ultra">
-                                    <div class="beneficio-item-ultra">
-                                        <div class="beneficio-icon">
-                                        <i class="fas fa-check-circle"></i>
-                                    </div>
-                                        <span class="beneficio-texto">Material incluso</span>
-                                    </div>
-                                    <div class="beneficio-item-ultra">
-                                        <div class="beneficio-icon">
-                                        <i class="fas fa-check-circle"></i>
-                                    </div>
-                                        <span class="beneficio-texto">Certificado válido</span>
-                                    </div>
-                                    <div class="beneficio-item-ultra">
-                                        <div class="beneficio-icon">
-                                        <i class="fas fa-check-circle"></i>
-                                        </div>
-                                        <span class="beneficio-texto">Suporte completo</span>
-                                    </div>
-                                </div>
-                                
-                                <?php if ($link_inscricao) : ?>
-                                <a href="<?php echo esc_url($link_inscricao); ?>" class="btn-inscricao-card-ultra" target="_blank" rel="noopener">
-                                    <div class="btn-content">
-                                    <i class="fas fa-rocket"></i>
-                                    <span>Começar Agora</span>
-                                    </div>
-                                    <div class="btn-shine-ultra"></div>
-                                </a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
