@@ -115,6 +115,8 @@ body {
     background-color: var(--gray-50);
     font-display: swap;
     overflow-x: hidden;
+    /* Garantir que o sticky funcione corretamente */
+    overflow-y: visible;
 }
 
 /* Garantir carregamento correto de fontes globalmente */
@@ -136,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 var(--space-lg);
 }
 
-/* Header Moderno - Base (sem sticky, será aplicado pelo header-sticky.css) */
+/* Header Moderno - Base */
 .header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -145,6 +147,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: var(--space-md) 0;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sticky será aplicado pelo header-sticky.css */
 }
 
 .site-title {
@@ -6909,6 +6912,7 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    /* Sticky será aplicado pelo header-sticky.css */
 }
 
 /* .mobile-header.scrolled removido - será aplicado pelo header-sticky.css */

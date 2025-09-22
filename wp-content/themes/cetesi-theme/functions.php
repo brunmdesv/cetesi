@@ -1897,12 +1897,8 @@ function cetesi_scripts() {
     wp_enqueue_style('cetesi-header-material', CETESI_THEME_URL . '/assets/css/header-mobile-material.css', array('cetesi-header-mobile'), CETESI_VERSION);
     wp_enqueue_style('cetesi-header-responsive', CETESI_THEME_URL . '/assets/css/header-mobile-responsive.css', array('cetesi-header-material'), CETESI_VERSION);
     
-    // CSS de correções mobile - sempre carregado POR ÚLTIMO para máxima prioridade
+    // CSS de correções mobile
     wp_enqueue_style('cetesi-mobile-fixes', CETESI_THEME_URL . '/assets/css/mobile-fixes.css', array('cetesi-style', 'cetesi-header-responsive'), CETESI_VERSION);
-    
-    // CSS do header sticky - implementação limpa
-    wp_enqueue_style('cetesi-header-sticky', CETESI_THEME_URL . '/assets/css/header-sticky.css', array('cetesi-mobile-fixes'), CETESI_VERSION);
-    
     
     // CSS específico para hero section (extraído do inline)
     if (is_front_page()) {
@@ -1934,6 +1930,9 @@ function cetesi_scripts() {
     if (is_home() || is_archive() || is_search()) {
         wp_enqueue_style('cetesi-index', CETESI_THEME_URL . '/assets/css/index.css', array('cetesi-style'), CETESI_VERSION);
     }
+    
+    // CSS do header sticky - CARREGADO POR ÚLTIMO para máxima prioridade
+    wp_enqueue_style('cetesi-header-sticky', CETESI_THEME_URL . '/assets/css/header-sticky.css', array('cetesi-mobile-fixes'), CETESI_VERSION);
     
     wp_enqueue_script('cetesi-main', CETESI_THEME_URL . '/assets/js/main.js', array('jquery'), CETESI_VERSION, true);
     wp_enqueue_script('cetesi-mobile-responsive', CETESI_THEME_URL . '/assets/js/mobile-responsive.js', array('jquery'), CETESI_VERSION, true);
