@@ -227,7 +227,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 340px;
+    width: 280px;
     height: 100vh;
     max-height: 100vh;
     background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
@@ -239,6 +239,15 @@
     pointer-events: auto;
     border-left: 1px solid rgba(0, 123, 255, 0.1);
     display: flex;
+    /* Melhorias para visualização */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* Garantir que funcione em todos os dispositivos */
+    z-index: 9999;
+    /* Otimizações de performance */
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
     flex-direction: column;
     touch-action: pan-y;
     -webkit-touch-callout: none;
@@ -488,6 +497,26 @@ body.mobile-menu-open {
     position: relative;
     z-index: 10;
     background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.mobile-cta-row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.mobile-cta-row:first-child {
+    margin-bottom: 12px;
+}
+
+.mobile-cta-row .mobile-btn-nav {
+    flex: 1;
+    justify-content: center;
+}
+
+.mobile-cta-row .mobile-btn-primary {
+    width: 100%;
+    justify-content: center;
     /* Forçar que os botões sejam sempre visíveis */
     min-height: auto;
     max-height: none;

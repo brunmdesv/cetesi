@@ -6,212 +6,84 @@
  */
 
 /* ==========================================
+   RESPONSIVIDADE DO HEADER MOBILE
+   ========================================== */
+
+/* ==========================================
+   CORREÇÃO DE Z-INDEX E CONFLITOS
+   ========================================== */
+
+/* Garantir que o header tenha prioridade sobre outros elementos */
+.header,
+.mobile-header {
+    z-index: 1000 !important;
+}
+
+/* Garantir que o menu mobile tenha z-index maior que o header */
+.mobile-menu-content,
+.nav-menu {
+    z-index: 9999 !important;
+}
+
+/* Garantir que overlays tenham z-index adequado */
+.mobile-menu-overlay {
+    z-index: 9998 !important;
+}
+
+/* Garantir que botões flutuantes não interfiram */
+.floating-btn {
+    z-index: 1001 !important;
+}
+
+/* ==========================================
    BREAKPOINTS CANÔNICOS - HEADER MOBILE
    ========================================== */
+
 @media (max-width: 420px) {
-    .mobile-header { padding: 8px 12px; }
+    /* Esconder header desktop em mobile */
+    .header {
+        display: none !important;
+    }
+    
     .mobile-logo { font-size: 1.1rem; }
-    .mobile-menu-content { max-width: 260px; }
+    .mobile-menu-content { 
+        width: 80%;
+        max-width: 260px;
+        /* Melhorias para visualização */
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        /* Garantir que funcione em todos os dispositivos */
+        z-index: 9999;
+        /* Otimizações de performance */
+        will-change: transform;
+        backface-visibility: hidden;
+        perspective: 1000px;
+        /* Melhorar visualização */
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    }
 }
 
 @media (min-width: 421px) and (max-width: 768px) {
-    .mobile-header { padding: 10px 16px; }
+    /* Esconder header desktop em tablets */
+    .header {
+        display: none !important;
+    }
+}
+
+/* Desktop - Acima de 768px */
+@media (min-width: 769px) {
+    /* Mostrar header desktop em desktop */
+    .header {
+        display: block !important;
+    }
+    
+    /* Esconder mobile header em desktop */
+    .mobile-header {
+        display: none !important;
+    }
 }
 
 @media (min-width: 1024px) and (max-width: 1200px) {
     .mobile-header-container { max-width: 1140px; }
-}
-
-/* ==========================================================================
-   RESPONSIVIDADE MOBILE
-   ========================================================================== */
-
-@media (min-width: 421px) and (max-width: 768px) {
-    /* Esconder header desktop */
-    .header {
-        display: none;
-    }
-    
-    /* Mostrar header mobile */
-    .mobile-header {
-        display: block;
-    }
-    
-    /* Ajustar largura do menu em telas pequenas */
-    .mobile-menu-content {
-        width: 100%;
-        max-width: 320px;
-        right: 0;
-        left: auto;
-    }
-    
-    /* Garantir que nada passe da tela */
-    .mobile-menu-overlay {
-        left: 0;
-        right: 0;
-        width: 100vw;
-        height: 100vh;
-    }
-}
-
-/* REMOVIDO: Breakpoint de 480px - agora tudo é mobile padronizado em 768px */
-    
-    .mobile-menu-header {
-        padding: 12px 16px;
-        min-height: 50px;
-        flex-shrink: 0;
-    }
-    
-    .mobile-navigation {
-        padding: 8px 0;
-        /* Reduzir altura máxima para garantir espaço para CTA */
-        max-height: calc(100vh - 220px);
-        flex: 1;
-        overflow-y: auto;
-        margin-bottom: 0;
-    }
-    
-    .mobile-cta {
-        padding: 16px 20px 20px 20px;
-        gap: 12px;
-        /* Forçar visibilidade e garantir espaço */
-        flex-shrink: 0;
-        position: sticky;
-        bottom: 0;
-        background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-        border-top: 1px solid #e0e0e0;
-        z-index: 20;
-        /* Garantir que não seja cortado */
-        margin-bottom: 6px;
-        min-height: auto;
-        border-radius: 10px 10px 0 0;
-        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
-    }
-    
-    .mobile-btn-nav,
-    .mobile-btn-primary {
-        padding: 12px 16px;
-        font-size: 0.85rem;
-        min-height: 48px;
-        /* Garantir que sejam sempre visíveis */
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        margin-bottom: 6px;
-    }
-    
-    .mobile-btn-nav i,
-    .mobile-btn-primary i {
-        font-size: 14px;
-    }
-    
-    /* Garantir que nada passe da tela em telas muito pequenas */
-    .mobile-menu-overlay {
-        left: 0;
-        right: 0;
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw;
-        max-height: 100vh;
-    }
-}
-
-@media (max-width: 420px) {
-    .mobile-container {
-        padding: 0 12px;
-    }
-    
-    .mobile-toolbar {
-        min-height: 56px;
-    }
-    
-    .mobile-logo-text {
-        font-size: 1.25rem;
-    }
-    
-    .mobile-menu-btn {
-        min-width: 44px;
-        min-height: 44px;
-        padding: 10px;
-    }
-    
-    .mobile-menu-icon {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .mobile-menu-link {
-        padding: 14px 20px;
-        font-size: 0.95rem;
-    }
-    
-    .mobile-sub-menu .mobile-menu-link {
-        padding-left: 40px;
-    }
-}
-
-/* Media query específico para dispositivos com altura pequena */
-@media (max-height: 600px) {
-    .mobile-menu-content {
-        height: 100vh;
-        min-height: 100vh;
-        max-height: 100vh;
-        padding-bottom: 0;
-    }
-    
-    .mobile-menu-header {
-        min-height: 45px;
-        padding: 6px 16px;
-    }
-    
-    .mobile-navigation {
-        max-height: calc(100vh - 200px);
-        padding: 6px 0;
-        margin-bottom: 0;
-    }
-    
-    .mobile-cta {
-        padding: 12px 16px 16px 16px;
-        gap: 8px;
-        position: sticky;
-        bottom: 0;
-        z-index: 20;
-        margin-bottom: 4px;
-        background: #ffffff;
-        border-radius: 8px 8px 0 0;
-        box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.05);
-    }
-    
-    .mobile-btn-nav,
-    .mobile-btn-primary {
-        min-height: 40px;
-        padding: 8px 12px;
-        font-size: 0.8rem;
-        margin-bottom: 4px;
-    }
-    
-    .mobile-btn-nav i,
-    .mobile-btn-primary i {
-        font-size: 12px;
-    }
-}
-
-/* Media query para dispositivos muito pequenos (altura < 500px) */
-@media (max-height: 500px) {
-    .mobile-navigation {
-        max-height: calc(100vh - 140px);
-    }
-    
-    .mobile-cta {
-        padding: 6px 16px;
-        gap: 6px;
-    }
-    
-    .mobile-btn-nav,
-    .mobile-btn-primary {
-        min-height: 32px;
-        padding: 6px 10px;
-        font-size: 0.75rem;
-        margin-bottom: 4px;
-    }
 }

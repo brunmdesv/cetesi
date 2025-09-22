@@ -1897,6 +1897,13 @@ function cetesi_scripts() {
     wp_enqueue_style('cetesi-header-material', CETESI_THEME_URL . '/assets/css/header-mobile-material.css', array('cetesi-header-mobile'), CETESI_VERSION);
     wp_enqueue_style('cetesi-header-responsive', CETESI_THEME_URL . '/assets/css/header-mobile-responsive.css', array('cetesi-header-material'), CETESI_VERSION);
     
+    // CSS de correções mobile - sempre carregado POR ÚLTIMO para máxima prioridade
+    wp_enqueue_style('cetesi-mobile-fixes', CETESI_THEME_URL . '/assets/css/mobile-fixes.css', array('cetesi-style', 'cetesi-header-responsive'), CETESI_VERSION);
+    
+    // CSS do header sticky - implementação limpa
+    wp_enqueue_style('cetesi-header-sticky', CETESI_THEME_URL . '/assets/css/header-sticky.css', array('cetesi-mobile-fixes'), CETESI_VERSION);
+    
+    
     // CSS específico para hero section (extraído do inline)
     if (is_front_page()) {
         wp_enqueue_style('cetesi-hero', CETESI_THEME_URL . '/assets/css/hero.css', array('cetesi-style'), CETESI_VERSION);
@@ -1929,7 +1936,12 @@ function cetesi_scripts() {
     }
     
     wp_enqueue_script('cetesi-main', CETESI_THEME_URL . '/assets/js/main.js', array('jquery'), CETESI_VERSION, true);
+    wp_enqueue_script('cetesi-mobile-responsive', CETESI_THEME_URL . '/assets/js/mobile-responsive.js', array('jquery'), CETESI_VERSION, true);
     wp_enqueue_script('cetesi-header-mobile', CETESI_THEME_URL . '/assets/js/header-mobile.js', array('jquery'), CETESI_VERSION, true);
+    
+    // JavaScript do header sticky - implementação limpa
+    wp_enqueue_script('cetesi-header-sticky', CETESI_THEME_URL . '/assets/js/header-sticky.js', array('jquery'), CETESI_VERSION, true);
+    
     wp_enqueue_script('cetesi-contact-form', CETESI_THEME_URL . '/assets/js/contact-form.js', array('jquery'), CETESI_VERSION, true);
     wp_localize_script('cetesi-contact-form', 'cetesi_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -8649,10 +8661,12 @@ function cetesi_customizer_css() {
             --primary-color: <?php echo esc_attr($primary_color); ?>;
             --secondary-color: <?php echo esc_attr($secondary_color); ?>;
         }
+        
     </style>
     <?php
 }
 add_action('wp_head', 'cetesi_customizer_css');
+
 
 /**
  * Função para obter cursos por categoria

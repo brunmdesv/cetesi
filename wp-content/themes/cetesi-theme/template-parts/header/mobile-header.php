@@ -81,6 +81,25 @@
                 </button>
             </div>
 
+            <!-- CTA Mobile - Movido para o topo -->
+            <div class="mobile-cta">
+                <!-- Painéis na mesma linha -->
+                <div class="mobile-cta-row">
+                    <a href="#" class="mobile-btn-nav" role="button">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Painel Unicollege</span>
+                    </a>
+                    
+                    <a href="#" class="mobile-btn-nav" role="button">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Painel do Aluno</span>
+                    </a>
+                </div>
+                
+                <!-- Botão ligar em linha separada -->
+                <!-- Botão "Ligar agora" removido do mobile -->
+            </div>
+
             <!-- Navegação Mobile -->
             <nav class="mobile-navigation" id="mobile-menu" role="navigation" aria-label="Menu principal">
                 <?php
@@ -93,24 +112,6 @@
                 ));
                 ?>
             </nav>
-
-            <!-- CTA Mobile -->
-            <div class="mobile-cta">
-                <a href="#" class="mobile-btn-nav" role="button">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Painel Unicollege</span>
-                </a>
-                
-                <a href="#" class="mobile-btn-nav" role="button">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Painel do Aluno</span>
-                </a>
-                
-                <a href="tel:(61) 3351-4511" class="mobile-btn-primary" role="button">
-                    <i class="fas fa-phone"></i>
-                    <span>Ligar agora</span>
-                </a>
-            </div>
 
         </div>
     </div>

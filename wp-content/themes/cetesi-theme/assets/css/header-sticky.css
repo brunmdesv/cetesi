@@ -1,0 +1,115 @@
+/**
+ * Estilos específicos do Header Sticky - Baseado no tema Cetesi que funciona
+ * 
+ * @package Cetesi-Theme
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   HEADER STICKY - IMPLEMENTAÇÃO LIMPA E FUNCIONAL
+   ========================================================================== */
+
+/* ===== HEADER PRINCIPAL ===== */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    padding: 1rem 0;
+}
+
+.header.scrolled {
+    box-shadow: var(--shadow-lg);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+/* ===== HEADER MOBILE - MATERIAL-UI STYLE ===== */
+.mobile-header {
+    display: none;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobile-header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Mobile - até 768px */
+@media (max-width: 768px) {
+    .header {
+        display: none;
+    }
+
+    .mobile-header {
+        display: block;
+    }
+}
+
+/* Desktop - acima de 768px */
+@media (min-width: 769px) {
+    .header {
+        display: block;
+    }
+
+    .mobile-header {
+        display: none;
+    }
+}
+
+/* ===== CORREÇÃO DE Z-INDEX ===== */
+
+/* Garantir que o header tenha prioridade sobre outros elementos */
+.header,
+.mobile-header {
+    z-index: 1000;
+}
+
+/* Garantir que o menu mobile tenha z-index maior que o header */
+.mobile-menu-content,
+.nav-menu {
+    z-index: 9999;
+}
+
+/* Garantir que overlays tenham z-index adequado */
+.mobile-menu-overlay {
+    z-index: 9998;
+}
+
+/* Garantir que botões flutuantes não interfiram */
+.floating-btn {
+    z-index: 1001;
+}
+
+/* ===== FALLBACK: FIXED POSITION (quando sticky falhar) ===== */
+
+.header--fixed,
+.mobile-header--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+/* Espaço do body quando fallback estiver ativo será aplicado via JS */
+
+/* ===== PREVENIR QUE ANCESTRAIS QUEBREM O STICKY ===== */
+/* Alguns containers podem ter overflow ou transform aplicados; garantimos que não afetem o header */
+.site,
+#page,
+.site-main {
+    overflow: visible;
+    transform: none;
+}

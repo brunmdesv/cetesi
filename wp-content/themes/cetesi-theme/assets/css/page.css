@@ -1,11 +1,4 @@
-﻿/* Correção para posicionamento do header */
-.header {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 1000 !important;
-}
+﻿/* Header sticky já controlado por header-sticky.css */
 
 /* ==========================================
    BREAKPOINTS CANÔNICOS - PAGES
@@ -24,9 +17,7 @@
     .container-page { max-width: 1140px; }
 }
 
-body {
-    padding-top: 80px !important;
-}
+/* Padding-top do body removido (controlado dinamicamente pelo JS quando necessário) */
 
 .page-hero {
     background: var(--gradient-hero);
@@ -304,5 +295,3 @@ body {
         padding: var(--space-2xl) 0;
     }
 }
-</style>
-

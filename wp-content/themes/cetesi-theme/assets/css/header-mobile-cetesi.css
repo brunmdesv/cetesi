@@ -27,7 +27,7 @@
    ========================================================================== */
 
 /* Desktop - Layout igual ao cetesi-theme */
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
     .header-content {
         flex-direction: row;
         justify-content: space-between;

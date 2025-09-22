@@ -1,6 +1,6 @@
 ﻿/* Correção para posicionamento do header */
 .header {
-    position: fixed !important;
+    position: sticky !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
@@ -153,7 +153,12 @@ body {
     color: white;
 }
 
-@media (max-width: 768px) {
+/* BREAKPOINTS CANÔNICOS */
+@media (max-width: 420px) {
+    /* ajustes opcionais para mobile pequeno */
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
     .posts-grid {
         grid-template-columns: 1fr;
         gap: var(--space-xl);
@@ -164,5 +169,9 @@ body {
         gap: var(--space-sm);
     }
 }
-</style>
 
+/* Desktop médio (1024–1200px) */
+@media (min-width: 1024px) and (max-width: 1200px) {
+    /* Ajustes opcionais desta faixa; manteremos leve para seguir a padronização */
+    /* Exemplo: .container-index { max-width: 1140px; } */
+}
