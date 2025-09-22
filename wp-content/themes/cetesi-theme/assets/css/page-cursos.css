@@ -16,6 +16,20 @@
     .cursos-container { max-width: 1140px; }
 }
 
+/* Desktop (≥1024px) - Ajustes específicos */
+@media (min-width: 1024px) {
+    /* Filtros como flex no desktop */
+    .cursos-filters {
+        display: flex !important;
+    }
+
+    /* Grid com 3 colunas fixas no desktop */
+    .cursos-grid-moderno {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
 /* Variáveis Ultra Modernas - IDÊNTICAS À FRONT-PAGE */
 .cursos-section {
     /* Tipografia */

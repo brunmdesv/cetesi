@@ -1186,7 +1186,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero Section Unificada - Para todos os templates */
 .hero-section {
-    padding: 40px 0px;
+    padding: var(--space-4xl) 0;
     background: var(--gray-900);
     color: white;
     text-align: center;
@@ -5531,11 +5531,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cta-buttons {
-    display: grid;
+    display: flex;
     gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
-    grid-template-columns: 1fr;
 }
 
 .cta-buttons .button {
@@ -6701,7 +6700,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .stat-number {
     display: block;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 800;
     color: var(--primary-color);
     margin-bottom: var(--space-xs);
