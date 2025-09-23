@@ -1921,6 +1921,14 @@ function cetesi_scripts() {
         wp_enqueue_style('cetesi-page-cursos', CETESI_THEME_URL . '/assets/css/page-cursos.css', array('cetesi-style'), CETESI_VERSION);
     }
     
+    // Carregar CSS das unidades (páginas que usam unidades)
+    if (is_front_page() || is_page('contato') || is_page('sobre')) {
+        wp_enqueue_style('cetesi-units', CETESI_THEME_URL . '/assets/css/units.css', array('cetesi-style'), CETESI_VERSION);
+    }
+    
+    // Carregar CSS do footer com unidades (todas as páginas)
+    wp_enqueue_style('cetesi-footer-units', CETESI_THEME_URL . '/assets/css/footer-units.css', array('cetesi-style'), CETESI_VERSION);
+    
     // Carregar CSS das páginas (exceto homepage, equipe e cursos)
     if (is_page() && !is_front_page() && !is_page('equipe') && !is_page('cursos')) {
         wp_enqueue_style('cetesi-page', CETESI_THEME_URL . '/assets/css/page.css', array('cetesi-style'), CETESI_VERSION);
@@ -10955,4 +10963,41 @@ class Cetesi_Mobile_Menu_Walker extends Walker_Nav_Menu {
         $output .= "</li>\n";
     }
 }
+
+// ===== SISTEMA DE UNIDADES CETESI =====
+
+/**
+ * Obter dados das unidades da escola
+ */
+function cetesi_get_units() {
+    $units = get_option('cetesi_units', array(
+        'unidade_1' => array(
+            'nome' => 'CETESI Ceilândia',
+            'endereco' => 'QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102',
+            'cidade' => 'Ceilândia, Brasília - DF',
+            'cep' => '72220-025',
+            'telefone' => '(61) 3351-4511',
+            'email' => 'contato@cetesi.com.br',
+            'horario_funcionamento' => 'Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h<br>Domingo: Fechado',
+            'google_maps_url' => 'https://maps.app.goo.gl/BtrBP6btCBaYzEBfA',
+            'ativo' => true
+        ),
+        'unidade_2' => array(
+            'nome' => 'CETESI Taguatinga',
+            'endereco' => 'QSB 4 Área Especial 8',
+            'cidade' => 'Taguatinga, Brasília - DF',
+            'cep' => '72015-000',
+            'telefone' => '(61) 3351-4511',
+            'email' => 'contato@cetesi.com.br',
+            'horario_funcionamento' => 'Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h<br>Domingo: Fechado',
+            'google_maps_url' => '#',
+            'ativo' => true
+        )
+    ));
+    
+    return $units;
+}
+
+// Incluir arquivo de funcionalidades das unidades
+require_once get_template_directory() . '/inc/units.php';
 ?>

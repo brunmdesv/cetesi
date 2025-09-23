@@ -64,6 +64,7 @@ get_header();
                         <p>O CETESI foi fundado com o objetivo de democratizar o acesso à educação de qualidade, oferecendo cursos técnicos e profissionalizantes que atendem às demandas do mercado de trabalho.</p>
                         <p>Ao longo dos anos, consolidamos nossa posição como uma das principais instituições de ensino da região, formando milhares de profissionais que hoje contribuem para o desenvolvimento econômico e social.</p>
                         <p>Nossa trajetória é marcada pelo compromisso com a inovação pedagógica, investimento em tecnologia e parcerias estratégicas com empresas e organizações locais.</p>
+                        <p><strong>Com duas unidades estrategicamente localizadas em Brasília</strong> - Ceilândia e Taguatinga - ampliamos nosso alcance e oferecemos ainda mais conveniência para nossos alunos.</p>
                     </div>
                     <div class="historia-stats">
                         <div class="stat-item">
@@ -75,14 +76,33 @@ get_header();
                             <div class="stat-label">Anos de Experiência</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">30</div>
-                            <div class="stat-label">Cursos Oferecidos</div>
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Unidades</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">95%</div>
                             <div class="stat-label">Taxa de Empregabilidade</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nossas Unidades -->
+        <section class="unidades-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nossas Unidades</h2>
+                    <p>Atendemos em duas localizações estratégicas para melhor servi-lo</p>
+                </div>
+                
+                <div class="unidades-grid">
+                    <?php 
+                    $units = cetesi_get_units();
+                    foreach ($units as $unit_key => $unit) {
+                        echo cetesi_render_unit_card($unit, $unit_key);
+                    }
+                    ?>
                 </div>
             </div>
         </section>

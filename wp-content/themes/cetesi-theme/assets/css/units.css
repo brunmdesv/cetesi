@@ -1,0 +1,334 @@
+/**
+ * Estilos para o Sistema de Unidades CETESI
+ * Seguindo o design existente do tema
+ * 
+ * @package CETESI
+ */
+
+/* ===== SEÇÃO DE UNIDADES ===== */
+.unidades-section {
+    padding: var(--space-4xl) 0;
+    background: var(--gray-50);
+}
+
+.unidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-3xl);
+}
+
+/* ===== CARDS DE UNIDADE ===== */
+.unidade-card {
+    background: white;
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-100);
+}
+
+.unidade-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===== HEADER DA UNIDADE ===== */
+.unidade-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+}
+
+.unidade-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+    color: white;
+    font-size: 1.5rem;
+}
+
+.unidade-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--gray-900);
+}
+
+/* ===== DETALHES DA UNIDADE ===== */
+.unidade-detalhes {
+    margin-bottom: var(--space-lg);
+}
+
+.unidade-linha {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm) 0;
+    text-align: left;
+}
+
+.unidade-linha i {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-right: var(--space-sm);
+    min-width: 20px;
+    text-align: center;
+}
+
+.unidade-linha span {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ===== AÇÕES DA UNIDADE ===== */
+.unidade-acoes {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-unidade {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-unidade:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-unidade i {
+    font-size: 0.875rem;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .unidades-section {
+        padding: var(--space-3xl) 0;
+    }
+    
+    .unidades-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        margin-top: var(--space-2xl);
+    }
+    
+    .unidade-card {
+        padding: var(--space-lg);
+    }
+    
+    .unidade-header h3 {
+        font-size: 1.125rem;
+    }
+    
+    .unidade-acoes {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+    
+    .btn-unidade {
+        justify-content: center;
+        padding: var(--space-sm) var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .unidade-card {
+        padding: var(--space-md);
+    }
+    
+    .unidade-header h3 {
+        font-size: 1rem;
+    }
+    
+    .unidade-linha {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .unidade-linha i {
+        margin-bottom: var(--space-xs);
+        margin-right: 0;
+    }
+}
+
+/* ===== ACESSIBILIDADE ===== */
+.btn-unidade:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.unidade-card:focus-within {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ===== MAPAS DAS UNIDADES ===== */
+.mapas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+}
+
+.mapa-unidade {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-100);
+}
+
+.mapa-unidade:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.mapa-unidade h3 {
+    margin: 0 0 var(--space-lg) 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    text-align: center;
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.mapa-container {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.mapa-info {
+    text-align: center;
+}
+
+.mapa-info p {
+    margin: var(--space-xs) 0;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+
+.mapa-info i {
+    color: var(--primary-color);
+    margin-right: var(--space-xs);
+}
+
+.btn-mapa {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--gradient-secondary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.btn-mapa:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    color: white;
+}
+
+.btn-mapa i {
+    font-size: 0.75rem;
+}
+
+/* ===== FACILIDADES SECTION ===== */
+.facilidades-section {
+    margin-top: var(--space-3xl);
+    padding: var(--space-2xl) 0;
+    background: white;
+    border-radius: var(--radius-xl);
+}
+
+.facilidades-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.facilidades-header h3 {
+    margin: 0 0 var(--space-sm) 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.facilidades-header p {
+    margin: 0;
+    color: var(--gray-600);
+    font-size: 1rem;
+}
+
+.facilidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.facilidade-item {
+    text-align: center;
+    padding: var(--space-lg);
+    background: var(--gray-50);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--gray-100);
+    transition: all 0.3s ease;
+}
+
+.facilidade-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.facilidade-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: var(--space-md);
+    display: block;
+}
+
+.facilidade-item span {
+    display: block;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--space-xs);
+    font-size: 1rem;
+}
+
+.facilidade-item small {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+

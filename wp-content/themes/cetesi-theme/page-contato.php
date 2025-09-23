@@ -24,53 +24,21 @@ get_header();
             </div>
         </section>
 
-        <!-- Informações de Contato -->
-        <section class="contato-info-section">
+        <!-- Nossas Unidades -->
+        <section class="unidades-section">
             <div class="container">
-                <div class="contato-info-grid">
-                    <div class="contato-info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3>Endereço</h3>
-                        <p>QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102<br>
-                        Ceilândia, Brasília - DF<br>
-                        CEP: 72220-025</p>
-                    </div>
-
-                    <div class="contato-info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <h3>Telefone</h3>
-                        <p>(61) 3351-4511</p>
-                        <a href="tel:+556133514511" class="contato-link">
-                            <i class="fas fa-phone"></i>
-                            Ligar Agora
-                        </a>
-                    </div>
-
-                    <div class="contato-info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>E-mail</h3>
-                        <p>contato@cetesi.com.br</p>
-                        <a href="mailto:contato@cetesi.com.br" class="contato-link">
-                            <i class="fas fa-envelope"></i>
-                            Enviar E-mail
-                        </a>
-                    </div>
-
-                    <div class="contato-info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3>Horário de Funcionamento</h3>
-                        <p>Segunda a Sexta: 8h às 18h<br>
-                        Sábado: 8h às 12h<br>
-                        Domingo: Fechado</p>
-                    </div>
+                <div class="section-header">
+                    <h2>Nossas Unidades</h2>
+                    <p>Conheça nossas duas unidades estrategicamente localizadas em Brasília para melhor atendê-lo</p>
+                </div>
+                
+                <div class="unidades-grid">
+                    <?php 
+                    $units = cetesi_get_units();
+                    foreach ($units as $unit_key => $unit) {
+                        echo cetesi_render_unit_card($unit, $unit_key);
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -144,23 +112,46 @@ get_header();
             </div>
         </section>
 
-        <!-- Mapa -->
+        <!-- Mapas das Unidades -->
         <section class="contato-mapa-section">
             <div class="container">
                 <div class="mapa-header">
-                    <h2>Nossa Localização</h2>
-                    <p>Venha nos visitar e conhecer nossa estrutura completa.</p>
+                    <h2>Nossas Localizações</h2>
+                    <p>Venha nos visitar em qualquer uma de nossas unidades e conheça nossa estrutura completa.</p>
                 </div>
-                <div class="mapa-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975!2d-46.6388!3d-23.5489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMyJzU2LjAiUyA0NsKwMzgnMTkuNyJX!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr" 
-                        width="100%" 
-                        height="400" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                
+                <div class="mapas-grid">
+                    <?php 
+                    $units = cetesi_get_units();
+                    foreach ($units as $unit_key => $unit) {
+                        if ($unit['ativo'] && !empty($unit['google_maps_url']) && $unit['google_maps_url'] !== '#') {
+                    ?>
+                    <div class="mapa-unidade">
+                        <h3><?php echo esc_html($unit['nome']); ?></h3>
+                        <div class="mapa-container">
+                            <iframe 
+                                src="<?php echo esc_url($unit['google_maps_url']); ?>" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <div class="mapa-info">
+                            <p><i class="fas fa-map-marker-alt"></i> <?php echo esc_html($unit['endereco']); ?></p>
+                            <p><i class="fas fa-city"></i> <?php echo esc_html($unit['cidade']); ?></p>
+                            <a href="<?php echo esc_url($unit['google_maps_url']); ?>" target="_blank" class="btn-mapa" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i>
+                                Ver no Google Maps
+                            </a>
+                        </div>
+                    </div>
+                    <?php 
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </section>

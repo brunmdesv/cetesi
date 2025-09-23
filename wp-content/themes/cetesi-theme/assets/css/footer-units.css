@@ -1,0 +1,112 @@
+/**
+ * Estilos para o Footer com Unidades CETESI
+ * Seguindo o design existente do tema
+ * 
+ * @package CETESI
+ */
+
+/* ===== FOOTER UNITS ===== */
+.footer-units {
+    margin-top: var(--space-lg);
+    padding: var(--space-md) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+}
+
+.footer-units strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.footer-section.footer-units {
+    flex: 1;
+    margin-left: var(--space-2xl);
+}
+
+.footer-section.footer-units h3 {
+    color: #ffffff;
+    margin: 0 0 var(--space-lg) 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.footer-unit {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--primary-color);
+}
+
+.footer-unit:last-child {
+    margin-bottom: 0;
+}
+
+.footer-unit h4 {
+    color: #ffffff;
+    margin: 0 0 var(--space-sm) 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.footer-unit p {
+    margin: var(--space-xs) 0;
+    color: #b0b0b0;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.footer-unit i {
+    color: var(--primary-color);
+    margin-right: var(--space-xs);
+    font-size: 0.875rem;
+}
+
+/* ===== RESPONSIVIDADE FOOTER ===== */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-section.footer-units {
+        margin-left: 0;
+        margin-top: var(--space-xl);
+    }
+    
+    .footer-unit {
+        margin-bottom: var(--space-lg);
+        padding: var(--space-sm);
+    }
+    
+    .footer-section.footer-units h3 {
+        font-size: 1rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    .footer-unit h4 {
+        font-size: 0.9rem;
+    }
+    
+    .footer-unit p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-unit {
+        padding: var(--space-xs);
+        margin-bottom: var(--space-md);
+    }
+    
+    .footer-section.footer-units h3 {
+        font-size: 0.9rem;
+    }
+    
+    .footer-unit h4 {
+        font-size: 0.875rem;
+    }
+    
+    .footer-unit p {
+        font-size: 0.75rem;
+    }
+}

@@ -12,7 +12,7 @@
     // Meta Description
     $meta_description = '';
     if (is_home() || is_front_page()) {
-        $meta_description = get_bloginfo('description') ?: 'Centro Técnico de Educação Superior Integrada - Cursos técnicos em saúde em Ceilândia, Brasília. Técnico em Enfermagem, Radiologia, Nutrição e mais. Excelência acadêmica e infraestrutura moderna no DF.';
+        $meta_description = get_bloginfo('description') ?: 'Centro Técnico de Educação Superior Integrada - Cursos técnicos em saúde em Ceilândia e Taguatinga, Brasília. Técnico em Enfermagem, Radiologia, Nutrição e mais. Excelência acadêmica e infraestrutura moderna no DF.';
     } elseif (is_single() || is_page()) {
         $meta_description = get_the_excerpt() ?: wp_trim_words(get_the_content(), 25, '...');
     } elseif (is_category() || is_tag()) {
@@ -23,10 +23,10 @@
     }
     
     // Meta Keywords
-    $meta_keywords = 'cursos técnicos, enfermagem, radiologia, nutrição, saúde, CETESI, educação técnica, qualificação profissional, cursos de saúde, Ceilândia, Brasília, DF, Distrito Federal';
+    $meta_keywords = 'cursos técnicos, enfermagem, radiologia, nutrição, saúde, CETESI, educação técnica, qualificação profissional, cursos de saúde, Ceilândia, Taguatinga, Brasília, DF, Distrito Federal';
     if (is_single() && get_post_type() == 'curso') {
         $curso_terms = wp_get_post_terms(get_the_ID(), 'categoria_curso');
-        $keywords_array = array('cursos técnicos', 'saúde', 'CETESI', 'Ceilândia', 'Brasília', 'DF');
+        $keywords_array = array('cursos técnicos', 'saúde', 'CETESI', 'Ceilândia', 'Taguatinga', 'Brasília', 'DF');
         foreach ($curso_terms as $term) {
             $keywords_array[] = $term->name;
         }

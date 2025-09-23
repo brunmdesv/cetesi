@@ -4,7 +4,7 @@
     <footer id="colophon" class="footer">
         <div class="container">
             <div class="footer-content">
-                <!-- Informações do CETESI (única seção visível) -->
+                <!-- Informações do CETESI -->
                 <div class="footer-section footer-brand">
                     <div class="footer-logo">
                         <i class="fas fa-graduation-cap"></i>
@@ -20,8 +20,31 @@
                         }
                         ?>
                     </p>
-                    
-                    
+                    <p class="footer-units">
+                        <strong>Duas unidades em Brasília:</strong><br>
+                        Ceilândia e Taguatinga
+                    </p>
+                </div>
+                
+                <!-- Unidades do Footer -->
+                <div class="footer-section footer-units">
+                    <h3>Nossas Unidades</h3>
+                    <?php 
+                    $units = cetesi_get_units();
+                    foreach ($units as $unit_key => $unit) {
+                        if ($unit['ativo']) {
+                    ?>
+                    <div class="footer-unit">
+                        <h4><?php echo esc_html($unit['nome']); ?></h4>
+                        <p><?php echo esc_html($unit['endereco']); ?><br>
+                        <?php echo esc_html($unit['cidade']); ?><br>
+                        CEP: <?php echo esc_html($unit['cep']); ?></p>
+                        <p><i class="fas fa-phone"></i> <?php echo esc_html($unit['telefone']); ?></p>
+                    </div>
+                    <?php 
+                        }
+                    }
+                    ?>
                 </div>
                 
                 <!-- Demais seções removidas conforme solicitado -->
@@ -69,14 +92,26 @@
         "image": "<?php echo esc_url(get_theme_mod('cetesi_og_image', get_template_directory_uri() . '/assets/images/og-default.jpg')); ?>",
         "telephone": "<?php echo esc_js(get_theme_mod('cetesi_phone', '(11) 99999-9999')); ?>",
         "email": "<?php echo esc_js(get_theme_mod('cetesi_email', 'contato@cetesi.com.br')); ?>",
-         "address": {
-             "@type": "PostalAddress",
-             "streetAddress": "<?php echo esc_js(get_theme_mod('cetesi_address', 'QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102')); ?>",
-             "addressLocality": "Ceilândia",
-             "addressRegion": "DF",
-             "addressCountry": "BR",
-             "postalCode": "72220-025"
-         },
+         "location": [
+             {
+                 "@type": "PostalAddress",
+                 "streetAddress": "QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102",
+                 "addressLocality": "Ceilândia",
+                 "addressRegion": "DF",
+                 "addressCountry": "BR",
+                 "postalCode": "72220-025",
+                 "name": "CETESI Ceilândia"
+             },
+             {
+                 "@type": "PostalAddress",
+                 "streetAddress": "QSB 4 Área Especial 8",
+                 "addressLocality": "Taguatinga",
+                 "addressRegion": "DF",
+                 "addressCountry": "BR",
+                 "postalCode": "72015-000",
+                 "name": "CETESI Taguatinga"
+             }
+         ],
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "<?php echo esc_js(get_theme_mod('cetesi_phone', '(11) 99999-9999')); ?>",

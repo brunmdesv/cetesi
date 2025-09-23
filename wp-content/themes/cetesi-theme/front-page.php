@@ -216,87 +216,49 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- Localização Section -->
-    <section id="localizacao" class="localizacao-section">
+    <!-- Unidades Section -->
+    <section id="unidades" class="unidades-section">
         <div class="container">
             <div class="section-header">
-                <h2><?php _e('CETESI em Ceilândia, Brasília - DF', 'cetesi'); ?></h2>
-                <p><?php _e('Localizada estrategicamente em Ceilândia, oferecemos cursos técnicos em saúde com excelência no Distrito Federal', 'cetesi'); ?></p>
+                <h2><?php _e('Nossas Unidades', 'cetesi'); ?></h2>
+                <p><?php _e('Duas unidades estrategicamente localizadas em Brasília para melhor atendê-lo', 'cetesi'); ?></p>
             </div>
-            <div class="localizacao-content-moderno">
-                <!-- Card Principal de Endereço -->
-                <div class="endereco-card-moderno">
-                    <div class="endereco-header">
-                        <div class="endereco-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3><?php _e('Nossa Localização', 'cetesi'); ?></h3>
-                    </div>
-                    <div class="endereco-detalhes">
-                        <div class="endereco-linha">
-                            <i class="fas fa-building"></i>
-                            <span><?php _e('QNN 02, St. N Qnn 2 Conjunto e, LOTE 04 - Sala 102', 'cetesi'); ?></span>
-                        </div>
-                        <div class="endereco-linha">
-                            <i class="fas fa-city"></i>
-                            <span><?php _e('Ceilândia, Brasília - DF', 'cetesi'); ?></span>
-                        </div>
-                        <div class="endereco-linha">
-                            <i class="fas fa-mail-bulk"></i>
-                            <span><?php _e('CEP: 72220-025', 'cetesi'); ?></span>
-                        </div>
-                    </div>
+            
+            <div class="unidades-grid">
+                <?php 
+                $units = cetesi_get_units();
+                foreach ($units as $unit_key => $unit) {
+                    echo cetesi_render_unit_card($unit, $unit_key);
+                }
+                ?>
+            </div>
+            
+            <!-- Facilidades de Acesso -->
+            <div class="facilidades-section">
+                <div class="facilidades-header">
+                    <h3><?php _e('Facilidades de Acesso', 'cetesi'); ?></h3>
+                    <p><?php _e('Todas as nossas unidades oferecem facilidades para sua comodidade', 'cetesi'); ?></p>
                 </div>
-                
-                <!-- Card de Facilidades -->
-                <div class="facilidades-card">
-                    <div class="facilidades-header">
-                        <div class="facilidades-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3><?php _e('Facilidades de Acesso', 'cetesi'); ?></h3>
+                <div class="facilidades-grid">
+                    <div class="facilidade-item">
+                        <i class="fas fa-bus"></i>
+                        <span><?php _e('Transporte Público', 'cetesi'); ?></span>
+                        <small><?php _e('Fácil acesso por ônibus', 'cetesi'); ?></small>
                     </div>
-                    <div class="facilidades-grid">
-                        <div class="facilidade-item">
-                            <i class="fas fa-bus"></i>
-                            <span><?php _e('Transporte Público', 'cetesi'); ?></span>
-                            <small><?php _e('Fácil acesso por ônibus', 'cetesi'); ?></small>
-                        </div>
-                        <div class="facilidade-item">
-                            <i class="fas fa-car"></i>
-                            <span><?php _e('Estacionamento', 'cetesi'); ?></span>
-                            <small><?php _e('Vagas disponíveis', 'cetesi'); ?></small>
-                        </div>
-                        <div class="facilidade-item">
-                            <i class="fas fa-subway"></i>
-                            <span><?php _e('Metrô', 'cetesi'); ?></span>
-                            <small><?php _e('Próximo à estação', 'cetesi'); ?></small>
-                        </div>
-                        <div class="facilidade-item">
-                            <i class="fas fa-clock"></i>
-                            <span><?php _e('Horário', 'cetesi'); ?></span>
-                            <small><?php _e('Seg-Sex: 8h às 18h', 'cetesi'); ?></small>
-                        </div>
+                    <div class="facilidade-item">
+                        <i class="fas fa-car"></i>
+                        <span><?php _e('Estacionamento', 'cetesi'); ?></span>
+                        <small><?php _e('Vagas disponíveis', 'cetesi'); ?></small>
                     </div>
-                </div>
-                
-                <!-- Card de Ações -->
-                <div class="acoes-card">
-                    <div class="acoes-header">
-                        <div class="acoes-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3><?php _e('Entre em Contato', 'cetesi'); ?></h3>
+                    <div class="facilidade-item">
+                        <i class="fas fa-subway"></i>
+                        <span><?php _e('Metrô', 'cetesi'); ?></span>
+                        <small><?php _e('Próximo às estações', 'cetesi'); ?></small>
                     </div>
-                    <div class="acoes-buttons">
-                        <a href="https://maps.app.goo.gl/BtrBP6btCBaYzEBfA" target="_blank" class="btn-acao btn-maps-moderno" rel="noopener">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <span><?php _e('        Google Maps', 'cetesi'); ?></span>
-                        </a>
-                        <a href="tel:6133514511" class="btn-acao btn-ligar-moderno">
-                            <i class="fas fa-phone"></i>
-                            <span><?php _e('Ligar Agora', 'cetesi'); ?></span>
-                        </a>
+                    <div class="facilidade-item">
+                        <i class="fas fa-clock"></i>
+                        <span><?php _e('Horário', 'cetesi'); ?></span>
+                        <small><?php _e('Seg-Sex: 8h às 18h', 'cetesi'); ?></small>
                     </div>
                 </div>
             </div>

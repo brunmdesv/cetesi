@@ -266,14 +266,6 @@
             }
         });
 
-        // Debug: Log informações sobre o dispositivo (apenas em desenvolvimento)
-        if (window.location.hostname === 'localhost' || window.location.hostname.includes('cetesi')) {
-            console.log('CETESI Mobile Responsive JS carregado');
-            console.log('Largura da tela:', $(window).width());
-            console.log('Altura da tela:', $(window).height());
-            console.log('User Agent:', navigator.userAgent);
-        }
-
     });
 
 })(jQuery);
