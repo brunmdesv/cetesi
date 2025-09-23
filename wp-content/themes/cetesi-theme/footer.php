@@ -7,8 +7,17 @@
                 <!-- Informações do CETESI -->
                 <div class="footer-section footer-brand">
                     <div class="footer-logo">
-                        <i class="fas fa-graduation-cap"></i>
-                        <?php bloginfo('name'); ?>
+                        <?php if (has_custom_logo()) : ?>
+                            <div class="site-logo">
+                                <?php the_custom_logo(); ?>
+                            </div>
+                        <?php else : ?>
+                            <h1 class="site-title">
+                                <a href="<?php echo esc_url(home_url('/')); ?>" class="logo" rel="home">
+                                    <?php bloginfo('name'); ?>
+                                </a>
+                            </h1>
+                        <?php endif; ?>
                     </div>
                     <p class="footer-description">
                         <?php 
@@ -20,32 +29,8 @@
                         }
                         ?>
                     </p>
-                    <p class="footer-units">
-                        <strong>Duas unidades em Brasília:</strong><br>
-                        Ceilândia e Taguatinga
-                    </p>
                 </div>
                 
-                <!-- Unidades do Footer -->
-                <div class="footer-section footer-units">
-                    <h3>Nossas Unidades</h3>
-                    <?php 
-                    $units = cetesi_get_units();
-                    foreach ($units as $unit_key => $unit) {
-                        if ($unit['ativo']) {
-                    ?>
-                    <div class="footer-unit">
-                        <h4><?php echo esc_html($unit['nome']); ?></h4>
-                        <p><?php echo esc_html($unit['endereco']); ?><br>
-                        <?php echo esc_html($unit['cidade']); ?><br>
-                        CEP: <?php echo esc_html($unit['cep']); ?></p>
-                        <p><i class="fas fa-phone"></i> <?php echo esc_html($unit['telefone']); ?></p>
-                    </div>
-                    <?php 
-                        }
-                    }
-                    ?>
-                </div>
                 
                 <!-- Demais seções removidas conforme solicitado -->
             </div>
