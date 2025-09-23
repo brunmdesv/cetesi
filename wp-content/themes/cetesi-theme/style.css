@@ -144,10 +144,12 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
     padding: var(--space-md) 0;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sticky será aplicado pelo header-sticky.css */
+    z-index: 1000;
 }
 
 .site-title {
@@ -166,7 +168,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-dark);
 }
 
-/* .header.scrolled removido - será aplicado pelo header-sticky.css */
+/* Sticky habilitado */
 
 .header-content {
     display: flex;
@@ -6901,7 +6903,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   HEADER MOBILE - Base (sem sticky, será aplicado pelo header-sticky.css)
+   HEADER MOBILE - Base (sticky habilitado)
    ========================================================================== */
 
 .mobile-header {
@@ -6910,12 +6912,15 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    /* Sticky será aplicado pelo header-sticky.css */
+    z-index: 1000;
+    /* Sticky habilitado */
 }
 
-/* .mobile-header.scrolled removido - será aplicado pelo header-sticky.css */
+/* Sticky habilitado */
 
 .mobile-container {
     max-width: 100%;

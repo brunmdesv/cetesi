@@ -1894,8 +1894,6 @@ function cetesi_scripts() {
     // CSS do Header Cetesi - Baseado no tema cetesi
     wp_enqueue_style('cetesi-header', CETESI_THEME_URL . '/assets/css/header-cetesi.css', array('cetesi-style'), CETESI_VERSION);
     wp_enqueue_style('cetesi-header-mobile', CETESI_THEME_URL . '/assets/css/header-mobile-cetesi.css', array('cetesi-header'), CETESI_VERSION);
-    wp_enqueue_style('cetesi-header-material', CETESI_THEME_URL . '/assets/css/header-mobile-material.css', array('cetesi-header-mobile'), CETESI_VERSION);
-    wp_enqueue_style('cetesi-header-responsive', CETESI_THEME_URL . '/assets/css/header-mobile-responsive.css', array('cetesi-header-material'), CETESI_VERSION);
     
     // CSS de correções mobile
     wp_enqueue_style('cetesi-mobile-fixes', CETESI_THEME_URL . '/assets/css/mobile-fixes.css', array('cetesi-style', 'cetesi-header-responsive'), CETESI_VERSION);
@@ -1939,15 +1937,14 @@ function cetesi_scripts() {
         wp_enqueue_style('cetesi-index', CETESI_THEME_URL . '/assets/css/index.css', array('cetesi-style'), CETESI_VERSION);
     }
     
-    // CSS do header sticky - CARREGADO POR ÚLTIMO para máxima prioridade
-    wp_enqueue_style('cetesi-header-sticky', CETESI_THEME_URL . '/assets/css/header-sticky.css', array('cetesi-mobile-fixes'), CETESI_VERSION);
+    // CSS do header sticky removido
     
     wp_enqueue_script('cetesi-main', CETESI_THEME_URL . '/assets/js/main.js', array('jquery'), CETESI_VERSION, true);
     wp_enqueue_script('cetesi-mobile-responsive', CETESI_THEME_URL . '/assets/js/mobile-responsive.js', array('jquery'), CETESI_VERSION, true);
     wp_enqueue_script('cetesi-header-mobile', CETESI_THEME_URL . '/assets/js/header-mobile.js', array('jquery'), CETESI_VERSION, true);
     
     // JavaScript do header sticky - implementação limpa
-    wp_enqueue_script('cetesi-header-sticky', CETESI_THEME_URL . '/assets/js/header-sticky.js', array('jquery'), CETESI_VERSION, true);
+    // JS do header sticky removido
     
     wp_enqueue_script('cetesi-contact-form', CETESI_THEME_URL . '/assets/js/contact-form.js', array('jquery'), CETESI_VERSION, true);
     wp_localize_script('cetesi-contact-form', 'cetesi_ajax', array(

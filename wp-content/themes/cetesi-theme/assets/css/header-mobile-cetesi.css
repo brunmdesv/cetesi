@@ -6,7 +6,7 @@
  */
 
 /* ==========================================
-   BREAKPOINTS CANÔNICOS - HEADER
+   BREAKPOINTS CANÔNICOS - HEADER (consolidado)
    ========================================== */
 @media (max-width: 420px) {
     .header { padding: 6px 0; }
@@ -214,8 +214,7 @@
     }
 }
 
-/* REMOVIDO: Breakpoint tablet específico - agora tudo é mobile padronizado */
-    
+/* Consolidado: regras responsivas do header mobile */
     .nav-menu {
         position: fixed;
         top: 0;
@@ -283,7 +282,7 @@
         display: flex;
     }
     
-    /* Menu Mobile Criativo - Design Moderno */
+    /* Menu Mobile Criativo - Design Moderno (consolidado) */
     .nav-menu {
         position: fixed;
         top: 0;
