@@ -77,7 +77,7 @@
             <nav class="mobile-navigation" id="mobile-menu" role="navigation" aria-label="Menu principal">
                 <?php
                 wp_nav_menu(array(
-                    'theme_location' => 'principal',
+                    'theme_location' => 'primary',
                     'container' => false,
                     'menu_class' => 'mobile-nav-menu',
                     'fallback_cb' => 'cetesi_fallback_menu',

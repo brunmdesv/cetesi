@@ -55,11 +55,15 @@
             });
         }
         
-        // Event listeners para abrir menu
+        // Toggle no mesmo botão (abrir/fechar)
         mobileMenuButton.on('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            openMobileMenu();
+            if (mobileMenuOverlay.hasClass('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
         });
         
         // Event listeners para fechar menu
