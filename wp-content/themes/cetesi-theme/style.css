@@ -7274,6 +7274,30 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* =====================================================================
+   Sticky Header – Robustness fixes (zoom/rescale)
+   ===================================================================== */
+html, body, #page, .site {
+    overflow: visible;
+}
+
+/* Garantir sticky também no header desktop */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Evitar que pais com transform/overflow quebrem o sticky */
+.site, .container, .header-content {
+    transform: none !important;
+    overflow: visible;
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .header { position: sticky; }
+}
+
 .mobile-cta-row {
     display: flex;
     gap: var(--space-md);
