@@ -1,2 +1,21 @@
 Options -ExecCGI
-AddHandler cgi-script .php .pl .py .jsp .asp .sh .cgi
+# Block PHP execution inside uploads
+<FilesMatch "\.(php|phtml|phps|php[0-9])$">
+    Require all denied
+</FilesMatch>
+
+# Disallow CGI handlers for common script types
+<IfModule mod_mime.c>
+    RemoveHandler .php .pl .py .jsp .asp .sh .cgi
+</IfModule>
+
+# Protect .ht* files
+<Files ~ "^\.ht">
+    Require all denied
+</Files>
+
+# Optional: long cache for media served from uploads
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 year"
+</IfModule>
